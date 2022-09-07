@@ -1,8 +1,8 @@
-ï»¿#ifndef MYTINYSTL_HASHTABLE_H_
+#ifndef MYTINYSTL_HASHTABLE_H_
 #define MYTINYSTL_HASHTABLE_H_
 
-// è¿™ä¸ªå¤´æ–‡ä»¶åŒ…å«äº†ä¸€ä¸ªæ¨¡æ¿ç±» hashtable
-// hashtable : å“ˆå¸Œè¡¨ï¼Œä½¿ç”¨å¼€é“¾æ³•å¤„ç†å†²çª
+// Õâ¸öÍ·ÎÄ¼ş°üº¬ÁËÒ»¸öÄ£°åÀà hashtable
+// hashtable : ¹şÏ£±í£¬Ê¹ÓÃ¿ªÁ´·¨´¦Àí³åÍ»
 
 #include <initializer_list>
 
@@ -16,12 +16,12 @@
 namespace mystl
 {
 
-// hashtable çš„èŠ‚ç‚¹å®šä¹‰
+// hashtable µÄ½Úµã¶¨Òå
 template <class T>
 struct hashtable_node
 {
-  hashtable_node* next;   // æŒ‡å‘ä¸‹ä¸€ä¸ªèŠ‚ç‚¹
-  T               value;  // å‚¨å­˜å®å€¼
+  hashtable_node* next;   // Ö¸ÏòÏÂÒ»¸ö½Úµã
+  T               value;  // ´¢´æÊµÖµ
 
   hashtable_node() = default;
   hashtable_node(const T& n) :next(nullptr), value(n) {}
@@ -133,8 +133,8 @@ struct ht_iterator_base :public mystl::iterator<mystl::forward_iterator_tag, T>
   typedef size_t                                      size_type;
   typedef ptrdiff_t                                   difference_type;
 
-  node_ptr    node;  // è¿­ä»£å™¨å½“å‰æ‰€æŒ‡èŠ‚ç‚¹
-  contain_ptr ht;    // ä¿æŒä¸å®¹å™¨çš„è¿ç»“
+  node_ptr    node;  // µü´úÆ÷µ±Ç°ËùÖ¸½Úµã
+  contain_ptr ht;    // ±£³ÖÓëÈİÆ÷µÄÁ¬½á
 
   ht_iterator_base() = default;
 
@@ -195,7 +195,7 @@ struct ht_iterator :public ht_iterator_base<T, Hash, KeyEqual>
     return *this;
   }
 
-  // é‡è½½æ“ä½œç¬¦
+  // ÖØÔØ²Ù×÷·û
   reference operator*()  const { return node->value; }
   pointer   operator->() const { return &(operator*()); }
 
@@ -205,7 +205,7 @@ struct ht_iterator :public ht_iterator_base<T, Hash, KeyEqual>
     const node_ptr old = node;
     node = node->next;
     if (node == nullptr)
-    { // å¦‚æœä¸‹ä¸€ä¸ªä½ç½®ä¸ºç©ºï¼Œè·³åˆ°ä¸‹ä¸€ä¸ª bucket çš„èµ·å§‹å¤„
+    { // Èç¹ûÏÂÒ»¸öÎ»ÖÃÎª¿Õ£¬Ìøµ½ÏÂÒ»¸ö bucket µÄÆğÊ¼´¦
       auto index = ht->hash(value_traits::get_key(old->value));
       while (!node && ++index < ht->bucket_size_)
         node = ht->buckets_[index];
@@ -273,7 +273,7 @@ struct ht_const_iterator :public ht_iterator_base<T, Hash, KeyEqual>
     return *this;
   }
 
-  // é‡è½½æ“ä½œç¬¦
+  // ÖØÔØ²Ù×÷·û
   reference operator*()  const { return node->value; }
   pointer   operator->() const { return &(operator*()); }
 
@@ -283,7 +283,7 @@ struct ht_const_iterator :public ht_iterator_base<T, Hash, KeyEqual>
     const node_ptr old = node;
     node = node->next;
     if (node == nullptr)
-    { // å¦‚æœä¸‹ä¸€ä¸ªä½ç½®ä¸ºç©ºï¼Œè·³åˆ°ä¸‹ä¸€ä¸ª bucket çš„èµ·å§‹å¤„
+    { // Èç¹ûÏÂÒ»¸öÎ»ÖÃÎª¿Õ£¬Ìøµ½ÏÂÒ»¸ö bucket µÄÆğÊ¼´¦
       auto index = ht->hash(value_traits::get_key(old->value));
       while (!node && ++index < ht->bucket_size_)
       {
@@ -400,7 +400,7 @@ struct ht_const_local_iterator :public mystl::iterator<mystl::forward_iterator_t
   bool operator!=(const self& other) const { return node != other.node; }
 };
 
-// bucket ä½¿ç”¨çš„å¤§å°
+// bucket Ê¹ÓÃµÄ´óĞ¡
 
 #if (_MSC_VER && _WIN64) || ((__GNUC__ || __clang__) &&__SIZEOF_POINTER__ == 8)
 #define SYSTEM_64 1
@@ -458,7 +458,7 @@ static constexpr size_t ht_prime_list[] = {
 
 #endif
 
-// æ‰¾å‡ºæœ€æ¥è¿‘å¹¶å¤§äºç­‰äº n çš„é‚£ä¸ªè´¨æ•°
+// ÕÒ³ö×î½Ó½ü²¢´óÓÚµÈÓÚ n µÄÄÇ¸öÖÊÊı
 inline size_t ht_next_prime(size_t n)
 {
   const size_t* first = ht_prime_list;
@@ -467,8 +467,8 @@ inline size_t ht_next_prime(size_t n)
   return pos == last ? *(last - 1) : *pos;
 }
 
-// æ¨¡æ¿ç±» hashtable
-// å‚æ•°ä¸€ä»£è¡¨æ•°æ®ç±»å‹ï¼Œå‚æ•°äºŒä»£è¡¨å“ˆå¸Œå‡½æ•°ï¼Œå‚æ•°ä¸‰ä»£è¡¨é”®å€¼ç›¸ç­‰çš„æ¯”è¾ƒå‡½æ•°
+// Ä£°åÀà hashtable
+// ²ÎÊıÒ»´ú±íÊı¾İÀàĞÍ£¬²ÎÊı¶ş´ú±í¹şÏ£º¯Êı£¬²ÎÊıÈı´ú±í¼üÖµÏàµÈµÄ±È½Ïº¯Êı
 template <class T, class Hash, class KeyEqual>
 class hashtable
 {  
@@ -477,7 +477,7 @@ class hashtable
   friend struct mystl::ht_const_iterator<T, Hash, KeyEqual>;
 
 public:
-  // hashtable çš„å‹åˆ«å®šä¹‰
+  // hashtable µÄĞÍ±ğ¶¨Òå
   typedef ht_value_traits<T>                          value_traits;
   typedef typename value_traits::key_type             key_type;
   typedef typename value_traits::mapped_type          mapped_type;
@@ -508,7 +508,7 @@ public:
   allocator_type get_allocator() const { return allocator_type(); }
 
 private:
-  // ç”¨ä»¥ä¸‹å…­ä¸ªå‚æ•°æ¥è¡¨ç° hashtable
+  // ÓÃÒÔÏÂÁù¸ö²ÎÊıÀ´±íÏÖ hashtable
   bucket_type buckets_;
   size_type   bucket_size_;
   size_type   size_;
@@ -536,7 +536,7 @@ private:
   {
     for (size_type n = 0; n < bucket_size_; ++n)
     {
-      if (buckets_[n])  // æ‰¾åˆ°ç¬¬ä¸€ä¸ªæœ‰èŠ‚ç‚¹çš„ä½ç½®å°±è¿”å›
+      if (buckets_[n])  // ÕÒµ½µÚÒ»¸öÓĞ½ÚµãµÄÎ»ÖÃ¾Í·µ»Ø
         return iterator(buckets_[n], this);
     }
     return iterator(nullptr, this);
@@ -546,14 +546,14 @@ private:
   {
     for (size_type n = 0; n < bucket_size_; ++n)
     {
-      if (buckets_[n])  // æ‰¾åˆ°ç¬¬ä¸€ä¸ªæœ‰èŠ‚ç‚¹çš„ä½ç½®å°±è¿”å›
+      if (buckets_[n])  // ÕÒµ½µÚÒ»¸öÓĞ½ÚµãµÄÎ»ÖÃ¾Í·µ»Ø
         return M_cit(buckets_[n]);
     }
     return M_cit(nullptr);
   }
 
 public:
-  // æ„é€ ã€å¤åˆ¶ã€ç§»åŠ¨ã€ææ„å‡½æ•°
+  // ¹¹Ôì¡¢¸´ÖÆ¡¢ÒÆ¶¯¡¢Îö¹¹º¯Êı
   explicit hashtable(size_type bucket_count,
                      const Hash& hash = Hash(),
                      const KeyEqual& equal = KeyEqual())
@@ -596,7 +596,7 @@ public:
 
   ~hashtable() { clear(); }
 
-  // è¿­ä»£å™¨ç›¸å…³æ“ä½œ
+  // µü´úÆ÷Ïà¹Ø²Ù×÷
   iterator       begin()        noexcept
   { return M_begin(); }
   const_iterator begin()  const noexcept
@@ -611,12 +611,12 @@ public:
   const_iterator cend()   const noexcept
   { return end(); }
 
-  // å®¹é‡ç›¸å…³æ“ä½œ
+  // ÈİÁ¿Ïà¹Ø²Ù×÷
   bool      empty()    const noexcept { return size_ == 0; }
   size_type size()     const noexcept { return size_; }
   size_type max_size() const noexcept { return static_cast<size_type>(-1); }
 
-  // ä¿®æ”¹å®¹å™¨ç›¸å…³æ“ä½œ
+  // ĞŞ¸ÄÈİÆ÷Ïà¹Ø²Ù×÷
 
   // emplace / empalce_hint
 
@@ -626,8 +626,8 @@ public:
   template <class ...Args>
   pair<iterator, bool> emplace_unique(Args&& ...args);
 
-  // [note]: hint å¯¹äº hash_table å…¶å®æ²¡æœ‰æ„ä¹‰ï¼Œå› ä¸ºå³ä½¿æä¾›äº† hintï¼Œä¹Ÿè¦åšä¸€æ¬¡ hashï¼Œ
-  // æ¥ç¡®ä¿ hash_table çš„æ€§è´¨ï¼Œæ‰€ä»¥é€‰æ‹©å¿½ç•¥å®ƒ
+  // [note]: hint ¶ÔÓÚ hash_table ÆäÊµÃ»ÓĞÒâÒå£¬ÒòÎª¼´Ê¹Ìá¹©ÁË hint£¬Ò²Òª×öÒ»´Î hash£¬
+  // À´È·±£ hash_table µÄĞÔÖÊ£¬ËùÒÔÑ¡ÔñºöÂÔËü
   template <class ...Args>
   iterator emplace_multi_use_hint(const_iterator /*hint*/, Args&& ...args)
   { return emplace_multi(mystl::forward<Args>(args)...); }
@@ -658,7 +658,7 @@ public:
   pair<iterator, bool> insert_unique(value_type&& value)
   { return emplace_unique(mystl::move(value)); }
 
-  // [note]: åŒ emplace_hint
+  // [note]: Í¬ emplace_hint
   iterator insert_multi_use_hint(const_iterator /*hint*/, const value_type& value)
   { return insert_multi(value); }
   iterator insert_multi_use_hint(const_iterator /*hint*/, value_type&& value)
@@ -689,7 +689,7 @@ public:
 
   void      swap(hashtable& rhs) noexcept;
 
-  // æŸ¥æ‰¾ç›¸å…³æ“ä½œ
+  // ²éÕÒÏà¹Ø²Ù×÷
 
   size_type                            count(const key_type& key) const;
 
@@ -767,7 +767,7 @@ public:
   key_equal key_eq()   const { return equal_; }
 
 private:
-  // hashtable æˆå‘˜å‡½æ•°
+  // hashtable ³ÉÔ±º¯Êı
 
   // init
   void      init(size_type n);
@@ -810,7 +810,7 @@ private:
 
 /*****************************************************************************************/
 
-// å¤åˆ¶èµ‹å€¼è¿ç®—ç¬¦
+// ¸´ÖÆ¸³ÖµÔËËã·û
 template <class T, class Hash, class KeyEqual>
 hashtable<T, Hash, KeyEqual>&
 hashtable<T, Hash, KeyEqual>::
@@ -824,7 +824,7 @@ operator=(const hashtable& rhs)
   return *this;
 }
 
-// ç§»åŠ¨èµ‹å€¼è¿ç®—ç¬¦
+// ÒÆ¶¯¸³ÖµÔËËã·û
 template <class T, class Hash, class KeyEqual>
 hashtable<T, Hash, KeyEqual>&
 hashtable<T, Hash, KeyEqual>::
@@ -835,8 +835,8 @@ operator=(hashtable&& rhs) noexcept
   return *this;
 }
 
-// å°±åœ°æ„é€ å…ƒç´ ï¼Œé”®å€¼å…è®¸é‡å¤
-// å¼ºå¼‚å¸¸å®‰å…¨ä¿è¯
+// ¾ÍµØ¹¹ÔìÔªËØ£¬¼üÖµÔÊĞíÖØ¸´
+// Ç¿Òì³£°²È«±£Ö¤
 template <class T, class Hash, class KeyEqual>
 template <class ...Args>
 typename hashtable<T, Hash, KeyEqual>::iterator
@@ -857,8 +857,8 @@ emplace_multi(Args&& ...args)
   return insert_node_multi(np);
 }
 
-// å°±åœ°æ„é€ å…ƒç´ ï¼Œé”®å€¼å…è®¸é‡å¤
-// å¼ºå¼‚å¸¸å®‰å…¨ä¿è¯
+// ¾ÍµØ¹¹ÔìÔªËØ£¬¼üÖµÔÊĞíÖØ¸´
+// Ç¿Òì³£°²È«±£Ö¤
 template <class T, class Hash, class KeyEqual>
 template <class ...Args>
 pair<typename hashtable<T, Hash, KeyEqual>::iterator, bool> 
@@ -879,7 +879,7 @@ emplace_unique(Args&& ...args)
   return insert_node_unique(np);
 }
 
-// åœ¨ä¸éœ€è¦é‡å»ºè¡¨æ ¼çš„æƒ…å†µä¸‹æ’å…¥æ–°èŠ‚ç‚¹ï¼Œé”®å€¼ä¸å…è®¸é‡å¤
+// ÔÚ²»ĞèÒªÖØ½¨±í¸ñµÄÇé¿öÏÂ²åÈëĞÂ½Úµã£¬¼üÖµ²»ÔÊĞíÖØ¸´
 template <class T, class Hash, class KeyEqual>
 pair<typename hashtable<T, Hash, KeyEqual>::iterator, bool>
 hashtable<T, Hash, KeyEqual>::
@@ -892,7 +892,7 @@ insert_unique_noresize(const value_type& value)
     if (is_equal(value_traits::get_key(cur->value), value_traits::get_key(value)))
       return mystl::make_pair(iterator(cur, this), false);
   }
-  // è®©æ–°èŠ‚ç‚¹æˆä¸ºé“¾è¡¨çš„ç¬¬ä¸€ä¸ªèŠ‚ç‚¹
+  // ÈÃĞÂ½Úµã³ÉÎªÁ´±íµÄµÚÒ»¸ö½Úµã
   auto tmp = create_node(value);  
   tmp->next = first;
   buckets_[n] = tmp;
@@ -900,7 +900,7 @@ insert_unique_noresize(const value_type& value)
   return mystl::make_pair(iterator(tmp, this), true);
 }
 
-// åœ¨ä¸éœ€è¦é‡å»ºè¡¨æ ¼çš„æƒ…å†µä¸‹æ’å…¥æ–°èŠ‚ç‚¹ï¼Œé”®å€¼å…è®¸é‡å¤
+// ÔÚ²»ĞèÒªÖØ½¨±í¸ñµÄÇé¿öÏÂ²åÈëĞÂ½Úµã£¬¼üÖµÔÊĞíÖØ¸´
 template <class T, class Hash, class KeyEqual>
 typename hashtable<T, Hash, KeyEqual>::iterator
 hashtable<T, Hash, KeyEqual>::
@@ -912,21 +912,21 @@ insert_multi_noresize(const value_type& value)
   for (auto cur = first; cur; cur = cur->next)
   {
     if (is_equal(value_traits::get_key(cur->value), value_traits::get_key(value)))
-    { // å¦‚æœé“¾è¡¨ä¸­å­˜åœ¨ç›¸åŒé”®å€¼çš„èŠ‚ç‚¹å°±é©¬ä¸Šæ’å…¥ï¼Œç„¶åè¿”å›
+    { // Èç¹ûÁ´±íÖĞ´æÔÚÏàÍ¬¼üÖµµÄ½Úµã¾ÍÂíÉÏ²åÈë£¬È»ºó·µ»Ø
       tmp->next = cur->next;
       cur->next = tmp;
       ++size_;
       return iterator(tmp, this);
     }
   }
-  // å¦åˆ™æ’å…¥åœ¨é“¾è¡¨å¤´éƒ¨
+  // ·ñÔò²åÈëÔÚÁ´±íÍ·²¿
   tmp->next = first;
   buckets_[n] = tmp;
   ++size_;
   return iterator(tmp, this);
 }
 
-// åˆ é™¤è¿­ä»£å™¨æ‰€æŒ‡çš„èŠ‚ç‚¹
+// É¾³ıµü´úÆ÷ËùÖ¸µÄ½Úµã
 template <class T, class Hash, class KeyEqual>
 void hashtable<T, Hash, KeyEqual>::
 erase(const_iterator position)
@@ -937,7 +937,7 @@ erase(const_iterator position)
     const auto n = hash(value_traits::get_key(p->value));
     auto cur = buckets_[n];
     if (cur == p)
-    { // p ä½äºé“¾è¡¨å¤´éƒ¨
+    { // p Î»ÓÚÁ´±íÍ·²¿
       buckets_[n] = cur->next;
       destroy_node(cur);
       --size_;
@@ -964,7 +964,7 @@ erase(const_iterator position)
   }
 }
 
-// åˆ é™¤[first, last)å†…çš„èŠ‚ç‚¹
+// É¾³ı[first, last)ÄÚµÄ½Úµã
 template <class T, class Hash, class KeyEqual>
 void hashtable<T, Hash, KeyEqual>::
 erase(const_iterator first, const_iterator last)
@@ -978,7 +978,7 @@ erase(const_iterator first, const_iterator last)
     ? hash(value_traits::get_key(last.node->value))
     : bucket_size_;
   if (first_bucket == last_bucket)
-  { // å¦‚æœåœ¨ bucket åœ¨åŒä¸€ä¸ªä½ç½®
+  { // Èç¹ûÔÚ bucket ÔÚÍ¬Ò»¸öÎ»ÖÃ
     erase_bucket(first_bucket, first.node, last.node);
   }
   else
@@ -996,7 +996,7 @@ erase(const_iterator first, const_iterator last)
   }
 }
 
-// åˆ é™¤é”®å€¼ä¸º key çš„èŠ‚ç‚¹
+// É¾³ı¼üÖµÎª key µÄ½Úµã
 template <class T, class Hash, class KeyEqual>
 typename hashtable<T, Hash, KeyEqual>::size_type
 hashtable<T, Hash, KeyEqual>::
@@ -1047,7 +1047,7 @@ erase_unique(const key_type& key)
   return 0;
 }
 
-// æ¸…ç©º hashtable
+// Çå¿Õ hashtable
 template <class T, class Hash, class KeyEqual>
 void hashtable<T, Hash, KeyEqual>::
 clear()
@@ -1069,7 +1069,7 @@ clear()
   }
 }
 
-// åœ¨æŸä¸ª bucket èŠ‚ç‚¹çš„ä¸ªæ•°
+// ÔÚÄ³¸ö bucket ½ÚµãµÄ¸öÊı
 template <class T, class Hash, class KeyEqual>
 typename hashtable<T, Hash, KeyEqual>::size_type
 hashtable<T, Hash, KeyEqual>::
@@ -1083,7 +1083,7 @@ bucket_size(size_type n) const noexcept
   return result;
 }
 
-// é‡æ–°å¯¹å…ƒç´ è¿›è¡Œä¸€éå“ˆå¸Œï¼Œæ’å…¥åˆ°æ–°çš„ä½ç½®
+// ÖØĞÂ¶ÔÔªËØ½øĞĞÒ»±é¹şÏ££¬²åÈëµ½ĞÂµÄÎ»ÖÃ
 template <class T, class Hash, class KeyEqual>
 void hashtable<T, Hash, KeyEqual>::
 rehash(size_type count)
@@ -1103,7 +1103,7 @@ rehash(size_type count)
   }
 }
 
-// æŸ¥æ‰¾é”®å€¼ä¸º key çš„èŠ‚ç‚¹ï¼Œè¿”å›å…¶è¿­ä»£å™¨
+// ²éÕÒ¼üÖµÎª key µÄ½Úµã£¬·µ»ØÆäµü´úÆ÷
 template <class T, class Hash, class KeyEqual>
 typename hashtable<T, Hash, KeyEqual>::iterator
 hashtable<T, Hash, KeyEqual>::
@@ -1126,7 +1126,7 @@ find(const key_type& key) const
   return M_cit(first);
 }
 
-// æŸ¥æ‰¾é”®å€¼ä¸º key å‡ºç°çš„æ¬¡æ•°
+// ²éÕÒ¼üÖµÎª key ³öÏÖµÄ´ÎÊı
 template <class T, class Hash, class KeyEqual>
 typename hashtable<T, Hash, KeyEqual>::size_type
 hashtable<T, Hash, KeyEqual>::
@@ -1142,7 +1142,7 @@ count(const key_type& key) const
   return result;
 }
 
-// æŸ¥æ‰¾ä¸é”®å€¼ key ç›¸ç­‰çš„åŒºé—´ï¼Œè¿”å›ä¸€ä¸ª pairï¼ŒæŒ‡å‘ç›¸ç­‰åŒºé—´çš„é¦–å°¾
+// ²éÕÒÓë¼üÖµ key ÏàµÈµÄÇø¼ä£¬·µ»ØÒ»¸ö pair£¬Ö¸ÏòÏàµÈÇø¼äµÄÊ×Î²
 template <class T, class Hash, class KeyEqual>
 pair<typename hashtable<T, Hash, KeyEqual>::iterator,
   typename hashtable<T, Hash, KeyEqual>::iterator>
@@ -1153,14 +1153,14 @@ equal_range_multi(const key_type& key)
   for (node_ptr first = buckets_[n]; first; first = first->next)
   {
     if (is_equal(value_traits::get_key(first->value), key))
-    { // å¦‚æœå‡ºç°ç›¸ç­‰çš„é”®å€¼
+    { // Èç¹û³öÏÖÏàµÈµÄ¼üÖµ
       for (node_ptr second = first->next; second; second = second->next)
       {
         if (!is_equal(value_traits::get_key(second->value), key))
           return mystl::make_pair(iterator(first, this), iterator(second, this));
       }
       for (auto m = n + 1; m < bucket_size_; ++m)
-      { // æ•´ä¸ªé“¾è¡¨éƒ½ç›¸ç­‰ï¼ŒæŸ¥æ‰¾ä¸‹ä¸€ä¸ªé“¾è¡¨å‡ºç°çš„ä½ç½®
+      { // Õû¸öÁ´±í¶¼ÏàµÈ£¬²éÕÒÏÂÒ»¸öÁ´±í³öÏÖµÄÎ»ÖÃ
         if (buckets_[m])
           return mystl::make_pair(iterator(first, this), iterator(buckets_[m], this));
       }
@@ -1187,7 +1187,7 @@ equal_range_multi(const key_type& key) const
           return mystl::make_pair(M_cit(first), M_cit(second));
       }
       for (auto m = n + 1; m < bucket_size_; ++m)
-      { // æ•´ä¸ªé“¾è¡¨éƒ½ç›¸ç­‰ï¼ŒæŸ¥æ‰¾ä¸‹ä¸€ä¸ªé“¾è¡¨å‡ºç°çš„ä½ç½®
+      { // Õû¸öÁ´±í¶¼ÏàµÈ£¬²éÕÒÏÂÒ»¸öÁ´±í³öÏÖµÄÎ»ÖÃ
         if (buckets_[m])
           return mystl::make_pair(M_cit(first), M_cit(buckets_[m]));
       }
@@ -1211,7 +1211,7 @@ equal_range_unique(const key_type& key)
       if (first->next)
         return mystl::make_pair(iterator(first, this), iterator(first->next, this));
       for (auto m = n + 1; m < bucket_size_; ++m)
-      { // æ•´ä¸ªé“¾è¡¨éƒ½ç›¸ç­‰ï¼ŒæŸ¥æ‰¾ä¸‹ä¸€ä¸ªé“¾è¡¨å‡ºç°çš„ä½ç½®
+      { // Õû¸öÁ´±í¶¼ÏàµÈ£¬²éÕÒÏÂÒ»¸öÁ´±í³öÏÖµÄÎ»ÖÃ
         if (buckets_[m])
           return mystl::make_pair(iterator(first, this), iterator(buckets_[m], this));
       }
@@ -1235,7 +1235,7 @@ equal_range_unique(const key_type& key) const
       if (first->next)
         return mystl::make_pair(M_cit(first), M_cit(first->next));
       for (auto m = n + 1; m < bucket_size_; ++m)
-      { // æ•´ä¸ªé“¾è¡¨éƒ½ç›¸ç­‰ï¼ŒæŸ¥æ‰¾ä¸‹ä¸€ä¸ªé“¾è¡¨å‡ºç°çš„ä½ç½®
+      { // Õû¸öÁ´±í¶¼ÏàµÈ£¬²éÕÒÏÂÒ»¸öÁ´±í³öÏÖµÄÎ»ÖÃ
         if (buckets_[m])
           return mystl::make_pair(M_cit(first), M_cit(buckets_[m]));
       }
@@ -1245,7 +1245,7 @@ equal_range_unique(const key_type& key) const
   return mystl::make_pair(cend(), cend());
 }
 
-// äº¤æ¢ hashtable
+// ½»»» hashtable
 template <class T, class Hash, class KeyEqual>
 void hashtable<T, Hash, KeyEqual>::
 swap(hashtable& rhs) noexcept
@@ -1264,7 +1264,7 @@ swap(hashtable& rhs) noexcept
 /****************************************************************************************/
 // helper function
 
-// init å‡½æ•°
+// init º¯Êı
 template <class T, class Hash, class KeyEqual>
 void hashtable<T, Hash, KeyEqual>::
 init(size_type n)
@@ -1284,7 +1284,7 @@ init(size_type n)
   bucket_size_ = buckets_.size();
 }
 
-// copy_init å‡½æ•°
+// copy_init º¯Êı
 template <class T, class Hash, class KeyEqual>
 void hashtable<T, Hash, KeyEqual>::
 copy_init(const hashtable& ht)
@@ -1298,11 +1298,11 @@ copy_init(const hashtable& ht)
     {
       node_ptr cur = ht.buckets_[i];
       if (cur)
-      { // å¦‚æœæŸ bucket å­˜åœ¨é“¾è¡¨
+      { // Èç¹ûÄ³ bucket ´æÔÚÁ´±í
         auto copy = create_node(cur->value);
         buckets_[i] = copy;
         for (auto next = cur->next; next; cur = next, next = cur->next)
-        {  //å¤åˆ¶é“¾è¡¨
+        {  //¸´ÖÆÁ´±í
           copy->next = create_node(next->value);
           copy = copy->next;
         }
@@ -1319,7 +1319,7 @@ copy_init(const hashtable& ht)
   }
 }
 
-// create_node å‡½æ•°
+// create_node º¯Êı
 template <class T, class Hash, class KeyEqual>
 template <class ...Args>
 typename hashtable<T, Hash, KeyEqual>::node_ptr
@@ -1340,7 +1340,7 @@ create_node(Args&& ...args)
   return tmp;
 }
 
-// destroy_node å‡½æ•°
+// destroy_node º¯Êı
 template <class T, class Hash, class KeyEqual>
 void hashtable<T, Hash, KeyEqual>::
 destroy_node(node_ptr node)
@@ -1350,7 +1350,7 @@ destroy_node(node_ptr node)
   node = nullptr;
 }
 
-// next_size å‡½æ•°
+// next_size º¯Êı
 template <class T, class Hash, class KeyEqual>
 typename hashtable<T, Hash, KeyEqual>::size_type
 hashtable<T, Hash, KeyEqual>::next_size(size_type n) const
@@ -1358,7 +1358,7 @@ hashtable<T, Hash, KeyEqual>::next_size(size_type n) const
   return ht_next_prime(n);
 }
 
-// hash å‡½æ•°
+// hash º¯Êı
 template <class T, class Hash, class KeyEqual>
 typename hashtable<T, Hash, KeyEqual>::size_type
 hashtable<T, Hash, KeyEqual>::
@@ -1375,7 +1375,7 @@ hash(const key_type& key) const
   return hash_(key) % bucket_size_;
 }
 
-// rehash_if_need å‡½æ•°
+// rehash_if_need º¯Êı
 template <class T, class Hash, class KeyEqual>
 void hashtable<T, Hash, KeyEqual>::
 rehash_if_need(size_type n)
@@ -1427,7 +1427,7 @@ copy_insert_unique(ForwardIter first, ForwardIter last, mystl::forward_iterator_
     insert_unique_noresize(*first);
 }
 
-// insert_node å‡½æ•°
+// insert_node º¯Êı
 template <class T, class Hash, class KeyEqual>
 typename hashtable<T, Hash, KeyEqual>::iterator
 hashtable<T, Hash, KeyEqual>::
@@ -1457,7 +1457,7 @@ insert_node_multi(node_ptr np)
   return iterator(np, this);
 }
 
-// insert_node_unique å‡½æ•°
+// insert_node_unique º¯Êı
 template <class T, class Hash, class KeyEqual>
 pair<typename hashtable<T, Hash, KeyEqual>::iterator, bool>
 hashtable<T, Hash, KeyEqual>::
@@ -1484,7 +1484,7 @@ insert_node_unique(node_ptr np)
   return mystl::make_pair(iterator(np, this), true);
 }
 
-// replace_bucket å‡½æ•°
+// replace_bucket º¯Êı
 template <class T, class Hash, class KeyEqual>
 void hashtable<T, Hash, KeyEqual>::
 replace_bucket(size_type bucket_count)
@@ -1522,8 +1522,8 @@ replace_bucket(size_type bucket_count)
   bucket_size_ = buckets_.size();
 }
 
-// erase_bucket å‡½æ•°
-// åœ¨ç¬¬ n ä¸ª bucket å†…ï¼Œåˆ é™¤ [first, last) çš„èŠ‚ç‚¹
+// erase_bucket º¯Êı
+// ÔÚµÚ n ¸ö bucket ÄÚ£¬É¾³ı [first, last) µÄ½Úµã
 template <class T, class Hash, class KeyEqual>
 void hashtable<T, Hash, KeyEqual>::
 erase_bucket(size_type n, node_ptr first, node_ptr last)
@@ -1547,8 +1547,8 @@ erase_bucket(size_type n, node_ptr first, node_ptr last)
   }
 }
 
-// erase_bucket å‡½æ•°
-// åœ¨ç¬¬ n ä¸ª bucket å†…ï¼Œåˆ é™¤ [buckets_[n], last) çš„èŠ‚ç‚¹
+// erase_bucket º¯Êı
+// ÔÚµÚ n ¸ö bucket ÄÚ£¬É¾³ı [buckets_[n], last) µÄ½Úµã
 template <class T, class Hash, class KeyEqual>
 void hashtable<T, Hash, KeyEqual>::
 erase_bucket(size_type n, node_ptr last)
@@ -1564,7 +1564,7 @@ erase_bucket(size_type n, node_ptr last)
   buckets_[n] = last;
 }
 
-// equal_to å‡½æ•°
+// equal_to º¯Êı
 template <class T, class Hash, class KeyEqual>
 bool hashtable<T, Hash, KeyEqual>::equal_to_multi(const hashtable& other)
 {
@@ -1596,7 +1596,7 @@ bool hashtable<T, Hash, KeyEqual>::equal_to_unique(const hashtable& other)
   return true;
 }
 
-// é‡è½½ mystl çš„ swap
+// ÖØÔØ mystl µÄ swap
 template <class T, class Hash, class KeyEqual>
 void swap(hashtable<T, Hash, KeyEqual>& lhs,
           hashtable<T, Hash, KeyEqual>& rhs) noexcept

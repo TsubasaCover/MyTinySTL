@@ -1,8 +1,8 @@
-ï»¿#ifndef MYTINYSTL_RB_TREE_H_
+#ifndef MYTINYSTL_RB_TREE_H_
 #define MYTINYSTL_RB_TREE_H_
 
-// è¿™ä¸ªå¤´æ–‡ä»¶åŒ…å«ä¸€ä¸ªæ¨¡æ¿ç±» rb_tree
-// rb_tree : çº¢é»‘æ ‘
+// Õâ¸öÍ·ÎÄ¼ş°üº¬Ò»¸öÄ£°åÀà rb_tree
+// rb_tree : ºìºÚÊ÷
 
 #include <initializer_list>
 
@@ -17,7 +17,7 @@
 namespace mystl
 {
 
-// rb tree èŠ‚ç‚¹é¢œè‰²çš„ç±»å‹
+// rb tree ½ÚµãÑÕÉ«µÄÀàĞÍ
 
 typedef bool rb_tree_color_type;
 
@@ -114,7 +114,7 @@ struct rb_tree_node_traits
   typedef rb_tree_node<T>*                   node_ptr;
 };
 
-// rb tree çš„èŠ‚ç‚¹è®¾è®¡
+// rb tree µÄ½ÚµãÉè¼Æ
 
 template <class T>
 struct rb_tree_node_base
@@ -123,10 +123,10 @@ struct rb_tree_node_base
   typedef rb_tree_node_base<T>* base_ptr;
   typedef rb_tree_node<T>*      node_ptr;
 
-  base_ptr   parent;  // çˆ¶èŠ‚ç‚¹
-  base_ptr   left;    // å·¦å­èŠ‚ç‚¹
-  base_ptr   right;   // å³å­èŠ‚ç‚¹
-  color_type color;   // èŠ‚ç‚¹é¢œè‰²
+  base_ptr   parent;  // ¸¸½Úµã
+  base_ptr   left;    // ×ó×Ó½Úµã
+  base_ptr   right;   // ÓÒ×Ó½Úµã
+  color_type color;   // ½ÚµãÑÕÉ«
 
   base_ptr get_base_ptr()
   {
@@ -150,7 +150,7 @@ struct rb_tree_node :public rb_tree_node_base<T>
   typedef rb_tree_node_base<T>* base_ptr;
   typedef rb_tree_node<T>*      node_ptr;
 
-  T value;  // èŠ‚ç‚¹å€¼
+  T value;  // ½ÚµãÖµ
 
   base_ptr get_base_ptr()
   {
@@ -186,18 +186,18 @@ struct rb_tree_traits
   typedef node_type*                         node_ptr;
 };
 
-// rb tree çš„è¿­ä»£å™¨è®¾è®¡
+// rb tree µÄµü´úÆ÷Éè¼Æ
 
 template <class T>
 struct rb_tree_iterator_base :public mystl::iterator<mystl::bidirectional_iterator_tag, T>
 {
   typedef typename rb_tree_traits<T>::base_ptr  base_ptr;
 
-  base_ptr node;  // æŒ‡å‘èŠ‚ç‚¹æœ¬èº«
+  base_ptr node;  // Ö¸Ïò½Úµã±¾Éí
 
   rb_tree_iterator_base() :node(nullptr) {}
 
-  // ä½¿è¿­ä»£å™¨å‰è¿›
+  // Ê¹µü´úÆ÷Ç°½ø
   void inc()
   {
     if (node->right != nullptr)
@@ -205,31 +205,31 @@ struct rb_tree_iterator_base :public mystl::iterator<mystl::bidirectional_iterat
       node = rb_tree_min(node->right);
     }
     else
-    {  // å¦‚æœæ²¡æœ‰å³å­èŠ‚ç‚¹
+    {  // Èç¹ûÃ»ÓĞÓÒ×Ó½Úµã
       auto y = node->parent;
       while (y->right == node)
       {
         node = y;
         y = y->parent;
       }
-      if (node->right != y)  // åº”å¯¹â€œå¯»æ‰¾æ ¹èŠ‚ç‚¹çš„ä¸‹ä¸€èŠ‚ç‚¹ï¼Œè€Œæ ¹èŠ‚ç‚¹æ²¡æœ‰å³å­èŠ‚ç‚¹â€çš„ç‰¹æ®Šæƒ…å†µ
+      if (node->right != y)  // Ó¦¶Ô¡°Ñ°ÕÒ¸ù½ÚµãµÄÏÂÒ»½Úµã£¬¶ø¸ù½ÚµãÃ»ÓĞÓÒ×Ó½Úµã¡±µÄÌØÊâÇé¿ö
         node = y;
     }
   }
 
-  // ä½¿è¿­ä»£å™¨åé€€
+  // Ê¹µü´úÆ÷ºóÍË
   void dec()
   {
     if (node->parent->parent == node && rb_tree_is_red(node))
-    { // å¦‚æœ node ä¸º header
-      node = node->right;  // æŒ‡å‘æ•´æ£µæ ‘çš„ max èŠ‚ç‚¹
+    { // Èç¹û node Îª header
+      node = node->right;  // Ö¸ÏòÕû¿ÃÊ÷µÄ max ½Úµã
     }
     else if (node->left != nullptr)
     {
       node = rb_tree_max(node->left);
     }
     else
-    {  // é header èŠ‚ç‚¹ï¼Œä¹Ÿæ— å·¦å­èŠ‚ç‚¹
+    {  // ·Ç header ½Úµã£¬Ò²ÎŞ×ó×Ó½Úµã
       auto y = node->parent;
       while (node == y->left)
       {
@@ -261,14 +261,14 @@ struct rb_tree_iterator :public rb_tree_iterator_base<T>
 
   using rb_tree_iterator_base<T>::node;
 
-  // æ„é€ å‡½æ•°
+  // ¹¹Ôìº¯Êı
   rb_tree_iterator() {}
   rb_tree_iterator(base_ptr x) { node = x; }
   rb_tree_iterator(node_ptr x) { node = x; }
   rb_tree_iterator(const iterator& rhs) { node = rhs.node; }
   rb_tree_iterator(const const_iterator& rhs) { node = rhs.node; }
 
-  // é‡è½½æ“ä½œç¬¦
+  // ÖØÔØ²Ù×÷·û
   reference operator*()  const { return node->get_node_ptr()->value; }
   pointer   operator->() const { return &(operator*()); }
 
@@ -313,14 +313,14 @@ struct rb_tree_const_iterator :public rb_tree_iterator_base<T>
 
   using rb_tree_iterator_base<T>::node;
 
-  // æ„é€ å‡½æ•°
+  // ¹¹Ôìº¯Êı
   rb_tree_const_iterator() {}
   rb_tree_const_iterator(base_ptr x) { node = x; }
   rb_tree_const_iterator(node_ptr x) { node = x; }
   rb_tree_const_iterator(const iterator& rhs) { node = rhs.node; }
   rb_tree_const_iterator(const const_iterator& rhs) { node = rhs.node; }
 
-  // é‡è½½æ“ä½œç¬¦
+  // ÖØÔØ²Ù×÷·û
   reference operator*()  const { return node->get_node_ptr()->value; }
   pointer   operator->() const { return &(operator*()); }
 
@@ -409,29 +409,29 @@ NodePtr rb_tree_next(NodePtr node) noexcept
 |      / \                   / \          |
 |     b   c                 a   b         |
 \*---------------------------------------*/
-// å·¦æ—‹ï¼Œå‚æ•°ä¸€ä¸ºå·¦æ—‹ç‚¹ï¼Œå‚æ•°äºŒä¸ºæ ¹èŠ‚ç‚¹
+// ×óĞı£¬²ÎÊıÒ»Îª×óĞıµã£¬²ÎÊı¶şÎª¸ù½Úµã
 template <class NodePtr>
 void rb_tree_rotate_left(NodePtr x, NodePtr& root) noexcept
 {
-  auto y = x->right;  // y ä¸º x çš„å³å­èŠ‚ç‚¹
+  auto y = x->right;  // y Îª x µÄÓÒ×Ó½Úµã
   x->right = y->left;
   if (y->left != nullptr)
     y->left->parent = x;
   y->parent = x->parent;
 
   if (x == root)
-  { // å¦‚æœ x ä¸ºæ ¹èŠ‚ç‚¹ï¼Œè®© y é¡¶æ›¿ x æˆä¸ºæ ¹èŠ‚ç‚¹
+  { // Èç¹û x Îª¸ù½Úµã£¬ÈÃ y ¶¥Ìæ x ³ÉÎª¸ù½Úµã
     root = y;
   }
   else if (rb_tree_is_lchild(x))
-  { // å¦‚æœ x æ˜¯å·¦å­èŠ‚ç‚¹
+  { // Èç¹û x ÊÇ×ó×Ó½Úµã
     x->parent->left = y;
   }
   else
-  { // å¦‚æœ x æ˜¯å³å­èŠ‚ç‚¹
+  { // Èç¹û x ÊÇÓÒ×Ó½Úµã
     x->parent->right = y;
   }
-  // è°ƒæ•´ x ä¸ y çš„å…³ç³»
+  // µ÷Õû x Óë y µÄ¹ØÏµ
   y->left = x;  
   x->parent = y;
 }
@@ -445,7 +445,7 @@ void rb_tree_rotate_left(NodePtr x, NodePtr& root) noexcept
 |    / \                           / \     |
 |   b   c                         c   a    |
 \*----------------------------------------*/
-// å³æ—‹ï¼Œå‚æ•°ä¸€ä¸ºå³æ—‹ç‚¹ï¼Œå‚æ•°äºŒä¸ºæ ¹èŠ‚ç‚¹
+// ÓÒĞı£¬²ÎÊıÒ»ÎªÓÒĞıµã£¬²ÎÊı¶şÎª¸ù½Úµã
 template <class NodePtr>
 void rb_tree_rotate_right(NodePtr x, NodePtr& root) noexcept
 {
@@ -456,84 +456,84 @@ void rb_tree_rotate_right(NodePtr x, NodePtr& root) noexcept
   y->parent = x->parent;
 
   if (x == root)
-  { // å¦‚æœ x ä¸ºæ ¹èŠ‚ç‚¹ï¼Œè®© y é¡¶æ›¿ x æˆä¸ºæ ¹èŠ‚ç‚¹
+  { // Èç¹û x Îª¸ù½Úµã£¬ÈÃ y ¶¥Ìæ x ³ÉÎª¸ù½Úµã
     root = y;
   }
   else if (rb_tree_is_lchild(x))
-  { // å¦‚æœ x æ˜¯å³å­èŠ‚ç‚¹
+  { // Èç¹û x ÊÇÓÒ×Ó½Úµã
     x->parent->left = y;
   }
   else
-  { // å¦‚æœ x æ˜¯å·¦å­èŠ‚ç‚¹
+  { // Èç¹û x ÊÇ×ó×Ó½Úµã
     x->parent->right = y;
   }
-  // è°ƒæ•´ x ä¸ y çš„å…³ç³»
+  // µ÷Õû x Óë y µÄ¹ØÏµ
   y->right = x;                      
   x->parent = y;
 }
 
-// æ’å…¥èŠ‚ç‚¹åä½¿ rb tree é‡æ–°å¹³è¡¡ï¼Œå‚æ•°ä¸€ä¸ºæ–°å¢èŠ‚ç‚¹ï¼Œå‚æ•°äºŒä¸ºæ ¹èŠ‚ç‚¹
+// ²åÈë½ÚµãºóÊ¹ rb tree ÖØĞÂÆ½ºâ£¬²ÎÊıÒ»ÎªĞÂÔö½Úµã£¬²ÎÊı¶şÎª¸ù½Úµã
 //
-// case 1: æ–°å¢èŠ‚ç‚¹ä½äºæ ¹èŠ‚ç‚¹ï¼Œä»¤æ–°å¢èŠ‚ç‚¹ä¸ºé»‘
-// case 2: æ–°å¢èŠ‚ç‚¹çš„çˆ¶èŠ‚ç‚¹ä¸ºé»‘ï¼Œæ²¡æœ‰ç ´åå¹³è¡¡ï¼Œç›´æ¥è¿”å›
-// case 3: çˆ¶èŠ‚ç‚¹å’Œå”å”èŠ‚ç‚¹éƒ½ä¸ºçº¢ï¼Œä»¤çˆ¶èŠ‚ç‚¹å’Œå”å”èŠ‚ç‚¹ä¸ºé»‘ï¼Œç¥–çˆ¶èŠ‚ç‚¹ä¸ºçº¢ï¼Œ
-//         ç„¶åä»¤ç¥–çˆ¶èŠ‚ç‚¹ä¸ºå½“å‰èŠ‚ç‚¹ï¼Œç»§ç»­å¤„ç†
-// case 4: çˆ¶èŠ‚ç‚¹ä¸ºçº¢ï¼Œå”å”èŠ‚ç‚¹ä¸º NIL æˆ–é»‘è‰²ï¼Œçˆ¶èŠ‚ç‚¹ä¸ºå·¦ï¼ˆå³ï¼‰å­©å­ï¼Œå½“å‰èŠ‚ç‚¹ä¸ºå³ï¼ˆå·¦ï¼‰å­©å­ï¼Œ
-//         è®©çˆ¶èŠ‚ç‚¹æˆä¸ºå½“å‰èŠ‚ç‚¹ï¼Œå†ä»¥å½“å‰èŠ‚ç‚¹ä¸ºæ”¯ç‚¹å·¦ï¼ˆå³ï¼‰æ—‹
-// case 5: çˆ¶èŠ‚ç‚¹ä¸ºçº¢ï¼Œå”å”èŠ‚ç‚¹ä¸º NIL æˆ–é»‘è‰²ï¼Œçˆ¶èŠ‚ç‚¹ä¸ºå·¦ï¼ˆå³ï¼‰å­©å­ï¼Œå½“å‰èŠ‚ç‚¹ä¸ºå·¦ï¼ˆå³ï¼‰å­©å­ï¼Œ
-//         è®©çˆ¶èŠ‚ç‚¹å˜ä¸ºé»‘è‰²ï¼Œç¥–çˆ¶èŠ‚ç‚¹å˜ä¸ºçº¢è‰²ï¼Œä»¥ç¥–çˆ¶èŠ‚ç‚¹ä¸ºæ”¯ç‚¹å³ï¼ˆå·¦ï¼‰æ—‹
+// case 1: ĞÂÔö½ÚµãÎ»ÓÚ¸ù½Úµã£¬ÁîĞÂÔö½ÚµãÎªºÚ
+// case 2: ĞÂÔö½ÚµãµÄ¸¸½ÚµãÎªºÚ£¬Ã»ÓĞÆÆ»µÆ½ºâ£¬Ö±½Ó·µ»Ø
+// case 3: ¸¸½ÚµãºÍÊåÊå½Úµã¶¼Îªºì£¬Áî¸¸½ÚµãºÍÊåÊå½ÚµãÎªºÚ£¬×æ¸¸½ÚµãÎªºì£¬
+//         È»ºóÁî×æ¸¸½ÚµãÎªµ±Ç°½Úµã£¬¼ÌĞø´¦Àí
+// case 4: ¸¸½ÚµãÎªºì£¬ÊåÊå½ÚµãÎª NIL »òºÚÉ«£¬¸¸½ÚµãÎª×ó£¨ÓÒ£©º¢×Ó£¬µ±Ç°½ÚµãÎªÓÒ£¨×ó£©º¢×Ó£¬
+//         ÈÃ¸¸½Úµã³ÉÎªµ±Ç°½Úµã£¬ÔÙÒÔµ±Ç°½ÚµãÎªÖ§µã×ó£¨ÓÒ£©Ğı
+// case 5: ¸¸½ÚµãÎªºì£¬ÊåÊå½ÚµãÎª NIL »òºÚÉ«£¬¸¸½ÚµãÎª×ó£¨ÓÒ£©º¢×Ó£¬µ±Ç°½ÚµãÎª×ó£¨ÓÒ£©º¢×Ó£¬
+//         ÈÃ¸¸½Úµã±äÎªºÚÉ«£¬×æ¸¸½Úµã±äÎªºìÉ«£¬ÒÔ×æ¸¸½ÚµãÎªÖ§µãÓÒ£¨×ó£©Ğı
 //
-// å‚è€ƒåšå®¢: http://blog.csdn.net/v_JULY_v/article/details/6105630
+// ²Î¿¼²©¿Í: http://blog.csdn.net/v_JULY_v/article/details/6105630
 //          http://blog.csdn.net/v_JULY_v/article/details/6109153
 template <class NodePtr>
 void rb_tree_insert_rebalance(NodePtr x, NodePtr& root) noexcept
 {
-  rb_tree_set_red(x);  // æ–°å¢èŠ‚ç‚¹ä¸ºçº¢è‰²
+  rb_tree_set_red(x);  // ĞÂÔö½ÚµãÎªºìÉ«
   while (x != root && rb_tree_is_red(x->parent))
   {
     if (rb_tree_is_lchild(x->parent))
-    { // å¦‚æœçˆ¶èŠ‚ç‚¹æ˜¯å·¦å­èŠ‚ç‚¹
+    { // Èç¹û¸¸½ÚµãÊÇ×ó×Ó½Úµã
       auto uncle = x->parent->parent->right;
       if (uncle != nullptr && rb_tree_is_red(uncle))
-      { // case 3: çˆ¶èŠ‚ç‚¹å’Œå”å”èŠ‚ç‚¹éƒ½ä¸ºçº¢
+      { // case 3: ¸¸½ÚµãºÍÊåÊå½Úµã¶¼Îªºì
         rb_tree_set_black(x->parent);
         rb_tree_set_black(uncle);
         x = x->parent->parent;
         rb_tree_set_red(x);
       }
       else
-      { // æ— å”å”èŠ‚ç‚¹æˆ–å”å”èŠ‚ç‚¹ä¸ºé»‘
+      { // ÎŞÊåÊå½Úµã»òÊåÊå½ÚµãÎªºÚ
         if (!rb_tree_is_lchild(x))
-        { // case 4: å½“å‰èŠ‚ç‚¹ x ä¸ºå³å­èŠ‚ç‚¹
+        { // case 4: µ±Ç°½Úµã x ÎªÓÒ×Ó½Úµã
           x = x->parent;
           rb_tree_rotate_left(x, root);
         }
-        // éƒ½è½¬æ¢æˆ case 5ï¼š å½“å‰èŠ‚ç‚¹ä¸ºå·¦å­èŠ‚ç‚¹
+        // ¶¼×ª»»³É case 5£º µ±Ç°½ÚµãÎª×ó×Ó½Úµã
         rb_tree_set_black(x->parent);
         rb_tree_set_red(x->parent->parent);
         rb_tree_rotate_right(x->parent->parent, root);
         break;
       }
     }
-    else  // å¦‚æœçˆ¶èŠ‚ç‚¹æ˜¯å³å­èŠ‚ç‚¹ï¼Œå¯¹ç§°å¤„ç†
+    else  // Èç¹û¸¸½ÚµãÊÇÓÒ×Ó½Úµã£¬¶Ô³Æ´¦Àí
     { 
       auto uncle = x->parent->parent->left;
       if (uncle != nullptr && rb_tree_is_red(uncle))
-      { // case 3: çˆ¶èŠ‚ç‚¹å’Œå”å”èŠ‚ç‚¹éƒ½ä¸ºçº¢
+      { // case 3: ¸¸½ÚµãºÍÊåÊå½Úµã¶¼Îªºì
         rb_tree_set_black(x->parent);
         rb_tree_set_black(uncle);
         x = x->parent->parent;
         rb_tree_set_red(x);
-        // æ­¤æ—¶ç¥–çˆ¶èŠ‚ç‚¹ä¸ºçº¢ï¼Œå¯èƒ½ä¼šç ´åçº¢é»‘æ ‘çš„æ€§è´¨ï¼Œä»¤å½“å‰èŠ‚ç‚¹ä¸ºç¥–çˆ¶èŠ‚ç‚¹ï¼Œç»§ç»­å¤„ç†
+        // ´ËÊ±×æ¸¸½ÚµãÎªºì£¬¿ÉÄÜ»áÆÆ»µºìºÚÊ÷µÄĞÔÖÊ£¬Áîµ±Ç°½ÚµãÎª×æ¸¸½Úµã£¬¼ÌĞø´¦Àí
       }
       else
-      { // æ— å”å”èŠ‚ç‚¹æˆ–å”å”èŠ‚ç‚¹ä¸ºé»‘
+      { // ÎŞÊåÊå½Úµã»òÊåÊå½ÚµãÎªºÚ
         if (rb_tree_is_lchild(x))
-        { // case 4: å½“å‰èŠ‚ç‚¹ x ä¸ºå·¦å­èŠ‚ç‚¹
+        { // case 4: µ±Ç°½Úµã x Îª×ó×Ó½Úµã
           x = x->parent;
           rb_tree_rotate_right(x, root);
         }
-        // éƒ½è½¬æ¢æˆ case 5ï¼š å½“å‰èŠ‚ç‚¹ä¸ºå·¦å­èŠ‚ç‚¹
+        // ¶¼×ª»»³É case 5£º µ±Ç°½ÚµãÎª×ó×Ó½Úµã
         rb_tree_set_black(x->parent);
         rb_tree_set_red(x->parent->parent);
         rb_tree_rotate_left(x->parent->parent, root);
@@ -541,33 +541,33 @@ void rb_tree_insert_rebalance(NodePtr x, NodePtr& root) noexcept
       }
     }
   }
-  rb_tree_set_black(root);  // æ ¹èŠ‚ç‚¹æ°¸è¿œä¸ºé»‘
+  rb_tree_set_black(root);  // ¸ù½ÚµãÓÀÔ¶ÎªºÚ
 }
 
-// åˆ é™¤èŠ‚ç‚¹åä½¿ rb tree é‡æ–°å¹³è¡¡ï¼Œå‚æ•°ä¸€ä¸ºè¦åˆ é™¤çš„èŠ‚ç‚¹ï¼Œå‚æ•°äºŒä¸ºæ ¹èŠ‚ç‚¹ï¼Œå‚æ•°ä¸‰ä¸ºæœ€å°èŠ‚ç‚¹ï¼Œå‚æ•°å››ä¸ºæœ€å¤§èŠ‚ç‚¹
+// É¾³ı½ÚµãºóÊ¹ rb tree ÖØĞÂÆ½ºâ£¬²ÎÊıÒ»ÎªÒªÉ¾³ıµÄ½Úµã£¬²ÎÊı¶şÎª¸ù½Úµã£¬²ÎÊıÈıÎª×îĞ¡½Úµã£¬²ÎÊıËÄÎª×î´ó½Úµã
 // 
-// å‚è€ƒåšå®¢: http://blog.csdn.net/v_JULY_v/article/details/6105630
+// ²Î¿¼²©¿Í: http://blog.csdn.net/v_JULY_v/article/details/6105630
 //          http://blog.csdn.net/v_JULY_v/article/details/6109153
 template <class NodePtr>
 NodePtr rb_tree_erase_rebalance(NodePtr z, NodePtr& root, NodePtr& leftmost, NodePtr& rightmost)
 {
-  // y æ˜¯å¯èƒ½çš„æ›¿æ¢èŠ‚ç‚¹ï¼ŒæŒ‡å‘æœ€ç»ˆè¦åˆ é™¤çš„èŠ‚ç‚¹
+  // y ÊÇ¿ÉÄÜµÄÌæ»»½Úµã£¬Ö¸Ïò×îÖÕÒªÉ¾³ıµÄ½Úµã
   auto y = (z->left == nullptr || z->right == nullptr) ? z : rb_tree_next(z);
-  // x æ˜¯ y çš„ä¸€ä¸ªç‹¬å­èŠ‚ç‚¹æˆ– NIL èŠ‚ç‚¹
+  // x ÊÇ y µÄÒ»¸ö¶À×Ó½Úµã»ò NIL ½Úµã
   auto x = y->left != nullptr ? y->left : y->right;
-  // xp ä¸º x çš„çˆ¶èŠ‚ç‚¹
+  // xp Îª x µÄ¸¸½Úµã
   NodePtr xp = nullptr;
 
-  // y != z è¯´æ˜ z æœ‰ä¸¤ä¸ªéç©ºå­èŠ‚ç‚¹ï¼Œæ­¤æ—¶ y æŒ‡å‘ z å³å­æ ‘çš„æœ€å·¦èŠ‚ç‚¹ï¼Œx æŒ‡å‘ y çš„å³å­èŠ‚ç‚¹ã€‚
-  // ç”¨ y é¡¶æ›¿ z çš„ä½ç½®ï¼Œç”¨ x é¡¶æ›¿ y çš„ä½ç½®ï¼Œæœ€åç”¨ y æŒ‡å‘ z
+  // y != z ËµÃ÷ z ÓĞÁ½¸ö·Ç¿Õ×Ó½Úµã£¬´ËÊ± y Ö¸Ïò z ÓÒ×ÓÊ÷µÄ×î×ó½Úµã£¬x Ö¸Ïò y µÄÓÒ×Ó½Úµã¡£
+  // ÓÃ y ¶¥Ìæ z µÄÎ»ÖÃ£¬ÓÃ x ¶¥Ìæ y µÄÎ»ÖÃ£¬×îºóÓÃ y Ö¸Ïò z
   if (y != z)
   {
     z->left->parent = y;
     y->left = z->left;
 
-    // å¦‚æœ y ä¸æ˜¯ z çš„å³å­èŠ‚ç‚¹ï¼Œé‚£ä¹ˆ z çš„å³å­èŠ‚ç‚¹ä¸€å®šæœ‰å·¦å­©å­
+    // Èç¹û y ²»ÊÇ z µÄÓÒ×Ó½Úµã£¬ÄÇÃ´ z µÄÓÒ×Ó½ÚµãÒ»¶¨ÓĞ×óº¢×Ó
     if (y != z->right)
-    { // x æ›¿æ¢ y çš„ä½ç½®
+    { // x Ìæ»» y µÄÎ»ÖÃ
       xp = y->parent;
       if (x != nullptr)
         x->parent = y->parent;
@@ -581,7 +581,7 @@ NodePtr rb_tree_erase_rebalance(NodePtr z, NodePtr& root, NodePtr& leftmost, Nod
       xp = y;
     }
 
-    // è¿æ¥ y ä¸ z çš„çˆ¶èŠ‚ç‚¹ 
+    // Á¬½Ó y Óë z µÄ¸¸½Úµã 
     if (root == z)
       root = y;
     else if (rb_tree_is_lchild(z))
@@ -592,14 +592,14 @@ NodePtr rb_tree_erase_rebalance(NodePtr z, NodePtr& root, NodePtr& leftmost, Nod
     mystl::swap(y->color, z->color);
     y = z;
   }
-  // y == z è¯´æ˜ z è‡³å¤šåªæœ‰ä¸€ä¸ªå­©å­
+  // y == z ËµÃ÷ z ÖÁ¶àÖ»ÓĞÒ»¸öº¢×Ó
   else
   { 
     xp = y->parent;
     if (x)  
       x->parent = y->parent;
 
-    // è¿æ¥ x ä¸ z çš„çˆ¶èŠ‚ç‚¹
+    // Á¬½Ó x Óë z µÄ¸¸½Úµã
     if (root == z)
       root = x;
     else if (rb_tree_is_lchild(z))
@@ -607,27 +607,27 @@ NodePtr rb_tree_erase_rebalance(NodePtr z, NodePtr& root, NodePtr& leftmost, Nod
     else
       z->parent->right = x;
 
-    // æ­¤æ—¶ z æœ‰å¯èƒ½æ˜¯æœ€å·¦èŠ‚ç‚¹æˆ–æœ€å³èŠ‚ç‚¹ï¼Œæ›´æ–°æ•°æ®
+    // ´ËÊ± z ÓĞ¿ÉÄÜÊÇ×î×ó½Úµã»ò×îÓÒ½Úµã£¬¸üĞÂÊı¾İ
     if (leftmost == z)
       leftmost = x == nullptr ? xp : rb_tree_min(x);
     if (rightmost == z)
       rightmost = x == nullptr ? xp : rb_tree_max(x);
   }
 
-  // æ­¤æ—¶ï¼Œy æŒ‡å‘è¦åˆ é™¤çš„èŠ‚ç‚¹ï¼Œx ä¸ºæ›¿ä»£èŠ‚ç‚¹ï¼Œä» x èŠ‚ç‚¹å¼€å§‹è°ƒæ•´ã€‚
-  // å¦‚æœåˆ é™¤çš„èŠ‚ç‚¹ä¸ºçº¢è‰²ï¼Œæ ‘çš„æ€§è´¨æ²¡æœ‰è¢«ç ´åï¼Œå¦åˆ™æŒ‰ç…§ä»¥ä¸‹æƒ…å†µè°ƒæ•´ï¼ˆx ä¸ºå·¦å­èŠ‚ç‚¹ä¸ºä¾‹ï¼‰ï¼š
-  // case 1: å…„å¼ŸèŠ‚ç‚¹ä¸ºçº¢è‰²ï¼Œä»¤çˆ¶èŠ‚ç‚¹ä¸ºçº¢ï¼Œå…„å¼ŸèŠ‚ç‚¹ä¸ºé»‘ï¼Œè¿›è¡Œå·¦ï¼ˆå³ï¼‰æ—‹ï¼Œç»§ç»­å¤„ç†
-  // case 2: å…„å¼ŸèŠ‚ç‚¹ä¸ºé»‘è‰²ï¼Œä¸”ä¸¤ä¸ªå­èŠ‚ç‚¹éƒ½ä¸ºé»‘è‰²æˆ– NILï¼Œä»¤å…„å¼ŸèŠ‚ç‚¹ä¸ºçº¢ï¼Œçˆ¶èŠ‚ç‚¹æˆä¸ºå½“å‰èŠ‚ç‚¹ï¼Œç»§ç»­å¤„ç†
-  // case 3: å…„å¼ŸèŠ‚ç‚¹ä¸ºé»‘è‰²ï¼Œå·¦å­èŠ‚ç‚¹ä¸ºçº¢è‰²æˆ– NILï¼Œå³å­èŠ‚ç‚¹ä¸ºé»‘è‰²æˆ– NILï¼Œ
-  //         ä»¤å…„å¼ŸèŠ‚ç‚¹ä¸ºçº¢ï¼Œå…„å¼ŸèŠ‚ç‚¹çš„å·¦å­èŠ‚ç‚¹ä¸ºé»‘ï¼Œä»¥å…„å¼ŸèŠ‚ç‚¹ä¸ºæ”¯ç‚¹å³ï¼ˆå·¦ï¼‰æ—‹ï¼Œç»§ç»­å¤„ç†
-  // case 4: å…„å¼ŸèŠ‚ç‚¹ä¸ºé»‘è‰²ï¼Œå³å­èŠ‚ç‚¹ä¸ºçº¢è‰²ï¼Œä»¤å…„å¼ŸèŠ‚ç‚¹ä¸ºçˆ¶èŠ‚ç‚¹çš„é¢œè‰²ï¼Œçˆ¶èŠ‚ç‚¹ä¸ºé»‘è‰²ï¼Œå…„å¼ŸèŠ‚ç‚¹çš„å³å­èŠ‚ç‚¹
-  //         ä¸ºé»‘è‰²ï¼Œä»¥çˆ¶èŠ‚ç‚¹ä¸ºæ”¯ç‚¹å·¦ï¼ˆå³ï¼‰æ—‹ï¼Œæ ‘çš„æ€§è´¨è°ƒæ•´å®Œæˆï¼Œç®—æ³•ç»“æŸ
+  // ´ËÊ±£¬y Ö¸ÏòÒªÉ¾³ıµÄ½Úµã£¬x ÎªÌæ´ú½Úµã£¬´Ó x ½Úµã¿ªÊ¼µ÷Õû¡£
+  // Èç¹ûÉ¾³ıµÄ½ÚµãÎªºìÉ«£¬Ê÷µÄĞÔÖÊÃ»ÓĞ±»ÆÆ»µ£¬·ñÔò°´ÕÕÒÔÏÂÇé¿öµ÷Õû£¨x Îª×ó×Ó½ÚµãÎªÀı£©£º
+  // case 1: ĞÖµÜ½ÚµãÎªºìÉ«£¬Áî¸¸½ÚµãÎªºì£¬ĞÖµÜ½ÚµãÎªºÚ£¬½øĞĞ×ó£¨ÓÒ£©Ğı£¬¼ÌĞø´¦Àí
+  // case 2: ĞÖµÜ½ÚµãÎªºÚÉ«£¬ÇÒÁ½¸ö×Ó½Úµã¶¼ÎªºÚÉ«»ò NIL£¬ÁîĞÖµÜ½ÚµãÎªºì£¬¸¸½Úµã³ÉÎªµ±Ç°½Úµã£¬¼ÌĞø´¦Àí
+  // case 3: ĞÖµÜ½ÚµãÎªºÚÉ«£¬×ó×Ó½ÚµãÎªºìÉ«»ò NIL£¬ÓÒ×Ó½ÚµãÎªºÚÉ«»ò NIL£¬
+  //         ÁîĞÖµÜ½ÚµãÎªºì£¬ĞÖµÜ½ÚµãµÄ×ó×Ó½ÚµãÎªºÚ£¬ÒÔĞÖµÜ½ÚµãÎªÖ§µãÓÒ£¨×ó£©Ğı£¬¼ÌĞø´¦Àí
+  // case 4: ĞÖµÜ½ÚµãÎªºÚÉ«£¬ÓÒ×Ó½ÚµãÎªºìÉ«£¬ÁîĞÖµÜ½ÚµãÎª¸¸½ÚµãµÄÑÕÉ«£¬¸¸½ÚµãÎªºÚÉ«£¬ĞÖµÜ½ÚµãµÄÓÒ×Ó½Úµã
+  //         ÎªºÚÉ«£¬ÒÔ¸¸½ÚµãÎªÖ§µã×ó£¨ÓÒ£©Ğı£¬Ê÷µÄĞÔÖÊµ÷ÕûÍê³É£¬Ëã·¨½áÊø
   if (!rb_tree_is_red(y))
-  { // x ä¸ºé»‘è‰²æ—¶ï¼Œè°ƒæ•´ï¼Œå¦åˆ™ç›´æ¥å°† x å˜ä¸ºé»‘è‰²å³å¯
+  { // x ÎªºÚÉ«Ê±£¬µ÷Õû£¬·ñÔòÖ±½Ó½« x ±äÎªºÚÉ«¼´¿É
     while (x != root && (x == nullptr || !rb_tree_is_red(x)))
     {
       if (x == xp->left)
-      { // å¦‚æœ x ä¸ºå·¦å­èŠ‚ç‚¹
+      { // Èç¹û x Îª×ó×Ó½Úµã
         auto brother = xp->right;
         if (rb_tree_is_red(brother))
         { // case 1
@@ -636,7 +636,7 @@ NodePtr rb_tree_erase_rebalance(NodePtr z, NodePtr& root, NodePtr& leftmost, Nod
           rb_tree_rotate_left(xp, root);
           brother = xp->right;
         }
-        // case 1 è½¬ä¸ºä¸ºäº† case 2ã€3ã€4 ä¸­çš„ä¸€ç§
+        // case 1 ×ªÎªÎªÁË case 2¡¢3¡¢4 ÖĞµÄÒ»ÖÖ
         if ((brother->left == nullptr || !rb_tree_is_red(brother->left)) &&
             (brother->right == nullptr || !rb_tree_is_red(brother->right)))
         { // case 2
@@ -654,7 +654,7 @@ NodePtr rb_tree_erase_rebalance(NodePtr z, NodePtr& root, NodePtr& leftmost, Nod
             rb_tree_rotate_right(brother, root);
             brother = xp->right;
           }
-          // è½¬ä¸º case 4
+          // ×ªÎª case 4
           brother->color = xp->color;
           rb_tree_set_black(xp);
           if (brother->right != nullptr)  
@@ -663,7 +663,7 @@ NodePtr rb_tree_erase_rebalance(NodePtr z, NodePtr& root, NodePtr& leftmost, Nod
           break;
         }
       }
-      else  // x ä¸ºå³å­èŠ‚ç‚¹ï¼Œå¯¹ç§°å¤„ç†
+      else  // x ÎªÓÒ×Ó½Úµã£¬¶Ô³Æ´¦Àí
       { 
         auto brother = xp->left;
         if (rb_tree_is_red(brother))
@@ -690,7 +690,7 @@ NodePtr rb_tree_erase_rebalance(NodePtr z, NodePtr& root, NodePtr& leftmost, Nod
             rb_tree_rotate_left(brother, root);
             brother = xp->left;
           }
-          // è½¬ä¸º case 4
+          // ×ªÎª case 4
           brother->color = xp->color;
           rb_tree_set_black(xp);
           if (brother->left != nullptr)  
@@ -706,13 +706,13 @@ NodePtr rb_tree_erase_rebalance(NodePtr z, NodePtr& root, NodePtr& leftmost, Nod
   return y;
 }
 
-// æ¨¡æ¿ç±» rb_tree
-// å‚æ•°ä¸€ä»£è¡¨æ•°æ®ç±»å‹ï¼Œå‚æ•°äºŒä»£è¡¨é”®å€¼æ¯”è¾ƒç±»å‹
+// Ä£°åÀà rb_tree
+// ²ÎÊıÒ»´ú±íÊı¾İÀàĞÍ£¬²ÎÊı¶ş´ú±í¼üÖµ±È½ÏÀàĞÍ
 template <class T, class Compare>
 class rb_tree
 {
 public:
-  // rb_tree çš„åµŒå¥—å‹åˆ«å®šä¹‰ 
+  // rb_tree µÄÇ¶Ì×ĞÍ±ğ¶¨Òå 
   
   typedef rb_tree_traits<T>                        tree_traits;
   typedef rb_tree_value_traits<T>                  value_traits;
@@ -747,19 +747,19 @@ public:
   key_compare    key_comp()      const { return key_comp_; }
 
 private:
-  // ç”¨ä»¥ä¸‹ä¸‰ä¸ªæ•°æ®è¡¨ç° rb tree
-  base_ptr    header_;      // ç‰¹æ®ŠèŠ‚ç‚¹ï¼Œä¸æ ¹èŠ‚ç‚¹äº’ä¸ºå¯¹æ–¹çš„çˆ¶èŠ‚ç‚¹
-  size_type   node_count_;  // èŠ‚ç‚¹æ•°
-  key_compare key_comp_;    // èŠ‚ç‚¹é”®å€¼æ¯”è¾ƒçš„å‡†åˆ™
+  // ÓÃÒÔÏÂÈı¸öÊı¾İ±íÏÖ rb tree
+  base_ptr    header_;      // ÌØÊâ½Úµã£¬Óë¸ù½Úµã»¥Îª¶Ô·½µÄ¸¸½Úµã
+  size_type   node_count_;  // ½ÚµãÊı
+  key_compare key_comp_;    // ½Úµã¼üÖµ±È½ÏµÄ×¼Ôò
 
 private:
-  // ä»¥ä¸‹ä¸‰ä¸ªå‡½æ•°ç”¨äºå–å¾—æ ¹èŠ‚ç‚¹ï¼Œæœ€å°èŠ‚ç‚¹å’Œæœ€å¤§èŠ‚ç‚¹
+  // ÒÔÏÂÈı¸öº¯ÊıÓÃÓÚÈ¡µÃ¸ù½Úµã£¬×îĞ¡½ÚµãºÍ×î´ó½Úµã
   base_ptr& root()      const { return header_->parent; }
   base_ptr& leftmost()  const { return header_->left; }
   base_ptr& rightmost() const { return header_->right; }
 
 public:
-  // æ„é€ ã€å¤åˆ¶ã€ææ„å‡½æ•°
+  // ¹¹Ôì¡¢¸´ÖÆ¡¢Îö¹¹º¯Êı
   rb_tree() { rb_tree_init(); }
 
   rb_tree(const rb_tree& rhs);
@@ -771,7 +771,7 @@ public:
   ~rb_tree() { clear(); }
 
 public:
-  // è¿­ä»£å™¨ç›¸å…³æ“ä½œ
+  // µü´úÆ÷Ïà¹Ø²Ù×÷
 
   iterator               begin()         noexcept 
   { return leftmost(); }
@@ -800,13 +800,13 @@ public:
   const_reverse_iterator crend()   const noexcept
   { return rend(); }
 
-  // å®¹é‡ç›¸å…³æ“ä½œ
+  // ÈİÁ¿Ïà¹Ø²Ù×÷
 
   bool      empty()    const noexcept { return node_count_ == 0; }
   size_type size()     const noexcept { return node_count_; }
   size_type max_size() const noexcept { return static_cast<size_type>(-1); }
 
-  // æ’å…¥åˆ é™¤ç›¸å…³æ“ä½œ
+  // ²åÈëÉ¾³ıÏà¹Ø²Ù×÷
 
   // emplace
 
@@ -883,7 +883,7 @@ public:
 
   void      clear();
 
-  // rb_tree ç›¸å…³æ“ä½œ
+  // rb_tree Ïà¹Ø²Ù×÷
 
   iterator       find(const key_type& key);
   const_iterator find(const key_type& key) const;
@@ -965,7 +965,7 @@ private:
 
 /*****************************************************************************************/
 
-// å¤åˆ¶æ„é€ å‡½æ•°
+// ¸´ÖÆ¹¹Ôìº¯Êı
 template <class T, class Compare>
 rb_tree<T, Compare>::
 rb_tree(const rb_tree& rhs)
@@ -981,7 +981,7 @@ rb_tree(const rb_tree& rhs)
   key_comp_ = rhs.key_comp_;
 }
 
-// ç§»åŠ¨æ„é€ å‡½æ•°
+// ÒÆ¶¯¹¹Ôìº¯Êı
 template <class T, class Compare>
 rb_tree<T, Compare>::
 rb_tree(rb_tree&& rhs) noexcept
@@ -992,7 +992,7 @@ rb_tree(rb_tree&& rhs) noexcept
   rhs.reset();
 }
 
-// å¤åˆ¶èµ‹å€¼æ“ä½œç¬¦
+// ¸´ÖÆ¸³Öµ²Ù×÷·û
 template <class T, class Compare>
 rb_tree<T, Compare>& 
 rb_tree<T, Compare>::
@@ -1015,7 +1015,7 @@ operator=(const rb_tree& rhs)
   return *this;
 }
 
-// ç§»åŠ¨èµ‹å€¼æ“ä½œç¬¦
+// ÒÆ¶¯¸³Öµ²Ù×÷·û
 template <class T, class Compare>
 rb_tree<T, Compare>&
 rb_tree<T, Compare>::
@@ -1029,7 +1029,7 @@ operator=(rb_tree&& rhs)
   return *this;
 }
 
-// å°±åœ°æ’å…¥å…ƒç´ ï¼Œé”®å€¼å…è®¸é‡å¤
+// ¾ÍµØ²åÈëÔªËØ£¬¼üÖµÔÊĞíÖØ¸´
 template <class T, class Compare>
 template <class ...Args>
 typename rb_tree<T, Compare>::iterator 
@@ -1042,7 +1042,7 @@ emplace_multi(Args&& ...args)
   return insert_node_at(res.first, np, res.second);
 }
 
-// å°±åœ°æ’å…¥å…ƒç´ ï¼Œé”®å€¼ä¸å…è®¸é‡å¤
+// ¾ÍµØ²åÈëÔªËØ£¬¼üÖµ²»ÔÊĞíÖØ¸´
 template <class T, class Compare>
 template <class ...Args>
 mystl::pair<typename rb_tree<T, Compare>::iterator, bool> 
@@ -1053,14 +1053,14 @@ emplace_unique(Args&& ...args)
   node_ptr np = create_node(mystl::forward<Args>(args)...);
   auto res = get_insert_unique_pos(value_traits::get_key(np->value));
   if (res.second)
-  { // æ’å…¥æˆåŠŸ
+  { // ²åÈë³É¹¦
     return mystl::make_pair(insert_node_at(res.first.first, np, res.first.second), true);
   }
   destroy_node(np);
   return mystl::make_pair(iterator(res.first.first), false);
 }
 
-// å°±åœ°æ’å…¥å…ƒç´ ï¼Œé”®å€¼å…è®¸é‡å¤ï¼Œå½“ hint ä½ç½®ä¸æ’å…¥ä½ç½®æ¥è¿‘æ—¶ï¼Œæ’å…¥æ“ä½œçš„æ—¶é—´å¤æ‚åº¦å¯ä»¥é™ä½
+// ¾ÍµØ²åÈëÔªËØ£¬¼üÖµÔÊĞíÖØ¸´£¬µ± hint Î»ÖÃÓë²åÈëÎ»ÖÃ½Ó½üÊ±£¬²åÈë²Ù×÷µÄÊ±¼ä¸´ÔÓ¶È¿ÉÒÔ½µµÍ
 template <class T, class Compare>
 template <class ...Args>
 typename rb_tree<T, Compare>::iterator
@@ -1075,7 +1075,7 @@ emplace_multi_use_hint(iterator hint, Args&& ...args)
   }
   key_type key = value_traits::get_key(np->value);
   if (hint == begin())
-  { // ä½äº begin å¤„
+  { // Î»ÓÚ begin ´¦
     if (key_comp_(key, value_traits::get_key(*hint)))
     {
       return insert_node_at(hint.node, np, true);
@@ -1087,7 +1087,7 @@ emplace_multi_use_hint(iterator hint, Args&& ...args)
     }
   }
   else if (hint == end())
-  { // ä½äº end å¤„
+  { // Î»ÓÚ end ´¦
     if (!key_comp_(key, value_traits::get_key(rightmost()->get_node_ptr()->value)))
     {
       return insert_node_at(rightmost(), np, false);
@@ -1101,7 +1101,7 @@ emplace_multi_use_hint(iterator hint, Args&& ...args)
   return insert_multi_use_hint(hint, key, np);
 }
 
-// å°±åœ°æ’å…¥å…ƒç´ ï¼Œé”®å€¼ä¸å…è®¸é‡å¤ï¼Œå½“ hint ä½ç½®ä¸æ’å…¥ä½ç½®æ¥è¿‘æ—¶ï¼Œæ’å…¥æ“ä½œçš„æ—¶é—´å¤æ‚åº¦å¯ä»¥é™ä½
+// ¾ÍµØ²åÈëÔªËØ£¬¼üÖµ²»ÔÊĞíÖØ¸´£¬µ± hint Î»ÖÃÓë²åÈëÎ»ÖÃ½Ó½üÊ±£¬²åÈë²Ù×÷µÄÊ±¼ä¸´ÔÓ¶È¿ÉÒÔ½µµÍ
 template<class T, class Compare>
 template<class ...Args>
 typename rb_tree<T, Compare>::iterator
@@ -1116,7 +1116,7 @@ emplace_unique_use_hint(iterator hint, Args&& ...args)
   }
   key_type key = value_traits::get_key(np->value);
   if (hint == begin())
-  { // ä½äº begin å¤„
+  { // Î»ÓÚ begin ´¦
     if (key_comp_(key, value_traits::get_key(*hint)))
     {
       return insert_node_at(hint.node, np, true);
@@ -1133,7 +1133,7 @@ emplace_unique_use_hint(iterator hint, Args&& ...args)
     }
   }
   else if (hint == end())
-  { // ä½äº end å¤„
+  { // Î»ÓÚ end ´¦
     if (key_comp_(value_traits::get_key(rightmost()->get_node_ptr()->value), key))
     {
       return insert_node_at(rightmost(), np, false);
@@ -1152,7 +1152,7 @@ emplace_unique_use_hint(iterator hint, Args&& ...args)
   return insert_unique_use_hint(hint, key, np);
 }
 
-// æ’å…¥å…ƒç´ ï¼ŒèŠ‚ç‚¹é”®å€¼å…è®¸é‡å¤
+// ²åÈëÔªËØ£¬½Úµã¼üÖµÔÊĞíÖØ¸´
 template <class T, class Compare>
 typename rb_tree<T, Compare>::iterator
 rb_tree<T, Compare>::
@@ -1163,7 +1163,7 @@ insert_multi(const value_type& value)
   return insert_value_at(res.first, value, res.second);
 }
 
-// æ’å…¥æ–°å€¼ï¼ŒèŠ‚ç‚¹é”®å€¼ä¸å…è®¸é‡å¤ï¼Œè¿”å›ä¸€ä¸ª pairï¼Œè‹¥æ’å…¥æˆåŠŸï¼Œpair çš„ç¬¬äºŒå‚æ•°ä¸º trueï¼Œå¦åˆ™ä¸º false
+// ²åÈëĞÂÖµ£¬½Úµã¼üÖµ²»ÔÊĞíÖØ¸´£¬·µ»ØÒ»¸ö pair£¬Èô²åÈë³É¹¦£¬pair µÄµÚ¶ş²ÎÊıÎª true£¬·ñÔòÎª false
 template <class T, class Compare>
 mystl::pair<typename rb_tree<T, Compare>::iterator, bool>
 rb_tree<T, Compare>::
@@ -1172,13 +1172,13 @@ insert_unique(const value_type& value)
   THROW_LENGTH_ERROR_IF(node_count_ > max_size() - 1, "rb_tree<T, Comp>'s size too big");
   auto res = get_insert_unique_pos(value_traits::get_key(value));
   if (res.second)
-  { // æ’å…¥æˆåŠŸ
+  { // ²åÈë³É¹¦
     return mystl::make_pair(insert_value_at(res.first.first, value, res.first.second), true);
   }
   return mystl::make_pair(res.first.first, false);
 }
 
-// åˆ é™¤ hint ä½ç½®çš„èŠ‚ç‚¹
+// É¾³ı hint Î»ÖÃµÄ½Úµã
 template <class T, class Compare>
 typename rb_tree<T, Compare>::iterator
 rb_tree<T, Compare>::
@@ -1194,7 +1194,7 @@ erase(iterator hint)
   return next;
 }
 
-// åˆ é™¤é”®å€¼ç­‰äº key çš„å…ƒç´ ï¼Œè¿”å›åˆ é™¤çš„ä¸ªæ•°
+// É¾³ı¼üÖµµÈÓÚ key µÄÔªËØ£¬·µ»ØÉ¾³ıµÄ¸öÊı
 template <class T, class Compare>
 typename rb_tree<T, Compare>::size_type
 rb_tree<T, Compare>::
@@ -1206,7 +1206,7 @@ erase_multi(const key_type& key)
   return n;
 }
 
-// åˆ é™¤é”®å€¼ç­‰äº key çš„å…ƒç´ ï¼Œè¿”å›åˆ é™¤çš„ä¸ªæ•°
+// É¾³ı¼üÖµµÈÓÚ key µÄÔªËØ£¬·µ»ØÉ¾³ıµÄ¸öÊı
 template <class T, class Compare>
 typename rb_tree<T, Compare>::size_type
 rb_tree<T, Compare>::
@@ -1221,7 +1221,7 @@ erase_unique(const key_type& key)
   return 0;
 }
 
-// åˆ é™¤[first, last)åŒºé—´å†…çš„å…ƒç´ 
+// É¾³ı[first, last)Çø¼äÄÚµÄÔªËØ
 template <class T, class Compare>
 void rb_tree<T, Compare>::
 erase(iterator first, iterator last)
@@ -1237,7 +1237,7 @@ erase(iterator first, iterator last)
   }
 }
 
-// æ¸…ç©º rb tree
+// Çå¿Õ rb tree
 template <class T, class Compare>
 void rb_tree<T, Compare>::
 clear()
@@ -1252,22 +1252,22 @@ clear()
   }
 }
 
-// æŸ¥æ‰¾é”®å€¼ä¸º k çš„èŠ‚ç‚¹ï¼Œè¿”å›æŒ‡å‘å®ƒçš„è¿­ä»£å™¨
+// ²éÕÒ¼üÖµÎª k µÄ½Úµã£¬·µ»ØÖ¸ÏòËüµÄµü´úÆ÷
 template <class T, class Compare>
 typename rb_tree<T, Compare>::iterator
 rb_tree<T, Compare>::
 find(const key_type& key)
 {
-  auto y = header_;  // æœ€åä¸€ä¸ªä¸å°äº key çš„èŠ‚ç‚¹
+  auto y = header_;  // ×îºóÒ»¸ö²»Ğ¡ÓÚ key µÄ½Úµã
   auto x = root();
   while (x != nullptr)
   {
     if (!key_comp_(value_traits::get_key(x->get_node_ptr()->value), key))
-    { // key å°äºç­‰äº x é”®å€¼ï¼Œå‘å·¦èµ°
+    { // key Ğ¡ÓÚµÈÓÚ x ¼üÖµ£¬Ïò×ó×ß
       y = x, x = x->left;
     }
     else
-    { // key å¤§äº x é”®å€¼ï¼Œå‘å³èµ°
+    { // key ´óÓÚ x ¼üÖµ£¬ÏòÓÒ×ß
       x = x->right;
     }
   }
@@ -1280,16 +1280,16 @@ typename rb_tree<T, Compare>::const_iterator
 rb_tree<T, Compare>::
 find(const key_type& key) const
 {
-  auto y = header_;  // æœ€åä¸€ä¸ªä¸å°äº key çš„èŠ‚ç‚¹
+  auto y = header_;  // ×îºóÒ»¸ö²»Ğ¡ÓÚ key µÄ½Úµã
   auto x = root();
   while (x != nullptr)
   {
     if (!key_comp_(value_traits::get_key(x->get_node_ptr()->value), key))
-    { // key å°äºç­‰äº x é”®å€¼ï¼Œå‘å·¦èµ°
+    { // key Ğ¡ÓÚµÈÓÚ x ¼üÖµ£¬Ïò×ó×ß
       y = x, x = x->left;
     }
     else
-    { // key å¤§äº x é”®å€¼ï¼Œå‘å³èµ°
+    { // key ´óÓÚ x ¼üÖµ£¬ÏòÓÒ×ß
       x = x->right;
     }
   }
@@ -1297,7 +1297,7 @@ find(const key_type& key) const
   return (j == end() || key_comp_(key, value_traits::get_key(*j))) ? end() : j;
 }
 
-// é”®å€¼ä¸å°äº key çš„ç¬¬ä¸€ä¸ªä½ç½®
+// ¼üÖµ²»Ğ¡ÓÚ key µÄµÚÒ»¸öÎ»ÖÃ
 template <class T, class Compare>
 typename rb_tree<T, Compare>::iterator
 rb_tree<T, Compare>::
@@ -1340,7 +1340,7 @@ lower_bound(const key_type& key) const
   return const_iterator(y);
 }
 
-// é”®å€¼ä¸å°äº key çš„æœ€åä¸€ä¸ªä½ç½®
+// ¼üÖµ²»Ğ¡ÓÚ key µÄ×îºóÒ»¸öÎ»ÖÃ
 template <class T, class Compare>
 typename rb_tree<T, Compare>::iterator
 rb_tree<T, Compare>::
@@ -1383,7 +1383,7 @@ upper_bound(const key_type& key) const
   return const_iterator(y);
 }
 
-// äº¤æ¢ rb tree
+// ½»»» rb tree
 template <class T, class Compare>
 void rb_tree<T, Compare>::
 swap(rb_tree& rhs) noexcept
@@ -1399,7 +1399,7 @@ swap(rb_tree& rhs) noexcept
 /*****************************************************************************************/
 // helper function
 
-// åˆ›å»ºä¸€ä¸ªç»“ç‚¹
+// ´´½¨Ò»¸ö½áµã
 template <class T, class Compare>
 template <class ...Args>
 typename rb_tree<T, Compare>::node_ptr
@@ -1422,7 +1422,7 @@ create_node(Args&&... args)
   return tmp;
 }
 
-// å¤åˆ¶ä¸€ä¸ªç»“ç‚¹
+// ¸´ÖÆÒ»¸ö½áµã
 template <class T, class Compare>
 typename rb_tree<T, Compare>::node_ptr
 rb_tree<T, Compare>::
@@ -1435,7 +1435,7 @@ clone_node(base_ptr x)
   return tmp;
 }
 
-// é”€æ¯ä¸€ä¸ªç»“ç‚¹
+// Ïú»ÙÒ»¸ö½áµã
 template <class T, class Compare>
 void rb_tree<T, Compare>::
 destroy_node(node_ptr p)
@@ -1444,20 +1444,20 @@ destroy_node(node_ptr p)
   node_allocator::deallocate(p);
 }
 
-// åˆå§‹åŒ–å®¹å™¨
+// ³õÊ¼»¯ÈİÆ÷
 template <class T, class Compare>
 void rb_tree<T, Compare>::
 rb_tree_init()
 {
   header_ = base_allocator::allocate(1);
-  header_->color = rb_tree_red;  // header_ èŠ‚ç‚¹é¢œè‰²ä¸ºçº¢ï¼Œä¸ root åŒºåˆ†
+  header_->color = rb_tree_red;  // header_ ½ÚµãÑÕÉ«Îªºì£¬Óë root Çø·Ö
   root() = nullptr;
   leftmost() = header_;
   rightmost() = header_;
   node_count_ = 0;
 }
 
-// reset å‡½æ•°
+// reset º¯Êı
 template <class T, class Compare>
 void rb_tree<T, Compare>::reset()
 {
@@ -1465,7 +1465,7 @@ void rb_tree<T, Compare>::reset()
   node_count_ = 0;
 }
 
-// get_insert_multi_pos å‡½æ•°
+// get_insert_multi_pos º¯Êı
 template <class T, class Compare>
 mystl::pair<typename rb_tree<T, Compare>::base_ptr, bool>
 rb_tree<T, Compare>::get_insert_multi_pos(const key_type& key)
@@ -1482,43 +1482,43 @@ rb_tree<T, Compare>::get_insert_multi_pos(const key_type& key)
   return mystl::make_pair(y, add_to_left);
 }
 
-// get_insert_unique_pos å‡½æ•°
+// get_insert_unique_pos º¯Êı
 template <class T, class Compare>
 mystl::pair<mystl::pair<typename rb_tree<T, Compare>::base_ptr, bool>, bool>
 rb_tree<T, Compare>::get_insert_unique_pos(const key_type& key)
-{ // è¿”å›ä¸€ä¸ª pairï¼Œç¬¬ä¸€ä¸ªå€¼ä¸ºä¸€ä¸ª pairï¼ŒåŒ…å«æ’å…¥ç‚¹çš„çˆ¶èŠ‚ç‚¹å’Œä¸€ä¸ª bool è¡¨ç¤ºæ˜¯å¦åœ¨å·¦è¾¹æ’å…¥ï¼Œ
-  // ç¬¬äºŒä¸ªå€¼ä¸ºä¸€ä¸ª boolï¼Œè¡¨ç¤ºæ˜¯å¦æ’å…¥æˆåŠŸ
+{ // ·µ»ØÒ»¸ö pair£¬µÚÒ»¸öÖµÎªÒ»¸ö pair£¬°üº¬²åÈëµãµÄ¸¸½ÚµãºÍÒ»¸ö bool ±íÊ¾ÊÇ·ñÔÚ×ó±ß²åÈë£¬
+  // µÚ¶ş¸öÖµÎªÒ»¸ö bool£¬±íÊ¾ÊÇ·ñ²åÈë³É¹¦
   auto x = root();
   auto y = header_;
-  bool add_to_left = true;  // æ ‘ä¸ºç©ºæ—¶ä¹Ÿåœ¨ header_ å·¦è¾¹æ’å…¥
+  bool add_to_left = true;  // Ê÷Îª¿ÕÊ±Ò²ÔÚ header_ ×ó±ß²åÈë
   while (x != nullptr)
   {
     y = x;
     add_to_left = key_comp_(key, value_traits::get_key(x->get_node_ptr()->value));
     x = add_to_left ? x->left : x->right;
   }
-  iterator j = iterator(y);  // æ­¤æ—¶ y ä¸ºæ’å…¥ç‚¹çš„çˆ¶èŠ‚ç‚¹
+  iterator j = iterator(y);  // ´ËÊ± y Îª²åÈëµãµÄ¸¸½Úµã
   if (add_to_left)
   {
     if (y == header_ || j == begin())
-    { // å¦‚æœæ ‘ä¸ºç©ºæ ‘æˆ–æ’å…¥ç‚¹åœ¨æœ€å·¦èŠ‚ç‚¹å¤„ï¼Œè‚¯å®šå¯ä»¥æ’å…¥æ–°çš„èŠ‚ç‚¹
+    { // Èç¹ûÊ÷Îª¿ÕÊ÷»ò²åÈëµãÔÚ×î×ó½Úµã´¦£¬¿Ï¶¨¿ÉÒÔ²åÈëĞÂµÄ½Úµã
       return mystl::make_pair(mystl::make_pair(y, true), true);
     }
     else
-    { // å¦åˆ™ï¼Œå¦‚æœå­˜åœ¨é‡å¤èŠ‚ç‚¹ï¼Œé‚£ä¹ˆ --j å°±æ˜¯é‡å¤çš„å€¼
+    { // ·ñÔò£¬Èç¹û´æÔÚÖØ¸´½Úµã£¬ÄÇÃ´ --j ¾ÍÊÇÖØ¸´µÄÖµ
       --j;
     }
   }
   if (key_comp_(value_traits::get_key(*j), key))  
-  { // è¡¨æ˜æ–°èŠ‚ç‚¹æ²¡æœ‰é‡å¤
+  { // ±íÃ÷ĞÂ½ÚµãÃ»ÓĞÖØ¸´
     return mystl::make_pair(mystl::make_pair(y, add_to_left), true);
   }
-  // è¿›è¡Œè‡³æ­¤ï¼Œè¡¨ç¤ºæ–°èŠ‚ç‚¹ä¸ç°æœ‰èŠ‚ç‚¹é”®å€¼é‡å¤
+  // ½øĞĞÖÁ´Ë£¬±íÊ¾ĞÂ½ÚµãÓëÏÖÓĞ½Úµã¼üÖµÖØ¸´
   return mystl::make_pair(mystl::make_pair(y, add_to_left), false);
 }
 
-// insert_value_at å‡½æ•°
-// x ä¸ºæ’å…¥ç‚¹çš„çˆ¶èŠ‚ç‚¹ï¼Œ value ä¸ºè¦æ’å…¥çš„å€¼ï¼Œadd_to_left è¡¨ç¤ºæ˜¯å¦åœ¨å·¦è¾¹æ’å…¥
+// insert_value_at º¯Êı
+// x Îª²åÈëµãµÄ¸¸½Úµã£¬ value ÎªÒª²åÈëµÄÖµ£¬add_to_left ±íÊ¾ÊÇ·ñÔÚ×ó±ß²åÈë
 template <class T, class Compare>
 typename rb_tree<T, Compare>::iterator
 rb_tree<T, Compare>::
@@ -1550,8 +1550,8 @@ insert_value_at(base_ptr x, const value_type& value, bool add_to_left)
   return iterator(node);
 }
 
-// åœ¨ x èŠ‚ç‚¹å¤„æ’å…¥æ–°çš„èŠ‚ç‚¹
-// x ä¸ºæ’å…¥ç‚¹çš„çˆ¶èŠ‚ç‚¹ï¼Œ node ä¸ºè¦æ’å…¥çš„èŠ‚ç‚¹ï¼Œadd_to_left è¡¨ç¤ºæ˜¯å¦åœ¨å·¦è¾¹æ’å…¥
+// ÔÚ x ½Úµã´¦²åÈëĞÂµÄ½Úµã
+// x Îª²åÈëµãµÄ¸¸½Úµã£¬ node ÎªÒª²åÈëµÄ½Úµã£¬add_to_left ±íÊ¾ÊÇ·ñÔÚ×ó±ß²åÈë
 template <class T, class Compare>
 typename rb_tree<T, Compare>::iterator
 rb_tree<T, Compare>::
@@ -1582,13 +1582,13 @@ insert_node_at(base_ptr x, node_ptr node, bool add_to_left)
   return iterator(node);
 }
 
-// æ’å…¥å…ƒç´ ï¼Œé”®å€¼å…è®¸é‡å¤ï¼Œä½¿ç”¨ hint
+// ²åÈëÔªËØ£¬¼üÖµÔÊĞíÖØ¸´£¬Ê¹ÓÃ hint
 template <class T, class Compare>
 typename rb_tree<T, Compare>::iterator 
 rb_tree<T, Compare>::
 insert_multi_use_hint(iterator hint, key_type key, node_ptr node)
 {
-  // åœ¨ hint é™„è¿‘å¯»æ‰¾å¯æ’å…¥çš„ä½ç½®
+  // ÔÚ hint ¸½½üÑ°ÕÒ¿É²åÈëµÄÎ»ÖÃ
   auto np = hint.node;
   auto before = hint;
   --before;
@@ -1609,13 +1609,13 @@ insert_multi_use_hint(iterator hint, key_type key, node_ptr node)
   return insert_node_at(pos.first, node, pos.second);
 }
 
-// æ’å…¥å…ƒç´ ï¼Œé”®å€¼ä¸å…è®¸é‡å¤ï¼Œä½¿ç”¨ hint
+// ²åÈëÔªËØ£¬¼üÖµ²»ÔÊĞíÖØ¸´£¬Ê¹ÓÃ hint
 template <class T, class Compare>
 typename rb_tree<T, Compare>::iterator 
 rb_tree<T, Compare>::
 insert_unique_use_hint(iterator hint, key_type key, node_ptr node)
 {
-  // åœ¨ hint é™„è¿‘å¯»æ‰¾å¯æ’å…¥çš„ä½ç½®
+  // ÔÚ hint ¸½½üÑ°ÕÒ¿É²åÈëµÄÎ»ÖÃ
   auto np = hint.node;
   auto before = hint;
   --before;
@@ -1641,8 +1641,8 @@ insert_unique_use_hint(iterator hint, key_type key, node_ptr node)
   return insert_node_at(pos.first.first, node, pos.first.second);
 }
 
-// copy_from å‡½æ•°
-// é€’å½’å¤åˆ¶ä¸€é¢—æ ‘ï¼ŒèŠ‚ç‚¹ä» x å¼€å§‹ï¼Œp ä¸º x çš„çˆ¶èŠ‚ç‚¹
+// copy_from º¯Êı
+// µİ¹é¸´ÖÆÒ»¿ÅÊ÷£¬½Úµã´Ó x ¿ªÊ¼£¬p Îª x µÄ¸¸½Úµã
 template <class T, class Compare>
 typename rb_tree<T, Compare>::base_ptr
 rb_tree<T, Compare>::copy_from(base_ptr x, base_ptr p)
@@ -1674,8 +1674,8 @@ rb_tree<T, Compare>::copy_from(base_ptr x, base_ptr p)
   return top;
 }
 
-// erase_since å‡½æ•°
-// ä» x èŠ‚ç‚¹å¼€å§‹åˆ é™¤è¯¥èŠ‚ç‚¹åŠå…¶å­æ ‘
+// erase_since º¯Êı
+// ´Ó x ½Úµã¿ªÊ¼É¾³ı¸Ã½Úµã¼°Æä×ÓÊ÷
 template <class T, class Compare>
 void rb_tree<T, Compare>::
 erase_since(base_ptr x)
@@ -1689,7 +1689,7 @@ erase_since(base_ptr x)
   }
 }
 
-// é‡è½½æ¯”è¾ƒæ“ä½œç¬¦
+// ÖØÔØ±È½Ï²Ù×÷·û
 template <class T, class Compare>
 bool operator==(const rb_tree<T, Compare>& lhs, const rb_tree<T, Compare>& rhs)
 {
@@ -1726,7 +1726,7 @@ bool operator>=(const rb_tree<T, Compare>& lhs, const rb_tree<T, Compare>& rhs)
   return !(lhs < rhs);
 }
 
-// é‡è½½ mystl çš„ swap
+// ÖØÔØ mystl µÄ swap
 template <class T, class Compare>
 void swap(rb_tree<T, Compare>& lhs, rb_tree<T, Compare>& rhs) noexcept
 {

@@ -1,7 +1,7 @@
-ï»¿#ifndef MYTINYSTL_UTIL_H_
+#ifndef MYTINYSTL_UTIL_H_
 #define MYTINYSTL_UTIL_H_
 
-// è¿™ä¸ªæ–‡ä»¶åŒ…å«ä¸€äº›é€šç”¨å·¥å…·ï¼ŒåŒ…æ‹¬ move, forward, swap ç­‰å‡½æ•°ï¼Œä»¥åŠ pair ç­‰ 
+// Õâ¸öÎÄ¼ş°üº¬Ò»Ğ©Í¨ÓÃ¹¤¾ß£¬°üÀ¨ move, forward, swap µÈº¯Êı£¬ÒÔ¼° pair µÈ 
 
 #include <cstddef>
 
@@ -60,17 +60,17 @@ void swap(Tp(&a)[N], Tp(&b)[N])
 // --------------------------------------------------------------------------------------
 // pair
 
-// ç»“æ„ä½“æ¨¡æ¿ : pair
-// ä¸¤ä¸ªæ¨¡æ¿å‚æ•°åˆ†åˆ«è¡¨ç¤ºä¸¤ä¸ªæ•°æ®çš„ç±»å‹
-// ç”¨ first å’Œ second æ¥åˆ†åˆ«å–å‡ºç¬¬ä¸€ä¸ªæ•°æ®å’Œç¬¬äºŒä¸ªæ•°æ®
+// ½á¹¹ÌåÄ£°å : pair
+// Á½¸öÄ£°å²ÎÊı·Ö±ğ±íÊ¾Á½¸öÊı¾İµÄÀàĞÍ
+// ÓÃ first ºÍ second À´·Ö±ğÈ¡³öµÚÒ»¸öÊı¾İºÍµÚ¶ş¸öÊı¾İ
 template <class Ty1, class Ty2>
 struct pair
 {
   typedef Ty1    first_type;
   typedef Ty2    second_type;
 
-  first_type first;    // ä¿å­˜ç¬¬ä¸€ä¸ªæ•°æ®
-  second_type second;  // ä¿å­˜ç¬¬äºŒä¸ªæ•°æ®
+  first_type first;    // ±£´æµÚÒ»¸öÊı¾İ
+  second_type second;  // ±£´æµÚ¶ş¸öÊı¾İ
 
   // default constructiable
   template <class Other1 = Ty1, class Other2 = Ty2,
@@ -240,7 +240,7 @@ struct pair
 
 };
 
-// é‡è½½æ¯”è¾ƒæ“ä½œç¬¦ 
+// ÖØÔØ±È½Ï²Ù×÷·û 
 template <class Ty1, class Ty2>
 bool operator==(const pair<Ty1, Ty2>& lhs, const pair<Ty1, Ty2>& rhs)
 {
@@ -277,14 +277,14 @@ bool operator>=(const pair<Ty1, Ty2>& lhs, const pair<Ty1, Ty2>& rhs)
   return !(lhs < rhs);
 }
 
-// é‡è½½ mystl çš„ swap
+// ÖØÔØ mystl µÄ swap
 template <class Ty1, class Ty2>
 void swap(pair<Ty1, Ty2>& lhs, pair<Ty1, Ty2>& rhs)
 {
   lhs.swap(rhs);
 }
 
-// å…¨å±€å‡½æ•°ï¼Œè®©ä¸¤ä¸ªæ•°æ®æˆä¸ºä¸€ä¸ª pair
+// È«¾Öº¯Êı£¬ÈÃÁ½¸öÊı¾İ³ÉÎªÒ»¸ö pair
 template <class Ty1, class Ty2>
 pair<Ty1, Ty2> make_pair(Ty1&& first, Ty2&& second)
 {

@@ -1,8 +1,8 @@
-ï»¿#ifndef MYTINYSTL_BASIC_STRING_H_
+#ifndef MYTINYSTL_BASIC_STRING_H_
 #define MYTINYSTL_BASIC_STRING_H_
 
-// è¿™ä¸ªå¤´æ–‡ä»¶åŒ…å«ä¸€ä¸ªæ¨¡æ¿ç±» basic_string
-// ç”¨äºè¡¨ç¤ºå­—ç¬¦ä¸²ç±»å‹
+// Õâ¸öÍ·ÎÄ¼ş°üº¬Ò»¸öÄ£°åÀà basic_string
+// ÓÃÓÚ±íÊ¾×Ö·û´®ÀàĞÍ
 
 #include <iostream>
 
@@ -263,11 +263,11 @@ struct char_traits<char32_t>
   }
 };
 
-// åˆå§‹åŒ– basic_string å°è¯•åˆ†é…çš„æœ€å° buffer å¤§å°ï¼Œå¯èƒ½è¢«å¿½ç•¥
+// ³õÊ¼»¯ basic_string ³¢ÊÔ·ÖÅäµÄ×îĞ¡ buffer ´óĞ¡£¬¿ÉÄÜ±»ºöÂÔ
 #define STRING_INIT_SIZE 32
 
-// æ¨¡æ¿ç±» basic_string
-// å‚æ•°ä¸€ä»£è¡¨å­—ç¬¦ç±»å‹ï¼Œå‚æ•°äºŒä»£è¡¨èƒå–å­—ç¬¦ç±»å‹çš„æ–¹å¼ï¼Œç¼ºçœä½¿ç”¨ mystl::char_traits
+// Ä£°åÀà basic_string
+// ²ÎÊıÒ»´ú±í×Ö·ûÀàĞÍ£¬²ÎÊı¶ş´ú±íİÍÈ¡×Ö·ûÀàĞÍµÄ·½Ê½£¬È±Ê¡Ê¹ÓÃ mystl::char_traits
 template <class CharType, class CharTraits = mystl::char_traits<CharType>>
 class basic_string
 {
@@ -298,17 +298,17 @@ public:
                 "CharType must be same as traits_type::char_type");
 
 public:
-  // æœ«å°¾ä½ç½®çš„å€¼ï¼Œä¾‹:
+  // Ä©Î²Î»ÖÃµÄÖµ£¬Àı:
   // if (str.find('a') != string::npos) { /* do something */ }
   static constexpr size_type npos = static_cast<size_type>(-1);
 
 private:
-  iterator  buffer_;  // å‚¨å­˜å­—ç¬¦ä¸²çš„èµ·å§‹ä½ç½®
-  size_type size_;    // å¤§å°
-  size_type cap_;     // å®¹é‡
+  iterator  buffer_;  // ´¢´æ×Ö·û´®µÄÆğÊ¼Î»ÖÃ
+  size_type size_;    // ´óĞ¡
+  size_type cap_;     // ÈİÁ¿
 
 public:
-  // æ„é€ ã€å¤åˆ¶ã€ç§»åŠ¨ã€ææ„å‡½æ•°
+  // ¹¹Ôì¡¢¸´ÖÆ¡¢ÒÆ¶¯¡¢Îö¹¹º¯Êı
 
   basic_string() noexcept
   { try_init(); }
@@ -368,7 +368,7 @@ public:
   ~basic_string() { destroy_buffer(); }
 
 public:
-  // è¿­ä»£å™¨ç›¸å…³æ“ä½œ
+  // µü´úÆ÷Ïà¹Ø²Ù×÷
   iterator               begin()         noexcept
   { return buffer_; }
   const_iterator         begin()   const noexcept
@@ -396,7 +396,7 @@ public:
   const_reverse_iterator crend()   const noexcept
   { return rend(); }
 
-  // å®¹é‡ç›¸å…³æ“ä½œ
+  // ÈİÁ¿Ïà¹Ø²Ù×÷
   bool      empty()    const noexcept
   { return size_ == 0; }
 
@@ -412,7 +412,7 @@ public:
   void      reserve(size_type n);
   void      shrink_to_fit();
 
-  // è®¿é—®å…ƒç´ ç›¸å…³æ“ä½œ
+  // ·ÃÎÊÔªËØÏà¹Ø²Ù×÷
   reference       operator[](size_type n) 
   {
     MYSTL_DEBUG(n <= size_);
@@ -468,7 +468,7 @@ public:
   const_pointer   c_str() const noexcept
   { return to_raw_pointer(); }
 
-  // æ·»åŠ åˆ é™¤ç›¸å…³æ“ä½œ
+  // Ìí¼ÓÉ¾³ıÏà¹Ø²Ù×÷
 
   // insert
   iterator insert(const_iterator pos, value_type ch);
@@ -517,7 +517,7 @@ public:
   void     clear() noexcept
   { size_ = 0; }
 
-  // basic_string ç›¸å…³æ“ä½œ
+  // basic_string Ïà¹Ø²Ù×÷
 
   // compare
   int compare(const basic_string& other) const;
@@ -603,7 +603,7 @@ public:
   // swap
   void swap(basic_string& rhs) noexcept;
 
-  // æŸ¥æ‰¾ç›¸å…³æ“ä½œ
+  // ²éÕÒÏà¹Ø²Ù×÷
 
   // find
   size_type find(value_type ch, size_type pos = 0)                             const noexcept;
@@ -645,7 +645,7 @@ public:
   size_type count(value_type ch, size_type pos = 0) const noexcept;
 
 public:
-  // é‡è½½ operator+= 
+  // ÖØÔØ operator+= 
   basic_string& operator+=(const basic_string& str)
   { return append(str); }
   basic_string& operator+=(value_type ch)
@@ -653,7 +653,7 @@ public:
   basic_string& operator+=(const_pointer str)
   { return append(str, str + char_traits::length(str)); }
 
-  // é‡è½½ operator >> / operatror <<
+  // ÖØÔØ operator >> / operatror <<
 
   friend std::istream& operator >> (std::istream& is, basic_string& str)
   {
@@ -716,7 +716,7 @@ private:
 
 /*****************************************************************************************/
 
-// å¤åˆ¶èµ‹å€¼æ“ä½œç¬¦
+// ¸´ÖÆ¸³Öµ²Ù×÷·û
 template <class CharType, class CharTraits>
 basic_string<CharType, CharTraits>&
 basic_string<CharType, CharTraits>::
@@ -730,7 +730,7 @@ operator=(const basic_string& rhs)
   return *this;
 }
 
-// ç§»åŠ¨èµ‹å€¼æ“ä½œç¬¦
+// ÒÆ¶¯¸³Öµ²Ù×÷·û
 template <class CharType, class CharTraits>
 basic_string<CharType, CharTraits>&
 basic_string<CharType, CharTraits>::
@@ -746,7 +746,7 @@ operator=(basic_string&& rhs) noexcept
   return *this;
 }
 
-// ç”¨ä¸€ä¸ªå­—ç¬¦ä¸²èµ‹å€¼
+// ÓÃÒ»¸ö×Ö·û´®¸³Öµ
 template <class CharType, class CharTraits>
 basic_string<CharType, CharTraits>&
 basic_string<CharType, CharTraits>::
@@ -765,7 +765,7 @@ operator=(const_pointer str)
   return *this;
 }
 
-// ç”¨ä¸€ä¸ªå­—ç¬¦èµ‹å€¼
+// ÓÃÒ»¸ö×Ö·û¸³Öµ
 template <class CharType, class CharTraits>
 basic_string<CharType, CharTraits>&
 basic_string<CharType, CharTraits>::
@@ -783,7 +783,7 @@ operator=(value_type ch)
   return *this;
 }
 
-// é¢„ç•™å‚¨å­˜ç©ºé—´
+// Ô¤Áô´¢´æ¿Õ¼ä
 template <class CharType, class CharTraits>
 void basic_string<CharType, CharTraits>::
 reserve(size_type n)
@@ -799,7 +799,7 @@ reserve(size_type n)
   }
 }
 
-// å‡å°‘ä¸ç”¨çš„ç©ºé—´
+// ¼õÉÙ²»ÓÃµÄ¿Õ¼ä
 template <class CharType, class CharTraits>
 void basic_string<CharType, CharTraits>::
 shrink_to_fit()
@@ -810,7 +810,7 @@ shrink_to_fit()
   }
 }
 
-// åœ¨ pos å¤„æ’å…¥ä¸€ä¸ªå…ƒç´ 
+// ÔÚ pos ´¦²åÈëÒ»¸öÔªËØ
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::iterator
 basic_string<CharType, CharTraits>::
@@ -827,7 +827,7 @@ insert(const_iterator pos, value_type ch)
   return r;
 }
 
-// åœ¨ pos å¤„æ’å…¥ n ä¸ªå…ƒç´ 
+// ÔÚ pos ´¦²åÈë n ¸öÔªËØ
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::iterator
 basic_string<CharType, CharTraits>::
@@ -852,7 +852,7 @@ insert(const_iterator pos, size_type count, value_type ch)
   return r;
 }
 
-// åœ¨ pos å¤„æ’å…¥ [first, last) å†…çš„å…ƒç´ 
+// ÔÚ pos ´¦²åÈë [first, last) ÄÚµÄÔªËØ
 template <class CharType, class CharTraits>
 template <class Iter>
 typename basic_string<CharType, CharTraits>::iterator
@@ -879,7 +879,7 @@ insert(const_iterator pos, Iter first, Iter last)
   return r;
 }
 
-// åœ¨æœ«å°¾æ·»åŠ  count ä¸ª ch
+// ÔÚÄ©Î²Ìí¼Ó count ¸ö ch
 template <class CharType, class CharTraits>
 basic_string<CharType, CharTraits>& 
 basic_string<CharType, CharTraits>::
@@ -896,7 +896,7 @@ append(size_type count, value_type ch)
   return *this;
 }
 
-// åœ¨æœ«å°¾æ·»åŠ  [str[pos] str[pos+count]) ä¸€æ®µ
+// ÔÚÄ©Î²Ìí¼Ó [str[pos] str[pos+count]) Ò»¶Î
 template <class CharType, class CharTraits>
 basic_string<CharType, CharTraits>& 
 basic_string<CharType, CharTraits>::
@@ -915,7 +915,7 @@ append(const basic_string& str, size_type pos, size_type count)
   return *this;
 }
 
-// åœ¨æœ«å°¾æ·»åŠ  [s, s+count) ä¸€æ®µ
+// ÔÚÄ©Î²Ìí¼Ó [s, s+count) Ò»¶Î
 template <class CharType, class CharTraits>
 basic_string<CharType, CharTraits>& 
 basic_string<CharType, CharTraits>::
@@ -932,7 +932,7 @@ append(const_pointer s, size_type count)
   return *this;
 }
 
-// åˆ é™¤ pos å¤„çš„å…ƒç´ 
+// É¾³ı pos ´¦µÄÔªËØ
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::iterator
 basic_string<CharType, CharTraits>::
@@ -945,7 +945,7 @@ erase(const_iterator pos)
   return r;
 }
 
-// åˆ é™¤ [first, last) çš„å…ƒç´ 
+// É¾³ı [first, last) µÄÔªËØ
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::iterator
 basic_string<CharType, CharTraits>::
@@ -963,7 +963,7 @@ erase(const_iterator first, const_iterator last)
   return r;
 }
 
-// é‡ç½®å®¹å™¨å¤§å°
+// ÖØÖÃÈİÆ÷´óĞ¡
 template <class CharType, class CharTraits>
 void basic_string<CharType, CharTraits>::
 resize(size_type count, value_type ch)
@@ -978,7 +978,7 @@ resize(size_type count, value_type ch)
   }
 }
 
-// æ¯”è¾ƒä¸¤ä¸ª basic_stringï¼Œå°äºè¿”å› -1ï¼Œå¤§äºè¿”å› 1ï¼Œç­‰äºè¿”å› 0
+// ±È½ÏÁ½¸ö basic_string£¬Ğ¡ÓÚ·µ»Ø -1£¬´óÓÚ·µ»Ø 1£¬µÈÓÚ·µ»Ø 0
 template <class CharType, class CharTraits>
 int basic_string<CharType, CharTraits>::
 compare(const basic_string& other) const
@@ -986,7 +986,7 @@ compare(const basic_string& other) const
   return compare_cstr(buffer_, size_, other.buffer_, other.size_);
 }
 
-// ä» pos1 ä¸‹æ ‡å¼€å§‹çš„ count1 ä¸ªå­—ç¬¦è·Ÿå¦ä¸€ä¸ª basic_string æ¯”è¾ƒ
+// ´Ó pos1 ÏÂ±ê¿ªÊ¼µÄ count1 ¸ö×Ö·û¸úÁíÒ»¸ö basic_string ±È½Ï
 template <class CharType, class CharTraits>
 int basic_string<CharType, CharTraits>::
 compare(size_type pos1, size_type count1, const basic_string& other) const
@@ -995,7 +995,7 @@ compare(size_type pos1, size_type count1, const basic_string& other) const
   return compare_cstr(buffer_ + pos1, n1, other.buffer_, other.size_);
 }
 
-// ä» pos1 ä¸‹æ ‡å¼€å§‹çš„ count1 ä¸ªå­—ç¬¦è·Ÿå¦ä¸€ä¸ª basic_string ä¸‹æ ‡ pos2 å¼€å§‹çš„ count2 ä¸ªå­—ç¬¦æ¯”è¾ƒ
+// ´Ó pos1 ÏÂ±ê¿ªÊ¼µÄ count1 ¸ö×Ö·û¸úÁíÒ»¸ö basic_string ÏÂ±ê pos2 ¿ªÊ¼µÄ count2 ¸ö×Ö·û±È½Ï
 template <class CharType, class CharTraits>
 int basic_string<CharType, CharTraits>::
 compare(size_type pos1, size_type count1, const basic_string& other,
@@ -1006,7 +1006,7 @@ compare(size_type pos1, size_type count1, const basic_string& other,
   return compare_cstr(buffer_, n1, other.buffer_, n2);
 }
 
-// è·Ÿä¸€ä¸ªå­—ç¬¦ä¸²æ¯”è¾ƒ
+// ¸úÒ»¸ö×Ö·û´®±È½Ï
 template <class CharType, class CharTraits>
 int basic_string<CharType, CharTraits>::
 compare(const_pointer s) const
@@ -1015,7 +1015,7 @@ compare(const_pointer s) const
   return compare_cstr(buffer_, size_, s, n2);
 }
 
-// ä»ä¸‹æ ‡ pos1 å¼€å§‹çš„ count1 ä¸ªå­—ç¬¦è·Ÿå¦ä¸€ä¸ªå­—ç¬¦ä¸²æ¯”è¾ƒ
+// ´ÓÏÂ±ê pos1 ¿ªÊ¼µÄ count1 ¸ö×Ö·û¸úÁíÒ»¸ö×Ö·û´®±È½Ï
 template <class CharType, class CharTraits>
 int basic_string<CharType, CharTraits>::
 compare(size_type pos1, size_type count1, const_pointer s) const
@@ -1025,7 +1025,7 @@ compare(size_type pos1, size_type count1, const_pointer s) const
   return compare_cstr(buffer_, n1, s, n2);
 }
 
-// ä»ä¸‹æ ‡ pos1 å¼€å§‹çš„ count1 ä¸ªå­—ç¬¦è·Ÿå¦ä¸€ä¸ªå­—ç¬¦ä¸²çš„å‰ count2 ä¸ªå­—ç¬¦æ¯”è¾ƒ
+// ´ÓÏÂ±ê pos1 ¿ªÊ¼µÄ count1 ¸ö×Ö·û¸úÁíÒ»¸ö×Ö·û´®µÄÇ° count2 ¸ö×Ö·û±È½Ï
 template <class CharType, class CharTraits>
 int basic_string<CharType, CharTraits>::
 compare(size_type pos1, size_type count1, const_pointer s, size_type count2) const
@@ -1034,7 +1034,7 @@ compare(size_type pos1, size_type count1, const_pointer s, size_type count2) con
   return compare_cstr(buffer_, n1, s, count2);
 }
 
-// åè½¬ basic_string
+// ·´×ª basic_string
 template <class CharType, class CharTraits>
 void basic_string<CharType, CharTraits>::
 reverse() noexcept
@@ -1045,7 +1045,7 @@ reverse() noexcept
   }
 }
 
-// äº¤æ¢ä¸¤ä¸ª basic_string
+// ½»»»Á½¸ö basic_string
 template <class CharType, class CharTraits>
 void basic_string<CharType, CharTraits>::
 swap(basic_string& rhs) noexcept
@@ -1058,7 +1058,7 @@ swap(basic_string& rhs) noexcept
   }
 }
 
-// ä»ä¸‹æ ‡ pos å¼€å§‹æŸ¥æ‰¾å­—ç¬¦ä¸º ch çš„å…ƒç´ ï¼Œè‹¥æ‰¾åˆ°è¿”å›å…¶ä¸‹æ ‡ï¼Œå¦åˆ™è¿”å› npos
+// ´ÓÏÂ±ê pos ¿ªÊ¼²éÕÒ×Ö·ûÎª ch µÄÔªËØ£¬ÈôÕÒµ½·µ»ØÆäÏÂ±ê£¬·ñÔò·µ»Ø npos
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::size_type
 basic_string<CharType, CharTraits>::
@@ -1072,7 +1072,7 @@ find(value_type ch, size_type pos) const noexcept
   return npos;
 }
 
-// ä»ä¸‹æ ‡ pos å¼€å§‹æŸ¥æ‰¾å­—ç¬¦ä¸² strï¼Œè‹¥æ‰¾åˆ°è¿”å›èµ·å§‹ä½ç½®çš„ä¸‹æ ‡ï¼Œå¦åˆ™è¿”å› npos
+// ´ÓÏÂ±ê pos ¿ªÊ¼²éÕÒ×Ö·û´® str£¬ÈôÕÒµ½·µ»ØÆğÊ¼Î»ÖÃµÄÏÂ±ê£¬·ñÔò·µ»Ø npos
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::size_type
 basic_string<CharType, CharTraits>::
@@ -1101,7 +1101,7 @@ find(const_pointer str, size_type pos) const noexcept
   return npos;
 }
 
-// ä»ä¸‹æ ‡ pos å¼€å§‹æŸ¥æ‰¾å­—ç¬¦ä¸² str çš„å‰ count ä¸ªå­—ç¬¦ï¼Œè‹¥æ‰¾åˆ°è¿”å›èµ·å§‹ä½ç½®çš„ä¸‹æ ‡ï¼Œå¦åˆ™è¿”å› npos
+// ´ÓÏÂ±ê pos ¿ªÊ¼²éÕÒ×Ö·û´® str µÄÇ° count ¸ö×Ö·û£¬ÈôÕÒµ½·µ»ØÆğÊ¼Î»ÖÃµÄÏÂ±ê£¬·ñÔò·µ»Ø npos
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::size_type
 basic_string<CharType, CharTraits>::
@@ -1129,7 +1129,7 @@ find(const_pointer str, size_type pos, size_type count) const noexcept
   return npos;
 }
 
-// ä»ä¸‹æ ‡ pos å¼€å§‹æŸ¥æ‰¾å­—ç¬¦ä¸² strï¼Œè‹¥æ‰¾åˆ°è¿”å›èµ·å§‹ä½ç½®çš„ä¸‹æ ‡ï¼Œå¦åˆ™è¿”å› npos
+// ´ÓÏÂ±ê pos ¿ªÊ¼²éÕÒ×Ö·û´® str£¬ÈôÕÒµ½·µ»ØÆğÊ¼Î»ÖÃµÄÏÂ±ê£¬·ñÔò·µ»Ø npos
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::size_type
 basic_string<CharType, CharTraits>::
@@ -1158,7 +1158,7 @@ find(const basic_string& str, size_type pos) const noexcept
   return npos;
 }
 
-// ä»ä¸‹æ ‡ pos å¼€å§‹åå‘æŸ¥æ‰¾å€¼ä¸º ch çš„å…ƒç´ ï¼Œä¸ find ç±»ä¼¼
+// ´ÓÏÂ±ê pos ¿ªÊ¼·´Ïò²éÕÒÖµÎª ch µÄÔªËØ£¬Óë find ÀàËÆ
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::size_type
 basic_string<CharType, CharTraits>::
@@ -1174,7 +1174,7 @@ rfind(value_type ch, size_type pos) const noexcept
   return front() == ch ? 0 : npos;
 }
 
-// ä»ä¸‹æ ‡ pos å¼€å§‹åå‘æŸ¥æ‰¾å­—ç¬¦ä¸² strï¼Œä¸ find ç±»ä¼¼
+// ´ÓÏÂ±ê pos ¿ªÊ¼·´Ïò²éÕÒ×Ö·û´® str£¬Óë find ÀàËÆ
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::size_type
 basic_string<CharType, CharTraits>::
@@ -1218,7 +1218,7 @@ rfind(const_pointer str, size_type pos) const noexcept
   return npos;
 }
 
-// ä»ä¸‹æ ‡ pos å¼€å§‹åå‘æŸ¥æ‰¾å­—ç¬¦ä¸² str å‰ count ä¸ªå­—ç¬¦ï¼Œä¸ find ç±»ä¼¼
+// ´ÓÏÂ±ê pos ¿ªÊ¼·´Ïò²éÕÒ×Ö·û´® str Ç° count ¸ö×Ö·û£¬Óë find ÀàËÆ
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::size_type
 basic_string<CharType, CharTraits>::
@@ -1247,7 +1247,7 @@ rfind(const_pointer str, size_type pos, size_type count) const noexcept
   return npos;
 }
 
-// ä»ä¸‹æ ‡ pos å¼€å§‹åå‘æŸ¥æ‰¾å­—ç¬¦ä¸² strï¼Œä¸ find ç±»ä¼¼
+// ´ÓÏÂ±ê pos ¿ªÊ¼·´Ïò²éÕÒ×Ö·û´® str£¬Óë find ÀàËÆ
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::size_type
 basic_string<CharType, CharTraits>::
@@ -1277,7 +1277,7 @@ rfind(const basic_string& str, size_type pos) const noexcept
   return npos;
 }
 
-// ä»ä¸‹æ ‡ pos å¼€å§‹æŸ¥æ‰¾ ch å‡ºç°çš„ç¬¬ä¸€ä¸ªä½ç½®
+// ´ÓÏÂ±ê pos ¿ªÊ¼²éÕÒ ch ³öÏÖµÄµÚÒ»¸öÎ»ÖÃ
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::size_type
 basic_string<CharType, CharTraits>::
@@ -1291,7 +1291,7 @@ find_first_of(value_type ch, size_type pos) const noexcept
   return npos;
 }
 
-// ä»ä¸‹æ ‡ pos å¼€å§‹æŸ¥æ‰¾å­—ç¬¦ä¸² s å…¶ä¸­çš„ä¸€ä¸ªå­—ç¬¦å‡ºç°çš„ç¬¬ä¸€ä¸ªä½ç½®
+// ´ÓÏÂ±ê pos ¿ªÊ¼²éÕÒ×Ö·û´® s ÆäÖĞµÄÒ»¸ö×Ö·û³öÏÖµÄµÚÒ»¸öÎ»ÖÃ
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::size_type
 basic_string<CharType, CharTraits>::
@@ -1310,7 +1310,7 @@ find_first_of(const_pointer s, size_type pos) const noexcept
   return npos;
 }
 
-// ä»ä¸‹æ ‡ pos å¼€å§‹æŸ¥æ‰¾å­—ç¬¦ä¸² s 
+// ´ÓÏÂ±ê pos ¿ªÊ¼²éÕÒ×Ö·û´® s 
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::size_type
 basic_string<CharType, CharTraits>::
@@ -1328,7 +1328,7 @@ find_first_of(const_pointer s, size_type pos, size_type count) const noexcept
   return npos;
 }
 
-// ä»ä¸‹æ ‡ pos å¼€å§‹æŸ¥æ‰¾å­—ç¬¦ä¸² str å…¶ä¸­ä¸€ä¸ªå­—ç¬¦å‡ºç°çš„ç¬¬ä¸€ä¸ªä½ç½®
+// ´ÓÏÂ±ê pos ¿ªÊ¼²éÕÒ×Ö·û´® str ÆäÖĞÒ»¸ö×Ö·û³öÏÖµÄµÚÒ»¸öÎ»ÖÃ
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::size_type
 basic_string<CharType, CharTraits>::
@@ -1346,7 +1346,7 @@ find_first_of(const basic_string& str, size_type pos) const noexcept
   return npos;
 }
 
-// ä»ä¸‹æ ‡ pos å¼€å§‹æŸ¥æ‰¾ä¸ ch ä¸ç›¸ç­‰çš„ç¬¬ä¸€ä¸ªä½ç½®
+// ´ÓÏÂ±ê pos ¿ªÊ¼²éÕÒÓë ch ²»ÏàµÈµÄµÚÒ»¸öÎ»ÖÃ
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::size_type
 basic_string<CharType, CharTraits>::
@@ -1360,7 +1360,7 @@ find_first_not_of(value_type ch, size_type pos) const noexcept
   return npos;
 }
 
-// ä»ä¸‹æ ‡ pos å¼€å§‹æŸ¥æ‰¾ä¸å­—ç¬¦ä¸² s å…¶ä¸­ä¸€ä¸ªå­—ç¬¦ä¸ç›¸ç­‰çš„ç¬¬ä¸€ä¸ªä½ç½®
+// ´ÓÏÂ±ê pos ¿ªÊ¼²éÕÒÓë×Ö·û´® s ÆäÖĞÒ»¸ö×Ö·û²»ÏàµÈµÄµÚÒ»¸öÎ»ÖÃ
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::size_type
 basic_string<CharType, CharTraits>::
@@ -1379,7 +1379,7 @@ find_first_not_of(const_pointer s, size_type pos) const noexcept
   return npos;
 }
 
-// ä»ä¸‹æ ‡ pos å¼€å§‹æŸ¥æ‰¾ä¸å­—ç¬¦ä¸² s å‰ count ä¸ªå­—ç¬¦ä¸­ä¸ç›¸ç­‰çš„ç¬¬ä¸€ä¸ªä½ç½®
+// ´ÓÏÂ±ê pos ¿ªÊ¼²éÕÒÓë×Ö·û´® s Ç° count ¸ö×Ö·ûÖĞ²»ÏàµÈµÄµÚÒ»¸öÎ»ÖÃ
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::size_type
 basic_string<CharType, CharTraits>::
@@ -1397,7 +1397,7 @@ find_first_not_of(const_pointer s, size_type pos, size_type count) const noexcep
   return npos;
 }
 
-// ä»ä¸‹æ ‡ pos å¼€å§‹æŸ¥æ‰¾ä¸å­—ç¬¦ä¸² str çš„å­—ç¬¦ä¸­ä¸ç›¸ç­‰çš„ç¬¬ä¸€ä¸ªä½ç½®
+// ´ÓÏÂ±ê pos ¿ªÊ¼²éÕÒÓë×Ö·û´® str µÄ×Ö·ûÖĞ²»ÏàµÈµÄµÚÒ»¸öÎ»ÖÃ
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::size_type
 basic_string<CharType, CharTraits>::
@@ -1415,7 +1415,7 @@ find_first_not_of(const basic_string& str, size_type pos) const noexcept
   return npos;
 }
 
-// ä»ä¸‹æ ‡ pos å¼€å§‹æŸ¥æ‰¾ä¸ ch ç›¸ç­‰çš„æœ€åä¸€ä¸ªä½ç½®
+// ´ÓÏÂ±ê pos ¿ªÊ¼²éÕÒÓë ch ÏàµÈµÄ×îºóÒ»¸öÎ»ÖÃ
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::size_type
 basic_string<CharType, CharTraits>::
@@ -1429,7 +1429,7 @@ find_last_of(value_type ch, size_type pos) const noexcept
   return npos;
 }
 
-// ä»ä¸‹æ ‡ pos å¼€å§‹æŸ¥æ‰¾ä¸å­—ç¬¦ä¸² s å…¶ä¸­ä¸€ä¸ªå­—ç¬¦ç›¸ç­‰çš„æœ€åä¸€ä¸ªä½ç½®
+// ´ÓÏÂ±ê pos ¿ªÊ¼²éÕÒÓë×Ö·û´® s ÆäÖĞÒ»¸ö×Ö·ûÏàµÈµÄ×îºóÒ»¸öÎ»ÖÃ
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::size_type
 basic_string<CharType, CharTraits>::
@@ -1448,7 +1448,7 @@ find_last_of(const_pointer s, size_type pos) const noexcept
   return npos;
 }
 
-// ä»ä¸‹æ ‡ pos å¼€å§‹æŸ¥æ‰¾ä¸å­—ç¬¦ä¸² s å‰ count ä¸ªå­—ç¬¦ä¸­ç›¸ç­‰çš„æœ€åä¸€ä¸ªä½ç½®
+// ´ÓÏÂ±ê pos ¿ªÊ¼²éÕÒÓë×Ö·û´® s Ç° count ¸ö×Ö·ûÖĞÏàµÈµÄ×îºóÒ»¸öÎ»ÖÃ
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::size_type
 basic_string<CharType, CharTraits>::
@@ -1466,7 +1466,7 @@ find_last_of(const_pointer s, size_type pos, size_type count) const noexcept
   return npos;
 }
 
-// ä»ä¸‹æ ‡ pos å¼€å§‹æŸ¥æ‰¾ä¸å­—ç¬¦ä¸² str å­—ç¬¦ä¸­ç›¸ç­‰çš„æœ€åä¸€ä¸ªä½ç½®
+// ´ÓÏÂ±ê pos ¿ªÊ¼²éÕÒÓë×Ö·û´® str ×Ö·ûÖĞÏàµÈµÄ×îºóÒ»¸öÎ»ÖÃ
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::size_type
 basic_string<CharType, CharTraits>::
@@ -1484,7 +1484,7 @@ find_last_of(const basic_string& str, size_type pos) const noexcept
   return npos;
 }
 
-// ä»ä¸‹æ ‡ pos å¼€å§‹æŸ¥æ‰¾ä¸ ch å­—ç¬¦ä¸ç›¸ç­‰çš„æœ€åä¸€ä¸ªä½ç½®
+// ´ÓÏÂ±ê pos ¿ªÊ¼²éÕÒÓë ch ×Ö·û²»ÏàµÈµÄ×îºóÒ»¸öÎ»ÖÃ
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::size_type
 basic_string<CharType, CharTraits>::
@@ -1498,7 +1498,7 @@ find_last_not_of(value_type ch, size_type pos) const noexcept
   return npos;
 }
 
-// ä»ä¸‹æ ‡ pos å¼€å§‹æŸ¥æ‰¾ä¸å­—ç¬¦ä¸² s çš„å­—ç¬¦ä¸­ä¸ç›¸ç­‰çš„æœ€åä¸€ä¸ªä½ç½®
+// ´ÓÏÂ±ê pos ¿ªÊ¼²éÕÒÓë×Ö·û´® s µÄ×Ö·ûÖĞ²»ÏàµÈµÄ×îºóÒ»¸öÎ»ÖÃ
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::size_type
 basic_string<CharType, CharTraits>::
@@ -1517,7 +1517,7 @@ find_last_not_of(const_pointer s, size_type pos) const noexcept
   return npos;
 }
 
-// ä»ä¸‹æ ‡ pos å¼€å§‹æŸ¥æ‰¾ä¸å­—ç¬¦ä¸² s å‰ count ä¸ªå­—ç¬¦ä¸­ä¸ç›¸ç­‰çš„æœ€åä¸€ä¸ªä½ç½®
+// ´ÓÏÂ±ê pos ¿ªÊ¼²éÕÒÓë×Ö·û´® s Ç° count ¸ö×Ö·ûÖĞ²»ÏàµÈµÄ×îºóÒ»¸öÎ»ÖÃ
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::size_type
 basic_string<CharType, CharTraits>::
@@ -1535,7 +1535,7 @@ find_last_not_of(const_pointer s, size_type pos, size_type count) const noexcept
   return npos;
 }
 
-// ä»ä¸‹æ ‡ pos å¼€å§‹æŸ¥æ‰¾ä¸å­—ç¬¦ä¸² str å­—ç¬¦ä¸­ä¸ç›¸ç­‰çš„æœ€åä¸€ä¸ªä½ç½®
+// ´ÓÏÂ±ê pos ¿ªÊ¼²éÕÒÓë×Ö·û´® str ×Ö·ûÖĞ²»ÏàµÈµÄ×îºóÒ»¸öÎ»ÖÃ
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::size_type
 basic_string<CharType, CharTraits>::
@@ -1553,7 +1553,7 @@ find_last_not_of(const basic_string& str, size_type pos) const noexcept
   return npos;
 }
 
-// è¿”å›ä»ä¸‹æ ‡ pos å¼€å§‹å­—ç¬¦ä¸º ch çš„å…ƒç´ å‡ºç°çš„æ¬¡æ•°
+// ·µ»Ø´ÓÏÂ±ê pos ¿ªÊ¼×Ö·ûÎª ch µÄÔªËØ³öÏÖµÄ´ÎÊı
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::size_type
 basic_string<CharType, CharTraits>::
@@ -1571,7 +1571,7 @@ count(value_type ch, size_type pos) const noexcept
 /*****************************************************************************************/
 // helper function
 
-// å°è¯•åˆå§‹åŒ–ä¸€æ®µ bufferï¼Œè‹¥åˆ†é…å¤±è´¥åˆ™å¿½ç•¥ï¼Œä¸ä¼šæŠ›å‡ºå¼‚å¸¸
+// ³¢ÊÔ³õÊ¼»¯Ò»¶Î buffer£¬Èô·ÖÅäÊ§°ÜÔòºöÂÔ£¬²»»áÅ×³öÒì³£
 template <class CharType, class CharTraits>
 void basic_string<CharType, CharTraits>::
 try_init() noexcept
@@ -1591,7 +1591,7 @@ try_init() noexcept
   }
 }
 
-// fill_init å‡½æ•°
+// fill_init º¯Êı
 template <class CharType, class CharTraits>
 void basic_string<CharType, CharTraits>::
 fill_init(size_type n, value_type ch)
@@ -1603,7 +1603,7 @@ fill_init(size_type n, value_type ch)
   cap_ = init_size;
 }
 
-// copy_init å‡½æ•°
+// copy_init º¯Êı
 template <class CharType, class CharTraits>
 template <class Iter>
 void basic_string<CharType, CharTraits>::
@@ -1651,7 +1651,7 @@ copy_init(Iter first, Iter last, mystl::forward_iterator_tag)
   }
 }
 
-// init_from å‡½æ•°
+// init_from º¯Êı
 template <class CharType, class CharTraits>
 void basic_string<CharType, CharTraits>::
 init_from(const_pointer src, size_type pos, size_type count)
@@ -1663,7 +1663,7 @@ init_from(const_pointer src, size_type pos, size_type count)
   cap_ = init_size;
 }
 
-// destroy_buffer å‡½æ•°
+// destroy_buffer º¯Êı
 template <class CharType, class CharTraits>
 void basic_string<CharType, CharTraits>::
 destroy_buffer()
@@ -1677,7 +1677,7 @@ destroy_buffer()
   }
 }
 
-// to_raw_pointer å‡½æ•°
+// to_raw_pointer º¯Êı
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::const_pointer
 basic_string<CharType, CharTraits>::
@@ -1687,7 +1687,7 @@ to_raw_pointer() const
   return buffer_;
 }
 
-// reinsert å‡½æ•°
+// reinsert º¯Êı
 template <class CharType, class CharTraits>
 void basic_string<CharType, CharTraits>::
 reinsert(size_type size)
@@ -1706,7 +1706,7 @@ reinsert(size_type size)
   cap_ = size;
 }
 
-// append_rangeï¼Œæœ«å°¾è¿½åŠ ä¸€æ®µ [first, last) å†…çš„å­—ç¬¦
+// append_range£¬Ä©Î²×·¼ÓÒ»¶Î [first, last) ÄÚµÄ×Ö·û
 template <class CharType, class CharTraits>
 template <class Iter>
 basic_string<CharType, CharTraits>&
@@ -1737,7 +1737,7 @@ compare_cstr(const_pointer s1, size_type n1, const_pointer s2, size_type n2) con
   return 0;
 }
 
-// æŠŠ first å¼€å§‹çš„ count1 ä¸ªå­—ç¬¦æ›¿æ¢æˆ str å¼€å§‹çš„ count2 ä¸ªå­—ç¬¦
+// °Ñ first ¿ªÊ¼µÄ count1 ¸ö×Ö·ûÌæ»»³É str ¿ªÊ¼µÄ count2 ¸ö×Ö·û
 template <class CharType, class CharTraits>
 basic_string<CharType, CharTraits>& 
 basic_string<CharType, CharTraits>::
@@ -1771,7 +1771,7 @@ replace_cstr(const_iterator first, size_type count1, const_pointer str, size_typ
   return *this;
 }
 
-// æŠŠ first å¼€å§‹çš„ count1 ä¸ªå­—ç¬¦æ›¿æ¢æˆ count2 ä¸ª ch å­—ç¬¦
+// °Ñ first ¿ªÊ¼µÄ count1 ¸ö×Ö·ûÌæ»»³É count2 ¸ö ch ×Ö·û
 template <class CharType, class CharTraits>
 basic_string<CharType, CharTraits>&
 basic_string<CharType, CharTraits>::
@@ -1805,7 +1805,7 @@ replace_fill(const_iterator first, size_type count1, size_type count2, value_typ
   return *this;
 }
 
-// æŠŠ [first, last) çš„å­—ç¬¦æ›¿æ¢æˆ [first2, last2)
+// °Ñ [first, last) µÄ×Ö·ûÌæ»»³É [first2, last2)
 template <class CharType, class CharTraits>
 template <class Iter>
 basic_string<CharType, CharTraits>&
@@ -1838,7 +1838,7 @@ replace_copy(const_iterator first, const_iterator last, Iter first2, Iter last2)
   return *this;
 }
 
-// reallocate å‡½æ•°
+// reallocate º¯Êı
 template <class CharType, class CharTraits>
 void basic_string<CharType, CharTraits>::
 reallocate(size_type need)
@@ -1851,7 +1851,7 @@ reallocate(size_type need)
   cap_ = new_cap;
 }
 
-// reallocate_and_fill å‡½æ•°
+// reallocate_and_fill º¯Êı
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::iterator
 basic_string<CharType, CharTraits>::
@@ -1871,7 +1871,7 @@ reallocate_and_fill(iterator pos, size_type n, value_type ch)
   return buffer_ + r;
 }
 
-// reallocate_and_copy å‡½æ•°
+// reallocate_and_copy º¯Êı
 template <class CharType, class CharTraits>
 typename basic_string<CharType, CharTraits>::iterator
 basic_string<CharType, CharTraits>::
@@ -1893,9 +1893,9 @@ reallocate_and_copy(iterator pos, const_iterator first, const_iterator last)
 }
 
 /*****************************************************************************************/
-// é‡è½½å…¨å±€æ“ä½œç¬¦
+// ÖØÔØÈ«¾Ö²Ù×÷·û
 
-// é‡è½½ operator+
+// ÖØÔØ operator+
 template <class CharType, class CharTraits>
 basic_string<CharType, CharTraits>
 operator+(const basic_string<CharType, CharTraits>& lhs, 
@@ -2008,7 +2008,7 @@ operator+(basic_string<CharType, CharTraits>&& lhs, CharType ch)
   return tmp;
 }
 
-// é‡è½½æ¯”è¾ƒæ“ä½œç¬¦
+// ÖØÔØ±È½Ï²Ù×÷·û
 template <class CharType, class CharTraits>
 bool operator==(const basic_string<CharType, CharTraits>& lhs,
                 const basic_string<CharType, CharTraits>& rhs)
@@ -2051,7 +2051,7 @@ bool operator>=(const basic_string<CharType, CharTraits>& lhs,
   return lhs.compare(rhs) >= 0;
 }
 
-// é‡è½½ mystl çš„ swap
+// ÖØÔØ mystl µÄ swap
 template <class CharType, class CharTraits>
 void swap(basic_string<CharType, CharTraits>& lhs,
           basic_string<CharType, CharTraits>& rhs) noexcept
@@ -2059,7 +2059,7 @@ void swap(basic_string<CharType, CharTraits>& lhs,
   lhs.swap(rhs);
 }
 
-// ç‰¹åŒ– mystl::hash
+// ÌØ»¯ mystl::hash
 template <class CharType, class CharTraits>
 struct hash<basic_string<CharType, CharTraits>>
 {

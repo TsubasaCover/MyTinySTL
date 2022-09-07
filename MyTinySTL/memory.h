@@ -1,8 +1,8 @@
-ï»¿#ifndef MYTINYSTL_MEMORY_H_
+#ifndef MYTINYSTL_MEMORY_H_
 #define MYTINYSTL_MEMORY_H_
 
-// è¿™ä¸ªå¤´æ–‡ä»¶è´Ÿè´£æ›´é«˜çº§çš„åŠ¨æ€å†…å­˜ç®¡ç†
-// åŒ…å«ä¸€äº›åŸºæœ¬å‡½æ•°ã€ç©ºé—´é…ç½®å™¨ã€æœªåˆå§‹åŒ–çš„å‚¨å­˜ç©ºé—´ç®¡ç†ï¼Œä»¥åŠä¸€ä¸ªæ¨¡æ¿ç±» auto_ptr
+// Õâ¸öÍ·ÎÄ¼ş¸ºÔğ¸ü¸ß¼¶µÄ¶¯Ì¬ÄÚ´æ¹ÜÀí
+// °üº¬Ò»Ğ©»ù±¾º¯Êı¡¢¿Õ¼äÅäÖÃÆ÷¡¢Î´³õÊ¼»¯µÄ´¢´æ¿Õ¼ä¹ÜÀí£¬ÒÔ¼°Ò»¸öÄ£°åÀà auto_ptr
 
 #include <cstddef>
 #include <cstdlib>
@@ -16,14 +16,14 @@
 namespace mystl
 {
 
-// è·å–å¯¹è±¡åœ°å€
+// »ñÈ¡¶ÔÏóµØÖ·
 template <class Tp>
 constexpr Tp* address_of(Tp& value) noexcept
 {
   return &value;
 }
 
-// è·å– / é‡Šæ”¾ ä¸´æ—¶ç¼“å†²åŒº
+// »ñÈ¡ / ÊÍ·Å ÁÙÊ±»º³åÇø
 
 template <class T>
 pair<T*, ptrdiff_t> get_buffer_helper(ptrdiff_t len, T*)
@@ -35,7 +35,7 @@ pair<T*, ptrdiff_t> get_buffer_helper(ptrdiff_t len, T*)
     T* tmp = static_cast<T*>(malloc(static_cast<size_t>(len) * sizeof(T)));
     if (tmp)
       return pair<T*, ptrdiff_t>(tmp, len);
-    len /= 2;  // ç”³è¯·å¤±è´¥æ—¶å‡å°‘ len çš„å¤§å°
+    len /= 2;  // ÉêÇëÊ§°ÜÊ±¼õÉÙ len µÄ´óĞ¡
   }
   return pair<T*, ptrdiff_t>(nullptr, 0);
 }
@@ -59,18 +59,18 @@ void release_temporary_buffer(T* ptr)
 }
 
 // --------------------------------------------------------------------------------------
-// ç±»æ¨¡æ¿ : temporary_buffer
-// è¿›è¡Œä¸´æ—¶ç¼“å†²åŒºçš„ç”³è¯·ä¸é‡Šæ”¾
+// ÀàÄ£°å : temporary_buffer
+// ½øĞĞÁÙÊ±»º³åÇøµÄÉêÇëÓëÊÍ·Å
 template <class ForwardIterator, class T>
 class temporary_buffer
 {
 private:
-  ptrdiff_t original_len;  // ç¼“å†²åŒºç”³è¯·çš„å¤§å°
-  ptrdiff_t len;           // ç¼“å†²åŒºå®é™…çš„å¤§å°
-  T*        buffer;        // æŒ‡å‘ç¼“å†²åŒºçš„æŒ‡é’ˆ
+  ptrdiff_t original_len;  // »º³åÇøÉêÇëµÄ´óĞ¡
+  ptrdiff_t len;           // »º³åÇøÊµ¼ÊµÄ´óĞ¡
+  T*        buffer;        // Ö¸Ïò»º³åÇøµÄÖ¸Õë
 
 public:
-  // æ„é€ ã€ææ„å‡½æ•°
+  // ¹¹Ôì¡¢Îö¹¹º¯Êı
   temporary_buffer(ForwardIterator first, ForwardIterator last);
 
   ~temporary_buffer()
@@ -97,7 +97,7 @@ private:
   void operator=(const temporary_buffer&);
 };
 
-// æ„é€ å‡½æ•°
+// ¹¹Ôìº¯Êı
 template <class ForwardIterator, class T>
 temporary_buffer<ForwardIterator, T>::
 temporary_buffer(ForwardIterator first, ForwardIterator last)
@@ -119,7 +119,7 @@ temporary_buffer(ForwardIterator first, ForwardIterator last)
   }
 }
 
-// allocate_buffer å‡½æ•°
+// allocate_buffer º¯Êı
 template <class ForwardIterator, class T>
 void temporary_buffer<ForwardIterator, T>::allocate_buffer()
 {
@@ -131,13 +131,13 @@ void temporary_buffer<ForwardIterator, T>::allocate_buffer()
     buffer = static_cast<T*>(malloc(len * sizeof(T)));
     if (buffer)
       break;
-    len /= 2;  // ç”³è¯·å¤±è´¥æ—¶å‡å°‘ç”³è¯·ç©ºé—´å¤§å°
+    len /= 2;  // ÉêÇëÊ§°ÜÊ±¼õÉÙÉêÇë¿Õ¼ä´óĞ¡
   }
 }
 
 // --------------------------------------------------------------------------------------
-// æ¨¡æ¿ç±»: auto_ptr
-// ä¸€ä¸ªå…·æœ‰ä¸¥æ ¼å¯¹è±¡æ‰€æœ‰æƒçš„å°å‹æ™ºèƒ½æŒ‡é’ˆ
+// Ä£°åÀà: auto_ptr
+// Ò»¸ö¾ßÓĞÑÏ¸ñ¶ÔÏóËùÓĞÈ¨µÄĞ¡ĞÍÖÇÄÜÖ¸Õë
 template <class T>
 class auto_ptr
 {
@@ -145,10 +145,10 @@ public:
   typedef T    elem_type;
 
 private:
-  T* m_ptr;  // å®é™…æŒ‡é’ˆ
+  T* m_ptr;  // Êµ¼ÊÖ¸Õë
 
 public:
-  // æ„é€ ã€å¤åˆ¶ã€ææ„å‡½æ•°
+  // ¹¹Ôì¡¢¸´ÖÆ¡¢Îö¹¹º¯Êı
   explicit auto_ptr(T* p = nullptr) :m_ptr(p) {}
   auto_ptr(auto_ptr& rhs) :m_ptr(rhs.release()) {}
   template <class U>
@@ -177,14 +177,14 @@ public:
   ~auto_ptr() { delete m_ptr; }
 
 public:
-  // é‡è½½ operator* å’Œ operator->
+  // ÖØÔØ operator* ºÍ operator->
   T& operator*()  const { return *m_ptr; }
   T* operator->() const { return m_ptr; }
 
-  // è·å¾—æŒ‡é’ˆ
+  // »ñµÃÖ¸Õë
   T* get() const { return m_ptr; }
 
-  // é‡Šæ”¾æŒ‡é’ˆ
+  // ÊÍ·ÅÖ¸Õë
   T* release()
   {
     T* tmp = m_ptr;
@@ -192,7 +192,7 @@ public:
     return tmp;
   }
 
-  // é‡ç½®æŒ‡é’ˆ
+  // ÖØÖÃÖ¸Õë
   void reset(T* p = nullptr)
   {
     if (m_ptr != p)

@@ -1,7 +1,7 @@
-ï»¿#ifndef MYTINYSTL_ALGORITHM_H_
+#ifndef MYTINYSTL_ALGORITHM_H_
 #define MYTINYSTL_ALGORITHM_H_
 
-// è¿™ä¸ªå¤´æ–‡ä»¶åŒ…å«äº† mystl çš„æ‰€æœ‰ç®—æ³•ï¼ŒåŒ…æ‹¬åŸºæœ¬ç®—æ³•ï¼Œæ•°å€¼ç®—æ³•ï¼Œheap ç®—æ³•ï¼Œset ç®—æ³•å’Œå…¶ä»–ç®—æ³•
+// Õâ¸öÍ·ÎÄ¼þ°üº¬ÁË mystl µÄËùÓÐËã·¨£¬°üÀ¨»ù±¾Ëã·¨£¬ÊýÖµËã·¨£¬heap Ëã·¨£¬set Ëã·¨ºÍÆäËûËã·¨
 
 #include "algobase.h"
 #include "algo.h"

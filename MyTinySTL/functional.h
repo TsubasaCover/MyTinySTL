@@ -1,14 +1,14 @@
-ï»¿#ifndef MYTINYSTL_FUNCTIONAL_H_
+#ifndef MYTINYSTL_FUNCTIONAL_H_
 #define MYTINYSTL_FUNCTIONAL_H_
 
-// è¿™ä¸ªå¤´æ–‡ä»¶åŒ…å«äº† mystl çš„å‡½æ•°å¯¹è±¡ä¸å“ˆå¸Œå‡½æ•°
+// Õâ¸öÍ·ÎÄ¼ş°üº¬ÁË mystl µÄº¯Êı¶ÔÏóÓë¹şÏ£º¯Êı
 
 #include <cstddef>
 
 namespace mystl
 {
 
-// å®šä¹‰ä¸€å…ƒå‡½æ•°çš„å‚æ•°å‹åˆ«å’Œè¿”å›å€¼å‹åˆ«
+// ¶¨ÒåÒ»Ôªº¯ÊıµÄ²ÎÊıĞÍ±ğºÍ·µ»ØÖµĞÍ±ğ
 template <class Arg, class Result>
 struct unarg_function
 {
@@ -16,7 +16,7 @@ struct unarg_function
   typedef Result    result_type;
 };
 
-// å®šä¹‰äºŒå…ƒå‡½æ•°çš„å‚æ•°å‹åˆ«çš„è¿”å›å€¼å‹åˆ«
+// ¶¨Òå¶şÔªº¯ÊıµÄ²ÎÊıĞÍ±ğµÄ·µ»ØÖµĞÍ±ğ
 template <class Arg1, class Arg2, class Result>
 struct binary_function
 {
@@ -25,127 +25,127 @@ struct binary_function
   typedef Result    result_type;
 };
 
-// å‡½æ•°å¯¹è±¡ï¼šåŠ æ³•
+// º¯Êı¶ÔÏó£º¼Ó·¨
 template <class T>
 struct plus :public binary_function<T, T, T>
 {
   T operator()(const T& x, const T& y) const { return x + y; }
 };
 
-// å‡½æ•°å¯¹è±¡ï¼šå‡æ³•
+// º¯Êı¶ÔÏó£º¼õ·¨
 template <class T>
 struct minus :public binary_function<T, T, T>
 {
   T operator()(const T& x, const T& y) const { return x - y; }
 };
 
-// å‡½æ•°å¯¹è±¡ï¼šä¹˜æ³•
+// º¯Êı¶ÔÏó£º³Ë·¨
 template <class T>
 struct multiplies :public binary_function<T, T, T>
 {
   T operator()(const T& x, const T& y) const { return x * y; }
 };
 
-// å‡½æ•°å¯¹è±¡ï¼šé™¤æ³•
+// º¯Êı¶ÔÏó£º³ı·¨
 template <class T>
 struct divides :public binary_function<T, T, T>
 {
   T operator()(const T& x, const T& y) const { return x / y; }
 };
 
-// å‡½æ•°å¯¹è±¡ï¼šæ¨¡å–
+// º¯Êı¶ÔÏó£ºÄ£È¡
 template <class T>
 struct modulus :public binary_function<T, T, T>
 {
   T operator()(const T& x, const T& y) const { return x % y; }
 };
 
-// å‡½æ•°å¯¹è±¡ï¼šå¦å®š
+// º¯Êı¶ÔÏó£º·ñ¶¨
 template <class T>
 struct negate :public unarg_function<T, T>
 {
   T operator()(const T& x) const { return -x; }
 };
 
-// åŠ æ³•çš„è¯åŒå…ƒç´ 
+// ¼Ó·¨µÄÖ¤Í¬ÔªËØ
 template <class T>
 T identity_element(plus<T>) { return T(0); }
 
-// ä¹˜æ³•çš„è¯åŒå…ƒç´ 
+// ³Ë·¨µÄÖ¤Í¬ÔªËØ
 template <class T>
 T identity_element(multiplies<T>) { return T(1); }
 
-// å‡½æ•°å¯¹è±¡ï¼šç­‰äº
+// º¯Êı¶ÔÏó£ºµÈÓÚ
 template <class T>
 struct equal_to :public binary_function<T, T, bool>
 {
   bool operator()(const T& x, const T& y) const { return x == y; }
 };
 
-// å‡½æ•°å¯¹è±¡ï¼šä¸ç­‰äº
+// º¯Êı¶ÔÏó£º²»µÈÓÚ
 template <class T>
 struct not_equal_to :public binary_function<T, T, bool>
 {
   bool operator()(const T& x, const T& y) const { return x != y; }
 };
 
-// å‡½æ•°å¯¹è±¡ï¼šå¤§äº
+// º¯Êı¶ÔÏó£º´óÓÚ
 template <class T>
 struct greater :public binary_function<T, T, bool>
 {
   bool operator()(const T& x, const T& y) const { return x > y; }
 };
 
-// å‡½æ•°å¯¹è±¡ï¼šå°äº
+// º¯Êı¶ÔÏó£ºĞ¡ÓÚ
 template <class T>
 struct less :public binary_function<T, T, bool>
 {
   bool operator()(const T& x, const T& y) const { return x < y; }
 };
 
-// å‡½æ•°å¯¹è±¡ï¼šå¤§äºç­‰äº
+// º¯Êı¶ÔÏó£º´óÓÚµÈÓÚ
 template <class T>
 struct greater_equal :public binary_function<T, T, bool>
 {
   bool operator()(const T& x, const T& y) const { return x >= y; }
 };
 
-// å‡½æ•°å¯¹è±¡ï¼šå°äºç­‰äº
+// º¯Êı¶ÔÏó£ºĞ¡ÓÚµÈÓÚ
 template <class T>
 struct less_equal :public binary_function<T, T, bool>
 {
   bool operator()(const T& x, const T& y) const { return x <= y; }
 };
 
-// å‡½æ•°å¯¹è±¡ï¼šé€»è¾‘ä¸
+// º¯Êı¶ÔÏó£ºÂß¼­Óë
 template <class T>
 struct logical_and :public binary_function<T, T, bool>
 {
   bool operator()(const T& x, const T& y) const { return x && y; }
 };
 
-// å‡½æ•°å¯¹è±¡ï¼šé€»è¾‘æˆ–
+// º¯Êı¶ÔÏó£ºÂß¼­»ò
 template <class T>
 struct logical_or :public binary_function<T, T, bool>
 {
   bool operator()(const T& x, const T& y) const { return x || y; }
 };
 
-// å‡½æ•°å¯¹è±¡ï¼šé€»è¾‘é
+// º¯Êı¶ÔÏó£ºÂß¼­·Ç
 template <class T>
 struct logical_not :public unarg_function<T, bool>
 {
   bool operator()(const T& x) const { return !x; }
 };
 
-// è¯åŒå‡½æ•°ï¼šä¸ä¼šæ”¹å˜å…ƒç´ ï¼Œè¿”å›æœ¬èº«
+// Ö¤Í¬º¯Êı£º²»»á¸Ä±äÔªËØ£¬·µ»Ø±¾Éí
 template <class T>
 struct identity :public unarg_function<T, bool>
 {
   const T& operator()(const T& x) const { return x; }
 };
 
-// é€‰æ‹©å‡½æ•°ï¼šæ¥å—ä¸€ä¸ª pairï¼Œè¿”å›ç¬¬ä¸€ä¸ªå…ƒç´ 
+// Ñ¡Ôñº¯Êı£º½ÓÊÜÒ»¸ö pair£¬·µ»ØµÚÒ»¸öÔªËØ
 template <class Pair>
 struct selectfirst :public unarg_function<Pair, typename Pair::first_type>
 {
@@ -155,7 +155,7 @@ struct selectfirst :public unarg_function<Pair, typename Pair::first_type>
   }
 };
 
-// é€‰æ‹©å‡½æ•°ï¼šæ¥å—ä¸€ä¸ª pairï¼Œè¿”å›ç¬¬äºŒä¸ªå…ƒç´ 
+// Ñ¡Ôñº¯Êı£º½ÓÊÜÒ»¸ö pair£¬·µ»ØµÚ¶ş¸öÔªËØ
 template <class Pair>
 struct selectsecond :public unarg_function<Pair, typename Pair::second_type>
 {
@@ -165,14 +165,14 @@ struct selectsecond :public unarg_function<Pair, typename Pair::second_type>
   }
 };
 
-// æŠ•å°„å‡½æ•°ï¼šè¿”å›ç¬¬ä¸€å‚æ•°
+// Í¶Éäº¯Êı£º·µ»ØµÚÒ»²ÎÊı
 template <class Arg1, class Arg2>
 struct projectfirst :public binary_function<Arg1, Arg2, Arg1>
 {
   Arg1 operator()(const Arg1& x, const Arg2&) const { return x; }
 };
 
-// æŠ•å°„å‡½æ•°ï¼šè¿”å›ç¬¬äºŒå‚æ•°
+// Í¶Éäº¯Êı£º·µ»ØµÚ¶ş²ÎÊı
 template <class Arg1, class Arg2>
 struct projectsecond :public binary_function<Arg1, Arg2, Arg1>
 {
@@ -180,13 +180,13 @@ struct projectsecond :public binary_function<Arg1, Arg2, Arg1>
 };
 
 /*****************************************************************************************/
-// å“ˆå¸Œå‡½æ•°å¯¹è±¡
+// ¹şÏ£º¯Êı¶ÔÏó
 
-// å¯¹äºå¤§éƒ¨åˆ†ç±»å‹ï¼Œhash function ä»€ä¹ˆéƒ½ä¸åš
+// ¶ÔÓÚ´ó²¿·ÖÀàĞÍ£¬hash function Ê²Ã´¶¼²»×ö
 template <class Key>
 struct hash {};
 
-// é’ˆå¯¹æŒ‡é’ˆçš„åç‰¹åŒ–ç‰ˆæœ¬
+// Õë¶ÔÖ¸ÕëµÄÆ«ÌØ»¯°æ±¾
 template <class T>
 struct hash<T*>
 {
@@ -194,7 +194,7 @@ struct hash<T*>
   { return reinterpret_cast<size_t>(p); }
 };
 
-// å¯¹äºæ•´å‹ç±»å‹ï¼Œåªæ˜¯è¿”å›åŸå€¼
+// ¶ÔÓÚÕûĞÍÀàĞÍ£¬Ö»ÊÇ·µ»ØÔ­Öµ
 #define MYSTL_TRIVIAL_HASH_FCN(Type)         \
 template <> struct hash<Type>                \
 {                                            \
@@ -234,7 +234,7 @@ MYSTL_TRIVIAL_HASH_FCN(unsigned long long)
 
 #undef MYSTL_TRIVIAL_HASH_FCN
 
-// å¯¹äºæµ®ç‚¹æ•°ï¼Œé€ä½å“ˆå¸Œ
+// ¶ÔÓÚ¸¡µãÊı£¬ÖğÎ»¹şÏ£
 inline size_t bitwise_hash(const unsigned char* first, size_t count)
 {
 #if (_MSC_VER && _WIN64) || ((__GNUC__ || __clang__) &&__SIZEOF_POINTER__ == 8)

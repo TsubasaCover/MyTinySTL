@@ -1,9 +1,9 @@
-ï»¿#ifndef MYTINYSTL_CONSTRUCT_H_
+#ifndef MYTINYSTL_CONSTRUCT_H_
 #define MYTINYSTL_CONSTRUCT_H_
 
-// è¿™ä¸ªå¤´æ–‡ä»¶åŒ…å«ä¸¤ä¸ªå‡½æ•° constructï¼Œdestroy
-// construct : è´Ÿè´£å¯¹è±¡çš„æ„é€ 
-// destroy   : è´Ÿè´£å¯¹è±¡çš„ææ„
+// Õâ¸öÍ·ÎÄ¼ş°üº¬Á½¸öº¯Êı construct£¬destroy
+// construct : ¸ºÔğ¶ÔÏóµÄ¹¹Ôì
+// destroy   : ¸ºÔğ¶ÔÏóµÄÎö¹¹
 
 #include <new>
 
@@ -18,7 +18,7 @@
 namespace mystl
 {
 
-// construct æ„é€ å¯¹è±¡
+// construct ¹¹Ôì¶ÔÏó
 
 template <class Ty>
 void construct(Ty* ptr)
@@ -38,7 +38,7 @@ void construct(Ty* ptr, Args&&... args)
   ::new ((void*)ptr) Ty(mystl::forward<Args>(args)...);
 }
 
-// destroy å°†å¯¹è±¡ææ„
+// destroy ½«¶ÔÏóÎö¹¹
 
 template <class Ty>
 void destroy_one(Ty*, std::true_type) {}

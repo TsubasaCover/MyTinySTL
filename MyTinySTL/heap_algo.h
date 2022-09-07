@@ -1,7 +1,7 @@
-ï»¿#ifndef MYTINYSTL_HEAP_ALGO_H_
+#ifndef MYTINYSTL_HEAP_ALGO_H_
 #define MYTINYSTL_HEAP_ALGO_H_
 
-// è¿™ä¸ªå¤´æ–‡ä»¶åŒ…å« heap çš„å››ä¸ªç®—æ³• : push_heap, pop_heap, sort_heap, make_heap
+// Õâ¸öÍ·ÎÄ¼ş°üº¬ heap µÄËÄ¸öËã·¨ : push_heap, pop_heap, sort_heap, make_heap
 
 #include "iterator.h"
 
@@ -10,7 +10,7 @@ namespace mystl
 
 /*****************************************************************************************/
 // push_heap
-// è¯¥å‡½æ•°æ¥å—ä¸¤ä¸ªè¿­ä»£å™¨ï¼Œè¡¨ç¤ºä¸€ä¸ª heap å®¹å™¨çš„é¦–å°¾ï¼Œå¹¶ä¸”æ–°å…ƒç´ å·²ç»æ’å…¥åˆ°åº•éƒ¨å®¹å™¨çš„æœ€å°¾ç«¯ï¼Œè°ƒæ•´ heap
+// ¸Ãº¯Êı½ÓÊÜÁ½¸öµü´úÆ÷£¬±íÊ¾Ò»¸ö heap ÈİÆ÷µÄÊ×Î²£¬²¢ÇÒĞÂÔªËØÒÑ¾­²åÈëµ½µ×²¿ÈİÆ÷µÄ×îÎ²¶Ë£¬µ÷Õû heap
 /*****************************************************************************************/
 template <class RandomIter, class Distance, class T>
 void push_heap_aux(RandomIter first, Distance holeIndex, Distance topIndex, T value)
@@ -18,7 +18,7 @@ void push_heap_aux(RandomIter first, Distance holeIndex, Distance topIndex, T va
   auto parent = (holeIndex - 1) / 2;
   while (holeIndex > topIndex && *(first + parent) < value)
   {
-    // ä½¿ç”¨ operator<ï¼Œæ‰€ä»¥ heap ä¸º max-heap
+    // Ê¹ÓÃ operator<£¬ËùÒÔ heap Îª max-heap
     *(first + holeIndex) = *(first + parent);
     holeIndex = parent;
     parent = (holeIndex - 1) / 2;
@@ -34,11 +34,11 @@ void push_heap_d(RandomIter first, RandomIter last, Distance*)
 
 template <class RandomIter>
 void push_heap(RandomIter first, RandomIter last)
-{ // æ–°å…ƒç´ åº”è¯¥å·²ç½®äºåº•éƒ¨å®¹å™¨çš„æœ€å°¾ç«¯
+{ // ĞÂÔªËØÓ¦¸ÃÒÑÖÃÓÚµ×²¿ÈİÆ÷µÄ×îÎ²¶Ë
   mystl::push_heap_d(first, last, distance_type(first));
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class RandomIter, class Distance, class T, class Compared>
 void push_heap_aux(RandomIter first, Distance holeIndex, Distance topIndex, T value,
                    Compared comp)
@@ -68,12 +68,12 @@ void push_heap(RandomIter first, RandomIter last, Compared comp)
 
 /*****************************************************************************************/
 // pop_heap
-// è¯¥å‡½æ•°æ¥å—ä¸¤ä¸ªè¿­ä»£å™¨ï¼Œè¡¨ç¤º heap å®¹å™¨çš„é¦–å°¾ï¼Œå°† heap çš„æ ¹èŠ‚ç‚¹å–å‡ºæ”¾åˆ°å®¹å™¨å°¾éƒ¨ï¼Œè°ƒæ•´ heap
+// ¸Ãº¯Êı½ÓÊÜÁ½¸öµü´úÆ÷£¬±íÊ¾ heap ÈİÆ÷µÄÊ×Î²£¬½« heap µÄ¸ù½ÚµãÈ¡³ö·Åµ½ÈİÆ÷Î²²¿£¬µ÷Õû heap
 /*****************************************************************************************/
 template <class RandomIter, class T, class Distance>
 void adjust_heap(RandomIter first, Distance holeIndex, Distance len, T value)
 {
-  // å…ˆè¿›è¡Œä¸‹æº¯(percolate down)è¿‡ç¨‹
+  // ÏÈ½øĞĞÏÂËİ(percolate down)¹ı³Ì
   auto topIndex = holeIndex;
   auto rchild = 2 * holeIndex + 2;
   while (rchild < len)
@@ -85,11 +85,11 @@ void adjust_heap(RandomIter first, Distance holeIndex, Distance len, T value)
     rchild = 2 * (rchild + 1);
   }
   if (rchild == len)
-  {  // å¦‚æœæ²¡æœ‰å³å­èŠ‚ç‚¹
+  {  // Èç¹ûÃ»ÓĞÓÒ×Ó½Úµã
     *(first + holeIndex) = *(first + (rchild - 1));
     holeIndex = rchild - 1;
   }
-  // å†æ‰§è¡Œä¸€æ¬¡ä¸Šæº¯(percolate up)è¿‡ç¨‹
+  // ÔÙÖ´ĞĞÒ»´ÎÉÏËİ(percolate up)¹ı³Ì
   mystl::push_heap_aux(first, holeIndex, topIndex, value);
 }
 
@@ -97,7 +97,7 @@ template <class RandomIter, class T, class Distance>
 void pop_heap_aux(RandomIter first, RandomIter last, RandomIter result, T value,
                   Distance*)
 {
-  // å…ˆå°†é¦–å€¼è°ƒè‡³å°¾èŠ‚ç‚¹ï¼Œç„¶åè°ƒæ•´[first, last - 1)ä½¿ä¹‹é‡æ–°æˆä¸ºä¸€ä¸ª max-heap
+  // ÏÈ½«Ê×Öµµ÷ÖÁÎ²½Úµã£¬È»ºóµ÷Õû[first, last - 1)Ê¹Ö®ÖØĞÂ³ÉÎªÒ»¸ö max-heap
   *result = *first;
   mystl::adjust_heap(first, static_cast<Distance>(0), last - first, value);
 }
@@ -108,12 +108,12 @@ void pop_heap(RandomIter first, RandomIter last)
   mystl::pop_heap_aux(first, last - 1, last - 1, *(last - 1), distance_type(first));
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class RandomIter, class T, class Distance, class Compared>
 void adjust_heap(RandomIter first, Distance holeIndex, Distance len, T value,
                  Compared comp)
 {
-  // å…ˆè¿›è¡Œä¸‹æº¯(percolate down)è¿‡ç¨‹
+  // ÏÈ½øĞĞÏÂËİ(percolate down)¹ı³Ì
   auto topIndex = holeIndex;
   auto rchild = 2 * holeIndex + 2;
   while (rchild < len)
@@ -128,7 +128,7 @@ void adjust_heap(RandomIter first, Distance holeIndex, Distance len, T value,
     *(first + holeIndex) = *(first + (rchild - 1));
     holeIndex = rchild - 1;
   }
-  // å†æ‰§è¡Œä¸€æ¬¡ä¸Šæº¯(percolate up)è¿‡ç¨‹
+  // ÔÙÖ´ĞĞÒ»´ÎÉÏËİ(percolate up)¹ı³Ì
   mystl::push_heap_aux(first, holeIndex, topIndex, value, comp);
 }
 
@@ -136,7 +136,7 @@ template <class RandomIter, class T, class Distance, class Compared>
 void pop_heap_aux(RandomIter first, RandomIter last, RandomIter result, 
                   T value, Distance*, Compared comp)
 {
-  *result = *first;  // å…ˆå°†å°¾æŒ‡è®¾ç½®æˆé¦–å€¼ï¼Œå³å°¾æŒ‡ä¸ºæ¬²æ±‚ç»“æœ
+  *result = *first;  // ÏÈ½«Î²Ö¸ÉèÖÃ³ÉÊ×Öµ£¬¼´Î²Ö¸ÎªÓûÇó½á¹û
   mystl::adjust_heap(first, static_cast<Distance>(0), last - first, value, comp);
 }
 
@@ -149,19 +149,19 @@ void pop_heap(RandomIter first, RandomIter last, Compared comp)
 
 /*****************************************************************************************/
 // sort_heap
-// è¯¥å‡½æ•°æ¥å—ä¸¤ä¸ªè¿­ä»£å™¨ï¼Œè¡¨ç¤º heap å®¹å™¨çš„é¦–å°¾ï¼Œä¸æ–­æ‰§è¡Œ pop_heap æ“ä½œï¼Œç›´åˆ°é¦–å°¾æœ€å¤šç›¸å·®1
+// ¸Ãº¯Êı½ÓÊÜÁ½¸öµü´úÆ÷£¬±íÊ¾ heap ÈİÆ÷µÄÊ×Î²£¬²»¶ÏÖ´ĞĞ pop_heap ²Ù×÷£¬Ö±µ½Ê×Î²×î¶àÏà²î1
 /*****************************************************************************************/
 template <class RandomIter>
 void sort_heap(RandomIter first, RandomIter last)
 {
-  // æ¯æ‰§è¡Œä¸€æ¬¡ pop_heapï¼Œæœ€å¤§çš„å…ƒç´ éƒ½è¢«æ”¾åˆ°å°¾éƒ¨ï¼Œç›´åˆ°å®¹å™¨æœ€å¤šåªæœ‰ä¸€ä¸ªå…ƒç´ ï¼Œå®Œæˆæ’åº
+  // Ã¿Ö´ĞĞÒ»´Î pop_heap£¬×î´óµÄÔªËØ¶¼±»·Åµ½Î²²¿£¬Ö±µ½ÈİÆ÷×î¶àÖ»ÓĞÒ»¸öÔªËØ£¬Íê³ÉÅÅĞò
   while (last - first > 1)
   {
     mystl::pop_heap(first, last--);
   }
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class RandomIter, class Compared>
 void sort_heap(RandomIter first, RandomIter last, Compared comp)
 {
@@ -173,7 +173,7 @@ void sort_heap(RandomIter first, RandomIter last, Compared comp)
 
 /*****************************************************************************************/
 // make_heap
-// è¯¥å‡½æ•°æ¥å—ä¸¤ä¸ªè¿­ä»£å™¨ï¼Œè¡¨ç¤º heap å®¹å™¨çš„é¦–å°¾ï¼ŒæŠŠå®¹å™¨å†…çš„æ•°æ®å˜ä¸ºä¸€ä¸ª heap
+// ¸Ãº¯Êı½ÓÊÜÁ½¸öµü´úÆ÷£¬±íÊ¾ heap ÈİÆ÷µÄÊ×Î²£¬°ÑÈİÆ÷ÄÚµÄÊı¾İ±äÎªÒ»¸ö heap
 /*****************************************************************************************/
 template <class RandomIter, class Distance>
 void make_heap_aux(RandomIter first, RandomIter last, Distance*)
@@ -184,7 +184,7 @@ void make_heap_aux(RandomIter first, RandomIter last, Distance*)
   auto holeIndex = (len - 2) / 2;
   while (true)
   {
-    // é‡æ’ä»¥ holeIndex ä¸ºé¦–çš„å­æ ‘
+    // ÖØÅÅÒÔ holeIndex ÎªÊ×µÄ×ÓÊ÷
     mystl::adjust_heap(first, holeIndex, len, *(first + holeIndex));
     if (holeIndex == 0)
       return;
@@ -198,7 +198,7 @@ void make_heap(RandomIter first, RandomIter last)
   mystl::make_heap_aux(first, last, distance_type(first));;
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class RandomIter, class Distance, class Compared>
 void make_heap_aux(RandomIter first, RandomIter last, Distance*, Compared comp)
 {
@@ -208,7 +208,7 @@ void make_heap_aux(RandomIter first, RandomIter last, Distance*, Compared comp)
   auto holeIndex = (len - 2) / 2;
   while (true)
   {
-    // é‡æ’ä»¥ holeIndex ä¸ºé¦–çš„å­æ ‘
+    // ÖØÅÅÒÔ holeIndex ÎªÊ×µÄ×ÓÊ÷
     mystl::adjust_heap(first, holeIndex, len, *(first + holeIndex), comp);
     if (holeIndex == 0)
       return;

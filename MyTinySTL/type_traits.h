@@ -1,7 +1,7 @@
-ï»¿#ifndef MYTINYSTL_TYPE_TRAITS_H_
+#ifndef MYTINYSTL_TYPE_TRAITS_H_
 #define MYTINYSTL_TYPE_TRAITS_H_
 
-// è¿™ä¸ªå¤´æ–‡ä»¶ç”¨äºæå–ç±»å‹ä¿¡æ¯
+// Õâ¸öÍ·ÎÄ¼şÓÃÓÚÌáÈ¡ÀàĞÍĞÅÏ¢
 
 // use standard header for type_traits
 #include <type_traits>

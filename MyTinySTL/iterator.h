@@ -1,7 +1,7 @@
-ï»¿#ifndef MYTINYSTL_ITERATOR_H_
+#ifndef MYTINYSTL_ITERATOR_H_
 #define MYTINYSTL_ITERATOR_H_
 
-// è¿™ä¸ªå¤´æ–‡ä»¶ç”¨äºè¿­ä»£å™¨è®¾è®¡ï¼ŒåŒ…å«äº†ä¸€äº›æ¨¡æ¿ç»“æ„ä½“ä¸å…¨å±€å‡½æ•°ï¼Œ
+// Õâ¸öÍ·ÎÄ¼şÓÃÓÚµü´úÆ÷Éè¼Æ£¬°üº¬ÁËÒ»Ğ©Ä£°å½á¹¹ÌåÓëÈ«¾Öº¯Êı£¬
 
 #include <cstddef>
 
@@ -10,14 +10,14 @@
 namespace mystl
 {
 
-// äº”ç§è¿­ä»£å™¨ç±»å‹
+// ÎåÖÖµü´úÆ÷ÀàĞÍ
 struct input_iterator_tag {};
 struct output_iterator_tag {};
 struct forward_iterator_tag : public input_iterator_tag {};
 struct bidirectional_iterator_tag : public forward_iterator_tag {};
 struct random_access_iterator_tag : public bidirectional_iterator_tag {};
 
-// iterator æ¨¡æ¿
+// iterator Ä£°å
 template <class Category, class T, class Distance = ptrdiff_t,
   class Pointer = T*, class Reference = T&>
   struct iterator
@@ -66,12 +66,12 @@ struct iterator_traits_helper<Iterator, true>
 {
 };
 
-// èƒå–è¿­ä»£å™¨çš„ç‰¹æ€§
+// İÍÈ¡µü´úÆ÷µÄÌØĞÔ
 template <class Iterator>
 struct iterator_traits 
   : public iterator_traits_helper<Iterator, has_iterator_cat<Iterator>::value> {};
 
-// é’ˆå¯¹åŸç”ŸæŒ‡é’ˆçš„åç‰¹åŒ–ç‰ˆæœ¬
+// Õë¶ÔÔ­ÉúÖ¸ÕëµÄÆ«ÌØ»¯°æ±¾
 template <class T>
 struct iterator_traits<T*>
 {
@@ -99,7 +99,7 @@ struct has_iterator_cat_of
 {
 };
 
-// èƒå–æŸç§è¿­ä»£å™¨
+// İÍÈ¡Ä³ÖÖµü´úÆ÷
 template <class T, class U>
 struct has_iterator_cat_of<T, U, false> : public m_false_type {};
 
@@ -125,7 +125,7 @@ struct is_iterator :
 {
 };
 
-// èƒå–æŸä¸ªè¿­ä»£å™¨çš„ category
+// İÍÈ¡Ä³¸öµü´úÆ÷µÄ category
 template <class Iterator>
 typename iterator_traits<Iterator>::iterator_category
 iterator_category(const Iterator&)
@@ -134,7 +134,7 @@ iterator_category(const Iterator&)
   return Category();
 }
 
-// èƒå–æŸä¸ªè¿­ä»£å™¨çš„ distance_type
+// İÍÈ¡Ä³¸öµü´úÆ÷µÄ distance_type
 template <class Iterator>
 typename iterator_traits<Iterator>::difference_type*
 distance_type(const Iterator&)
@@ -142,7 +142,7 @@ distance_type(const Iterator&)
   return static_cast<typename iterator_traits<Iterator>::difference_type*>(0);
 }
 
-// èƒå–æŸä¸ªè¿­ä»£å™¨çš„ value_type
+// İÍÈ¡Ä³¸öµü´úÆ÷µÄ value_type
 template <class Iterator>
 typename iterator_traits<Iterator>::value_type*
 value_type(const Iterator&)
@@ -150,9 +150,9 @@ value_type(const Iterator&)
   return static_cast<typename iterator_traits<Iterator>::value_type*>(0);
 }
 
-// ä»¥ä¸‹å‡½æ•°ç”¨äºè®¡ç®—è¿­ä»£å™¨é—´çš„è·ç¦»
+// ÒÔÏÂº¯ÊıÓÃÓÚ¼ÆËãµü´úÆ÷¼äµÄ¾àÀë
 
-// distance çš„ input_iterator_tag çš„ç‰ˆæœ¬
+// distance µÄ input_iterator_tag µÄ°æ±¾
 template <class InputIterator>
 typename iterator_traits<InputIterator>::difference_type
 distance_dispatch(InputIterator first, InputIterator last, input_iterator_tag)
@@ -166,7 +166,7 @@ distance_dispatch(InputIterator first, InputIterator last, input_iterator_tag)
   return n;
 }
 
-// distance çš„ random_access_iterator_tag çš„ç‰ˆæœ¬
+// distance µÄ random_access_iterator_tag µÄ°æ±¾
 template <class RandomIter>
 typename iterator_traits<RandomIter>::difference_type
 distance_dispatch(RandomIter first, RandomIter last,
@@ -182,9 +182,9 @@ distance(InputIterator first, InputIterator last)
   return distance_dispatch(first, last, iterator_category(first));
 }
 
-// ä»¥ä¸‹å‡½æ•°ç”¨äºè®©è¿­ä»£å™¨å‰è¿› n ä¸ªè·ç¦»
+// ÒÔÏÂº¯ÊıÓÃÓÚÈÃµü´úÆ÷Ç°½ø n ¸ö¾àÀë
 
-// advance çš„ input_iterator_tag çš„ç‰ˆæœ¬
+// advance µÄ input_iterator_tag µÄ°æ±¾
 template <class InputIterator, class Distance>
 void advance_dispatch(InputIterator& i, Distance n, input_iterator_tag)
 {
@@ -192,7 +192,7 @@ void advance_dispatch(InputIterator& i, Distance n, input_iterator_tag)
     ++i;
 }
 
-// advance çš„ bidirectional_iterator_tag çš„ç‰ˆæœ¬
+// advance µÄ bidirectional_iterator_tag µÄ°æ±¾
 template <class BidirectionalIterator, class Distance>
 void advance_dispatch(BidirectionalIterator& i, Distance n, bidirectional_iterator_tag)
 {
@@ -202,7 +202,7 @@ void advance_dispatch(BidirectionalIterator& i, Distance n, bidirectional_iterat
     while (n++)  --i;
 }
 
-// advance çš„ random_access_iterator_tag çš„ç‰ˆæœ¬
+// advance µÄ random_access_iterator_tag µÄ°æ±¾
 template <class RandomIter, class Distance>
 void advance_dispatch(RandomIter& i, Distance n, random_access_iterator_tag)
 {
@@ -217,16 +217,16 @@ void advance(InputIterator& i, Distance n)
 
 /*****************************************************************************************/
 
-// æ¨¡æ¿ç±» : reverse_iterator
-// ä»£è¡¨åå‘è¿­ä»£å™¨ï¼Œä½¿å‰è¿›ä¸ºåé€€ï¼Œåé€€ä¸ºå‰è¿›
+// Ä£°åÀà : reverse_iterator
+// ´ú±í·´Ïòµü´úÆ÷£¬Ê¹Ç°½øÎªºóÍË£¬ºóÍËÎªÇ°½ø
 template <class Iterator>
 class reverse_iterator
 {
 private:
-  Iterator current;  // è®°å½•å¯¹åº”çš„æ­£å‘è¿­ä»£å™¨
+  Iterator current;  // ¼ÇÂ¼¶ÔÓ¦µÄÕıÏòµü´úÆ÷
 
 public:
-  // åå‘è¿­ä»£å™¨çš„äº”ç§ç›¸åº”å‹åˆ«
+  // ·´Ïòµü´úÆ÷µÄÎåÖÖÏàÓ¦ĞÍ±ğ
   typedef typename iterator_traits<Iterator>::iterator_category iterator_category;
   typedef typename iterator_traits<Iterator>::value_type        value_type;
   typedef typename iterator_traits<Iterator>::difference_type   difference_type;
@@ -237,19 +237,19 @@ public:
   typedef reverse_iterator<Iterator>                            self;
 
 public:
-  // æ„é€ å‡½æ•°
+  // ¹¹Ôìº¯Êı
   reverse_iterator() {}
   explicit reverse_iterator(iterator_type i) :current(i) {}
   reverse_iterator(const self& rhs) :current(rhs.current) {}
 
 public:
-  // å–å‡ºå¯¹åº”çš„æ­£å‘è¿­ä»£å™¨
+  // È¡³ö¶ÔÓ¦µÄÕıÏòµü´úÆ÷
   iterator_type base() const 
   { return current; }
 
-  // é‡è½½æ“ä½œç¬¦
+  // ÖØÔØ²Ù×÷·û
   reference operator*() const
-  { // å®é™…å¯¹åº”æ­£å‘è¿­ä»£å™¨çš„å‰ä¸€ä¸ªä½ç½®
+  { // Êµ¼Ê¶ÔÓ¦ÕıÏòµü´úÆ÷µÄÇ°Ò»¸öÎ»ÖÃ
     auto tmp = current;
     return *--tmp;
   }
@@ -258,7 +258,7 @@ public:
     return &(operator*());
   }
 
-  // å‰è¿›(++)å˜ä¸ºåé€€(--)
+  // Ç°½ø(++)±äÎªºóÍË(--)
   self& operator++()
   {
     --current;
@@ -270,7 +270,7 @@ public:
     --current;
     return tmp;
   }
-  // åé€€(--)å˜ä¸ºå‰è¿›(++)
+  // ºóÍË(--)±äÎªÇ°½ø(++)
   self& operator--()
   {
     ++current;
@@ -308,7 +308,7 @@ public:
   }
 };
 
-// é‡è½½ operator-
+// ÖØÔØ operator-
 template <class Iterator>
 typename reverse_iterator<Iterator>::difference_type
 operator-(const reverse_iterator<Iterator>& lhs,
@@ -317,7 +317,7 @@ operator-(const reverse_iterator<Iterator>& lhs,
   return rhs.base() - lhs.base();
 }
 
-// é‡è½½æ¯”è¾ƒæ“ä½œç¬¦
+// ÖØÔØ±È½Ï²Ù×÷·û
 template <class Iterator>
 bool operator==(const reverse_iterator<Iterator>& lhs,
                 const reverse_iterator<Iterator>& rhs)

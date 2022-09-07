@@ -1,14 +1,14 @@
-ï»¿#ifndef MYTINYSTL_MAP_H_
+#ifndef MYTINYSTL_MAP_H_
 #define MYTINYSTL_MAP_H_
 
-// è¿™ä¸ªå¤´æ–‡ä»¶åŒ…å«äº†ä¸¤ä¸ªæ¨¡æ¿ç±» map å’Œ multimap
-// map      : æ˜ å°„ï¼Œå…ƒç´ å…·æœ‰é”®å€¼å’Œå®å€¼ï¼Œä¼šæ ¹æ®é”®å€¼å¤§å°è‡ªåŠ¨æ’åºï¼Œé”®å€¼ä¸å…è®¸é‡å¤
-// multimap : æ˜ å°„ï¼Œå…ƒç´ å…·æœ‰é”®å€¼å’Œå®å€¼ï¼Œä¼šæ ¹æ®é”®å€¼å¤§å°è‡ªåŠ¨æ’åºï¼Œé”®å€¼å…è®¸é‡å¤
+// Õâ¸öÍ·ÎÄ¼ş°üº¬ÁËÁ½¸öÄ£°åÀà map ºÍ multimap
+// map      : Ó³Éä£¬ÔªËØ¾ßÓĞ¼üÖµºÍÊµÖµ£¬»á¸ù¾İ¼üÖµ´óĞ¡×Ô¶¯ÅÅĞò£¬¼üÖµ²»ÔÊĞíÖØ¸´
+// multimap : Ó³Éä£¬ÔªËØ¾ßÓĞ¼üÖµºÍÊµÖµ£¬»á¸ù¾İ¼üÖµ´óĞ¡×Ô¶¯ÅÅĞò£¬¼üÖµÔÊĞíÖØ¸´
 
 // notes:
 //
-// å¼‚å¸¸ä¿è¯ï¼š
-// mystl::map<Key, T> / mystl::multimap<Key, T> æ»¡è¶³åŸºæœ¬å¼‚å¸¸ä¿è¯ï¼Œå¯¹ä»¥ä¸‹ç­‰å‡½æ•°åšå¼ºå¼‚å¸¸å®‰å…¨ä¿è¯ï¼š
+// Òì³£±£Ö¤£º
+// mystl::map<Key, T> / mystl::multimap<Key, T> Âú×ã»ù±¾Òì³£±£Ö¤£¬¶ÔÒÔÏÂµÈº¯Êı×öÇ¿Òì³£°²È«±£Ö¤£º
 //   * emplace
 //   * emplace_hint
 //   * insert
@@ -18,19 +18,19 @@
 namespace mystl
 {
 
-// æ¨¡æ¿ç±» mapï¼Œé”®å€¼ä¸å…è®¸é‡å¤
-// å‚æ•°ä¸€ä»£è¡¨é”®å€¼ç±»å‹ï¼Œå‚æ•°äºŒä»£è¡¨å®å€¼ç±»å‹ï¼Œå‚æ•°ä¸‰ä»£è¡¨é”®å€¼çš„æ¯”è¾ƒæ–¹å¼ï¼Œç¼ºçœä½¿ç”¨ mystl::less
+// Ä£°åÀà map£¬¼üÖµ²»ÔÊĞíÖØ¸´
+// ²ÎÊıÒ»´ú±í¼üÖµÀàĞÍ£¬²ÎÊı¶ş´ú±íÊµÖµÀàĞÍ£¬²ÎÊıÈı´ú±í¼üÖµµÄ±È½Ï·½Ê½£¬È±Ê¡Ê¹ÓÃ mystl::less
 template <class Key, class T, class Compare = mystl::less<Key>>
 class map
 {
 public:
-  // map çš„åµŒå¥—å‹åˆ«å®šä¹‰
+  // map µÄÇ¶Ì×ĞÍ±ğ¶¨Òå
   typedef Key                        key_type;
   typedef T                          mapped_type;
   typedef mystl::pair<const Key, T>  value_type;
   typedef Compare                    key_compare;
 
-  // å®šä¹‰ä¸€ä¸ª functorï¼Œç”¨æ¥è¿›è¡Œå…ƒç´ æ¯”è¾ƒ
+  // ¶¨ÒåÒ»¸ö functor£¬ÓÃÀ´½øĞĞÔªËØ±È½Ï
   class value_compare : public binary_function <value_type, value_type, bool>
   {
     friend class map<Key, T, Compare>;
@@ -40,17 +40,17 @@ public:
   public:
     bool operator()(const value_type& lhs, const value_type& rhs) const
     {
-      return comp(lhs.first, rhs.first);  // æ¯”è¾ƒé”®å€¼çš„å¤§å°
+      return comp(lhs.first, rhs.first);  // ±È½Ï¼üÖµµÄ´óĞ¡
     }
   };
 
 private:
-  // ä»¥ mystl::rb_tree ä½œä¸ºåº•å±‚æœºåˆ¶
+  // ÒÔ mystl::rb_tree ×÷Îªµ×²ã»úÖÆ
   typedef mystl::rb_tree<value_type, key_compare>  base_type;
   base_type tree_;
 
 public:
-  // ä½¿ç”¨ rb_tree çš„å‹åˆ«
+  // Ê¹ÓÃ rb_tree µÄĞÍ±ğ
   typedef typename base_type::node_type              node_type;
   typedef typename base_type::pointer                pointer;
   typedef typename base_type::const_pointer          const_pointer;
@@ -65,7 +65,7 @@ public:
   typedef typename base_type::allocator_type         allocator_type;
 
 public:
-  // æ„é€ ã€å¤åˆ¶ã€ç§»åŠ¨ã€èµ‹å€¼å‡½æ•°
+  // ¹¹Ôì¡¢¸´ÖÆ¡¢ÒÆ¶¯¡¢¸³Öµº¯Êı
 
   map() = default;
 
@@ -105,13 +105,13 @@ public:
     return *this;
   }
 
-  // ç›¸å…³æ¥å£
+  // Ïà¹Ø½Ó¿Ú
 
   key_compare            key_comp()      const { return tree_.key_comp(); }
   value_compare          value_comp()    const { return value_compare(tree_.key_comp()); }
   allocator_type         get_allocator() const { return tree_.get_allocator(); }
 
-  // è¿­ä»£å™¨ç›¸å…³
+  // µü´úÆ÷Ïà¹Ø
 
   iterator               begin()         noexcept
   { return tree_.begin(); }
@@ -140,14 +140,14 @@ public:
   const_reverse_iterator crend()   const noexcept
   { return rend(); }
 
-  // å®¹é‡ç›¸å…³
+  // ÈİÁ¿Ïà¹Ø
   bool                   empty()    const noexcept { return tree_.empty(); }
   size_type              size()     const noexcept { return tree_.size(); }
   size_type              max_size() const noexcept { return tree_.max_size(); }
 
-  // è®¿é—®å…ƒç´ ç›¸å…³
+  // ·ÃÎÊÔªËØÏà¹Ø
 
-  // è‹¥é”®å€¼ä¸å­˜åœ¨ï¼Œat ä¼šæŠ›å‡ºä¸€ä¸ªå¼‚å¸¸
+  // Èô¼üÖµ²»´æÔÚ£¬at »áÅ×³öÒ»¸öÒì³£
   mapped_type& at(const key_type& key)
   {
     iterator it = lower_bound(key);
@@ -182,7 +182,7 @@ public:
     return it->second;
   }
 
-  // æ’å…¥åˆ é™¤ç›¸å…³
+  // ²åÈëÉ¾³ıÏà¹Ø
 
   template <class ...Args>
   pair<iterator, bool> emplace(Args&& ...args)
@@ -226,7 +226,7 @@ public:
 
   void      clear()                              { tree_.clear(); }
 
-  // map ç›¸å…³æ“ä½œ
+  // map Ïà¹Ø²Ù×÷
 
   iterator       find(const key_type& key)              { return tree_.find(key); }
   const_iterator find(const key_type& key)        const { return tree_.find(key); }
@@ -255,7 +255,7 @@ public:
   friend bool operator< (const map& lhs, const map& rhs) { return lhs.tree_ <  rhs.tree_; }
 };
 
-// é‡è½½æ¯”è¾ƒæ“ä½œç¬¦
+// ÖØÔØ±È½Ï²Ù×÷·û
 template <class Key, class T, class Compare>
 bool operator==(const map<Key, T, Compare>& lhs, const map<Key, T, Compare>& rhs)
 {
@@ -292,7 +292,7 @@ bool operator>=(const map<Key, T, Compare>& lhs, const map<Key, T, Compare>& rhs
   return !(lhs < rhs);
 }
 
-// é‡è½½ mystl çš„ swap
+// ÖØÔØ mystl µÄ swap
 template <class Key, class T, class Compare>
 void swap(map<Key, T, Compare>& lhs, map<Key, T, Compare>& rhs) noexcept
 {
@@ -301,19 +301,19 @@ void swap(map<Key, T, Compare>& lhs, map<Key, T, Compare>& rhs) noexcept
 
 /*****************************************************************************************/
 
-// æ¨¡æ¿ç±» multimapï¼Œé”®å€¼å…è®¸é‡å¤
-// å‚æ•°ä¸€ä»£è¡¨é”®å€¼ç±»å‹ï¼Œå‚æ•°äºŒä»£è¡¨å®å€¼ç±»å‹ï¼Œå‚æ•°ä¸‰ä»£è¡¨é”®å€¼çš„æ¯”è¾ƒæ–¹å¼ï¼Œç¼ºçœä½¿ç”¨ mystl::less
+// Ä£°åÀà multimap£¬¼üÖµÔÊĞíÖØ¸´
+// ²ÎÊıÒ»´ú±í¼üÖµÀàĞÍ£¬²ÎÊı¶ş´ú±íÊµÖµÀàĞÍ£¬²ÎÊıÈı´ú±í¼üÖµµÄ±È½Ï·½Ê½£¬È±Ê¡Ê¹ÓÃ mystl::less
 template <class Key, class T, class Compare = mystl::less<Key>>
 class multimap
 {
 public:
-  // multimap çš„å‹åˆ«å®šä¹‰
+  // multimap µÄĞÍ±ğ¶¨Òå
   typedef Key                        key_type;
   typedef T                          mapped_type;
   typedef mystl::pair<const Key, T>  value_type;
   typedef Compare                    key_compare;
 
-  // å®šä¹‰ä¸€ä¸ª functorï¼Œç”¨æ¥è¿›è¡Œå…ƒç´ æ¯”è¾ƒ
+  // ¶¨ÒåÒ»¸ö functor£¬ÓÃÀ´½øĞĞÔªËØ±È½Ï
   class value_compare : public binary_function <value_type, value_type, bool>
   {
     friend class multimap<Key, T, Compare>;
@@ -328,12 +328,12 @@ public:
   };
 
 private:
-  // ç”¨ mystl::rb_tree ä½œä¸ºåº•å±‚æœºåˆ¶
+  // ÓÃ mystl::rb_tree ×÷Îªµ×²ã»úÖÆ
   typedef mystl::rb_tree<value_type, key_compare>  base_type;
   base_type tree_;
 
 public:
-  // ä½¿ç”¨ rb_tree çš„å‹åˆ«
+  // Ê¹ÓÃ rb_tree µÄĞÍ±ğ
   typedef typename base_type::node_type              node_type;
   typedef typename base_type::pointer                pointer;
   typedef typename base_type::const_pointer          const_pointer;
@@ -348,7 +348,7 @@ public:
   typedef typename base_type::allocator_type         allocator_type;
 
 public:
-  // æ„é€ ã€å¤åˆ¶ã€ç§»åŠ¨å‡½æ•°
+  // ¹¹Ôì¡¢¸´ÖÆ¡¢ÒÆ¶¯º¯Êı
 
   multimap() = default;
 
@@ -387,13 +387,13 @@ public:
     return *this;
   }
 
-  // ç›¸å…³æ¥å£
+  // Ïà¹Ø½Ó¿Ú
 
   key_compare            key_comp()      const { return tree_.key_comp(); }
   value_compare          value_comp()    const { return value_compare(tree_.key_comp()); }
   allocator_type         get_allocator() const { return tree_.get_allocator(); }
 
-  // è¿­ä»£å™¨ç›¸å…³
+  // µü´úÆ÷Ïà¹Ø
 
   iterator               begin()         noexcept
   { return tree_.begin(); }
@@ -422,12 +422,12 @@ public:
   const_reverse_iterator crend()   const noexcept
   { return rend(); }
 
-  // å®¹é‡ç›¸å…³
+  // ÈİÁ¿Ïà¹Ø
   bool                   empty()    const noexcept { return tree_.empty(); }
   size_type              size()     const noexcept { return tree_.size(); }
   size_type              max_size() const noexcept { return tree_.max_size(); }
 
-  // æ’å…¥åˆ é™¤æ“ä½œ
+  // ²åÈëÉ¾³ı²Ù×÷
 
   template <class ...Args>
   iterator emplace(Args&& ...args)
@@ -471,7 +471,7 @@ public:
 
   void           clear() { tree_.clear(); }
 
-  // multimap ç›¸å…³æ“ä½œ
+  // multimap Ïà¹Ø²Ù×÷
 
   iterator       find(const key_type& key)              { return tree_.find(key); }
   const_iterator find(const key_type& key)        const { return tree_.find(key); }
@@ -500,7 +500,7 @@ public:
   friend bool operator< (const multimap& lhs, const multimap& rhs) { return lhs.tree_ <  rhs.tree_; }
 };
 
-// é‡è½½æ¯”è¾ƒæ“ä½œç¬¦
+// ÖØÔØ±È½Ï²Ù×÷·û
 template <class Key, class T, class Compare>
 bool operator==(const multimap<Key, T, Compare>& lhs, const multimap<Key, T, Compare>& rhs)
 {
@@ -537,7 +537,7 @@ bool operator>=(const multimap<Key, T, Compare>& lhs, const multimap<Key, T, Com
   return !(lhs < rhs);
 }
 
-// é‡è½½ mystl çš„ swap
+// ÖØÔØ mystl µÄ swap
 template <class Key, class T, class Compare>
 void swap(multimap<Key, T, Compare>& lhs, multimap<Key, T, Compare>& rhs) noexcept
 {

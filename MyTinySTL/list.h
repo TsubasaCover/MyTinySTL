@@ -1,13 +1,13 @@
-ï»¿#ifndef MYTINYSTL_LIST_H_
+#ifndef MYTINYSTL_LIST_H_
 #define MYTINYSTL_LIST_H_
 
-// è¿™ä¸ªå¤´æ–‡ä»¶åŒ…å«äº†ä¸€ä¸ªæ¨¡æ¿ç±» list
-// list : åŒå‘é“¾è¡¨
+// Õâ¸öÍ·ÎÄ¼ş°üº¬ÁËÒ»¸öÄ£°åÀà list
+// list : Ë«ÏòÁ´±í
 
 // notes:
 //
-// å¼‚å¸¸ä¿è¯ï¼š
-// mystl::list<T> æ»¡è¶³åŸºæœ¬å¼‚å¸¸ä¿è¯ï¼Œéƒ¨åˆ†å‡½æ•°æ— å¼‚å¸¸ä¿è¯ï¼Œå¹¶å¯¹ä»¥ä¸‹ç­‰å‡½æ•°åšå¼ºå¼‚å¸¸å®‰å…¨ä¿è¯ï¼š
+// Òì³£±£Ö¤£º
+// mystl::list<T> Âú×ã»ù±¾Òì³£±£Ö¤£¬²¿·Öº¯ÊıÎŞÒì³£±£Ö¤£¬²¢¶ÔÒÔÏÂµÈº¯Êı×öÇ¿Òì³£°²È«±£Ö¤£º
 //   * emplace_front
 //   * emplace_back
 //   * emplace
@@ -36,7 +36,7 @@ struct node_traits
   typedef list_node<T>*      node_ptr;
 };
 
-// list çš„èŠ‚ç‚¹ç»“æ„
+// list µÄ½Úµã½á¹¹
 
 template <class T>
 struct list_node_base
@@ -44,8 +44,8 @@ struct list_node_base
   typedef typename node_traits<T>::base_ptr base_ptr;
   typedef typename node_traits<T>::node_ptr node_ptr;
 
-  base_ptr prev;  // å‰ä¸€èŠ‚ç‚¹
-  base_ptr next;  // ä¸‹ä¸€èŠ‚ç‚¹
+  base_ptr prev;  // Ç°Ò»½Úµã
+  base_ptr next;  // ÏÂÒ»½Úµã
 
   list_node_base() = default;
 
@@ -71,7 +71,7 @@ struct list_node : public list_node_base<T>
   typedef typename node_traits<T>::base_ptr base_ptr;
   typedef typename node_traits<T>::node_ptr node_ptr;
 
-  T value;  // æ•°æ®åŸŸ
+  T value;  // Êı¾İÓò
 
   list_node() = default;
   list_node(const T& v)
@@ -93,7 +93,7 @@ struct list_node : public list_node_base<T>
   }
 };
 
-// list çš„è¿­ä»£å™¨è®¾è®¡
+// list µÄµü´úÆ÷Éè¼Æ
 template <class T>
 struct list_iterator : public mystl::iterator<mystl::bidirectional_iterator_tag, T>
 {
@@ -104,9 +104,9 @@ struct list_iterator : public mystl::iterator<mystl::bidirectional_iterator_tag,
   typedef typename node_traits<T>::node_ptr node_ptr;
   typedef list_iterator<T>                  self;
 
-  base_ptr node_;  // æŒ‡å‘å½“å‰èŠ‚ç‚¹
+  base_ptr node_;  // Ö¸Ïòµ±Ç°½Úµã
 
-  // æ„é€ å‡½æ•°
+  // ¹¹Ôìº¯Êı
   list_iterator() = default;
   list_iterator(base_ptr x)
     :node_(x) {}
@@ -115,7 +115,7 @@ struct list_iterator : public mystl::iterator<mystl::bidirectional_iterator_tag,
   list_iterator(const list_iterator& rhs)
     :node_(rhs.node_) {}
 
-  // é‡è½½æ“ä½œç¬¦
+  // ÖØÔØ²Ù×÷·û
   reference operator*()  const { return node_->as_node()->value; }
   pointer   operator->() const { return &(operator*()); }
 
@@ -144,7 +144,7 @@ struct list_iterator : public mystl::iterator<mystl::bidirectional_iterator_tag,
     return tmp;
   }
 
-  // é‡è½½æ¯”è¾ƒæ“ä½œç¬¦
+  // ÖØÔØ±È½Ï²Ù×÷·û
   bool operator==(const self& rhs) const { return node_ == rhs.node_; }
   bool operator!=(const self& rhs) const { return node_ != rhs.node_; }
 };
@@ -199,18 +199,18 @@ struct list_const_iterator : public iterator<bidirectional_iterator_tag, T>
     return tmp;
   }
 
-  // é‡è½½æ¯”è¾ƒæ“ä½œç¬¦
+  // ÖØÔØ±È½Ï²Ù×÷·û
   bool operator==(const self& rhs) const { return node_ == rhs.node_; }
   bool operator!=(const self& rhs) const { return node_ != rhs.node_; }
 };
 
-// æ¨¡æ¿ç±»: list
-// æ¨¡æ¿å‚æ•° T ä»£è¡¨æ•°æ®ç±»å‹
+// Ä£°åÀà: list
+// Ä£°å²ÎÊı T ´ú±íÊı¾İÀàĞÍ
 template <class T>
 class list
 {
 public:
-  // list çš„åµŒå¥—å‹åˆ«å®šä¹‰
+  // list µÄÇ¶Ì×ĞÍ±ğ¶¨Òå
   typedef mystl::allocator<T>                      allocator_type;
   typedef mystl::allocator<T>                      data_allocator;
   typedef mystl::allocator<list_node_base<T>>      base_allocator;
@@ -235,11 +235,11 @@ public:
   allocator_type get_allocator() { return node_allocator(); }
 
 private:
-  base_ptr  node_;  // æŒ‡å‘æœ«å°¾èŠ‚ç‚¹
-  size_type size_;  // å¤§å°
+  base_ptr  node_;  // Ö¸ÏòÄ©Î²½Úµã
+  size_type size_;  // ´óĞ¡
 
 public:
-  // æ„é€ ã€å¤åˆ¶ã€ç§»åŠ¨ã€ææ„å‡½æ•°
+  // ¹¹Ôì¡¢¸´ÖÆ¡¢ÒÆ¶¯¡¢Îö¹¹º¯Êı
   list() 
   { fill_init(0, value_type()); }
 
@@ -302,7 +302,7 @@ public:
   }
 
 public:
-  // è¿­ä»£å™¨ç›¸å…³æ“ä½œ
+  // µü´úÆ÷Ïà¹Ø²Ù×÷
   iterator               begin()         noexcept
   { return node_->next; }
   const_iterator         begin()   const noexcept
@@ -330,7 +330,7 @@ public:
   const_reverse_iterator crend()   const noexcept
   { return rend(); }
 
-  // å®¹é‡ç›¸å…³æ“ä½œ
+  // ÈİÁ¿Ïà¹Ø²Ù×÷
   bool      empty()    const noexcept 
   { return node_->next == node_; }
 
@@ -340,7 +340,7 @@ public:
   size_type max_size() const noexcept 
   { return static_cast<size_type>(-1); }
 
-  // è®¿é—®å…ƒç´ ç›¸å…³æ“ä½œ
+  // ·ÃÎÊÔªËØÏà¹Ø²Ù×÷
   reference       front() 
   { 
     MYSTL_DEBUG(!empty());
@@ -365,7 +365,7 @@ public:
     return *(--end());
   }
 
-  // è°ƒæ•´å®¹å™¨ç›¸å…³æ“ä½œ
+  // µ÷ÕûÈİÆ÷Ïà¹Ø²Ù×÷
 
   // assign
 
@@ -509,7 +509,7 @@ public:
     mystl::swap(size_, rhs.size_);
   }
 
-  // list ç›¸å…³æ“ä½œ
+  // list Ïà¹Ø²Ù×÷
 
   void splice(const_iterator pos, list& other);
   void splice(const_iterator pos, list& other, const_iterator it);
@@ -576,7 +576,7 @@ private:
 
 /*****************************************************************************************/
 
-// åˆ é™¤ pos å¤„çš„å…ƒç´ 
+// É¾³ı pos ´¦µÄÔªËØ
 template <class T>
 typename list<T>::iterator 
 list<T>::erase(const_iterator pos)
@@ -590,7 +590,7 @@ list<T>::erase(const_iterator pos)
   return iterator(next);
 }
 
-// åˆ é™¤ [first, last) å†…çš„å…ƒç´ 
+// É¾³ı [first, last) ÄÚµÄÔªËØ
 template <class T>
 typename list<T>::iterator 
 list<T>::erase(const_iterator first, const_iterator last)
@@ -609,7 +609,7 @@ list<T>::erase(const_iterator first, const_iterator last)
   return iterator(last.node_);
 }
 
-// æ¸…ç©º list
+// Çå¿Õ list
 template <class T>
 void list<T>::clear()
 {
@@ -625,7 +625,7 @@ void list<T>::clear()
   }
 }
 
-// é‡ç½®å®¹å™¨å¤§å°
+// ÖØÖÃÈİÆ÷´óĞ¡
 template <class T>
 void list<T>::resize(size_type new_size, const value_type& value)
 {
@@ -646,7 +646,7 @@ void list<T>::resize(size_type new_size, const value_type& value)
   }
 }
 
-// å°† list x æ¥åˆäº pos ä¹‹å‰
+// ½« list x ½ÓºÏÓÚ pos Ö®Ç°
 template <class T>
 void list<T>::splice(const_iterator pos, list& x)
 {
@@ -666,7 +666,7 @@ void list<T>::splice(const_iterator pos, list& x)
   }
 }
 
-// å°† it æ‰€æŒ‡çš„èŠ‚ç‚¹æ¥åˆäº pos ä¹‹å‰
+// ½« it ËùÖ¸µÄ½Úµã½ÓºÏÓÚ pos Ö®Ç°
 template <class T>
 void list<T>::splice(const_iterator pos, list& x, const_iterator it)
 {
@@ -684,7 +684,7 @@ void list<T>::splice(const_iterator pos, list& x, const_iterator it)
   }
 }
 
-// å°† list x çš„ [first, last) å†…çš„èŠ‚ç‚¹æ¥åˆäº pos ä¹‹å‰
+// ½« list x µÄ [first, last) ÄÚµÄ½Úµã½ÓºÏÓÚ pos Ö®Ç°
 template <class T>
 void list<T>::splice(const_iterator pos, list& x, const_iterator first, const_iterator last)
 {
@@ -703,7 +703,7 @@ void list<T>::splice(const_iterator pos, list& x, const_iterator first, const_it
   }
 }
 
-// å°†å¦ä¸€å…ƒæ“ä½œ pred ä¸º true çš„æ‰€æœ‰å…ƒç´ ç§»é™¤
+// ½«ÁíÒ»Ôª²Ù×÷ pred Îª true µÄËùÓĞÔªËØÒÆ³ı
 template <class T>
 template <class UnaryPredicate>
 void list<T>::remove_if(UnaryPredicate pred)
@@ -720,7 +720,7 @@ void list<T>::remove_if(UnaryPredicate pred)
   }
 }
 
-// ç§»é™¤ list ä¸­æ»¡è¶³ pred ä¸º true é‡å¤å…ƒç´ 
+// ÒÆ³ı list ÖĞÂú×ã pred Îª true ÖØ¸´ÔªËØ
 template <class T>
 template <class BinaryPredicate>
 void list<T>::unique(BinaryPredicate pred)
@@ -744,7 +744,7 @@ void list<T>::unique(BinaryPredicate pred)
   }
 }
 
-// ä¸å¦ä¸€ä¸ª list åˆå¹¶ï¼ŒæŒ‰ç…§ comp ä¸º true çš„é¡ºåº
+// ÓëÁíÒ»¸ö list ºÏ²¢£¬°´ÕÕ comp Îª true µÄË³Ğò
 template <class T>
 template <class Compare>
 void list<T>::merge(list& x, Compare comp)
@@ -762,7 +762,7 @@ void list<T>::merge(list& x, Compare comp)
     {
       if (comp(*f2, *f1))
       {
-        // ä½¿ comp ä¸º true çš„ä¸€æ®µåŒºé—´
+        // Ê¹ comp Îª true µÄÒ»¶ÎÇø¼ä
         auto next = f2;
         ++next;
         for (; next != l2 && comp(*next, *f1); ++next)
@@ -781,7 +781,7 @@ void list<T>::merge(list& x, Compare comp)
         ++f1;
       }
     }
-    // è¿æ¥å‰©ä½™éƒ¨åˆ†
+    // Á¬½ÓÊ£Óà²¿·Ö
     if (f2 != l2)
     {
       auto f = f2.node_;
@@ -795,7 +795,7 @@ void list<T>::merge(list& x, Compare comp)
   }
 }
 
-// å°† list åè½¬
+// ½« list ·´×ª
 template <class T>
 void list<T>::reverse()
 {
@@ -816,7 +816,7 @@ void list<T>::reverse()
 /*****************************************************************************************/
 // helper function
 
-// åˆ›å»ºç»“ç‚¹
+// ´´½¨½áµã
 template <class T>
 template <class ...Args>
 typename list<T>::node_ptr 
@@ -837,7 +837,7 @@ list<T>::create_node(Args&& ...args)
   return p;
 }
 
-// é”€æ¯ç»“ç‚¹
+// Ïú»Ù½áµã
 template <class T>
 void list<T>::destroy_node(node_ptr p)
 {
@@ -845,7 +845,7 @@ void list<T>::destroy_node(node_ptr p)
   node_allocator::deallocate(p);
 }
 
-// ç”¨ n ä¸ªå…ƒç´ åˆå§‹åŒ–å®¹å™¨
+// ÓÃ n ¸öÔªËØ³õÊ¼»¯ÈİÆ÷
 template <class T>
 void list<T>::fill_init(size_type n, const value_type& value)
 {
@@ -869,7 +869,7 @@ void list<T>::fill_init(size_type n, const value_type& value)
   }
 }
 
-// ä»¥ [first, last) åˆå§‹åŒ–å®¹å™¨
+// ÒÔ [first, last) ³õÊ¼»¯ÈİÆ÷
 template <class T>
 template <class Iter>
 void list<T>::copy_init(Iter first, Iter last)
@@ -895,7 +895,7 @@ void list<T>::copy_init(Iter first, Iter last)
   }
 }
 
-// åœ¨ pos å¤„è¿æ¥ä¸€ä¸ªèŠ‚ç‚¹
+// ÔÚ pos ´¦Á¬½ÓÒ»¸ö½Úµã
 template <class T>
 typename list<T>::iterator 
 list<T>::link_iter_node(const_iterator pos, base_ptr link_node)
@@ -915,7 +915,7 @@ list<T>::link_iter_node(const_iterator pos, base_ptr link_node)
   return iterator(link_node);
 }
 
-// åœ¨ pos å¤„è¿æ¥ [first, last] çš„ç»“ç‚¹
+// ÔÚ pos ´¦Á¬½Ó [first, last] µÄ½áµã
 template <class T>
 void list<T>::link_nodes(base_ptr pos, base_ptr first, base_ptr last)
 {
@@ -925,7 +925,7 @@ void list<T>::link_nodes(base_ptr pos, base_ptr first, base_ptr last)
   last->next = pos;
 }
 
-// åœ¨å¤´éƒ¨è¿æ¥ [first, last] ç»“ç‚¹
+// ÔÚÍ·²¿Á¬½Ó [first, last] ½áµã
 template <class T>
 void list<T>::link_nodes_at_front(base_ptr first, base_ptr last)
 {
@@ -935,7 +935,7 @@ void list<T>::link_nodes_at_front(base_ptr first, base_ptr last)
   node_->next = first;
 }
 
-// åœ¨å°¾éƒ¨è¿æ¥ [first, last] ç»“ç‚¹
+// ÔÚÎ²²¿Á¬½Ó [first, last] ½áµã
 template <class T>
 void list<T>::link_nodes_at_back(base_ptr first, base_ptr last)
 {
@@ -945,7 +945,7 @@ void list<T>::link_nodes_at_back(base_ptr first, base_ptr last)
   node_->prev = last;
 }
 
-// å®¹å™¨ä¸ [first, last] ç»“ç‚¹æ–­å¼€è¿æ¥
+// ÈİÆ÷Óë [first, last] ½áµã¶Ï¿ªÁ¬½Ó
 template <class T>
 void list<T>::unlink_nodes(base_ptr first, base_ptr last)
 {
@@ -953,7 +953,7 @@ void list<T>::unlink_nodes(base_ptr first, base_ptr last)
   last->next->prev = first->prev;
 }
 
-// ç”¨ n ä¸ªå…ƒç´ ä¸ºå®¹å™¨èµ‹å€¼
+// ÓÃ n ¸öÔªËØÎªÈİÆ÷¸³Öµ
 template <class T>
 void list<T>::fill_assign(size_type n, const value_type& value)
 {
@@ -973,7 +973,7 @@ void list<T>::fill_assign(size_type n, const value_type& value)
   }
 }
 
-// å¤åˆ¶[f2, l2)ä¸ºå®¹å™¨èµ‹å€¼
+// ¸´ÖÆ[f2, l2)ÎªÈİÆ÷¸³Öµ
 template <class T>
 template <class Iter>
 void list<T>::copy_assign(Iter f2, Iter l2)
@@ -994,7 +994,7 @@ void list<T>::copy_assign(Iter f2, Iter l2)
   }
 }
 
-// åœ¨ pos å¤„æ’å…¥ n ä¸ªå…ƒç´ 
+// ÔÚ pos ´¦²åÈë n ¸öÔªËØ
 template <class T>
 typename list<T>::iterator 
 list<T>::fill_insert(const_iterator pos, size_type n, const value_type& value)
@@ -1009,7 +1009,7 @@ list<T>::fill_insert(const_iterator pos, size_type n, const value_type& value)
     iterator end = r;
     try
     {
-      // å‰é¢å·²ç»åˆ›å»ºäº†ä¸€ä¸ªèŠ‚ç‚¹ï¼Œè¿˜éœ€ n - 1 ä¸ª
+      // Ç°ÃæÒÑ¾­´´½¨ÁËÒ»¸ö½Úµã£¬»¹Ğè n - 1 ¸ö
       for (--n; n > 0; --n, ++end)
       {
         auto next = create_node(value);
@@ -1036,7 +1036,7 @@ list<T>::fill_insert(const_iterator pos, size_type n, const value_type& value)
   return r;
 }
 
-// åœ¨ pos å¤„æ’å…¥ [first, last) çš„å…ƒç´ 
+// ÔÚ pos ´¦²åÈë [first, last) µÄÔªËØ
 template <class T>
 template <class Iter>
 typename list<T>::iterator 
@@ -1078,7 +1078,7 @@ list<T>::copy_insert(const_iterator pos, size_type n, Iter first)
   return r;
 }
 
-// å¯¹ list è¿›è¡Œå½’å¹¶æ’åºï¼Œè¿”å›ä¸€ä¸ªè¿­ä»£å™¨æŒ‡å‘åŒºé—´æœ€å°å…ƒç´ çš„ä½ç½®
+// ¶Ô list ½øĞĞ¹é²¢ÅÅĞò£¬·µ»ØÒ»¸öµü´úÆ÷Ö¸ÏòÇø¼ä×îĞ¡ÔªËØµÄÎ»ÖÃ
 template <class T>
 template <class Compared>
 typename list<T>::iterator 
@@ -1102,10 +1102,10 @@ list<T>::list_sort(iterator f1, iterator l2, size_type n, Compared comp)
   auto n2 = n / 2;
   auto l1 = f1;
   mystl::advance(l1, n2);
-  auto result = f1 = list_sort(f1, l1, n2, comp);  // å‰åŠæ®µçš„æœ€å°ä½ç½®
-  auto f2 = l1 = list_sort(l1, l2, n - n2, comp);  // ååŠæ®µçš„æœ€å°ä½ç½®
+  auto result = f1 = list_sort(f1, l1, n2, comp);  // Ç°°ë¶ÎµÄ×îĞ¡Î»ÖÃ
+  auto f2 = l1 = list_sort(l1, l2, n - n2, comp);  // ºó°ë¶ÎµÄ×îĞ¡Î»ÖÃ
 
-  // æŠŠè¾ƒå°çš„ä¸€æ®µåŒºé—´ç§»åˆ°å‰é¢
+  // °Ñ½ÏĞ¡µÄÒ»¶ÎÇø¼äÒÆµ½Ç°Ãæ
   if (comp(*f2, *f1))
   {
     auto m = f2;
@@ -1127,7 +1127,7 @@ list<T>::list_sort(iterator f1, iterator l2, size_type n, Compared comp)
     ++f1;
   }
 
-  // åˆå¹¶ä¸¤æ®µæœ‰åºåŒºé—´
+  // ºÏ²¢Á½¶ÎÓĞĞòÇø¼ä
   while (f1 != l1 && f2 != l2)
   {
     if (comp(*f2, *f1))
@@ -1155,7 +1155,7 @@ list<T>::list_sort(iterator f1, iterator l2, size_type n, Compared comp)
   return result;
 }
 
-// é‡è½½æ¯”è¾ƒæ“ä½œç¬¦
+// ÖØÔØ±È½Ï²Ù×÷·û
 template <class T>
 bool operator==(const list<T>& lhs, const list<T>& rhs)
 {
@@ -1198,7 +1198,7 @@ bool operator>=(const list<T>& lhs, const list<T>& rhs)
   return !(lhs < rhs);
 }
 
-// é‡è½½ mystl çš„ swap
+// ÖØÔØ mystl µÄ swap
 template <class T>
 void swap(list<T>& lhs, list<T>& rhs) noexcept
 {

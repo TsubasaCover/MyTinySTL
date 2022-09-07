@@ -1,7 +1,7 @@
-ï»¿#ifndef MYTINYSTL_NUMERIC_H_
+#ifndef MYTINYSTL_NUMERIC_H_
 #define MYTINYSTL_NUMERIC_H_
 
-// è¿™ä¸ªå¤´æ–‡ä»¶åŒ…å«äº† mystl çš„æ•°å€¼ç®—æ³•
+// Õâ¸öÍ·ÎÄ¼ş°üº¬ÁË mystl µÄÊıÖµËã·¨
 
 #include "iterator.h"
 
@@ -10,10 +10,10 @@ namespace mystl
 
 /*****************************************************************************************/
 // accumulate
-// ç‰ˆæœ¬1ï¼šä»¥åˆå€¼ init å¯¹æ¯ä¸ªå…ƒç´ è¿›è¡Œç´¯åŠ 
-// ç‰ˆæœ¬2ï¼šä»¥åˆå€¼ init å¯¹æ¯ä¸ªå…ƒç´ è¿›è¡ŒäºŒå…ƒæ“ä½œ
+// °æ±¾1£ºÒÔ³õÖµ init ¶ÔÃ¿¸öÔªËØ½øĞĞÀÛ¼Ó
+// °æ±¾2£ºÒÔ³õÖµ init ¶ÔÃ¿¸öÔªËØ½øĞĞ¶şÔª²Ù×÷
 /*****************************************************************************************/
-// ç‰ˆæœ¬1
+// °æ±¾1
 template <class InputIter, class T>
 T accumulate(InputIter first, InputIter last, T init)
 {
@@ -24,7 +24,7 @@ T accumulate(InputIter first, InputIter last, T init)
   return init;
 }
 
-// ç‰ˆæœ¬2
+// °æ±¾2
 template <class InputIter, class T, class BinaryOp>
 T accumulate(InputIter first, InputIter last, T init, BinaryOp binary_op)
 {
@@ -37,15 +37,15 @@ T accumulate(InputIter first, InputIter last, T init, BinaryOp binary_op)
 
 /*****************************************************************************************/
 // adjacent_difference
-// ç‰ˆæœ¬1ï¼šè®¡ç®—ç›¸é‚»å…ƒç´ çš„å·®å€¼ï¼Œç»“æœä¿å­˜åˆ°ä»¥ result ä¸ºèµ·å§‹çš„åŒºé—´ä¸Š
-// ç‰ˆæœ¬2ï¼šè‡ªå®šä¹‰ç›¸é‚»å…ƒç´ çš„äºŒå…ƒæ“ä½œ
+// °æ±¾1£º¼ÆËãÏàÁÚÔªËØµÄ²îÖµ£¬½á¹û±£´æµ½ÒÔ result ÎªÆğÊ¼µÄÇø¼äÉÏ
+// °æ±¾2£º×Ô¶¨ÒåÏàÁÚÔªËØµÄ¶şÔª²Ù×÷
 /*****************************************************************************************/
-// ç‰ˆæœ¬1
+// °æ±¾1
 template <class InputIter, class OutputIter>
 OutputIter adjacent_difference(InputIter first, InputIter last, OutputIter result)
 {
   if (first == last)  return result;
-  *result = *first;  // è®°å½•ç¬¬ä¸€ä¸ªå…ƒç´ 
+  *result = *first;  // ¼ÇÂ¼µÚÒ»¸öÔªËØ
   auto value = *first;
   while (++first != last)
   {
@@ -56,13 +56,13 @@ OutputIter adjacent_difference(InputIter first, InputIter last, OutputIter resul
   return ++result;
 }
 
-// ç‰ˆæœ¬2
+// °æ±¾2
 template <class InputIter, class OutputIter, class BinaryOp>
 OutputIter adjacent_difference(InputIter first, InputIter last, OutputIter result,
                                BinaryOp binary_op)
 {
   if (first == last)  return result;
-  *result = *first;  // è®°å½•ç¬¬ä¸€ä¸ªå…ƒç´ 
+  *result = *first;  // ¼ÇÂ¼µÚÒ»¸öÔªËØ
   auto value = *first;
   while (++first != last)
   {
@@ -75,10 +75,10 @@ OutputIter adjacent_difference(InputIter first, InputIter last, OutputIter resul
 
 /*****************************************************************************************/
 // inner_product
-// ç‰ˆæœ¬1ï¼šä»¥ init ä¸ºåˆå€¼ï¼Œè®¡ç®—ä¸¤ä¸ªåŒºé—´çš„å†…ç§¯   
-// ç‰ˆæœ¬2ï¼šè‡ªå®šä¹‰ operator+ å’Œ operator*
+// °æ±¾1£ºÒÔ init Îª³õÖµ£¬¼ÆËãÁ½¸öÇø¼äµÄÄÚ»ı   
+// °æ±¾2£º×Ô¶¨Òå operator+ ºÍ operator*
 /*****************************************************************************************/
-// ç‰ˆæœ¬1
+// °æ±¾1
 template <class InputIter1, class InputIter2, class T>
 T inner_product(InputIter1 first1, InputIter1 last1, InputIter2 first2, T init)
 {
@@ -89,7 +89,7 @@ T inner_product(InputIter1 first1, InputIter1 last1, InputIter2 first2, T init)
   return init;
 }
 
-// ç‰ˆæœ¬2
+// °æ±¾2
 template <class InputIter1, class InputIter2, class T, class BinaryOp1, class BinaryOp2>
 T inner_product(InputIter1 first1, InputIter1 last1, InputIter2 first2, T init,
                 BinaryOp1 binary_op1, BinaryOp2 binary_op2)
@@ -103,7 +103,7 @@ T inner_product(InputIter1 first1, InputIter1 last1, InputIter2 first2, T init,
 
 /*****************************************************************************************/
 // iota
-// å¡«å……[first, last)ï¼Œä»¥ value ä¸ºåˆå€¼å¼€å§‹é€’å¢
+// Ìî³ä[first, last)£¬ÒÔ value Îª³õÖµ¿ªÊ¼µİÔö
 /*****************************************************************************************/
 template <class ForwardIter, class T>
 void iota(ForwardIter first, ForwardIter last, T value)
@@ -117,14 +117,14 @@ void iota(ForwardIter first, ForwardIter last, T value)
 
 /*****************************************************************************************/
 // partial_sum
-// ç‰ˆæœ¬1ï¼šè®¡ç®—å±€éƒ¨ç´¯è®¡æ±‚å’Œï¼Œç»“æœä¿å­˜åˆ°ä»¥ result ä¸ºèµ·å§‹çš„åŒºé—´ä¸Š
-// ç‰ˆæœ¬2ï¼šè¿›è¡Œå±€éƒ¨è¿›è¡Œè‡ªå®šä¹‰äºŒå…ƒæ“ä½œ
+// °æ±¾1£º¼ÆËã¾Ö²¿ÀÛ¼ÆÇóºÍ£¬½á¹û±£´æµ½ÒÔ result ÎªÆğÊ¼µÄÇø¼äÉÏ
+// °æ±¾2£º½øĞĞ¾Ö²¿½øĞĞ×Ô¶¨Òå¶şÔª²Ù×÷
 /*****************************************************************************************/
 template <class InputIter, class OutputIter>
 OutputIter partial_sum(InputIter first, InputIter last, OutputIter result)
 {
   if (first == last)  return result;
-  *result = *first;  // è®°å½•ç¬¬ä¸€ä¸ªå…ƒç´ 
+  *result = *first;  // ¼ÇÂ¼µÚÒ»¸öÔªËØ
   auto value = *first;
   while (++first != last)
   {
@@ -134,13 +134,13 @@ OutputIter partial_sum(InputIter first, InputIter last, OutputIter result)
   return ++result;
 }
 
-// ç‰ˆæœ¬2
+// °æ±¾2
 template <class InputIter, class OutputIter, class BinaryOp>
 OutputIter partial_sum(InputIter first, InputIter last, OutputIter result,
                        BinaryOp binary_op)
 {
   if (first == last)  return result;
-  *result = *first;  //è®°å½•ç¬¬ä¸€ä¸ªå…ƒç´ 
+  *result = *first;  //¼ÇÂ¼µÚÒ»¸öÔªËØ
   auto value = *first;
   while (++first != last)
   {

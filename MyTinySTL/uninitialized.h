@@ -1,7 +1,7 @@
-ï»¿#ifndef MYTINYSTL_UNINITIALIZED_H_
+#ifndef MYTINYSTL_UNINITIALIZED_H_
 #define MYTINYSTL_UNINITIALIZED_H_
 
-// è¿™ä¸ªå¤´æ–‡ä»¶ç”¨äºå¯¹æœªåˆå§‹åŒ–ç©ºé—´æ„é€ å…ƒç´ 
+// Õâ¸öÍ·ÎÄ¼şÓÃÓÚ¶ÔÎ´³õÊ¼»¯¿Õ¼ä¹¹ÔìÔªËØ
 
 #include "algobase.h"
 #include "construct.h"
@@ -14,7 +14,7 @@ namespace mystl
 
 /*****************************************************************************************/
 // uninitialized_copy
-// æŠŠ [first, last) ä¸Šçš„å†…å®¹å¤åˆ¶åˆ°ä»¥ result ä¸ºèµ·å§‹å¤„çš„ç©ºé—´ï¼Œè¿”å›å¤åˆ¶ç»“æŸçš„ä½ç½®
+// °Ñ [first, last) ÉÏµÄÄÚÈİ¸´ÖÆµ½ÒÔ result ÎªÆğÊ¼´¦µÄ¿Õ¼ä£¬·µ»Ø¸´ÖÆ½áÊøµÄÎ»ÖÃ
 /*****************************************************************************************/
 template <class InputIter, class ForwardIter>
 ForwardIter 
@@ -54,7 +54,7 @@ ForwardIter uninitialized_copy(InputIter first, InputIter last, ForwardIter resu
 
 /*****************************************************************************************/
 // uninitialized_copy_n
-// æŠŠ [first, first + n) ä¸Šçš„å†…å®¹å¤åˆ¶åˆ°ä»¥ result ä¸ºèµ·å§‹å¤„çš„ç©ºé—´ï¼Œè¿”å›å¤åˆ¶ç»“æŸçš„ä½ç½®
+// °Ñ [first, first + n) ÉÏµÄÄÚÈİ¸´ÖÆµ½ÒÔ result ÎªÆğÊ¼´¦µÄ¿Õ¼ä£¬·µ»Ø¸´ÖÆ½áÊøµÄÎ»ÖÃ
 /*****************************************************************************************/
 template <class InputIter, class Size, class ForwardIter>
 ForwardIter 
@@ -94,7 +94,7 @@ ForwardIter uninitialized_copy_n(InputIter first, Size n, ForwardIter result)
 
 /*****************************************************************************************/
 // uninitialized_fill
-// åœ¨ [first, last) åŒºé—´å†…å¡«å……å…ƒç´ å€¼
+// ÔÚ [first, last) Çø¼äÄÚÌî³äÔªËØÖµ
 /*****************************************************************************************/
 template <class ForwardIter, class T>
 void 
@@ -133,7 +133,7 @@ void  uninitialized_fill(ForwardIter first, ForwardIter last, const T& value)
 
 /*****************************************************************************************/
 // uninitialized_fill_n
-// ä» first ä½ç½®å¼€å§‹ï¼Œå¡«å…… n ä¸ªå…ƒç´ å€¼ï¼Œè¿”å›å¡«å……ç»“æŸçš„ä½ç½®
+// ´Ó first Î»ÖÃ¿ªÊ¼£¬Ìî³ä n ¸öÔªËØÖµ£¬·µ»ØÌî³ä½áÊøµÄÎ»ÖÃ
 /*****************************************************************************************/
 template <class ForwardIter, class Size, class T>
 ForwardIter 
@@ -173,7 +173,7 @@ ForwardIter uninitialized_fill_n(ForwardIter first, Size n, const T& value)
 
 /*****************************************************************************************/
 // uninitialized_move
-// æŠŠ[first, last)ä¸Šçš„å†…å®¹ç§»åŠ¨åˆ°ä»¥ result ä¸ºèµ·å§‹å¤„çš„ç©ºé—´ï¼Œè¿”å›ç§»åŠ¨ç»“æŸçš„ä½ç½®
+// °Ñ[first, last)ÉÏµÄÄÚÈİÒÆ¶¯µ½ÒÔ result ÎªÆğÊ¼´¦µÄ¿Õ¼ä£¬·µ»ØÒÆ¶¯½áÊøµÄÎ»ÖÃ
 /*****************************************************************************************/
 template <class InputIter, class ForwardIter>
 ForwardIter 
@@ -212,7 +212,7 @@ ForwardIter uninitialized_move(InputIter first, InputIter last, ForwardIter resu
 
 /*****************************************************************************************/
 // uninitialized_move_n
-// æŠŠ[first, first + n)ä¸Šçš„å†…å®¹ç§»åŠ¨åˆ°ä»¥ result ä¸ºèµ·å§‹å¤„çš„ç©ºé—´ï¼Œè¿”å›ç§»åŠ¨ç»“æŸçš„ä½ç½®
+// °Ñ[first, first + n)ÉÏµÄÄÚÈİÒÆ¶¯µ½ÒÔ result ÎªÆğÊ¼´¦µÄ¿Õ¼ä£¬·µ»ØÒÆ¶¯½áÊøµÄÎ»ÖÃ
 /*****************************************************************************************/
 template <class InputIter, class Size, class ForwardIter>
 ForwardIter 

@@ -1,14 +1,14 @@
-ï»¿#ifndef MYTINYSTL_SET_H_
+#ifndef MYTINYSTL_SET_H_
 #define MYTINYSTL_SET_H_
 
-// è¿™ä¸ªå¤´æ–‡ä»¶åŒ…å«ä¸¤ä¸ªæ¨¡æ¿ç±» set å’Œ multiset
-// set      : é›†åˆï¼Œé”®å€¼å³å®å€¼ï¼Œé›†åˆå†…å…ƒç´ ä¼šè‡ªåŠ¨æ’åºï¼Œé”®å€¼ä¸å…è®¸é‡å¤
-// multiset : é›†åˆï¼Œé”®å€¼å³å®å€¼ï¼Œé›†åˆå†…å…ƒç´ ä¼šè‡ªåŠ¨æ’åºï¼Œé”®å€¼å…è®¸é‡å¤
+// Õâ¸öÍ·ÎÄ¼ş°üº¬Á½¸öÄ£°åÀà set ºÍ multiset
+// set      : ¼¯ºÏ£¬¼üÖµ¼´ÊµÖµ£¬¼¯ºÏÄÚÔªËØ»á×Ô¶¯ÅÅĞò£¬¼üÖµ²»ÔÊĞíÖØ¸´
+// multiset : ¼¯ºÏ£¬¼üÖµ¼´ÊµÖµ£¬¼¯ºÏÄÚÔªËØ»á×Ô¶¯ÅÅĞò£¬¼üÖµÔÊĞíÖØ¸´
 
 // notes:
 //
-// å¼‚å¸¸ä¿è¯ï¼š
-// mystl::set<Key> / mystl::multiset<Key> æ»¡è¶³åŸºæœ¬å¼‚å¸¸ä¿è¯ï¼Œå¯¹ä»¥ä¸‹ç­‰å‡½æ•°åšå¼ºå¼‚å¸¸å®‰å…¨ä¿è¯ï¼š
+// Òì³£±£Ö¤£º
+// mystl::set<Key> / mystl::multiset<Key> Âú×ã»ù±¾Òì³£±£Ö¤£¬¶ÔÒÔÏÂµÈº¯Êı×öÇ¿Òì³£°²È«±£Ö¤£º
 //   * emplace
 //   * emplace_hint
 //   * insert
@@ -18,8 +18,8 @@
 namespace mystl
 {
 
-// æ¨¡æ¿ç±» setï¼Œé”®å€¼ä¸å…è®¸é‡å¤
-// å‚æ•°ä¸€ä»£è¡¨é”®å€¼ç±»å‹ï¼Œå‚æ•°äºŒä»£è¡¨é”®å€¼æ¯”è¾ƒæ–¹å¼ï¼Œç¼ºçœä½¿ç”¨ mystl::less 
+// Ä£°åÀà set£¬¼üÖµ²»ÔÊĞíÖØ¸´
+// ²ÎÊıÒ»´ú±í¼üÖµÀàĞÍ£¬²ÎÊı¶ş´ú±í¼üÖµ±È½Ï·½Ê½£¬È±Ê¡Ê¹ÓÃ mystl::less 
 template <class Key, class Compare = mystl::less<Key>>
 class set
 {
@@ -30,12 +30,12 @@ public:
   typedef Compare    value_compare;
 
 private:
-  // ä»¥ mystl::rb_tree ä½œä¸ºåº•å±‚æœºåˆ¶
+  // ÒÔ mystl::rb_tree ×÷Îªµ×²ã»úÖÆ
   typedef mystl::rb_tree<value_type, key_compare>  base_type;
   base_type tree_;
 
 public:
-  // ä½¿ç”¨ rb_tree å®šä¹‰çš„å‹åˆ«
+  // Ê¹ÓÃ rb_tree ¶¨ÒåµÄĞÍ±ğ
   typedef typename base_type::node_type              node_type;
   typedef typename base_type::const_pointer          pointer;
   typedef typename base_type::const_pointer          const_pointer;
@@ -50,7 +50,7 @@ public:
   typedef typename base_type::allocator_type         allocator_type;
 
 public:
-  // æ„é€ ã€å¤åˆ¶ã€ç§»åŠ¨å‡½æ•°
+  // ¹¹Ôì¡¢¸´ÖÆ¡¢ÒÆ¶¯º¯Êı
   set() = default;
 
   template <class InputIterator>
@@ -87,13 +87,13 @@ public:
     return *this;
   }
 
-  // ç›¸å…³æ¥å£
+  // Ïà¹Ø½Ó¿Ú
 
   key_compare      key_comp()      const { return tree_.key_comp(); }
   value_compare    value_comp()    const { return tree_.key_comp(); }
   allocator_type   get_allocator() const { return tree_.get_allocator(); }
 
-  // è¿­ä»£å™¨ç›¸å…³
+  // µü´úÆ÷Ïà¹Ø
 
   iterator               begin()         noexcept
   { return tree_.begin(); }
@@ -122,12 +122,12 @@ public:
   const_reverse_iterator crend()   const noexcept
   { return rend(); }
 
-  // å®¹é‡ç›¸å…³
+  // ÈİÁ¿Ïà¹Ø
   bool                   empty()    const noexcept { return tree_.empty(); }
   size_type              size()     const noexcept { return tree_.size(); }
   size_type              max_size() const noexcept { return tree_.max_size(); }
 
-  // æ’å…¥åˆ é™¤æ“ä½œ
+  // ²åÈëÉ¾³ı²Ù×÷
 
   template <class ...Args>
   pair<iterator, bool> emplace(Args&& ...args)
@@ -171,7 +171,7 @@ public:
 
   void      clear() { tree_.clear(); }
 
-  // set ç›¸å…³æ“ä½œ
+  // set Ïà¹Ø²Ù×÷
 
   iterator       find(const key_type& key)              { return tree_.find(key); }
   const_iterator find(const key_type& key)        const { return tree_.find(key); }
@@ -200,7 +200,7 @@ public:
   friend bool operator< (const set& lhs, const set& rhs) { return lhs.tree_ <  rhs.tree_; }
 };
 
-// é‡è½½æ¯”è¾ƒæ“ä½œç¬¦
+// ÖØÔØ±È½Ï²Ù×÷·û
 template <class Key, class Compare>
 bool operator==(const set<Key, Compare>& lhs, const set<Key, Compare>& rhs)
 {
@@ -237,7 +237,7 @@ bool operator>=(const set<Key, Compare>& lhs, const set<Key, Compare>& rhs)
   return !(lhs < rhs);
 }
 
-// é‡è½½ mystl çš„ swap
+// ÖØÔØ mystl µÄ swap
 template <class Key, class Compare>
 void swap(set<Key, Compare>& lhs, set<Key, Compare>& rhs) noexcept
 {
@@ -246,8 +246,8 @@ void swap(set<Key, Compare>& lhs, set<Key, Compare>& rhs) noexcept
 
 /*****************************************************************************************/
 
-// æ¨¡æ¿ç±» multisetï¼Œé”®å€¼å…è®¸é‡å¤
-// å‚æ•°ä¸€ä»£è¡¨é”®å€¼ç±»å‹ï¼Œå‚æ•°äºŒä»£è¡¨é”®å€¼æ¯”è¾ƒæ–¹å¼ï¼Œç¼ºçœä½¿ç”¨ mystl::less 
+// Ä£°åÀà multiset£¬¼üÖµÔÊĞíÖØ¸´
+// ²ÎÊıÒ»´ú±í¼üÖµÀàĞÍ£¬²ÎÊı¶ş´ú±í¼üÖµ±È½Ï·½Ê½£¬È±Ê¡Ê¹ÓÃ mystl::less 
 template <class Key, class Compare = mystl::less<Key>>
 class multiset
 {
@@ -258,12 +258,12 @@ public:
   typedef Compare    value_compare;
 
 private:
-  // ä»¥ mystl::rb_tree ä½œä¸ºåº•å±‚æœºåˆ¶
+  // ÒÔ mystl::rb_tree ×÷Îªµ×²ã»úÖÆ
   typedef mystl::rb_tree<value_type, key_compare>  base_type;
-  base_type tree_;  // ä»¥ rb_tree è¡¨ç° multiset
+  base_type tree_;  // ÒÔ rb_tree ±íÏÖ multiset
 
 public:
-  // ä½¿ç”¨ rb_tree å®šä¹‰çš„å‹åˆ«
+  // Ê¹ÓÃ rb_tree ¶¨ÒåµÄĞÍ±ğ
   typedef typename base_type::node_type              node_type;
   typedef typename base_type::const_pointer          pointer;
   typedef typename base_type::const_pointer          const_pointer;
@@ -278,7 +278,7 @@ public:
   typedef typename base_type::allocator_type         allocator_type;
 
 public:
-  // æ„é€ ã€å¤åˆ¶ã€ç§»åŠ¨å‡½æ•°
+  // ¹¹Ôì¡¢¸´ÖÆ¡¢ÒÆ¶¯º¯Êı
   multiset() = default;
 
   template <class InputIterator>
@@ -315,13 +315,13 @@ public:
     return *this;
   }
 
-  // ç›¸å…³æ¥å£
+  // Ïà¹Ø½Ó¿Ú
 
   key_compare      key_comp()      const { return tree_.key_comp(); }
   value_compare    value_comp()    const { return tree_.key_comp(); }
   allocator_type   get_allocator() const { return tree_.get_allocator(); }
 
-  // è¿­ä»£å™¨ç›¸å…³
+  // µü´úÆ÷Ïà¹Ø
 
   iterator               begin()         noexcept
   { return tree_.begin(); }
@@ -350,12 +350,12 @@ public:
   const_reverse_iterator crend()   const noexcept
   { return rend(); }
 
-  // å®¹é‡ç›¸å…³
+  // ÈİÁ¿Ïà¹Ø
   bool                   empty()    const noexcept { return tree_.empty(); }
   size_type              size()     const noexcept { return tree_.size(); }
   size_type              max_size() const noexcept { return tree_.max_size(); }
 
-  // æ’å…¥åˆ é™¤æ“ä½œ
+  // ²åÈëÉ¾³ı²Ù×÷
 
   template <class ...Args>
   iterator emplace(Args&& ...args)
@@ -399,7 +399,7 @@ public:
 
   void           clear() { tree_.clear(); }
 
-  // multiset ç›¸å…³æ“ä½œ
+  // multiset Ïà¹Ø²Ù×÷
 
   iterator       find(const key_type& key)              { return tree_.find(key); }
   const_iterator find(const key_type& key)        const { return tree_.find(key); }
@@ -428,7 +428,7 @@ public:
   friend bool operator< (const multiset& lhs, const multiset& rhs) { return lhs.tree_ <  rhs.tree_; }
 };
 
-// é‡è½½æ¯”è¾ƒæ“ä½œç¬¦
+// ÖØÔØ±È½Ï²Ù×÷·û
 template <class Key, class Compare>
 bool operator==(const multiset<Key, Compare>& lhs, const multiset<Key, Compare>& rhs)
 {
@@ -465,7 +465,7 @@ bool operator>=(const multiset<Key, Compare>& lhs, const multiset<Key, Compare>&
   return !(lhs < rhs);
 }
 
-// é‡è½½ mystl çš„ swap
+// ÖØÔØ mystl µÄ swap
 template <class Key, class Compare>
 void swap(multiset<Key, Compare>& lhs, multiset<Key, Compare>& rhs) noexcept
 {

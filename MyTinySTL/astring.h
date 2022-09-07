@@ -1,7 +1,7 @@
-Ôªø#ifndef MYTINYSTL_ASTRING_H_
+#ifndef MYTINYSTL_ASTRING_H_
 #define MYTINYSTL_ASTRING_H_
 
-// ÂÆö‰πâ‰∫Ü string, wstring, u16string, u32string Á±ªÂûã
+// ∂®“Â¡À string, wstring, u16string, u32string ¿‡–Õ
 
 #include "basic_string.h"
 

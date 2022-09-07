@@ -1,13 +1,13 @@
-ï»¿#ifndef MYTINYSTL_UNORDERED_MAP_H_
+#ifndef MYTINYSTL_UNORDERED_MAP_H_
 #define MYTINYSTL_UNORDERED_MAP_H_
 
-// è¿™ä¸ªå¤´æ–‡ä»¶åŒ…å«ä¸¤ä¸ªæ¨¡æ¿ç±» unordered_map å’Œ unordered_multimap
-// åŠŸèƒ½ä¸ç”¨æ³•ä¸ map å’Œ multimap ç±»ä¼¼ï¼Œä¸åŒçš„æ˜¯ä½¿ç”¨ hashtable ä½œä¸ºåº•å±‚å®ç°æœºåˆ¶ï¼Œå®¹å™¨å†…çš„å…ƒç´ ä¸ä¼šè‡ªåŠ¨æ’åº
+// Õâ¸öÍ·ÎÄ¼ş°üº¬Á½¸öÄ£°åÀà unordered_map ºÍ unordered_multimap
+// ¹¦ÄÜÓëÓÃ·¨Óë map ºÍ multimap ÀàËÆ£¬²»Í¬µÄÊÇÊ¹ÓÃ hashtable ×÷Îªµ×²ãÊµÏÖ»úÖÆ£¬ÈİÆ÷ÄÚµÄÔªËØ²»»á×Ô¶¯ÅÅĞò
 
 // notes:
 //
-// å¼‚å¸¸ä¿è¯ï¼š
-// mystl::unordered_map<Key, T> / mystl::unordered_multimap<Key, T> æ»¡è¶³åŸºæœ¬å¼‚å¸¸ä¿è¯ï¼Œå¯¹ä»¥ä¸‹ç­‰å‡½æ•°åšå¼ºå¼‚å¸¸å®‰å…¨ä¿è¯ï¼š
+// Òì³£±£Ö¤£º
+// mystl::unordered_map<Key, T> / mystl::unordered_multimap<Key, T> Âú×ã»ù±¾Òì³£±£Ö¤£¬¶ÔÒÔÏÂµÈº¯Êı×öÇ¿Òì³£°²È«±£Ö¤£º
 //   * emplace
 //   * emplace_hint
 //   * insert
@@ -17,19 +17,19 @@
 namespace mystl
 {
 
-// æ¨¡æ¿ç±» unordered_mapï¼Œé”®å€¼ä¸å…è®¸é‡å¤
-// å‚æ•°ä¸€ä»£è¡¨é”®å€¼ç±»å‹ï¼Œå‚æ•°äºŒä»£è¡¨å®å€¼ç±»å‹ï¼Œå‚æ•°ä¸‰ä»£è¡¨å“ˆå¸Œå‡½æ•°ï¼Œç¼ºçœä½¿ç”¨ mystl::hash
-// å‚æ•°å››ä»£è¡¨é”®å€¼æ¯”è¾ƒæ–¹å¼ï¼Œç¼ºçœä½¿ç”¨ mystl::equal_to
+// Ä£°åÀà unordered_map£¬¼üÖµ²»ÔÊĞíÖØ¸´
+// ²ÎÊıÒ»´ú±í¼üÖµÀàĞÍ£¬²ÎÊı¶ş´ú±íÊµÖµÀàĞÍ£¬²ÎÊıÈı´ú±í¹şÏ£º¯Êı£¬È±Ê¡Ê¹ÓÃ mystl::hash
+// ²ÎÊıËÄ´ú±í¼üÖµ±È½Ï·½Ê½£¬È±Ê¡Ê¹ÓÃ mystl::equal_to
 template <class Key, class T, class Hash = mystl::hash<Key>, class KeyEqual = mystl::equal_to<Key>>
 class unordered_map
 {
 private:
-  // ä½¿ç”¨ hashtable ä½œä¸ºåº•å±‚æœºåˆ¶
+  // Ê¹ÓÃ hashtable ×÷Îªµ×²ã»úÖÆ
   typedef hashtable<mystl::pair<const Key, T>, Hash, KeyEqual> base_type;
   base_type ht_;
 
 public:
-  // ä½¿ç”¨ hashtable çš„å‹åˆ«  
+  // Ê¹ÓÃ hashtable µÄĞÍ±ğ  
 
   typedef typename base_type::allocator_type       allocator_type;
   typedef typename base_type::key_type             key_type;
@@ -53,7 +53,7 @@ public:
   allocator_type get_allocator() const { return ht_.get_allocator(); }
 
 public:
-  // æ„é€ ã€å¤åˆ¶ã€ç§»åŠ¨ã€ææ„å‡½æ•°
+  // ¹¹Ôì¡¢¸´ÖÆ¡¢ÒÆ¶¯¡¢Îö¹¹º¯Êı
 
   unordered_map()
     :ht_(100, Hash(), KeyEqual())
@@ -119,7 +119,7 @@ public:
 
   ~unordered_map() = default;
 
-  // è¿­ä»£å™¨ç›¸å…³
+  // µü´úÆ÷Ïà¹Ø
 
   iterator       begin()        noexcept
   { return ht_.begin(); }
@@ -135,13 +135,13 @@ public:
   const_iterator cend()   const noexcept
   { return ht_.cend(); }
 
-  // å®¹é‡ç›¸å…³
+  // ÈİÁ¿Ïà¹Ø
 
   bool      empty()    const noexcept { return ht_.empty(); }
   size_type size()     const noexcept { return ht_.size(); }
   size_type max_size() const noexcept { return ht_.max_size(); }
 
-  // ä¿®æ”¹å®¹å™¨æ“ä½œ
+  // ĞŞ¸ÄÈİÆ÷²Ù×÷
 
   // empalce / empalce_hint
 
@@ -185,7 +185,7 @@ public:
   void      swap(unordered_map& other) noexcept
   { ht_.swap(other.ht_); }
 
-  // æŸ¥æ‰¾ç›¸å…³
+  // ²éÕÒÏà¹Ø
 
   mapped_type& at(const key_type& key)
   {
@@ -278,7 +278,7 @@ public:
   }
 };
 
-// é‡è½½æ¯”è¾ƒæ“ä½œç¬¦
+// ÖØÔØ±È½Ï²Ù×÷·û
 template <class Key, class T, class Hash, class KeyEqual>
 bool operator==(const unordered_map<Key, T, Hash, KeyEqual>& lhs,
                 const unordered_map<Key, T, Hash, KeyEqual>& rhs)
@@ -293,7 +293,7 @@ bool operator!=(const unordered_map<Key, T, Hash, KeyEqual>& lhs,
   return lhs != rhs;
 }
 
-// é‡è½½ mystl çš„ swap
+// ÖØÔØ mystl µÄ swap
 template <class Key, class T, class Hash, class KeyEqual>
 void swap(unordered_map<Key, T, Hash, KeyEqual>& lhs,
           unordered_map<Key, T, Hash, KeyEqual>& rhs)
@@ -303,19 +303,19 @@ void swap(unordered_map<Key, T, Hash, KeyEqual>& lhs,
 
 /*****************************************************************************************/
 
-// æ¨¡æ¿ç±» unordered_multimapï¼Œé”®å€¼å…è®¸é‡å¤
-// å‚æ•°ä¸€ä»£è¡¨é”®å€¼ç±»å‹ï¼Œå‚æ•°äºŒä»£è¡¨å®å€¼ç±»å‹ï¼Œå‚æ•°ä¸‰ä»£è¡¨å“ˆå¸Œå‡½æ•°ï¼Œç¼ºçœä½¿ç”¨ mystl::hash
-// å‚æ•°å››ä»£è¡¨é”®å€¼æ¯”è¾ƒæ–¹å¼ï¼Œç¼ºçœä½¿ç”¨ mystl::equal_to
+// Ä£°åÀà unordered_multimap£¬¼üÖµÔÊĞíÖØ¸´
+// ²ÎÊıÒ»´ú±í¼üÖµÀàĞÍ£¬²ÎÊı¶ş´ú±íÊµÖµÀàĞÍ£¬²ÎÊıÈı´ú±í¹şÏ£º¯Êı£¬È±Ê¡Ê¹ÓÃ mystl::hash
+// ²ÎÊıËÄ´ú±í¼üÖµ±È½Ï·½Ê½£¬È±Ê¡Ê¹ÓÃ mystl::equal_to
 template <class Key, class T, class Hash = mystl::hash<Key>, class KeyEqual = mystl::equal_to<Key>>
 class unordered_multimap
 {
 private:
-  // ä½¿ç”¨ hashtable ä½œä¸ºåº•å±‚æœºåˆ¶
+  // Ê¹ÓÃ hashtable ×÷Îªµ×²ã»úÖÆ
   typedef hashtable<pair<const Key, T>, Hash, KeyEqual> base_type;
   base_type ht_;
 
 public:
-  // ä½¿ç”¨ hashtable çš„å‹åˆ«
+  // Ê¹ÓÃ hashtable µÄĞÍ±ğ
   typedef typename base_type::allocator_type       allocator_type;
   typedef typename base_type::key_type             key_type;
   typedef typename base_type::mapped_type          mapped_type;
@@ -338,7 +338,7 @@ public:
   allocator_type get_allocator() const { return ht_.get_allocator(); }
 
 public:
-  // æ„é€ ã€å¤åˆ¶ã€ç§»åŠ¨å‡½æ•°
+  // ¹¹Ôì¡¢¸´ÖÆ¡¢ÒÆ¶¯º¯Êı
 
   unordered_multimap() 
     :ht_(100, Hash(), KeyEqual())
@@ -404,7 +404,7 @@ public:
 
   ~unordered_multimap() = default;
 
-  // è¿­ä»£å™¨ç›¸å…³
+  // µü´úÆ÷Ïà¹Ø
 
   iterator       begin()        noexcept
   { return ht_.begin(); }
@@ -420,13 +420,13 @@ public:
   const_iterator cend()   const noexcept
   { return ht_.cend(); }
 
-  // å®¹é‡ç›¸å…³
+  // ÈİÁ¿Ïà¹Ø
 
   bool      empty()    const noexcept { return ht_.empty(); }
   size_type size()     const noexcept { return ht_.size(); }
   size_type max_size() const noexcept { return ht_.max_size(); }
 
-  // ä¿®æ”¹å®¹å™¨ç›¸å…³
+  // ĞŞ¸ÄÈİÆ÷Ïà¹Ø
 
   // emplace / emplace_hint
 
@@ -470,7 +470,7 @@ public:
   void      swap(unordered_multimap& other) noexcept 
   { ht_.swap(other.ht_); }
 
-  // æŸ¥æ‰¾ç›¸å…³
+  // ²éÕÒÏà¹Ø
 
   size_type      count(const key_type& key) const 
   { return ht_.count(key); }
@@ -535,7 +535,7 @@ public:
   }
 };
 
-// é‡è½½æ¯”è¾ƒæ“ä½œç¬¦
+// ÖØÔØ±È½Ï²Ù×÷·û
 template <class Key, class T, class Hash, class KeyEqual>
 bool operator==(const unordered_multimap<Key, T, Hash, KeyEqual>& lhs,
                 const unordered_multimap<Key, T, Hash, KeyEqual>& rhs)
@@ -550,7 +550,7 @@ bool operator!=(const unordered_multimap<Key, T, Hash, KeyEqual>& lhs,
   return lhs != rhs;
 }
 
-// é‡è½½ mystl çš„ swap
+// ÖØÔØ mystl µÄ swap
 template <class Key, class T, class Hash, class KeyEqual>
 void swap(unordered_multimap<Key, T, Hash, KeyEqual>& lhs,
           unordered_multimap<Key, T, Hash, KeyEqual>& rhs)

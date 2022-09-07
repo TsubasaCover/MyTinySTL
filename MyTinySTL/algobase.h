@@ -1,7 +1,7 @@
-ï»¿#ifndef MYTINYSTL_ALGOBASE_H_
+#ifndef MYTINYSTL_ALGOBASE_H_
 #define MYTINYSTL_ALGOBASE_H_
 
-// è¿™ä¸ªå¤´æ–‡ä»¶åŒ…å«äº† mystl çš„åŸºæœ¬ç®—æ³•
+// Õâ¸öÍ·ÎÄ¼ş°üº¬ÁË mystl µÄ»ù±¾Ëã·¨
 
 #include <cstring>
 
@@ -23,7 +23,7 @@ namespace mystl
 
 /*****************************************************************************************/
 // max
-// å–äºŒè€…ä¸­çš„è¾ƒå¤§å€¼ï¼Œè¯­ä¹‰ç›¸ç­‰æ—¶ä¿è¯è¿”å›ç¬¬ä¸€ä¸ªå‚æ•°
+// È¡¶şÕßÖĞµÄ½Ï´óÖµ£¬ÓïÒåÏàµÈÊ±±£Ö¤·µ»ØµÚÒ»¸ö²ÎÊı
 /*****************************************************************************************/
 template <class T>
 const T& max(const T& lhs, const T& rhs)
@@ -31,7 +31,7 @@ const T& max(const T& lhs, const T& rhs)
   return lhs < rhs ? rhs : lhs;
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class T, class Compare>
 const T& max(const T& lhs, const T& rhs, Compare comp)
 {
@@ -40,7 +40,7 @@ const T& max(const T& lhs, const T& rhs, Compare comp)
 
 /*****************************************************************************************/
 // min 
-// å–äºŒè€…ä¸­çš„è¾ƒå°å€¼ï¼Œè¯­ä¹‰ç›¸ç­‰æ—¶ä¿è¯è¿”å›ç¬¬ä¸€ä¸ªå‚æ•°
+// È¡¶şÕßÖĞµÄ½ÏĞ¡Öµ£¬ÓïÒåÏàµÈÊ±±£Ö¤·µ»ØµÚÒ»¸ö²ÎÊı
 /*****************************************************************************************/
 template <class T>
 const T& min(const T& lhs, const T& rhs)
@@ -48,7 +48,7 @@ const T& min(const T& lhs, const T& rhs)
   return rhs < lhs ? rhs : lhs;
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class T, class Compare>
 const T& min(const T& lhs, const T& rhs, Compare comp)
 {
@@ -57,7 +57,7 @@ const T& min(const T& lhs, const T& rhs, Compare comp)
 
 /*****************************************************************************************/
 // iter_swap
-// å°†ä¸¤ä¸ªè¿­ä»£å™¨æ‰€æŒ‡å¯¹è±¡å¯¹è°ƒ
+// ½«Á½¸öµü´úÆ÷ËùÖ¸¶ÔÏó¶Ôµ÷
 /*****************************************************************************************/
 template <class FIter1, class FIter2>
 void iter_swap(FIter1 lhs, FIter2 rhs)
@@ -67,9 +67,9 @@ void iter_swap(FIter1 lhs, FIter2 rhs)
 
 /*****************************************************************************************/
 // copy
-// æŠŠ [first, last)åŒºé—´å†…çš„å…ƒç´ æ‹·è´åˆ° [result, result + (last - first))å†…
+// °Ñ [first, last)Çø¼äÄÚµÄÔªËØ¿½±´µ½ [result, result + (last - first))ÄÚ
 /*****************************************************************************************/
-// input_iterator_tag ç‰ˆæœ¬
+// input_iterator_tag °æ±¾
 template <class InputIter, class OutputIter>
 OutputIter 
 unchecked_copy_cat(InputIter first, InputIter last, OutputIter result, 
@@ -82,7 +82,7 @@ unchecked_copy_cat(InputIter first, InputIter last, OutputIter result,
   return result;
 }
 
-// ramdom_access_iterator_tag ç‰ˆæœ¬
+// ramdom_access_iterator_tag °æ±¾
 template <class RandomIter, class OutputIter>
 OutputIter 
 unchecked_copy_cat(RandomIter first, RandomIter last, OutputIter result,
@@ -102,7 +102,7 @@ unchecked_copy(InputIter first, InputIter last, OutputIter result)
   return unchecked_copy_cat(first, last, result, iterator_category(first));
 }
 
-// ä¸º trivially_copy_assignable ç±»å‹æä¾›ç‰¹åŒ–ç‰ˆæœ¬
+// Îª trivially_copy_assignable ÀàĞÍÌá¹©ÌØ»¯°æ±¾
 template <class Tp, class Up>
 typename std::enable_if<
   std::is_same<typename std::remove_const<Tp>::type, Up>::value &&
@@ -124,9 +124,9 @@ OutputIter copy(InputIter first, InputIter last, OutputIter result)
 
 /*****************************************************************************************/
 // copy_backward
-// å°† [first, last)åŒºé—´å†…çš„å…ƒç´ æ‹·è´åˆ° [result - (last - first), result)å†…
+// ½« [first, last)Çø¼äÄÚµÄÔªËØ¿½±´µ½ [result - (last - first), result)ÄÚ
 /*****************************************************************************************/
-// unchecked_copy_backward_cat çš„ bidirectional_iterator_tag ç‰ˆæœ¬
+// unchecked_copy_backward_cat µÄ bidirectional_iterator_tag °æ±¾
 template <class BidirectionalIter1, class BidirectionalIter2>
 BidirectionalIter2 
 unchecked_copy_backward_cat(BidirectionalIter1 first, BidirectionalIter1 last,
@@ -137,7 +137,7 @@ unchecked_copy_backward_cat(BidirectionalIter1 first, BidirectionalIter1 last,
   return result;
 }
 
-// unchecked_copy_backward_cat çš„ random_access_iterator_tag ç‰ˆæœ¬
+// unchecked_copy_backward_cat µÄ random_access_iterator_tag °æ±¾
 template <class BidirectionalIter1, class BidirectionalIter2>
 BidirectionalIter2 
 unchecked_copy_backward_cat(BidirectionalIter1 first, BidirectionalIter1 last,
@@ -157,7 +157,7 @@ unchecked_copy_backward(BidirectionalIter1 first, BidirectionalIter1 last,
                                      iterator_category(first));
 }
 
-// ä¸º trivially_copy_assignable ç±»å‹æä¾›ç‰¹åŒ–ç‰ˆæœ¬
+// Îª trivially_copy_assignable ÀàĞÍÌá¹©ÌØ»¯°æ±¾
 template <class Tp, class Up>
 typename std::enable_if<
   std::is_same<typename std::remove_const<Tp>::type, Up>::value &&
@@ -183,7 +183,7 @@ copy_backward(BidirectionalIter1 first, BidirectionalIter1 last, BidirectionalIt
 
 /*****************************************************************************************/
 // copy_if
-// æŠŠ[first, last)å†…æ»¡è¶³ä¸€å…ƒæ“ä½œ unary_pred çš„å…ƒç´ æ‹·è´åˆ°ä»¥ result ä¸ºèµ·å§‹çš„ä½ç½®ä¸Š
+// °Ñ[first, last)ÄÚÂú×ãÒ»Ôª²Ù×÷ unary_pred µÄÔªËØ¿½±´µ½ÒÔ result ÎªÆğÊ¼µÄÎ»ÖÃÉÏ
 /*****************************************************************************************/
 template <class InputIter, class OutputIter, class UnaryPredicate>
 OutputIter 
@@ -199,8 +199,8 @@ copy_if(InputIter first, InputIter last, OutputIter result, UnaryPredicate unary
 
 /*****************************************************************************************/
 // copy_n
-// æŠŠ [first, first + n)åŒºé—´ä¸Šçš„å…ƒç´ æ‹·è´åˆ° [result, result + n)ä¸Š
-// è¿”å›ä¸€ä¸ª pair åˆ†åˆ«æŒ‡å‘æ‹·è´ç»“æŸçš„å°¾éƒ¨
+// °Ñ [first, first + n)Çø¼äÉÏµÄÔªËØ¿½±´µ½ [result, result + n)ÉÏ
+// ·µ»ØÒ»¸ö pair ·Ö±ğÖ¸Ïò¿½±´½áÊøµÄÎ²²¿
 /*****************************************************************************************/
 template <class InputIter, class Size, class OutputIter>
 mystl::pair<InputIter, OutputIter>
@@ -231,9 +231,9 @@ copy_n(InputIter first, Size n, OutputIter result)
 
 /*****************************************************************************************/
 // move
-// æŠŠ [first, last)åŒºé—´å†…çš„å…ƒç´ ç§»åŠ¨åˆ° [result, result + (last - first))å†…
+// °Ñ [first, last)Çø¼äÄÚµÄÔªËØÒÆ¶¯µ½ [result, result + (last - first))ÄÚ
 /*****************************************************************************************/
-// input_iterator_tag ç‰ˆæœ¬
+// input_iterator_tag °æ±¾
 template <class InputIter, class OutputIter>
 OutputIter 
 unchecked_move_cat(InputIter first, InputIter last, OutputIter result,
@@ -246,7 +246,7 @@ unchecked_move_cat(InputIter first, InputIter last, OutputIter result,
   return result;
 }
 
-// ramdom_access_iterator_tag ç‰ˆæœ¬
+// ramdom_access_iterator_tag °æ±¾
 template <class RandomIter, class OutputIter>
 OutputIter 
 unchecked_move_cat(RandomIter first, RandomIter last, OutputIter result,
@@ -266,7 +266,7 @@ unchecked_move(InputIter first, InputIter last, OutputIter result)
   return unchecked_move_cat(first, last, result, iterator_category(first));
 }
 
-// ä¸º trivially_copy_assignable ç±»å‹æä¾›ç‰¹åŒ–ç‰ˆæœ¬
+// Îª trivially_copy_assignable ÀàĞÍÌá¹©ÌØ»¯°æ±¾
 template <class Tp, class Up>
 typename std::enable_if<
   std::is_same<typename std::remove_const<Tp>::type, Up>::value &&
@@ -288,9 +288,9 @@ OutputIter move(InputIter first, InputIter last, OutputIter result)
 
 /*****************************************************************************************/
 // move_backward
-// å°† [first, last)åŒºé—´å†…çš„å…ƒç´ ç§»åŠ¨åˆ° [result - (last - first), result)å†…
+// ½« [first, last)Çø¼äÄÚµÄÔªËØÒÆ¶¯µ½ [result - (last - first), result)ÄÚ
 /*****************************************************************************************/
-// bidirectional_iterator_tag ç‰ˆæœ¬
+// bidirectional_iterator_tag °æ±¾
 template <class BidirectionalIter1, class BidirectionalIter2>
 BidirectionalIter2
 unchecked_move_backward_cat(BidirectionalIter1 first, BidirectionalIter1 last,
@@ -301,7 +301,7 @@ unchecked_move_backward_cat(BidirectionalIter1 first, BidirectionalIter1 last,
   return result;
 }
 
-// random_access_iterator_tag ç‰ˆæœ¬
+// random_access_iterator_tag °æ±¾
 template <class RandomIter1, class RandomIter2>
 RandomIter2
 unchecked_move_backward_cat(RandomIter1 first, RandomIter1 last,
@@ -321,7 +321,7 @@ unchecked_move_backward(BidirectionalIter1 first, BidirectionalIter1 last,
                                      iterator_category(first));
 }
 
-// ä¸º trivially_copy_assignable ç±»å‹æä¾›ç‰¹åŒ–ç‰ˆæœ¬
+// Îª trivially_copy_assignable ÀàĞÍÌá¹©ÌØ»¯°æ±¾
 template <class Tp, class Up>
 typename std::enable_if<
   std::is_same<typename std::remove_const<Tp>::type, Up>::value &&
@@ -347,7 +347,7 @@ move_backward(BidirectionalIter1 first, BidirectionalIter1 last, BidirectionalIt
 
 /*****************************************************************************************/
 // equal
-// æ¯”è¾ƒç¬¬ä¸€åºåˆ—åœ¨ [first, last)åŒºé—´ä¸Šçš„å…ƒç´ å€¼æ˜¯å¦å’Œç¬¬äºŒåºåˆ—ç›¸ç­‰
+// ±È½ÏµÚÒ»ĞòÁĞÔÚ [first, last)Çø¼äÉÏµÄÔªËØÖµÊÇ·ñºÍµÚ¶şĞòÁĞÏàµÈ
 /*****************************************************************************************/
 template <class InputIter1, class InputIter2>
 bool equal(InputIter1 first1, InputIter1 last1, InputIter2 first2)
@@ -360,7 +360,7 @@ bool equal(InputIter1 first1, InputIter1 last1, InputIter2 first2)
   return true;
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class InputIter1, class InputIter2, class Compared>
 bool equal(InputIter1 first1, InputIter1 last1, InputIter2 first2, Compared comp)
 {
@@ -374,7 +374,7 @@ bool equal(InputIter1 first1, InputIter1 last1, InputIter2 first2, Compared comp
 
 /*****************************************************************************************/
 // fill_n
-// ä» first ä½ç½®å¼€å§‹å¡«å…… n ä¸ªå€¼
+// ´Ó first Î»ÖÃ¿ªÊ¼Ìî³ä n ¸öÖµ
 /*****************************************************************************************/
 template <class OutputIter, class Size, class T>
 OutputIter unchecked_fill_n(OutputIter first, Size n, const T& value)
@@ -386,7 +386,7 @@ OutputIter unchecked_fill_n(OutputIter first, Size n, const T& value)
   return first;
 }
 
-// ä¸º one-byte ç±»å‹æä¾›ç‰¹åŒ–ç‰ˆæœ¬
+// Îª one-byte ÀàĞÍÌá¹©ÌØ»¯°æ±¾
 template <class Tp, class Size, class Up>
 typename std::enable_if<
   std::is_integral<Tp>::value && sizeof(Tp) == 1 &&
@@ -410,7 +410,7 @@ OutputIter fill_n(OutputIter first, Size n, const T& value)
 
 /*****************************************************************************************/
 // fill
-// ä¸º [first, last)åŒºé—´å†…çš„æ‰€æœ‰å…ƒç´ å¡«å……æ–°å€¼
+// Îª [first, last)Çø¼äÄÚµÄËùÓĞÔªËØÌî³äĞÂÖµ
 /*****************************************************************************************/
 template <class ForwardIter, class T>
 void fill_cat(ForwardIter first, ForwardIter last, const T& value,
@@ -437,11 +437,11 @@ void fill(ForwardIter first, ForwardIter last, const T& value)
 
 /*****************************************************************************************/
 // lexicographical_compare
-// ä»¥å­—å…¸åºæ’åˆ—å¯¹ä¸¤ä¸ªåºåˆ—è¿›è¡Œæ¯”è¾ƒï¼Œå½“åœ¨æŸä¸ªä½ç½®å‘ç°ç¬¬ä¸€ç»„ä¸ç›¸ç­‰å…ƒç´ æ—¶ï¼Œæœ‰ä¸‹åˆ—å‡ ç§æƒ…å†µï¼š
-// (1)å¦‚æœç¬¬ä¸€åºåˆ—çš„å…ƒç´ è¾ƒå°ï¼Œè¿”å› true ï¼Œå¦åˆ™è¿”å› false
-// (2)å¦‚æœåˆ°è¾¾ last1 è€Œå°šæœªåˆ°è¾¾ last2 è¿”å› true
-// (3)å¦‚æœåˆ°è¾¾ last2 è€Œå°šæœªåˆ°è¾¾ last1 è¿”å› false
-// (4)å¦‚æœåŒæ—¶åˆ°è¾¾ last1 å’Œ last2 è¿”å› false
+// ÒÔ×ÖµäĞòÅÅÁĞ¶ÔÁ½¸öĞòÁĞ½øĞĞ±È½Ï£¬µ±ÔÚÄ³¸öÎ»ÖÃ·¢ÏÖµÚÒ»×é²»ÏàµÈÔªËØÊ±£¬ÓĞÏÂÁĞ¼¸ÖÖÇé¿ö£º
+// (1)Èç¹ûµÚÒ»ĞòÁĞµÄÔªËØ½ÏĞ¡£¬·µ»Ø true £¬·ñÔò·µ»Ø false
+// (2)Èç¹ûµ½´ï last1 ¶øÉĞÎ´µ½´ï last2 ·µ»Ø true
+// (3)Èç¹ûµ½´ï last2 ¶øÉĞÎ´µ½´ï last1 ·µ»Ø false
+// (4)Èç¹ûÍ¬Ê±µ½´ï last1 ºÍ last2 ·µ»Ø false
 /*****************************************************************************************/
 template <class InputIter1, class InputIter2>
 bool lexicographical_compare(InputIter1 first1, InputIter1 last1,
@@ -457,7 +457,7 @@ bool lexicographical_compare(InputIter1 first1, InputIter1 last1,
   return first1 == last1 && first2 != last2;
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class InputIter1, class InputIter2, class Compred>
 bool lexicographical_compare(InputIter1 first1, InputIter1 last1,
                              InputIter2 first2, InputIter2 last2, Compred comp)
@@ -472,7 +472,7 @@ bool lexicographical_compare(InputIter1 first1, InputIter1 last1,
   return first1 == last1 && first2 != last2;
 }
 
-// é’ˆå¯¹ const unsigned char* çš„ç‰¹åŒ–ç‰ˆæœ¬
+// Õë¶Ô const unsigned char* µÄÌØ»¯°æ±¾
 bool lexicographical_compare(const unsigned char* first1,
                              const unsigned char* last1,
                              const unsigned char* first2,
@@ -480,15 +480,15 @@ bool lexicographical_compare(const unsigned char* first1,
 {
   const auto len1 = last1 - first1;
   const auto len2 = last2 - first2;
-  // å…ˆæ¯”è¾ƒç›¸åŒé•¿åº¦çš„éƒ¨åˆ†
+  // ÏÈ±È½ÏÏàÍ¬³¤¶ÈµÄ²¿·Ö
   const auto result = std::memcmp(first1, first2, mystl::min(len1, len2));
-  // è‹¥ç›¸ç­‰ï¼Œé•¿åº¦è¾ƒé•¿çš„æ¯”è¾ƒå¤§
+  // ÈôÏàµÈ£¬³¤¶È½Ï³¤µÄ±È½Ï´ó
   return result != 0 ? result < 0 : len1 < len2;
 }
 
 /*****************************************************************************************/
 // mismatch
-// å¹³è¡Œæ¯”è¾ƒä¸¤ä¸ªåºåˆ—ï¼Œæ‰¾åˆ°ç¬¬ä¸€å¤„å¤±é…çš„å…ƒç´ ï¼Œè¿”å›ä¸€å¯¹è¿­ä»£å™¨ï¼Œåˆ†åˆ«æŒ‡å‘ä¸¤ä¸ªåºåˆ—ä¸­å¤±é…çš„å…ƒç´ 
+// Æ½ĞĞ±È½ÏÁ½¸öĞòÁĞ£¬ÕÒµ½µÚÒ»´¦Ê§ÅäµÄÔªËØ£¬·µ»ØÒ»¶Ôµü´úÆ÷£¬·Ö±ğÖ¸ÏòÁ½¸öĞòÁĞÖĞÊ§ÅäµÄÔªËØ
 /*****************************************************************************************/
 template <class InputIter1, class InputIter2>
 mystl::pair<InputIter1, InputIter2> 
@@ -502,7 +502,7 @@ mismatch(InputIter1 first1, InputIter1 last1, InputIter2 first2)
   return mystl::pair<InputIter1, InputIter2>(first1, first2);
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class InputIter1, class InputIter2, class Compred>
 mystl::pair<InputIter1, InputIter2> 
 mismatch(InputIter1 first1, InputIter1 last1, InputIter2 first2, Compred comp)

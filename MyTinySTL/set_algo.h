@@ -1,8 +1,8 @@
-ï»¿#ifndef MYTINYSTL_SET_ALGO_H_
+#ifndef MYTINYSTL_SET_ALGO_H_
 #define MYTINYSTL_SET_ALGO_H_
 
-// è¿™ä¸ªå¤´æ–‡ä»¶åŒ…å« set çš„å››ç§ç®—æ³•: union, intersection, difference, symmetric_difference
-// æ‰€æœ‰å‡½æ•°éƒ½è¦æ±‚åºåˆ—æœ‰åº
+// Õâ¸öÍ·ÎÄ¼ş°üº¬ set µÄËÄÖÖËã·¨: union, intersection, difference, symmetric_difference
+// ËùÓĞº¯Êı¶¼ÒªÇóĞòÁĞÓĞĞò
 
 #include "algobase.h"
 #include "iterator.h"
@@ -12,7 +12,7 @@ namespace mystl
 
 /*****************************************************************************************/
 // set_union
-// è®¡ç®— S1âˆªS2 çš„ç»“æœå¹¶ä¿å­˜åˆ° result ä¸­ï¼Œè¿”å›ä¸€ä¸ªè¿­ä»£å™¨æŒ‡å‘è¾“å‡ºç»“æœçš„å°¾éƒ¨
+// ¼ÆËã S1¡ÈS2 µÄ½á¹û²¢±£´æµ½ result ÖĞ£¬·µ»ØÒ»¸öµü´úÆ÷Ö¸ÏòÊä³ö½á¹ûµÄÎ²²¿
 /*****************************************************************************************/
 template <class InputIter1, class InputIter2, class OutputIter>
 OutputIter set_union(InputIter1 first1, InputIter1 last1,
@@ -39,11 +39,11 @@ OutputIter set_union(InputIter1 first1, InputIter1 last1,
     }
     ++result;
   }
-  // å°†å‰©ä½™å…ƒç´ æ‹·è´åˆ° result
+  // ½«Ê£ÓàÔªËØ¿½±´µ½ result
   return mystl::copy(first2, last2, mystl::copy(first1, last1, result));
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class InputIter1, class InputIter2, class OutputIter, class Compared>
 OutputIter set_union(InputIter1 first1, InputIter1 last1,
                      InputIter2 first2, InputIter2 last2, 
@@ -69,13 +69,13 @@ OutputIter set_union(InputIter1 first1, InputIter1 last1,
     }
     ++result;
   }
-  // å°†å‰©ä½™å…ƒç´ æ‹·è´åˆ° result
+  // ½«Ê£ÓàÔªËØ¿½±´µ½ result
   return mystl::copy(first2, last2, mystl::copy(first1, last1, result));
 }
 
 /*****************************************************************************************/
 // set_intersection
-// è®¡ç®— S1âˆ©S2 çš„ç»“æœå¹¶ä¿å­˜åˆ° result ä¸­ï¼Œè¿”å›ä¸€ä¸ªè¿­ä»£å™¨æŒ‡å‘è¾“å‡ºç»“æœçš„å°¾éƒ¨
+// ¼ÆËã S1¡ÉS2 µÄ½á¹û²¢±£´æµ½ result ÖĞ£¬·µ»ØÒ»¸öµü´úÆ÷Ö¸ÏòÊä³ö½á¹ûµÄÎ²²¿
 /*****************************************************************************************/
 template <class InputIter1, class InputIter2, class OutputIter>
 OutputIter set_intersection(InputIter1 first1, InputIter1 last1,
@@ -103,7 +103,7 @@ OutputIter set_intersection(InputIter1 first1, InputIter1 last1,
   return result;
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class InputIter1, class InputIter2, class OutputIter, class Compared>
 OutputIter set_intersection(InputIter1 first1, InputIter1 last1,
                             InputIter2 first2, InputIter2 last2,
@@ -132,7 +132,7 @@ OutputIter set_intersection(InputIter1 first1, InputIter1 last1,
 
 /*****************************************************************************************/
 // set_difference
-// è®¡ç®— S1-S2 çš„ç»“æœå¹¶ä¿å­˜åˆ° result ä¸­ï¼Œè¿”å›ä¸€ä¸ªè¿­ä»£å™¨æŒ‡å‘è¾“å‡ºç»“æœçš„å°¾éƒ¨
+// ¼ÆËã S1-S2 µÄ½á¹û²¢±£´æµ½ result ÖĞ£¬·µ»ØÒ»¸öµü´úÆ÷Ö¸ÏòÊä³ö½á¹ûµÄÎ²²¿
 /*****************************************************************************************/
 template <class InputIter1, class InputIter2, class OutputIter>
 OutputIter set_difference(InputIter1 first1, InputIter1 last1,
@@ -160,7 +160,7 @@ OutputIter set_difference(InputIter1 first1, InputIter1 last1,
   return mystl::copy(first1, last1, result);
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class InputIter1, class InputIter2, class OutputIter, class Compared>
 OutputIter set_difference(InputIter1 first1, InputIter1 last1,
                           InputIter2 first2, InputIter2 last2, 
@@ -189,7 +189,7 @@ OutputIter set_difference(InputIter1 first1, InputIter1 last1,
 
 /*****************************************************************************************/
 // set_symmetric_difference
-// è®¡ç®— (S1-S2)âˆª(S2-S1) çš„ç»“æœå¹¶ä¿å­˜åˆ° result ä¸­ï¼Œè¿”å›ä¸€ä¸ªè¿­ä»£å™¨æŒ‡å‘è¾“å‡ºç»“æœçš„å°¾éƒ¨
+// ¼ÆËã (S1-S2)¡È(S2-S1) µÄ½á¹û²¢±£´æµ½ result ÖĞ£¬·µ»ØÒ»¸öµü´úÆ÷Ö¸ÏòÊä³ö½á¹ûµÄÎ²²¿
 /*****************************************************************************************/
 template <class InputIter1, class InputIter2, class OutputIter>
 OutputIter set_symmetric_difference(InputIter1 first1, InputIter1 last1,
@@ -219,7 +219,7 @@ OutputIter set_symmetric_difference(InputIter1 first1, InputIter1 last1,
   return mystl::copy(first2, last2, mystl::copy(first1, last1, result));
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class InputIter1, class InputIter2, class OutputIter, class Compared>
 OutputIter set_symmetric_difference(InputIter1 first1, InputIter1 last1,
                                     InputIter2 first2, InputIter2 last2,

@@ -1,13 +1,13 @@
-ï»¿#ifndef MYTINYSTL_UNORDERED_SET_H_
+#ifndef MYTINYSTL_UNORDERED_SET_H_
 #define MYTINYSTL_UNORDERED_SET_H_
 
-// è¿™ä¸ªå¤´æ–‡ä»¶åŒ…å«ä¸¤ä¸ªæ¨¡æ¿ç±» unordered_set å’Œ unordered_multiset
-// åŠŸèƒ½ä¸ç”¨æ³•ä¸ set å’Œ multiset ç±»ä¼¼ï¼Œä¸åŒçš„æ˜¯ä½¿ç”¨ hashtable ä½œä¸ºåº•å±‚å®ç°æœºåˆ¶ï¼Œå®¹å™¨ä¸­çš„å…ƒç´ ä¸ä¼šè‡ªåŠ¨æ’åº
+// Õâ¸öÍ·ÎÄ¼ş°üº¬Á½¸öÄ£°åÀà unordered_set ºÍ unordered_multiset
+// ¹¦ÄÜÓëÓÃ·¨Óë set ºÍ multiset ÀàËÆ£¬²»Í¬µÄÊÇÊ¹ÓÃ hashtable ×÷Îªµ×²ãÊµÏÖ»úÖÆ£¬ÈİÆ÷ÖĞµÄÔªËØ²»»á×Ô¶¯ÅÅĞò
 
 // notes:
 //
-// å¼‚å¸¸ä¿è¯ï¼š
-// mystl::unordered_set<Key> / mystl::unordered_multiset<Key> æ»¡è¶³åŸºæœ¬å¼‚å¸¸ä¿è¯ï¼Œå¯¹ä»¥ä¸‹ç­‰å‡½æ•°åšå¼ºå¼‚å¸¸å®‰å…¨ä¿è¯ï¼š
+// Òì³£±£Ö¤£º
+// mystl::unordered_set<Key> / mystl::unordered_multiset<Key> Âú×ã»ù±¾Òì³£±£Ö¤£¬¶ÔÒÔÏÂµÈº¯Êı×öÇ¿Òì³£°²È«±£Ö¤£º
 //   * emplace
 //   * emplace_hint
 //   * insert
@@ -17,19 +17,19 @@
 namespace mystl
 {
 
-// æ¨¡æ¿ç±» unordered_setï¼Œé”®å€¼ä¸å…è®¸é‡å¤
-// å‚æ•°ä¸€ä»£è¡¨é”®å€¼ç±»å‹ï¼Œå‚æ•°äºŒä»£è¡¨å“ˆå¸Œå‡½æ•°ï¼Œç¼ºçœä½¿ç”¨ mystl::hashï¼Œ
-// å‚æ•°ä¸‰ä»£è¡¨é”®å€¼æ¯”è¾ƒæ–¹å¼ï¼Œç¼ºçœä½¿ç”¨ mystl::equal_to
+// Ä£°åÀà unordered_set£¬¼üÖµ²»ÔÊĞíÖØ¸´
+// ²ÎÊıÒ»´ú±í¼üÖµÀàĞÍ£¬²ÎÊı¶ş´ú±í¹şÏ£º¯Êı£¬È±Ê¡Ê¹ÓÃ mystl::hash£¬
+// ²ÎÊıÈı´ú±í¼üÖµ±È½Ï·½Ê½£¬È±Ê¡Ê¹ÓÃ mystl::equal_to
 template <class Key, class Hash = mystl::hash<Key>, class KeyEqual = mystl::equal_to<Key>>
 class unordered_set
 {
 private:
-  // ä½¿ç”¨ hashtable ä½œä¸ºåº•å±‚æœºåˆ¶
+  // Ê¹ÓÃ hashtable ×÷Îªµ×²ã»úÖÆ
   typedef hashtable<Key, Hash, KeyEqual> base_type;
   base_type ht_;
 
 public:
-  // ä½¿ç”¨ hashtable çš„å‹åˆ«
+  // Ê¹ÓÃ hashtable µÄĞÍ±ğ
   typedef typename base_type::allocator_type       allocator_type;
   typedef typename base_type::key_type             key_type;
   typedef typename base_type::value_type           value_type;
@@ -51,7 +51,7 @@ public:
   allocator_type get_allocator() const { return ht_.get_allocator(); }
 
 public:
-  // æ„é€ ã€å¤åˆ¶ã€ç§»åŠ¨å‡½æ•°
+  // ¹¹Ôì¡¢¸´ÖÆ¡¢ÒÆ¶¯º¯Êı
 
   unordered_set()
     :ht_(100, Hash(), KeyEqual())
@@ -117,7 +117,7 @@ public:
 
   ~unordered_set() = default;
 
-  // è¿­ä»£å™¨ç›¸å…³
+  // µü´úÆ÷Ïà¹Ø
 
   iterator       begin()        noexcept
   { return ht_.begin(); }
@@ -133,13 +133,13 @@ public:
   const_iterator cend()   const noexcept
   { return ht_.cend(); }
 
-  // å®¹é‡ç›¸å…³
+  // ÈİÁ¿Ïà¹Ø
 
   bool      empty()    const noexcept { return ht_.empty(); }
   size_type size()     const noexcept { return ht_.size(); }
   size_type max_size() const noexcept { return ht_.max_size(); }
 
-  // ä¿®æ”¹å®¹å™¨æ“ä½œ
+  // ĞŞ¸ÄÈİÆ÷²Ù×÷
 
   // empalce / empalce_hint
 
@@ -183,7 +183,7 @@ public:
   void      swap(unordered_set& other) noexcept
   { ht_.swap(other.ht_); }
 
-  // æŸ¥æ‰¾ç›¸å…³
+  // ²éÕÒÏà¹Ø
 
   size_type      count(const key_type& key) const 
   { return ht_.count(key); }
@@ -249,7 +249,7 @@ public:
   }
 };
 
-// é‡è½½æ¯”è¾ƒæ“ä½œç¬¦
+// ÖØÔØ±È½Ï²Ù×÷·û
 template <class Key, class Hash, class KeyEqual, class Alloc>
 bool operator==(const unordered_set<Key, Hash, KeyEqual>& lhs,
                 const unordered_set<Key, Hash, KeyEqual>& rhs)
@@ -264,7 +264,7 @@ bool operator!=(const unordered_set<Key, Hash, KeyEqual>& lhs,
   return lhs != rhs;
 }
 
-// é‡è½½ mystl çš„ swap
+// ÖØÔØ mystl µÄ swap
 template <class Key, class Hash, class KeyEqual, class Alloc>
 void swap(unordered_set<Key, Hash, KeyEqual>& lhs,
           unordered_set<Key, Hash, KeyEqual>& rhs)
@@ -274,19 +274,19 @@ void swap(unordered_set<Key, Hash, KeyEqual>& lhs,
 
 /*****************************************************************************************/
 
-// æ¨¡æ¿ç±» unordered_multisetï¼Œé”®å€¼å…è®¸é‡å¤
-// å‚æ•°ä¸€ä»£è¡¨é”®å€¼ç±»å‹ï¼Œå‚æ•°äºŒä»£è¡¨å“ˆå¸Œå‡½æ•°ï¼Œç¼ºçœä½¿ç”¨ mystl::hashï¼Œ
-// å‚æ•°ä¸‰ä»£è¡¨é”®å€¼æ¯”è¾ƒæ–¹å¼ï¼Œç¼ºçœä½¿ç”¨ mystl::equal_to
+// Ä£°åÀà unordered_multiset£¬¼üÖµÔÊĞíÖØ¸´
+// ²ÎÊıÒ»´ú±í¼üÖµÀàĞÍ£¬²ÎÊı¶ş´ú±í¹şÏ£º¯Êı£¬È±Ê¡Ê¹ÓÃ mystl::hash£¬
+// ²ÎÊıÈı´ú±í¼üÖµ±È½Ï·½Ê½£¬È±Ê¡Ê¹ÓÃ mystl::equal_to
 template <class Key, class Hash = mystl::hash<Key>, class KeyEqual = mystl::equal_to<Key>>
 class unordered_multiset
 {
 private:
-  // ä½¿ç”¨ hashtable ä½œä¸ºåº•å±‚æœºåˆ¶
+  // Ê¹ÓÃ hashtable ×÷Îªµ×²ã»úÖÆ
   typedef hashtable<Key, Hash, KeyEqual> base_type;
   base_type ht_;
 
 public:
-  // ä½¿ç”¨ hashtable çš„å‹åˆ«
+  // Ê¹ÓÃ hashtable µÄĞÍ±ğ
   typedef typename base_type::allocator_type       allocator_type;
   typedef typename base_type::key_type             key_type;
   typedef typename base_type::value_type           value_type;
@@ -308,7 +308,7 @@ public:
   allocator_type get_allocator() const { return ht_.get_allocator(); }
 
 public:
-  // æ„é€ ã€å¤åˆ¶ã€ç§»åŠ¨å‡½æ•°
+  // ¹¹Ôì¡¢¸´ÖÆ¡¢ÒÆ¶¯º¯Êı
 
   unordered_multiset()
     :ht_(100, Hash(), KeyEqual())
@@ -375,7 +375,7 @@ public:
   ~unordered_multiset() = default;
 
 
-  // è¿­ä»£å™¨ç›¸å…³
+  // µü´úÆ÷Ïà¹Ø
 
   iterator       begin()        noexcept
   { return ht_.begin(); }
@@ -391,13 +391,13 @@ public:
   const_iterator cend()   const noexcept
   { return ht_.cend(); }
 
-  // å®¹é‡ç›¸å…³
+  // ÈİÁ¿Ïà¹Ø
 
   bool      empty()    const noexcept { return ht_.empty(); }
   size_type size()     const noexcept { return ht_.size(); }
   size_type max_size() const noexcept { return ht_.max_size(); }
 
-  // ä¿®æ”¹å®¹å™¨ç›¸å…³
+  // ĞŞ¸ÄÈİÆ÷Ïà¹Ø
 
   // emplace / emplace_hint
 
@@ -441,7 +441,7 @@ public:
   void      swap(unordered_multiset& other) noexcept 
   { ht_.swap(other.ht_); }
 
-  // æŸ¥æ‰¾ç›¸å…³
+  // ²éÕÒÏà¹Ø
 
   size_type      count(const key_type& key) const 
   { return ht_.count(key); }
@@ -506,7 +506,7 @@ public:
   }
 };
 
-// é‡è½½æ¯”è¾ƒæ“ä½œç¬¦
+// ÖØÔØ±È½Ï²Ù×÷·û
 template <class Key, class Hash, class KeyEqual, class Alloc>
 bool operator==(const unordered_multiset<Key, Hash, KeyEqual>& lhs,
                 const unordered_multiset<Key, Hash, KeyEqual>& rhs)
@@ -521,7 +521,7 @@ bool operator!=(const unordered_multiset<Key, Hash, KeyEqual>& lhs,
   return lhs != rhs;
 }
 
-// é‡è½½ mystl çš„ swap
+// ÖØÔØ mystl µÄ swap
 template <class Key, class Hash, class KeyEqual, class Alloc>
 void swap(unordered_multiset<Key, Hash, KeyEqual>& lhs,
           unordered_multiset<Key, Hash, KeyEqual>& rhs)

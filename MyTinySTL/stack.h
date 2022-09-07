@@ -1,22 +1,22 @@
-ï»¿#ifndef MYTINYSTL_STACK_H_
+#ifndef MYTINYSTL_STACK_H_
 #define MYTINYSTL_STACK_H_
 
-// è¿™ä¸ªå¤´æ–‡ä»¶åŒ…å«äº†ä¸€ä¸ªæ¨¡æ¿ç±» stack
-// stack : æ ˆ
+// Õâ¸öÍ·ÎÄ¼ş°üº¬ÁËÒ»¸öÄ£°åÀà stack
+// stack : Õ»
 
 #include "deque.h"    
 
 namespace mystl
 {
 
-// æ¨¡æ¿ç±» stack
-// å‚æ•°ä¸€ä»£è¡¨æ•°æ®ç±»å‹ï¼Œå‚æ•°äºŒä»£è¡¨åº•å±‚å®¹å™¨ç±»å‹ï¼Œç¼ºçœä½¿ç”¨ mystl::deque ä½œä¸ºåº•å±‚å®¹å™¨
+// Ä£°åÀà stack
+// ²ÎÊıÒ»´ú±íÊı¾İÀàĞÍ£¬²ÎÊı¶ş´ú±íµ×²ãÈİÆ÷ÀàĞÍ£¬È±Ê¡Ê¹ÓÃ mystl::deque ×÷Îªµ×²ãÈİÆ÷
 template <class T, class Container = mystl::deque<T>>
 class stack
 {
 public:
   typedef Container                           container_type;
-  // ä½¿ç”¨åº•å±‚å®¹å™¨çš„å‹åˆ«
+  // Ê¹ÓÃµ×²ãÈİÆ÷µÄĞÍ±ğ
   typedef typename Container::value_type      value_type;
   typedef typename Container::size_type       size_type;
   typedef typename Container::reference       reference;
@@ -25,10 +25,10 @@ public:
   static_assert(std::is_same<T, value_type>::value,
                 "the value_type of Container should be same with T");
 private:
-  container_type c_;  // ç”¨åº•å±‚å®¹å™¨è¡¨ç° stack
+  container_type c_;  // ÓÃµ×²ãÈİÆ÷±íÏÖ stack
 
 public:
-  // æ„é€ ã€å¤åˆ¶ã€ç§»åŠ¨å‡½æ•°
+  // ¹¹Ôì¡¢¸´ÖÆ¡¢ÒÆ¶¯º¯Êı
   stack() = default;
 
   explicit stack(size_type n) 
@@ -88,15 +88,15 @@ public:
 
   ~stack() = default;
 
-  // è®¿é—®å…ƒç´ ç›¸å…³æ“ä½œ
+  // ·ÃÎÊÔªËØÏà¹Ø²Ù×÷
   reference       top()       { return c_.back(); }
   const_reference top() const { return c_.back(); }
 
-  // å®¹é‡ç›¸å…³æ“ä½œ
+  // ÈİÁ¿Ïà¹Ø²Ù×÷
   bool      empty() const noexcept { return c_.empty(); }
   size_type size()  const noexcept { return c_.size(); }
 
-  // ä¿®æ”¹å®¹å™¨ç›¸å…³æ“ä½œ
+  // ĞŞ¸ÄÈİÆ÷Ïà¹Ø²Ù×÷
 
   template <class... Args>
   void emplace(Args&& ...args)
@@ -124,7 +124,7 @@ public:
   friend bool operator< (const stack& lhs, const stack& rhs) { return lhs.c_ <  rhs.c_; }
 };
 
-// é‡è½½æ¯”è¾ƒæ“ä½œç¬¦
+// ÖØÔØ±È½Ï²Ù×÷·û
 template <class T, class Container>
 bool operator==(const stack<T, Container>& lhs, const stack<T, Container>& rhs)
 {
@@ -161,7 +161,7 @@ bool operator>=(const stack<T, Container>& lhs, const stack<T, Container>& rhs)
   return !(lhs < rhs);
 }
 
-// é‡è½½ mystl çš„ swap
+// ÖØÔØ mystl µÄ swap
 template <class T, class Container>
 void swap(stack<T, Container>& lhs, stack<T, Container>& rhs) noexcept(noexcept(lhs.swap(rhs)))
 {

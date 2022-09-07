@@ -1,4 +1,4 @@
-ï»¿#ifndef MYTINYSTL_ALGO_H_
+#ifndef MYTINYSTL_ALGO_H_
 #define MYTINYSTL_ALGO_H_
 
 #ifdef _MSC_VER
@@ -6,7 +6,7 @@
 #pragma warning(disable : 4244)
 #endif
 
-// è¿™ä¸ªå¤´æ–‡ä»¶åŒ…å«äº† mystl çš„ä¸€ç³»åˆ—ç®—æ³•
+// Õâ¸öÍ·ÎÄ¼ş°üº¬ÁË mystl µÄÒ»ÏµÁĞËã·¨
 
 #include <cstddef>
 #include <ctime>
@@ -21,7 +21,7 @@ namespace mystl
 
 /*****************************************************************************************/
 // all_of
-// æ£€æŸ¥[first, last)å†…æ˜¯å¦å…¨éƒ¨å…ƒç´ éƒ½æ»¡è¶³ä¸€å…ƒæ“ä½œ unary_pred ä¸º true çš„æƒ…å†µï¼Œæ»¡è¶³åˆ™è¿”å› true
+// ¼ì²é[first, last)ÄÚÊÇ·ñÈ«²¿ÔªËØ¶¼Âú×ãÒ»Ôª²Ù×÷ unary_pred Îª true µÄÇé¿ö£¬Âú×ãÔò·µ»Ø true
 /*****************************************************************************************/
 template <class InputIter, class UnaryPredicate>
 bool all_of(InputIter first, InputIter last, UnaryPredicate unary_pred)
@@ -36,7 +36,7 @@ bool all_of(InputIter first, InputIter last, UnaryPredicate unary_pred)
 
 /*****************************************************************************************/
 // any_of
-// æ£€æŸ¥[first, last)å†…æ˜¯å¦å­˜åœ¨æŸä¸ªå…ƒç´ æ»¡è¶³ä¸€å…ƒæ“ä½œ unary_pred ä¸º true çš„æƒ…å†µï¼Œæ»¡è¶³åˆ™è¿”å› true
+// ¼ì²é[first, last)ÄÚÊÇ·ñ´æÔÚÄ³¸öÔªËØÂú×ãÒ»Ôª²Ù×÷ unary_pred Îª true µÄÇé¿ö£¬Âú×ãÔò·µ»Ø true
 /*****************************************************************************************/
 template <class InputIter, class UnaryPredicate>
 bool any_of(InputIter first, InputIter last, UnaryPredicate unary_pred)
@@ -51,7 +51,7 @@ bool any_of(InputIter first, InputIter last, UnaryPredicate unary_pred)
 
 /*****************************************************************************************/
 // none_of
-// æ£€æŸ¥[first, last)å†…æ˜¯å¦å…¨éƒ¨å…ƒç´ éƒ½ä¸æ»¡è¶³ä¸€å…ƒæ“ä½œ unary_pred ä¸º true çš„æƒ…å†µï¼Œæ»¡è¶³åˆ™è¿”å› true
+// ¼ì²é[first, last)ÄÚÊÇ·ñÈ«²¿ÔªËØ¶¼²»Âú×ãÒ»Ôª²Ù×÷ unary_pred Îª true µÄÇé¿ö£¬Âú×ãÔò·µ»Ø true
 /*****************************************************************************************/
 template <class InputIter, class UnaryPredicate>
 bool none_of(InputIter first, InputIter last, UnaryPredicate unary_pred)
@@ -66,7 +66,7 @@ bool none_of(InputIter first, InputIter last, UnaryPredicate unary_pred)
 
 /*****************************************************************************************/
 // count
-// å¯¹[first, last)åŒºé—´å†…çš„å…ƒç´ ä¸ç»™å®šå€¼è¿›è¡Œæ¯”è¾ƒï¼Œç¼ºçœä½¿ç”¨ operator==ï¼Œè¿”å›å…ƒç´ ç›¸ç­‰çš„ä¸ªæ•°
+// ¶Ô[first, last)Çø¼äÄÚµÄÔªËØÓë¸ø¶¨Öµ½øĞĞ±È½Ï£¬È±Ê¡Ê¹ÓÃ operator==£¬·µ»ØÔªËØÏàµÈµÄ¸öÊı
 /*****************************************************************************************/
 template <class InputIter, class T>
 size_t count(InputIter first, InputIter last, const T& value)
@@ -82,7 +82,7 @@ size_t count(InputIter first, InputIter last, const T& value)
 
 /*****************************************************************************************/
 // count_if
-// å¯¹[first, last)åŒºé—´å†…çš„æ¯ä¸ªå…ƒç´ éƒ½è¿›è¡Œä¸€å…ƒ unary_pred æ“ä½œï¼Œè¿”å›ç»“æœä¸º true çš„ä¸ªæ•°
+// ¶Ô[first, last)Çø¼äÄÚµÄÃ¿¸öÔªËØ¶¼½øĞĞÒ»Ôª unary_pred ²Ù×÷£¬·µ»Ø½á¹ûÎª true µÄ¸öÊı
 /*****************************************************************************************/
 template <class InputIter, class UnaryPredicate>
 size_t count_if(InputIter first, InputIter last, UnaryPredicate unary_pred)
@@ -98,7 +98,7 @@ size_t count_if(InputIter first, InputIter last, UnaryPredicate unary_pred)
 
 /*****************************************************************************************/
 // find
-// åœ¨[first, last)åŒºé—´å†…æ‰¾åˆ°ç­‰äº value çš„å…ƒç´ ï¼Œè¿”å›æŒ‡å‘è¯¥å…ƒç´ çš„è¿­ä»£å™¨
+// ÔÚ[first, last)Çø¼äÄÚÕÒµ½µÈÓÚ value µÄÔªËØ£¬·µ»ØÖ¸Ïò¸ÃÔªËØµÄµü´úÆ÷
 /*****************************************************************************************/
 template <class InputIter, class T>
 InputIter
@@ -111,7 +111,7 @@ find(InputIter first, InputIter last, const T& value)
 
 /*****************************************************************************************/
 // find_if
-// åœ¨[first, last)åŒºé—´å†…æ‰¾åˆ°ç¬¬ä¸€ä¸ªä»¤ä¸€å…ƒæ“ä½œ unary_pred ä¸º true çš„å…ƒç´ å¹¶è¿”å›æŒ‡å‘è¯¥å…ƒç´ çš„è¿­ä»£å™¨
+// ÔÚ[first, last)Çø¼äÄÚÕÒµ½µÚÒ»¸öÁîÒ»Ôª²Ù×÷ unary_pred Îª true µÄÔªËØ²¢·µ»ØÖ¸Ïò¸ÃÔªËØµÄµü´úÆ÷
 /*****************************************************************************************/
 template <class InputIter, class UnaryPredicate>
 InputIter
@@ -124,7 +124,7 @@ find_if(InputIter first, InputIter last, UnaryPredicate unary_pred)
 
 /*****************************************************************************************/
 // find_if_not
-// åœ¨[first, last)åŒºé—´å†…æ‰¾åˆ°ç¬¬ä¸€ä¸ªä»¤ä¸€å…ƒæ“ä½œ unary_pred ä¸º false çš„å…ƒç´ å¹¶è¿”å›æŒ‡å‘è¯¥å…ƒç´ çš„è¿­ä»£å™¨
+// ÔÚ[first, last)Çø¼äÄÚÕÒµ½µÚÒ»¸öÁîÒ»Ôª²Ù×÷ unary_pred Îª false µÄÔªËØ²¢·µ»ØÖ¸Ïò¸ÃÔªËØµÄµü´úÆ÷
 /*****************************************************************************************/
 template <class InputIter, class UnaryPredicate>
 InputIter
@@ -137,7 +137,7 @@ find_if_not(InputIter first, InputIter last, UnaryPredicate unary_pred)
 
 /*****************************************************************************************/
 // search
-// åœ¨[first1, last1)ä¸­æŸ¥æ‰¾[first2, last2)çš„é¦–æ¬¡å‡ºç°ç‚¹
+// ÔÚ[first1, last1)ÖĞ²éÕÒ[first2, last2)µÄÊ×´Î³öÏÖµã
 /*****************************************************************************************/
 template <class ForwardIter1, class ForwardIter2>
 ForwardIter1
@@ -174,7 +174,7 @@ search(ForwardIter1 first1, ForwardIter1 last1,
   return first1;
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class ForwardIter1, class ForwardIter2, class Compared>
 ForwardIter1
 search(ForwardIter1 first1, ForwardIter1 last1,
@@ -212,7 +212,7 @@ search(ForwardIter1 first1, ForwardIter1 last1,
 
 /*****************************************************************************************/
 // search_n
-// åœ¨[first, last)ä¸­æŸ¥æ‰¾è¿ç»­ n ä¸ª value æ‰€å½¢æˆçš„å­åºåˆ—ï¼Œè¿”å›ä¸€ä¸ªè¿­ä»£å™¨æŒ‡å‘è¯¥å­åºåˆ—çš„èµ·å§‹å¤„
+// ÔÚ[first, last)ÖĞ²éÕÒÁ¬Ğø n ¸ö value ËùĞÎ³ÉµÄ×ÓĞòÁĞ£¬·µ»ØÒ»¸öµü´úÆ÷Ö¸Ïò¸Ã×ÓĞòÁĞµÄÆğÊ¼´¦
 /*****************************************************************************************/
 template <class ForwardIter, class Size, class T>
 ForwardIter
@@ -248,7 +248,7 @@ search_n(ForwardIter first, ForwardIter last, Size n, const T& value)
   }
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class ForwardIter, class Size, class T, class Compared>
 ForwardIter
 search_n(ForwardIter first, ForwardIter last,
@@ -297,9 +297,9 @@ search_n(ForwardIter first, ForwardIter last,
 
 /*****************************************************************************************/
 // find_end
-// åœ¨[first1, last1)åŒºé—´ä¸­æŸ¥æ‰¾[first2, last2)æœ€åä¸€æ¬¡å‡ºç°çš„åœ°æ–¹ï¼Œè‹¥ä¸å­˜åœ¨è¿”å› last1
+// ÔÚ[first1, last1)Çø¼äÖĞ²éÕÒ[first2, last2)×îºóÒ»´Î³öÏÖµÄµØ·½£¬Èô²»´æÔÚ·µ»Ø last1
 /*****************************************************************************************/
-// find_end_dispatch çš„ forward_iterator_tag ç‰ˆæœ¬
+// find_end_dispatch µÄ forward_iterator_tag °æ±¾
 template <class ForwardIter1, class ForwardIter2>
 ForwardIter1
 find_end_dispatch(ForwardIter1 first1, ForwardIter1 last1,
@@ -315,7 +315,7 @@ find_end_dispatch(ForwardIter1 first1, ForwardIter1 last1,
     auto result = last1;
     while (true)
     {
-      // åˆ©ç”¨ search æŸ¥æ‰¾æŸä¸ªå­åºåˆ—çš„é¦–æ¬¡å‡ºç°ç‚¹ï¼Œæ‰¾ä¸åˆ°åˆ™è¿”å› last1
+      // ÀûÓÃ search ²éÕÒÄ³¸ö×ÓĞòÁĞµÄÊ×´Î³öÏÖµã£¬ÕÒ²»µ½Ôò·µ»Ø last1
       auto new_result = mystl::search(first1, last1, first2, last2);
       if (new_result == last1)
       {
@@ -331,7 +331,7 @@ find_end_dispatch(ForwardIter1 first1, ForwardIter1 last1,
   }
 }
 
-// find_end_dispatch çš„ bidirectional_iterator_tag ç‰ˆæœ¬
+// find_end_dispatch µÄ bidirectional_iterator_tag °æ±¾
 template <class BidirectionalIter1, class BidirectionalIter2>
 BidirectionalIter1
 find_end_dispatch(BidirectionalIter1 first1, BidirectionalIter1 last1,
@@ -365,8 +365,8 @@ find_end(ForwardIter1 first1, ForwardIter1 last1,
   return mystl::find_end_dispatch(first1, last1, first2, last2, Category1(), Category2());
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
-// find_end_dispatch çš„ forward_iterator_tag ç‰ˆæœ¬
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
+// find_end_dispatch µÄ forward_iterator_tag °æ±¾
 template <class ForwardIter1, class ForwardIter2, class Compared>
 ForwardIter1
 find_end_dispatch(ForwardIter1 first1, ForwardIter1 last1,
@@ -382,7 +382,7 @@ find_end_dispatch(ForwardIter1 first1, ForwardIter1 last1,
     auto result = last1;
     while (true)
     {
-      // åˆ©ç”¨ search æŸ¥æ‰¾æŸä¸ªå­åºåˆ—çš„é¦–æ¬¡å‡ºç°ç‚¹ï¼Œæ‰¾ä¸åˆ°åˆ™è¿”å› last1
+      // ÀûÓÃ search ²éÕÒÄ³¸ö×ÓĞòÁĞµÄÊ×´Î³öÏÖµã£¬ÕÒ²»µ½Ôò·µ»Ø last1
       auto new_result = mystl::search(first1, last1, first2, last2, comp);
       if (new_result == last1)
       {
@@ -398,7 +398,7 @@ find_end_dispatch(ForwardIter1 first1, ForwardIter1 last1,
   }
 }
 
-// find_end_dispatch çš„ bidirectional_iterator_tag ç‰ˆæœ¬
+// find_end_dispatch µÄ bidirectional_iterator_tag °æ±¾
 template <class BidirectionalIter1, class BidirectionalIter2, class Compared>
 BidirectionalIter1
 find_end_dispatch(BidirectionalIter1 first1, BidirectionalIter1 last1,
@@ -434,7 +434,7 @@ find_end(ForwardIter1 first1, ForwardIter1 last1,
 
 /*****************************************************************************************/
 // find_first_of
-// åœ¨[first1, last1)ä¸­æŸ¥æ‰¾[first2, last2)ä¸­çš„æŸäº›å…ƒç´ ï¼Œè¿”å›æŒ‡å‘ç¬¬ä¸€æ¬¡å‡ºç°çš„å…ƒç´ çš„è¿­ä»£å™¨
+// ÔÚ[first1, last1)ÖĞ²éÕÒ[first2, last2)ÖĞµÄÄ³Ğ©ÔªËØ£¬·µ»ØÖ¸ÏòµÚÒ»´Î³öÏÖµÄÔªËØµÄµü´úÆ÷
 /*****************************************************************************************/
 template <class InputIter, class ForwardIter>
 InputIter
@@ -452,7 +452,7 @@ find_first_of(InputIter first1, InputIter last1,
   return last1;
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class InputIter, class ForwardIter, class Compared>
 InputIter
 find_first_of(InputIter first1, InputIter last1,
@@ -471,8 +471,8 @@ find_first_of(InputIter first1, InputIter last1,
 
 /*****************************************************************************************/
 // for_each
-// ä½¿ç”¨ä¸€ä¸ªå‡½æ•°å¯¹è±¡ f å¯¹[first, last)åŒºé—´å†…çš„æ¯ä¸ªå…ƒç´ æ‰§è¡Œä¸€ä¸ª operator() æ“ä½œï¼Œä½†ä¸èƒ½æ”¹å˜å…ƒç´ å†…å®¹
-// f() å¯è¿”å›ä¸€ä¸ªå€¼ï¼Œä½†è¯¥å€¼ä¼šè¢«å¿½ç•¥
+// Ê¹ÓÃÒ»¸öº¯Êı¶ÔÏó f ¶Ô[first, last)Çø¼äÄÚµÄÃ¿¸öÔªËØÖ´ĞĞÒ»¸ö operator() ²Ù×÷£¬µ«²»ÄÜ¸Ä±äÔªËØÄÚÈİ
+// f() ¿É·µ»ØÒ»¸öÖµ£¬µ«¸ÃÖµ»á±»ºöÂÔ
 /*****************************************************************************************/
 template <class InputIter, class Function>
 Function for_each(InputIter first, InputIter last, Function f)
@@ -486,7 +486,7 @@ Function for_each(InputIter first, InputIter last, Function f)
 
 /*****************************************************************************************/
 // adjacent_find
-// æ‰¾å‡ºç¬¬ä¸€å¯¹åŒ¹é…çš„ç›¸é‚»å…ƒç´ ï¼Œç¼ºçœä½¿ç”¨ operator== æ¯”è¾ƒï¼Œå¦‚æœæ‰¾åˆ°è¿”å›ä¸€ä¸ªè¿­ä»£å™¨ï¼ŒæŒ‡å‘è¿™å¯¹å…ƒç´ çš„ç¬¬ä¸€ä¸ªå…ƒç´ 
+// ÕÒ³öµÚÒ»¶ÔÆ¥ÅäµÄÏàÁÚÔªËØ£¬È±Ê¡Ê¹ÓÃ operator== ±È½Ï£¬Èç¹ûÕÒµ½·µ»ØÒ»¸öµü´úÆ÷£¬Ö¸ÏòÕâ¶ÔÔªËØµÄµÚÒ»¸öÔªËØ
 /*****************************************************************************************/
 template <class ForwardIter>
 ForwardIter adjacent_find(ForwardIter first, ForwardIter last)
@@ -501,7 +501,7 @@ ForwardIter adjacent_find(ForwardIter first, ForwardIter last)
   return last;
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class ForwardIter, class Compared>
 ForwardIter adjacent_find(ForwardIter first, ForwardIter last, Compared comp)
 {
@@ -517,9 +517,9 @@ ForwardIter adjacent_find(ForwardIter first, ForwardIter last, Compared comp)
 
 /*****************************************************************************************/
 // lower_bound
-// åœ¨[first, last)ä¸­æŸ¥æ‰¾ç¬¬ä¸€ä¸ªä¸å°äº value çš„å…ƒç´ ï¼Œå¹¶è¿”å›æŒ‡å‘å®ƒçš„è¿­ä»£å™¨ï¼Œè‹¥æ²¡æœ‰åˆ™è¿”å› last
+// ÔÚ[first, last)ÖĞ²éÕÒµÚÒ»¸ö²»Ğ¡ÓÚ value µÄÔªËØ£¬²¢·µ»ØÖ¸ÏòËüµÄµü´úÆ÷£¬ÈôÃ»ÓĞÔò·µ»Ø last
 /*****************************************************************************************/
-// lbound_dispatch çš„ forward_iterator_tag ç‰ˆæœ¬
+// lbound_dispatch µÄ forward_iterator_tag °æ±¾
 template <class ForwardIter, class T>
 ForwardIter
 lbound_dispatch(ForwardIter first, ForwardIter last,
@@ -547,7 +547,7 @@ lbound_dispatch(ForwardIter first, ForwardIter last,
   return first;
 }
 
-// lbound_dispatch çš„ random_access_iterator_tag ç‰ˆæœ¬
+// lbound_dispatch µÄ random_access_iterator_tag °æ±¾
 template <class RandomIter, class T>
 RandomIter
 lbound_dispatch(RandomIter first, RandomIter last,
@@ -580,8 +580,8 @@ lower_bound(ForwardIter first, ForwardIter last, const T& value)
   return mystl::lbound_dispatch(first, last, value, iterator_category(first));
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
-// lbound_dispatch çš„ forward_iterator_tag ç‰ˆæœ¬
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
+// lbound_dispatch µÄ forward_iterator_tag °æ±¾
 template <class ForwardIter, class T, class Compared>
 ForwardIter
 lbound_dispatch(ForwardIter first, ForwardIter last,
@@ -609,7 +609,7 @@ lbound_dispatch(ForwardIter first, ForwardIter last,
   return first;
 }
 
-// lbound_dispatch çš„ random_access_iterator_tag ç‰ˆæœ¬
+// lbound_dispatch µÄ random_access_iterator_tag °æ±¾
 template <class RandomIter, class T, class Compared>
 RandomIter
 lbound_dispatch(RandomIter first, RandomIter last,
@@ -644,9 +644,9 @@ lower_bound(ForwardIter first, ForwardIter last, const T& value, Compared comp)
 
 /*****************************************************************************************/
 // upper_bound
-// åœ¨[first, last)ä¸­æŸ¥æ‰¾ç¬¬ä¸€ä¸ªå¤§äºvalue çš„å…ƒç´ ï¼Œå¹¶è¿”å›æŒ‡å‘å®ƒçš„è¿­ä»£å™¨ï¼Œè‹¥æ²¡æœ‰åˆ™è¿”å› last
+// ÔÚ[first, last)ÖĞ²éÕÒµÚÒ»¸ö´óÓÚvalue µÄÔªËØ£¬²¢·µ»ØÖ¸ÏòËüµÄµü´úÆ÷£¬ÈôÃ»ÓĞÔò·µ»Ø last
 /*****************************************************************************************/
-// ubound_dispatch çš„ forward_iterator_tag ç‰ˆæœ¬
+// ubound_dispatch µÄ forward_iterator_tag °æ±¾
 template <class ForwardIter, class T>
 ForwardIter
 ubound_dispatch(ForwardIter first, ForwardIter last,
@@ -674,7 +674,7 @@ ubound_dispatch(ForwardIter first, ForwardIter last,
   return first;
 }
 
-// ubound_dispatch çš„ random_access_iterator_tag ç‰ˆæœ¬
+// ubound_dispatch µÄ random_access_iterator_tag °æ±¾
 template <class RandomIter, class T>
 RandomIter
 ubound_dispatch(RandomIter first, RandomIter last,
@@ -707,8 +707,8 @@ upper_bound(ForwardIter first, ForwardIter last, const T& value)
   return mystl::ubound_dispatch(first, last, value, iterator_category(first));
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
-// ubound_dispatch çš„ forward_iterator_tag ç‰ˆæœ¬
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
+// ubound_dispatch µÄ forward_iterator_tag °æ±¾
 template <class ForwardIter, class T, class Compared>
 ForwardIter
 ubound_dispatch(ForwardIter first, ForwardIter last,
@@ -736,7 +736,7 @@ ubound_dispatch(ForwardIter first, ForwardIter last,
   return first;
 }
 
-// ubound_dispatch çš„ random_access_iterator_tag ç‰ˆæœ¬
+// ubound_dispatch µÄ random_access_iterator_tag °æ±¾
 template <class RandomIter, class T, class Compared>
 RandomIter
 ubound_dispatch(RandomIter first, RandomIter last,
@@ -771,7 +771,7 @@ upper_bound(ForwardIter first, ForwardIter last, const T& value, Compared comp)
 
 /*****************************************************************************************/
 // binary_search
-// äºŒåˆ†æŸ¥æ‰¾ï¼Œå¦‚æœåœ¨[first, last)å†…æœ‰ç­‰åŒäº value çš„å…ƒç´ ï¼Œè¿”å› trueï¼Œå¦åˆ™è¿”å› false
+// ¶ş·Ö²éÕÒ£¬Èç¹ûÔÚ[first, last)ÄÚÓĞµÈÍ¬ÓÚ value µÄÔªËØ£¬·µ»Ø true£¬·ñÔò·µ»Ø false
 /*****************************************************************************************/
 template <class ForwardIter, class T>
 bool binary_search(ForwardIter first, ForwardIter last, const T& value)
@@ -780,7 +780,7 @@ bool binary_search(ForwardIter first, ForwardIter last, const T& value)
   return i != last && !(value < *i);
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class ForwardIter, class T, class Compared>
 bool binary_search(ForwardIter first, ForwardIter last, const T& value, Compared comp)
 {
@@ -790,10 +790,10 @@ bool binary_search(ForwardIter first, ForwardIter last, const T& value, Compared
 
 /*****************************************************************************************/
 // equal_range
-// æŸ¥æ‰¾[first,last)åŒºé—´ä¸­ä¸ value ç›¸ç­‰çš„å…ƒç´ æ‰€å½¢æˆçš„åŒºé—´ï¼Œè¿”å›ä¸€å¯¹è¿­ä»£å™¨æŒ‡å‘åŒºé—´é¦–å°¾
-// ç¬¬ä¸€ä¸ªè¿­ä»£å™¨æŒ‡å‘ç¬¬ä¸€ä¸ªä¸å°äº value çš„å…ƒç´ ï¼Œç¬¬äºŒä¸ªè¿­ä»£å™¨æŒ‡å‘ç¬¬ä¸€ä¸ªå¤§äº value çš„å…ƒç´ 
+// ²éÕÒ[first,last)Çø¼äÖĞÓë value ÏàµÈµÄÔªËØËùĞÎ³ÉµÄÇø¼ä£¬·µ»ØÒ»¶Ôµü´úÆ÷Ö¸ÏòÇø¼äÊ×Î²
+// µÚÒ»¸öµü´úÆ÷Ö¸ÏòµÚÒ»¸ö²»Ğ¡ÓÚ value µÄÔªËØ£¬µÚ¶ş¸öµü´úÆ÷Ö¸ÏòµÚÒ»¸ö´óÓÚ value µÄÔªËØ
 /*****************************************************************************************/
-// erange_dispatch çš„ forward_iterator_tag ç‰ˆæœ¬
+// erange_dispatch µÄ forward_iterator_tag °æ±¾
 template <class ForwardIter, class T>
 mystl::pair<ForwardIter, ForwardIter>
 erange_dispatch(ForwardIter first, ForwardIter last,
@@ -828,7 +828,7 @@ erange_dispatch(ForwardIter first, ForwardIter last,
   return mystl::pair<ForwardIter, ForwardIter>(last, last);
 }
 
-// erange_dispatch çš„ random_access_iterator_tag ç‰ˆæœ¬
+// erange_dispatch µÄ random_access_iterator_tag °æ±¾
 template <class RandomIter, class T>
 mystl::pair<RandomIter, RandomIter>
 erange_dispatch(RandomIter first, RandomIter last,
@@ -867,8 +867,8 @@ equal_range(ForwardIter first, ForwardIter last, const T& value)
   return mystl::erange_dispatch(first, last, value, iterator_category(first));
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
-// erange_dispatch çš„ forward iterator ç‰ˆæœ¬
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
+// erange_dispatch µÄ forward iterator °æ±¾
 template <class ForwardIter, class T, class Compared>
 mystl::pair<ForwardIter, ForwardIter>
 erange_dispatch(ForwardIter first, ForwardIter last,
@@ -903,7 +903,7 @@ erange_dispatch(ForwardIter first, ForwardIter last,
   return mystl::pair<ForwardIter, ForwardIter>(last, last);
 }
 
-// erange_dispatch çš„ random access iterator ç‰ˆæœ¬
+// erange_dispatch µÄ random access iterator °æ±¾
 template <class RandomIter, class T, class Compared>
 mystl::pair<RandomIter, RandomIter>
 erange_dispatch(RandomIter first, RandomIter last,
@@ -944,7 +944,7 @@ equal_range(ForwardIter first, ForwardIter last, const T& value, Compared comp)
 
 /*****************************************************************************************/
 // generate
-// å°†å‡½æ•°å¯¹è±¡ gen çš„è¿ç®—ç»“æœå¯¹[first, last)å†…çš„æ¯ä¸ªå…ƒç´ èµ‹å€¼
+// ½«º¯Êı¶ÔÏó gen µÄÔËËã½á¹û¶Ô[first, last)ÄÚµÄÃ¿¸öÔªËØ¸³Öµ
 /*****************************************************************************************/
 template <class ForwardIter, class Generator>
 void generate(ForwardIter first, ForwardIter last, Generator gen)
@@ -957,7 +957,7 @@ void generate(ForwardIter first, ForwardIter last, Generator gen)
 
 /*****************************************************************************************/
 // generate_n
-// ç”¨å‡½æ•°å¯¹è±¡ gen è¿ç»­å¯¹ n ä¸ªå…ƒç´ èµ‹å€¼
+// ÓÃº¯Êı¶ÔÏó gen Á¬Ğø¶Ô n ¸öÔªËØ¸³Öµ
 /*****************************************************************************************/
 template <class ForwardIter, class Size, class Generator>
 void generate_n(ForwardIter first, Size n, Generator gen)
@@ -970,7 +970,7 @@ void generate_n(ForwardIter first, Size n, Generator gen)
 
 /*****************************************************************************************/
 // includes
-// åˆ¤æ–­åºåˆ—ä¸€S1 æ˜¯å¦åŒ…å«åºåˆ—äºŒS2
+// ÅĞ¶ÏĞòÁĞÒ»S1 ÊÇ·ñ°üº¬ĞòÁĞ¶şS2
 /*****************************************************************************************/
 template <class InputIter1, class InputIter2>
 bool includes(InputIter1 first1, InputIter1 last1,
@@ -994,7 +994,7 @@ bool includes(InputIter1 first1, InputIter1 last1,
   return first2 == last2;
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class InputIter1, class InputIter2, class Compared>
 bool includes(InputIter1 first1, InputIter1 last1,
               InputIter2 first2, InputIter2 last2, Compared comp)
@@ -1019,7 +1019,7 @@ bool includes(InputIter1 first1, InputIter1 last1,
 
 /*****************************************************************************************/
 // is_heap
-// æ£€æŸ¥[first, last)å†…çš„å…ƒç´ æ˜¯å¦ä¸ºä¸€ä¸ªå †ï¼Œå¦‚æœæ˜¯ï¼Œåˆ™è¿”å› true
+// ¼ì²é[first, last)ÄÚµÄÔªËØÊÇ·ñÎªÒ»¸ö¶Ñ£¬Èç¹ûÊÇ£¬Ôò·µ»Ø true
 /*****************************************************************************************/
 template <class RandomIter>
 bool is_heap(RandomIter first, RandomIter last)
@@ -1036,7 +1036,7 @@ bool is_heap(RandomIter first, RandomIter last)
   return true;
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class RandomIter, class Compared>
 bool is_heap(RandomIter first, RandomIter last, Compared comp)
 {
@@ -1054,7 +1054,7 @@ bool is_heap(RandomIter first, RandomIter last, Compared comp)
 
 /*****************************************************************************************/
 // is_sorted
-// æ£€æŸ¥[first, last)å†…çš„å…ƒç´ æ˜¯å¦å‡åºï¼Œå¦‚æœæ˜¯å‡åºï¼Œåˆ™è¿”å› true
+// ¼ì²é[first, last)ÄÚµÄÔªËØÊÇ·ñÉıĞò£¬Èç¹ûÊÇÉıĞò£¬Ôò·µ»Ø true
 /*****************************************************************************************/
 template <class ForwardIter>
 bool is_sorted(ForwardIter first, ForwardIter last)
@@ -1071,7 +1071,7 @@ bool is_sorted(ForwardIter first, ForwardIter last)
   return true;
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class ForwardIter, class Compared>
 bool is_sorted(ForwardIter first, ForwardIter last, Compared comp)
 {
@@ -1089,7 +1089,7 @@ bool is_sorted(ForwardIter first, ForwardIter last, Compared comp)
 
 /*****************************************************************************************/
 // median
-// æ‰¾å‡ºä¸‰ä¸ªå€¼çš„ä¸­é—´å€¼
+// ÕÒ³öÈı¸öÖµµÄÖĞ¼äÖµ
 /*****************************************************************************************/
 template <class T>
 const T& median(const T& left, const T& mid, const T& right)
@@ -1109,7 +1109,7 @@ const T& median(const T& left, const T& mid, const T& right)
     return mid;
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class T, class Compared>
 const T& median(const T& left, const T& mid, const T& right, Compared comp)
 {
@@ -1130,7 +1130,7 @@ const T& median(const T& left, const T& mid, const T& right, Compared comp)
 
 /*****************************************************************************************/
 // max_element
-// è¿”å›ä¸€ä¸ªè¿­ä»£å™¨ï¼ŒæŒ‡å‘åºåˆ—ä¸­æœ€å¤§çš„å…ƒç´ 
+// ·µ»ØÒ»¸öµü´úÆ÷£¬Ö¸ÏòĞòÁĞÖĞ×î´óµÄÔªËØ
 /*****************************************************************************************/
 template <class ForwardIter>
 ForwardIter max_element(ForwardIter first, ForwardIter last)
@@ -1146,7 +1146,7 @@ ForwardIter max_element(ForwardIter first, ForwardIter last)
   return result;
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class ForwardIter, class Compared>
 ForwardIter max_element(ForwardIter first, ForwardIter last, Compared comp)
 {
@@ -1163,7 +1163,7 @@ ForwardIter max_element(ForwardIter first, ForwardIter last, Compared comp)
 
 /*****************************************************************************************/
 // min_element
-// è¿”å›ä¸€ä¸ªè¿­ä»£å™¨ï¼ŒæŒ‡å‘åºåˆ—ä¸­æœ€å°çš„å…ƒç´ 
+// ·µ»ØÒ»¸öµü´úÆ÷£¬Ö¸ÏòĞòÁĞÖĞ×îĞ¡µÄÔªËØ
 /*****************************************************************************************/
 template <class ForwardIter>
 ForwardIter min_elememt(ForwardIter first, ForwardIter last)
@@ -1179,7 +1179,7 @@ ForwardIter min_elememt(ForwardIter first, ForwardIter last)
   return result;
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class ForwardIter, class Compared>
 ForwardIter min_elememt(ForwardIter first, ForwardIter last, Compared comp)
 {
@@ -1196,8 +1196,8 @@ ForwardIter min_elememt(ForwardIter first, ForwardIter last, Compared comp)
 
 /*****************************************************************************************/
 // swap_ranges
-// å°†[first1, last1)ä» first2 å¼€å§‹ï¼Œäº¤æ¢ç›¸åŒä¸ªæ•°å…ƒç´ 
-// äº¤æ¢çš„åŒºé—´é•¿åº¦å¿…é¡»ç›¸åŒï¼Œä¸¤ä¸ªåºåˆ—ä¸èƒ½äº’ç›¸é‡å ï¼Œè¿”å›ä¸€ä¸ªè¿­ä»£å™¨æŒ‡å‘åºåˆ—äºŒæœ€åä¸€ä¸ªè¢«äº¤æ¢å…ƒç´ çš„ä¸‹ä¸€ä½ç½®
+// ½«[first1, last1)´Ó first2 ¿ªÊ¼£¬½»»»ÏàÍ¬¸öÊıÔªËØ
+// ½»»»µÄÇø¼ä³¤¶È±ØĞëÏàÍ¬£¬Á½¸öĞòÁĞ²»ÄÜ»¥ÏàÖØµş£¬·µ»ØÒ»¸öµü´úÆ÷Ö¸ÏòĞòÁĞ¶ş×îºóÒ»¸ö±»½»»»ÔªËØµÄÏÂÒ»Î»ÖÃ
 /*****************************************************************************************/
 template <class ForwardIter1, class ForwardIter2>
 ForwardIter2
@@ -1213,8 +1213,8 @@ swap_ranges(ForwardIter1 first1, ForwardIter1 last1,
 
 /*****************************************************************************************/
 // transform
-// ç¬¬ä¸€ä¸ªç‰ˆæœ¬ä»¥å‡½æ•°å¯¹è±¡ unary_op ä½œç”¨äº[first, last)ä¸­çš„æ¯ä¸ªå…ƒç´ å¹¶å°†ç»“æœä¿å­˜è‡³ result ä¸­
-// ç¬¬äºŒä¸ªç‰ˆæœ¬ä»¥å‡½æ•°å¯¹è±¡ binary_op ä½œç”¨äºä¸¤ä¸ªåºåˆ—[first1, last1)ã€[first2, last2)çš„ç›¸åŒä½ç½®
+// µÚÒ»¸ö°æ±¾ÒÔº¯Êı¶ÔÏó unary_op ×÷ÓÃÓÚ[first, last)ÖĞµÄÃ¿¸öÔªËØ²¢½«½á¹û±£´æÖÁ result ÖĞ
+// µÚ¶ş¸ö°æ±¾ÒÔº¯Êı¶ÔÏó binary_op ×÷ÓÃÓÚÁ½¸öĞòÁĞ[first1, last1)¡¢[first2, last2)µÄÏàÍ¬Î»ÖÃ
 /*****************************************************************************************/
 template <class InputIter, class OutputIter, class UnaryOperation>
 OutputIter
@@ -1242,7 +1242,7 @@ transform(InputIter1 first1, InputIter1 last1,
 
 /*****************************************************************************************/
 // remove_copy
-// ç§»é™¤åŒºé—´å†…ä¸æŒ‡å®š value ç›¸ç­‰çš„å…ƒç´ ï¼Œå¹¶å°†ç»“æœå¤åˆ¶åˆ°ä»¥ result æ ‡ç¤ºèµ·å§‹ä½ç½®çš„å®¹å™¨ä¸Š
+// ÒÆ³ıÇø¼äÄÚÓëÖ¸¶¨ value ÏàµÈµÄÔªËØ£¬²¢½«½á¹û¸´ÖÆµ½ÒÔ result ±êÊ¾ÆğÊ¼Î»ÖÃµÄÈİÆ÷ÉÏ
 /*****************************************************************************************/
 template <class InputIter, class OutputIter, class T>
 OutputIter
@@ -1260,20 +1260,20 @@ remove_copy(InputIter first, InputIter last, OutputIter result, const T& value)
 
 /*****************************************************************************************/
 // remove
-// ç§»é™¤æ‰€æœ‰ä¸æŒ‡å®š value ç›¸ç­‰çš„å…ƒç´ 
-// å¹¶ä¸ä»å®¹å™¨ä¸­åˆ é™¤è¿™äº›å…ƒç´ ï¼Œæ‰€ä»¥ remove å’Œ remove_if ä¸é€‚ç”¨äº array
+// ÒÆ³ıËùÓĞÓëÖ¸¶¨ value ÏàµÈµÄÔªËØ
+// ²¢²»´ÓÈİÆ÷ÖĞÉ¾³ıÕâĞ©ÔªËØ£¬ËùÒÔ remove ºÍ remove_if ²»ÊÊÓÃÓÚ array
 /*****************************************************************************************/
 template <class ForwardIter, class T>
 ForwardIter remove(ForwardIter first, ForwardIter last, const T& value)
 {
-  first = mystl::find(first, last, value);  // åˆ©ç”¨ find æ‰¾å‡ºç¬¬ä¸€ä¸ªåŒ¹é…çš„åœ°æ–¹
+  first = mystl::find(first, last, value);  // ÀûÓÃ find ÕÒ³öµÚÒ»¸öÆ¥ÅäµÄµØ·½
   auto next = first;
   return first == last ? first : mystl::remove_copy(++next, last, first, value);
 }
 
 /*****************************************************************************************/
 // remove_copy_if
-// ç§»é™¤åŒºé—´å†…æ‰€æœ‰ä»¤ä¸€å…ƒæ“ä½œ unary_pred ä¸º true çš„å…ƒç´ ï¼Œå¹¶å°†ç»“æœå¤åˆ¶åˆ°ä»¥ result ä¸ºèµ·å§‹ä½ç½®çš„å®¹å™¨ä¸Š
+// ÒÆ³ıÇø¼äÄÚËùÓĞÁîÒ»Ôª²Ù×÷ unary_pred Îª true µÄÔªËØ£¬²¢½«½á¹û¸´ÖÆµ½ÒÔ result ÎªÆğÊ¼Î»ÖÃµÄÈİÆ÷ÉÏ
 /*****************************************************************************************/
 template <class InputIter, class OutputIter, class UnaryPredicate>
 OutputIter
@@ -1293,20 +1293,20 @@ remove_copy_if(InputIter first, InputIter last,
 
 /*****************************************************************************************/
 // remove_if
-// ç§»é™¤åŒºé—´å†…æ‰€æœ‰ä»¤ä¸€å…ƒæ“ä½œ unary_pred ä¸º true çš„å…ƒç´ 
+// ÒÆ³ıÇø¼äÄÚËùÓĞÁîÒ»Ôª²Ù×÷ unary_pred Îª true µÄÔªËØ
 /*****************************************************************************************/
 template <class ForwardIter, class UnaryPredicate>
 ForwardIter
 remove_if(ForwardIter first, ForwardIter last, UnaryPredicate unary_pred)
 {
-  first = mystl::find_if(first, last, unary_pred);  // åˆ©ç”¨ find_if æ‰¾å‡ºç¬¬ä¸€ä¸ªåŒ¹é…çš„åœ°æ–¹
+  first = mystl::find_if(first, last, unary_pred);  // ÀûÓÃ find_if ÕÒ³öµÚÒ»¸öÆ¥ÅäµÄµØ·½
   auto next = first;
   return first == last ? first : mystl::remove_copy_if(++next, last, first, unary_pred);
 }
 
 /*****************************************************************************************/
 // replace
-// å°†åŒºé—´å†…æ‰€æœ‰çš„ old_value éƒ½ä»¥ new_value æ›¿ä»£
+// ½«Çø¼äÄÚËùÓĞµÄ old_value ¶¼ÒÔ new_value Ìæ´ú
 /*****************************************************************************************/
 template <class ForwardIter, class T>
 void replace(ForwardIter first, ForwardIter last,
@@ -1321,7 +1321,7 @@ void replace(ForwardIter first, ForwardIter last,
 
 /*****************************************************************************************/
 // replace_copy
-// è¡Œä¸ºä¸ replace ç±»ä¼¼ï¼Œä¸åŒçš„æ˜¯å°†ç»“æœå¤åˆ¶åˆ° result æ‰€æŒ‡çš„å®¹å™¨ä¸­ï¼ŒåŸåºåˆ—æ²¡æœ‰æ”¹å˜
+// ĞĞÎªÓë replace ÀàËÆ£¬²»Í¬µÄÊÇ½«½á¹û¸´ÖÆµ½ result ËùÖ¸µÄÈİÆ÷ÖĞ£¬Ô­ĞòÁĞÃ»ÓĞ¸Ä±ä
 /*****************************************************************************************/
 template <class InputIter, class OutputIter, class T>
 OutputIter
@@ -1337,7 +1337,7 @@ replace_copy(InputIter first, InputIter last,
 
 /*****************************************************************************************/
 // replace_copy_if
-// è¡Œä¸ºä¸ replace_if ç±»ä¼¼ï¼Œä¸åŒçš„æ˜¯å°†ç»“æœå¤åˆ¶åˆ° result æ‰€æŒ‡çš„å®¹å™¨ä¸­ï¼ŒåŸåºåˆ—æ²¡æœ‰æ”¹å˜
+// ĞĞÎªÓë replace_if ÀàËÆ£¬²»Í¬µÄÊÇ½«½á¹û¸´ÖÆµ½ result ËùÖ¸µÄÈİÆ÷ÖĞ£¬Ô­ĞòÁĞÃ»ÓĞ¸Ä±ä
 /*****************************************************************************************/
 template <class InputIter, class OutputIter, class UnaryPredicate, class T>
 OutputIter
@@ -1353,7 +1353,7 @@ replace_copy_if(InputIter first, InputIter last,
 
 /*****************************************************************************************/
 // replace_if
-// å°†åŒºé—´å†…æ‰€æœ‰ä»¤ä¸€å…ƒæ“ä½œ unary_pred ä¸º true çš„å…ƒç´ éƒ½ç”¨ new_value æ›¿ä»£
+// ½«Çø¼äÄÚËùÓĞÁîÒ»Ôª²Ù×÷ unary_pred Îª true µÄÔªËØ¶¼ÓÃ new_value Ìæ´ú
 /*****************************************************************************************/
 template <class ForwardIter, class UnaryPredicate, class T>
 void replace_if(ForwardIter first, ForwardIter last,
@@ -1368,9 +1368,9 @@ void replace_if(ForwardIter first, ForwardIter last,
 
 /*****************************************************************************************/
 // reverse
-// å°†[first, last)åŒºé—´å†…çš„å…ƒç´ åè½¬
+// ½«[first, last)Çø¼äÄÚµÄÔªËØ·´×ª
 /*****************************************************************************************/
-// reverse_dispatch çš„ bidirectional_iterator_tag ç‰ˆæœ¬
+// reverse_dispatch µÄ bidirectional_iterator_tag °æ±¾
 template <class BidirectionalIter>
 void reverse_dispatch(BidirectionalIter first, BidirectionalIter last,
                       bidirectional_iterator_tag)
@@ -1383,7 +1383,7 @@ void reverse_dispatch(BidirectionalIter first, BidirectionalIter last,
   }
 }
 
-// reverse_dispatch çš„ random_access_iterator_tag ç‰ˆæœ¬
+// reverse_dispatch µÄ random_access_iterator_tag °æ±¾
 template <class RandomIter>
 void reverse_dispatch(RandomIter first, RandomIter last,
                       random_access_iterator_tag)
@@ -1400,7 +1400,7 @@ void reverse(BidirectionalIter first, BidirectionalIter last)
 
 /*****************************************************************************************/
 // reverse_copy
-// è¡Œä¸ºä¸ reverse ç±»ä¼¼ï¼Œä¸åŒçš„æ˜¯å°†ç»“æœå¤åˆ¶åˆ° result æ‰€æŒ‡å®¹å™¨ä¸­
+// ĞĞÎªÓë reverse ÀàËÆ£¬²»Í¬µÄÊÇ½«½á¹û¸´ÖÆµ½ result ËùÖ¸ÈİÆ÷ÖĞ
 /*****************************************************************************************/
 template <class BidirectionalIter, class OutputIter>
 OutputIter
@@ -1418,8 +1418,8 @@ reverse_copy(BidirectionalIter first, BidirectionalIter last,
 
 /*****************************************************************************************/
 // random_shuffle
-// å°†[first, last)å†…çš„å…ƒç´ æ¬¡åºéšæœºé‡æ’
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨ä¸€ä¸ªäº§ç”Ÿéšæœºæ•°çš„å‡½æ•°å¯¹è±¡ rand
+// ½«[first, last)ÄÚµÄÔªËØ´ÎĞòËæ»úÖØÅÅ
+// ÖØÔØ°æ±¾Ê¹ÓÃÒ»¸ö²úÉúËæ»úÊıµÄº¯Êı¶ÔÏó rand
 /*****************************************************************************************/
 template <class RandomIter>
 void random_shuffle(RandomIter first, RandomIter last)
@@ -1433,7 +1433,7 @@ void random_shuffle(RandomIter first, RandomIter last)
   }
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨ä¸€ä¸ªäº§ç”Ÿéšæœºæ•°çš„å‡½æ•°å¯¹è±¡ rand
+// ÖØÔØ°æ±¾Ê¹ÓÃÒ»¸ö²úÉúËæ»úÊıµÄº¯Êı¶ÔÏó rand
 template <class RandomIter, class RandomNumberGenerator>
 void random_shuffle(RandomIter first, RandomIter last,
                     RandomNumberGenerator& rand)
@@ -1449,10 +1449,10 @@ void random_shuffle(RandomIter first, RandomIter last,
 
 /*****************************************************************************************/
 // rotate
-// å°†[first, middle)å†…çš„å…ƒç´ å’Œ [middle, last)å†…çš„å…ƒç´ äº’æ¢ï¼Œå¯ä»¥äº¤æ¢ä¸¤ä¸ªé•¿åº¦ä¸åŒçš„åŒºé—´
-// è¿”å›äº¤æ¢å middle çš„ä½ç½®
+// ½«[first, middle)ÄÚµÄÔªËØºÍ [middle, last)ÄÚµÄÔªËØ»¥»»£¬¿ÉÒÔ½»»»Á½¸ö³¤¶È²»Í¬µÄÇø¼ä
+// ·µ»Ø½»»»ºó middle µÄÎ»ÖÃ
 /*****************************************************************************************/
-// rotate_dispatch çš„ forward_iterator_tag ç‰ˆæœ¬
+// rotate_dispatch µÄ forward_iterator_tag °æ±¾
 template <class ForwardIter>
 ForwardIter
 rotate_dispatch(ForwardIter first, ForwardIter middle,
@@ -1464,12 +1464,12 @@ rotate_dispatch(ForwardIter first, ForwardIter middle,
     mystl::swap(*first++, *first2++);
     if (first == middle)
       middle = first2;
-  } while (first2 != last);  // ååŠæ®µç§»åˆ°å‰é¢
+  } while (first2 != last);  // ºó°ë¶ÎÒÆµ½Ç°Ãæ
 
-  auto new_middle = first;   // è¿­ä»£å™¨è¿”å›çš„ä½ç½®
+  auto new_middle = first;   // µü´úÆ÷·µ»ØµÄÎ»ÖÃ
   first2 = middle;
   while (first2 != last)
-  {   // è°ƒæ•´å‰©ä½™å…ƒç´ 
+  {   // µ÷ÕûÊ£ÓàÔªËØ
     mystl::swap(*first++, *first2++);
     if (first == middle)
     {
@@ -1483,7 +1483,7 @@ rotate_dispatch(ForwardIter first, ForwardIter middle,
   return new_middle;
 }
 
-// rotate_dispatch çš„ bidirectional_iterator_tag ç‰ˆæœ¬
+// rotate_dispatch µÄ bidirectional_iterator_tag °æ±¾
 template <class BidirectionalIter>
 BidirectionalIter
 rotate_dispatch(BidirectionalIter first, BidirectionalIter middle,
@@ -1505,7 +1505,7 @@ rotate_dispatch(BidirectionalIter first, BidirectionalIter middle,
   }
 }
 
-// æ±‚æœ€å¤§å…¬å› å­
+// Çó×î´ó¹«Òò×Ó
 template <class EuclideanRingElement>
 EuclideanRingElement rgcd(EuclideanRingElement m, EuclideanRingElement n)
 {
@@ -1518,13 +1518,13 @@ EuclideanRingElement rgcd(EuclideanRingElement m, EuclideanRingElement n)
   return m;
 }
 
-// rotate_dispatch çš„ random_access_iterator_tag ç‰ˆæœ¬
+// rotate_dispatch µÄ random_access_iterator_tag °æ±¾
 template <class RandomIter>
 RandomIter
 rotate_dispatch(RandomIter first, RandomIter middle,
                 RandomIter last, random_access_iterator_tag)
 {
-  // å› ä¸ºæ˜¯ random access iteratorï¼Œæˆ‘ä»¬å¯ä»¥ç¡®å®šæ¯ä¸ªå…ƒç´ çš„ä½ç½®
+  // ÒòÎªÊÇ random access iterator£¬ÎÒÃÇ¿ÉÒÔÈ·¶¨Ã¿¸öÔªËØµÄÎ»ÖÃ
   auto n = last - first;
   auto l = middle - first;
   auto r = n - l;
@@ -1584,7 +1584,7 @@ rotate(ForwardIter first, ForwardIter middle, ForwardIter last)
 
 /*****************************************************************************************/
 // rotate_copy
-// è¡Œä¸ºä¸ rotate ç±»ä¼¼ï¼Œä¸åŒçš„æ˜¯å°†ç»“æœå¤åˆ¶åˆ° result æ‰€æŒ‡çš„å®¹å™¨ä¸­
+// ĞĞÎªÓë rotate ÀàËÆ£¬²»Í¬µÄÊÇ½«½á¹û¸´ÖÆµ½ result ËùÖ¸µÄÈİÆ÷ÖĞ
 /*****************************************************************************************/
 template <class ForwardIter, class OutputIter>
 ForwardIter
@@ -1596,7 +1596,7 @@ rotate_copy(ForwardIter first, ForwardIter middle,
 
 /*****************************************************************************************/
 // is_permutation
-// åˆ¤æ–­[first1,last1)æ˜¯å¦ä¸º[first2, last2)çš„æ’åˆ—ç»„åˆ
+// ÅĞ¶Ï[first1,last1)ÊÇ·ñÎª[first2, last2)µÄÅÅÁĞ×éºÏ
 /*****************************************************************************************/
 template <class ForwardIter1, class ForwardIter2, class BinaryPred>
 bool is_permutation_aux(ForwardIter1 first1, ForwardIter1 last1,
@@ -1613,7 +1613,7 @@ bool is_permutation_aux(ForwardIter1 first1, ForwardIter1 last1,
       return false;
   }
 
-  // å…ˆæ‰¾å‡ºç›¸åŒçš„å‰ç¼€æ®µ
+  // ÏÈÕÒ³öÏàÍ¬µÄÇ°×º¶Î
   for (; first1 != last1 && first2 != last2; ++first1, (void) ++first2)
   {
     if (!pred(*first1, *first2))
@@ -1634,7 +1634,7 @@ bool is_permutation_aux(ForwardIter1 first1, ForwardIter1 last1,
       return false;
   }
 
-  // åˆ¤æ–­å‰©ä½™éƒ¨åˆ†
+  // ÅĞ¶ÏÊ£Óà²¿·Ö
   for (auto i = first1; i != last1; ++i)
   {
     bool is_repeated = false;
@@ -1649,7 +1649,7 @@ bool is_permutation_aux(ForwardIter1 first1, ForwardIter1 last1,
 
     if (!is_repeated)
     {
-      // è®¡ç®— *i åœ¨ [first2, last2) çš„æ•°ç›®
+      // ¼ÆËã *i ÔÚ [first2, last2) µÄÊıÄ¿
       auto c2 = 0;
       for (auto j = first2; j != last2; ++j)
       {
@@ -1659,7 +1659,7 @@ bool is_permutation_aux(ForwardIter1 first1, ForwardIter1 last1,
       if (c2 == 0)
         return false;
 
-      // è®¡ç®— *i åœ¨ [first1, last1) çš„æ•°ç›®
+      // ¼ÆËã *i ÔÚ [first1, last1) µÄÊıÄ¿
       auto c1 = 1;
       auto j = i;
       for (++j; j != last1; ++j)
@@ -1696,7 +1696,7 @@ bool is_permutation(ForwardIter1 first1, ForwardIter1 last1,
 
 /*****************************************************************************************/
 // next_permutation
-// å–å¾—[first, last)æ‰€æ ‡ç¤ºåºåˆ—çš„ä¸‹ä¸€ä¸ªæ’åˆ—ç»„åˆï¼Œå¦‚æœæ²¡æœ‰ä¸‹ä¸€ä¸ªæ’åºç»„åˆï¼Œè¿”å› falseï¼Œå¦åˆ™è¿”å› true
+// È¡µÃ[first, last)Ëù±êÊ¾ĞòÁĞµÄÏÂÒ»¸öÅÅÁĞ×éºÏ£¬Èç¹ûÃ»ÓĞÏÂÒ»¸öÅÅĞò×éºÏ£¬·µ»Ø false£¬·ñÔò·µ»Ø true
 /*****************************************************************************************/
 template <class BidirectionalIter>
 bool next_permutation(BidirectionalIter first, BidirectionalIter last)
@@ -1708,11 +1708,11 @@ bool next_permutation(BidirectionalIter first, BidirectionalIter last)
   {
     auto ii = i;
     if (*--i < *ii)
-    {                 // æ‰¾åˆ°ç¬¬ä¸€å¯¹å°äºå…³ç³»çš„å…ƒç´ 
+    {                 // ÕÒµ½µÚÒ»¶ÔĞ¡ÓÚ¹ØÏµµÄÔªËØ
       auto j = last;
       while (!(*i < *--j)) {}
-      mystl::iter_swap(i, j);       // äº¤æ¢ iï¼Œj æ‰€æŒ‡å…ƒç´ 
-      mystl::reverse(ii, last);     // å°† ii ä¹‹åçš„æ‰€æœ‰å…ƒç´ åè½¬
+      mystl::iter_swap(i, j);       // ½»»» i£¬j ËùÖ¸ÔªËØ
+      mystl::reverse(ii, last);     // ½« ii Ö®ºóµÄËùÓĞÔªËØ·´×ª
       return true;
     }
     if (i == first)
@@ -1723,7 +1723,7 @@ bool next_permutation(BidirectionalIter first, BidirectionalIter last)
   }
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class BidirectionalIter, class Compared>
 bool next_permutation(BidirectionalIter first, BidirectionalIter last, Compared comp)
 {
@@ -1737,8 +1737,8 @@ bool next_permutation(BidirectionalIter first, BidirectionalIter last, Compared 
     {
       auto j = last;
       while (!comp(*i, *--j)) {}
-      mystl::iter_swap(i, j);       // äº¤æ¢ iï¼Œj æ‰€æŒ‡å…ƒç´ 
-      mystl::reverse(ii, last);     // å°† ii ä¹‹åçš„æ‰€æœ‰å…ƒç´ åè½¬
+      mystl::iter_swap(i, j);       // ½»»» i£¬j ËùÖ¸ÔªËØ
+      mystl::reverse(ii, last);     // ½« ii Ö®ºóµÄËùÓĞÔªËØ·´×ª
       return true;
     }
     if (i == first)
@@ -1751,7 +1751,7 @@ bool next_permutation(BidirectionalIter first, BidirectionalIter last, Compared 
 
 /*****************************************************************************************/
 // prev_permutation
-// å–å¾—[first, last)æ‰€æ ‡ç¤ºåºåˆ—çš„ä¸Šä¸€ä¸ªæ’åˆ—ç»„åˆï¼Œå¦‚æœæ²¡æœ‰ä¸Šä¸€ä¸ªæ’åºç»„åˆï¼Œè¿”å› falseï¼Œå¦åˆ™è¿”å› true
+// È¡µÃ[first, last)Ëù±êÊ¾ĞòÁĞµÄÉÏÒ»¸öÅÅÁĞ×éºÏ£¬Èç¹ûÃ»ÓĞÉÏÒ»¸öÅÅĞò×éºÏ£¬·µ»Ø false£¬·ñÔò·µ»Ø true
 /*****************************************************************************************/
 template <class BidirectionalIter>
 bool prev_permutation(BidirectionalIter first, BidirectionalIter last)
@@ -1763,11 +1763,11 @@ bool prev_permutation(BidirectionalIter first, BidirectionalIter last)
   {
     auto ii = i;
     if (*ii < *--i)
-    {                 // æ‰¾åˆ°ç¬¬ä¸€å¯¹å¤§äºå…³ç³»çš„å…ƒç´ 
+    {                 // ÕÒµ½µÚÒ»¶Ô´óÓÚ¹ØÏµµÄÔªËØ
       auto j = last;
       while (!(*--j < *i)) {}
-      mystl::iter_swap(i, j);       // äº¤æ¢iï¼Œj
-      mystl::reverse(ii, last);     // å°† ii ä¹‹åçš„æ‰€æœ‰å…ƒç´ åè½¬
+      mystl::iter_swap(i, j);       // ½»»»i£¬j
+      mystl::reverse(ii, last);     // ½« ii Ö®ºóµÄËùÓĞÔªËØ·´×ª
       return true;
     }
     if (i == first)
@@ -1778,7 +1778,7 @@ bool prev_permutation(BidirectionalIter first, BidirectionalIter last)
   }
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class BidirectionalIter, class Compared>
 bool prev_permutation(BidirectionalIter first, BidirectionalIter last, Compared comp)
 {
@@ -1792,8 +1792,8 @@ bool prev_permutation(BidirectionalIter first, BidirectionalIter last, Compared 
     {
       auto j = last;
       while (!comp(*--j, *i)) {}
-      mystl::iter_swap(i, j);       // äº¤æ¢iï¼Œj
-      mystl::reverse(ii, last);     // å°† ii ä¹‹åçš„æ‰€æœ‰å…ƒç´ åè½¬
+      mystl::iter_swap(i, j);       // ½»»»i£¬j
+      mystl::reverse(ii, last);     // ½« ii Ö®ºóµÄËùÓĞÔªËØ·´×ª
       return true;
     }
     if (i == first)
@@ -1806,7 +1806,7 @@ bool prev_permutation(BidirectionalIter first, BidirectionalIter last, Compared 
 
 /*****************************************************************************************/
 // merge
-// å°†ä¸¤ä¸ªç»è¿‡æ’åºçš„é›†åˆ S1 å’Œ S2 åˆå¹¶èµ·æ¥ç½®äºå¦ä¸€æ®µç©ºé—´ï¼Œè¿”å›ä¸€ä¸ªè¿­ä»£å™¨æŒ‡å‘æœ€åä¸€ä¸ªå…ƒç´ çš„ä¸‹ä¸€ä½ç½®
+// ½«Á½¸ö¾­¹ıÅÅĞòµÄ¼¯ºÏ S1 ºÍ S2 ºÏ²¢ÆğÀ´ÖÃÓÚÁíÒ»¶Î¿Õ¼ä£¬·µ»ØÒ»¸öµü´úÆ÷Ö¸Ïò×îºóÒ»¸öÔªËØµÄÏÂÒ»Î»ÖÃ
 /*****************************************************************************************/
 template <class InputIter1, class InputIter2, class OutputIter>
 OutputIter
@@ -1831,7 +1831,7 @@ merge(InputIter1 first1, InputIter1 last1,
   return mystl::copy(first2, last2, mystl::copy(first1, last1, result));
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class InputIter1, class InputIter2, class OutputIter, class Compared>
 OutputIter
 merge(InputIter1 first1, InputIter1 last1,
@@ -1857,9 +1857,9 @@ merge(InputIter1 first1, InputIter1 last1,
 
 /*****************************************************************************************/
 // inplace_merge
-// æŠŠè¿æ¥åœ¨ä¸€èµ·çš„ä¸¤ä¸ªæœ‰åºåºåˆ—ç»“åˆæˆå•ä¸€åºåˆ—å¹¶ä¿æŒæœ‰åº
+// °ÑÁ¬½ÓÔÚÒ»ÆğµÄÁ½¸öÓĞĞòĞòÁĞ½áºÏ³Éµ¥Ò»ĞòÁĞ²¢±£³ÖÓĞĞò
 /*****************************************************************************************/
-// æ²¡æœ‰ç¼“å†²åŒºçš„æƒ…å†µä¸‹åˆå¹¶
+// Ã»ÓĞ»º³åÇøµÄÇé¿öÏÂºÏ²¢
 template <class BidirectionalIter, class Distance>
 void merge_without_buffer(BidirectionalIter first, BidirectionalIter middle,
                           BidirectionalIter last, Distance len1, Distance len2)
@@ -1877,14 +1877,14 @@ void merge_without_buffer(BidirectionalIter first, BidirectionalIter middle,
   Distance len11 = 0;
   Distance len22 = 0;
   if (len1 > len2)
-  {  // åºåˆ—ä¸€è¾ƒé•¿ï¼Œæ‰¾åˆ°åºåˆ—ä¸€çš„ä¸­ç‚¹
+  {  // ĞòÁĞÒ»½Ï³¤£¬ÕÒµ½ĞòÁĞÒ»µÄÖĞµã
     len11 = len1 >> 1;
     mystl::advance(first_cut, len11);
     second_cut = mystl::lower_bound(middle, last, *first_cut);
     len22 = mystl::distance(middle, second_cut);
   }
   else
-  {              // åºåˆ—äºŒè¾ƒé•¿ï¼Œæ‰¾åˆ°åºåˆ—äºŒçš„ä¸­ç‚¹
+  {              // ĞòÁĞ¶ş½Ï³¤£¬ÕÒµ½ĞòÁĞ¶şµÄÖĞµã
     len22 = len2 >> 1;
     mystl::advance(second_cut, len22);
     first_cut = mystl::upper_bound(first, middle, *second_cut);
@@ -1951,13 +1951,13 @@ rotate_adaptive(BidirectionalIter1 first, BidirectionalIter1 middle,
   }
 }
 
-// æœ‰ç¼“å†²åŒºçš„æƒ…å†µä¸‹åˆå¹¶
+// ÓĞ»º³åÇøµÄÇé¿öÏÂºÏ²¢
 template <class BidirectionalIter, class Distance, class Pointer>
 void merge_adaptive(BidirectionalIter first, BidirectionalIter middle,
                     BidirectionalIter last, Distance len1, Distance len2,
                     Pointer buffer, Distance buffer_size)
 {
-  // åŒºé—´é•¿åº¦è¶³å¤Ÿæ”¾è¿›ç¼“å†²åŒº
+  // Çø¼ä³¤¶È×ã¹»·Å½ø»º³åÇø
   if (len1 <= len2 && len1 <= buffer_size)
   {
     Pointer buffer_end = mystl::copy(first, middle, buffer);
@@ -1969,7 +1969,7 @@ void merge_adaptive(BidirectionalIter first, BidirectionalIter middle,
     mystl::merge_backward(first, middle, buffer, buffer_end, last);
   }
   else
-  {  // åŒºé—´é•¿åº¦å¤ªé•¿ï¼Œåˆ†å‰²é€’å½’å¤„ç†
+  {  // Çø¼ä³¤¶ÈÌ«³¤£¬·Ö¸îµİ¹é´¦Àí
     auto first_cut = first;
     auto second_cut = middle;
     Distance len11 = 0;
@@ -2024,8 +2024,8 @@ inplace_merge(BidirectionalIter first, BidirectionalIter middle,
   mystl::inplace_merge_aux(first, middle, last, value_type(first));
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
-// æ²¡æœ‰ç¼“å†²åŒºçš„æƒ…å†µä¸‹åˆå¹¶
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
+// Ã»ÓĞ»º³åÇøµÄÇé¿öÏÂºÏ²¢
 template <class BidirectionalIter, class Distance, class Compared>
 void merge_without_buffer(BidirectionalIter first, BidirectionalIter middle,
                           BidirectionalIter last, Distance len1, Distance len2,
@@ -2093,13 +2093,13 @@ merge_backward(BidirectionalIter1 first1, BidirectionalIter1 last1,
   }
 }
 
-// æœ‰ç¼“å†²åŒºçš„æƒ…å†µä¸‹åˆå¹¶
+// ÓĞ»º³åÇøµÄÇé¿öÏÂºÏ²¢
 template <class BidirectionalIter, class Distance, class Pointer, class Compared>
 void merge_adaptive(BidirectionalIter first, BidirectionalIter middle,
                     BidirectionalIter last, Distance len1, Distance len2,
                     Pointer buffer, Distance buffer_size, Compared comp)
 {
-  // åŒºé—´é•¿åº¦è¶³å¤Ÿæ”¾è¿›ç¼“å†²åŒº
+  // Çø¼ä³¤¶È×ã¹»·Å½ø»º³åÇø
   if (len1 <= len2 && len1 <= buffer_size)
   {
     Pointer buffer_end = mystl::copy(first, middle, buffer);
@@ -2111,7 +2111,7 @@ void merge_adaptive(BidirectionalIter first, BidirectionalIter middle,
     mystl::merge_backward(first, middle, buffer, buffer_end, last, comp);
   }
   else
-  {  // åŒºé—´é•¿åº¦å¤ªé•¿ï¼Œåˆ†å‰²é€’å½’å¤„ç†
+  {  // Çø¼ä³¤¶ÈÌ«³¤£¬·Ö¸îµİ¹é´¦Àí
     auto first_cut = first;
     auto second_cut = middle;
     Distance len11 = 0;
@@ -2169,7 +2169,7 @@ inplace_merge(BidirectionalIter first, BidirectionalIter middle,
 
 /*****************************************************************************************/
 // partial_sort
-// å¯¹æ•´ä¸ªåºåˆ—åšéƒ¨åˆ†æ’åºï¼Œä¿è¯è¾ƒå°çš„ N ä¸ªå…ƒç´ ä»¥é€’å¢é¡ºåºç½®äº[first, first + N)ä¸­
+// ¶ÔÕû¸öĞòÁĞ×ö²¿·ÖÅÅĞò£¬±£Ö¤½ÏĞ¡µÄ N ¸öÔªËØÒÔµİÔöË³ĞòÖÃÓÚ[first, first + N)ÖĞ
 /*****************************************************************************************/
 template <class RandomIter>
 void partial_sort(RandomIter first, RandomIter middle,
@@ -2186,7 +2186,7 @@ void partial_sort(RandomIter first, RandomIter middle,
   mystl::sort_heap(first, middle);
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class RandomIter, class Compared>
 void partial_sort(RandomIter first, RandomIter middle,
                   RandomIter last, Compared comp)
@@ -2204,7 +2204,7 @@ void partial_sort(RandomIter first, RandomIter middle,
 
 /*****************************************************************************************/
 // partial_sort_copy
-// è¡Œä¸ºä¸ partial_sort ç±»ä¼¼ï¼Œä¸åŒçš„æ˜¯æŠŠæ’åºç»“æœå¤åˆ¶åˆ° result å®¹å™¨ä¸­
+// ĞĞÎªÓë partial_sort ÀàËÆ£¬²»Í¬µÄÊÇ°ÑÅÅĞò½á¹û¸´ÖÆµ½ result ÈİÆ÷ÖĞ
 /*****************************************************************************************/
 template <class InputIter, class RandomIter, class Distance>
 RandomIter
@@ -2244,7 +2244,7 @@ partial_sort_copy(InputIter first, InputIter last,
                                distance_type(result_first));
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class InputIter, class RandomIter, class Distance, class Compared>
 RandomIter
 psort_copy_aux(InputIter first, InputIter last,
@@ -2285,8 +2285,8 @@ partial_sort_copy(InputIter first, InputIter last,
 }
 /*****************************************************************************************/
 // partition
-// å¯¹åŒºé—´å†…çš„å…ƒç´ é‡æ’ï¼Œè¢«ä¸€å…ƒæ¡ä»¶è¿ç®—åˆ¤å®šä¸º true çš„å…ƒç´ ä¼šæ”¾åˆ°åŒºé—´çš„å‰æ®µ
-// è¯¥å‡½æ•°ä¸ä¿è¯å…ƒç´ çš„åŸå§‹ç›¸å¯¹ä½ç½®
+// ¶ÔÇø¼äÄÚµÄÔªËØÖØÅÅ£¬±»Ò»ÔªÌõ¼şÔËËãÅĞ¶¨Îª true µÄÔªËØ»á·Åµ½Çø¼äµÄÇ°¶Î
+// ¸Ãº¯Êı²»±£Ö¤ÔªËØµÄÔ­Ê¼Ïà¶ÔÎ»ÖÃ
 /*****************************************************************************************/
 template <class BidirectionalIter, class UnaryPredicate>
 BidirectionalIter
@@ -2316,8 +2316,8 @@ partition(BidirectionalIter first, BidirectionalIter last,
 
 /*****************************************************************************************/
 // partition_copy
-// è¡Œä¸ºä¸ partition ç±»ä¼¼ï¼Œä¸åŒçš„æ˜¯ï¼Œå°†è¢«ä¸€å…ƒæ“ä½œç¬¦åˆ¤å®šä¸º true çš„æ”¾åˆ° result_true çš„è¾“å‡ºåŒºé—´
-// å…¶ä½™æ”¾åˆ° result_false çš„è¾“å‡ºåŒºé—´ï¼Œå¹¶è¿”å›ä¸€ä¸ª mystl::pair æŒ‡å‘è¿™ä¸¤ä¸ªåŒºé—´çš„å°¾éƒ¨
+// ĞĞÎªÓë partition ÀàËÆ£¬²»Í¬µÄÊÇ£¬½«±»Ò»Ôª²Ù×÷·ûÅĞ¶¨Îª true µÄ·Åµ½ result_true µÄÊä³öÇø¼ä
+// ÆäÓà·Åµ½ result_false µÄÊä³öÇø¼ä£¬²¢·µ»ØÒ»¸ö mystl::pair Ö¸ÏòÕâÁ½¸öÇø¼äµÄÎ²²¿
 /*****************************************************************************************/
 template <class InputIter, class OutputIter1, class OutputIter2, class UnaryPredicate>
 mystl::pair<OutputIter1, OutputIter2>
@@ -2341,21 +2341,21 @@ partition_copy(InputIter first, InputIter last,
 
 /*****************************************************************************************/
 // sort
-// å°†[first, last)å†…çš„å…ƒç´ ä»¥é€’å¢çš„æ–¹å¼æ’åº
+// ½«[first, last)ÄÚµÄÔªËØÒÔµİÔöµÄ·½Ê½ÅÅĞò
 /*****************************************************************************************/
-constexpr static size_t kSmallSectionSize = 128;  // å°å‹åŒºé—´çš„å¤§å°ï¼Œåœ¨è¿™ä¸ªå¤§å°å†…é‡‡ç”¨æ’å…¥æ’åº
+constexpr static size_t kSmallSectionSize = 128;  // Ğ¡ĞÍÇø¼äµÄ´óĞ¡£¬ÔÚÕâ¸ö´óĞ¡ÄÚ²ÉÓÃ²åÈëÅÅĞò
 
-                                                  // ç”¨äºæ§åˆ¶åˆ†å‰²æ¶åŒ–çš„æƒ…å†µ
+                                                  // ÓÃÓÚ¿ØÖÆ·Ö¸î¶ñ»¯µÄÇé¿ö
 template <class Size>
 Size slg2(Size n)
-{ // æ‰¾å‡º lgk <= n çš„ k çš„æœ€å¤§å€¼
+{ // ÕÒ³ö lgk <= n µÄ k µÄ×î´óÖµ
   Size k = 0;
   for (; n > 1; n >>= 1)
     ++k;
   return k;
 }
 
-// åˆ†å‰²å‡½æ•° unchecked_partition
+// ·Ö¸îº¯Êı unchecked_partition
 template <class RandomIter, class T>
 RandomIter
 unchecked_partition(RandomIter first, RandomIter last, const T& pivot)
@@ -2374,15 +2374,15 @@ unchecked_partition(RandomIter first, RandomIter last, const T& pivot)
   }
 }
 
-// å†…çœå¼æ’åºï¼Œå…ˆè¿›è¡Œ quick sortï¼Œå½“åˆ†å‰²è¡Œä¸ºæœ‰æ¶åŒ–å€¾å‘æ—¶ï¼Œæ”¹ç”¨ heap sort
+// ÄÚÊ¡Ê½ÅÅĞò£¬ÏÈ½øĞĞ quick sort£¬µ±·Ö¸îĞĞÎªÓĞ¶ñ»¯ÇãÏòÊ±£¬¸ÄÓÃ heap sort
 template <class RandomIter, class Size>
 void intro_sort(RandomIter first, RandomIter last, Size depth_limit)
 {
   while (static_cast<size_t>(last - first) > kSmallSectionSize)
   {
     if (depth_limit == 0)
-    {                      // åˆ°è¾¾æœ€å¤§åˆ†å‰²æ·±åº¦é™åˆ¶
-      mystl::partial_sort(first, last, last);  // æ”¹ç”¨ heap_sort
+    {                      // µ½´ï×î´ó·Ö¸îÉî¶ÈÏŞÖÆ
+      mystl::partial_sort(first, last, last);  // ¸ÄÓÃ heap_sort
       return;
     }
     --depth_limit;
@@ -2393,7 +2393,7 @@ void intro_sort(RandomIter first, RandomIter last, Size depth_limit)
   }
 }
 
-// æ’å…¥æ’åºè¾…åŠ©å‡½æ•° unchecked_linear_insert
+// ²åÈëÅÅĞò¸¨Öúº¯Êı unchecked_linear_insert
 template <class RandomIter, class T>
 void unchecked_linear_insert(RandomIter last, const T& value)
 {
@@ -2408,7 +2408,7 @@ void unchecked_linear_insert(RandomIter last, const T& value)
   *last = value;
 }
 
-// æ’å…¥æ’åºå‡½æ•° unchecked_insertion_sort
+// ²åÈëÅÅĞòº¯Êı unchecked_insertion_sort
 template <class RandomIter>
 void unchecked_insertion_sort(RandomIter first, RandomIter last)
 {
@@ -2418,7 +2418,7 @@ void unchecked_insertion_sort(RandomIter first, RandomIter last)
   }
 }
 
-// æ’å…¥æ’åºå‡½æ•° insertion_sort
+// ²åÈëÅÅĞòº¯Êı insertion_sort
 template <class RandomIter>
 void insertion_sort(RandomIter first, RandomIter last)
 {
@@ -2439,7 +2439,7 @@ void insertion_sort(RandomIter first, RandomIter last)
   }
 }
 
-// æœ€ç»ˆæ’å…¥æ’åºå‡½æ•° final_insertion_sort
+// ×îÖÕ²åÈëÅÅĞòº¯Êı final_insertion_sort
 template <class RandomIter>
 void final_insertion_sort(RandomIter first, RandomIter last)
 {
@@ -2459,14 +2459,14 @@ void sort(RandomIter first, RandomIter last)
 {
   if (first != last)
   {
-    // å†…çœå¼æ’åºï¼Œå°†åŒºé—´åˆ†ä¸ºä¸€ä¸ªä¸ªå°åŒºé—´ï¼Œç„¶åå¯¹æ•´ä½“è¿›è¡Œæ’å…¥æ’åº
+    // ÄÚÊ¡Ê½ÅÅĞò£¬½«Çø¼ä·ÖÎªÒ»¸ö¸öĞ¡Çø¼ä£¬È»ºó¶ÔÕûÌå½øĞĞ²åÈëÅÅĞò
     mystl::intro_sort(first, last, slg2(last - first) * 2);
     mystl::final_insertion_sort(first, last);
   }
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
-// åˆ†å‰²å‡½æ•° unchecked_partition
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
+// ·Ö¸îº¯Êı unchecked_partition
 template <class RandomIter, class T, class Compared>
 RandomIter
 unchecked_partition(RandomIter first, RandomIter last,
@@ -2486,7 +2486,7 @@ unchecked_partition(RandomIter first, RandomIter last,
   }
 }
 
-// å†…çœå¼æ’åºï¼Œå…ˆè¿›è¡Œ quick sortï¼Œå½“åˆ†å‰²è¡Œä¸ºæœ‰æ¶åŒ–å€¾å‘æ—¶ï¼Œæ”¹ç”¨ heap sort
+// ÄÚÊ¡Ê½ÅÅĞò£¬ÏÈ½øĞĞ quick sort£¬µ±·Ö¸îĞĞÎªÓĞ¶ñ»¯ÇãÏòÊ±£¬¸ÄÓÃ heap sort
 template <class RandomIter, class Size, class Compared>
 void intro_sort(RandomIter first, RandomIter last,
                 Size depth_limit, Compared comp)
@@ -2494,8 +2494,8 @@ void intro_sort(RandomIter first, RandomIter last,
   while (static_cast<size_t>(last - first) > kSmallSectionSize)
   {
     if (depth_limit == 0)
-    {                            // åˆ°è¾¾æœ€å¤§åˆ†å‰²æ·±åº¦é™åˆ¶
-      mystl::partial_sort(first, last, last, comp);  // æ”¹ç”¨ heap_sort
+    {                            // µ½´ï×î´ó·Ö¸îÉî¶ÈÏŞÖÆ
+      mystl::partial_sort(first, last, last, comp);  // ¸ÄÓÃ heap_sort
       return;
     }
     --depth_limit;
@@ -2506,14 +2506,14 @@ void intro_sort(RandomIter first, RandomIter last,
   }
 }
 
-// æ’å…¥æ’åºè¾…åŠ©å‡½æ•° unchecked_linear_insert
+// ²åÈëÅÅĞò¸¨Öúº¯Êı unchecked_linear_insert
 template <class RandomIter, class T, class Compared>
 void unchecked_linear_insert(RandomIter last, const T& value, Compared comp)
 {
   auto next = last;
   --next;
   while (comp(value, *next))
-  {  // ä»å°¾éƒ¨å¼€å§‹å¯»æ‰¾ç¬¬ä¸€ä¸ªå¯æ’å…¥ä½ç½®
+  {  // ´ÓÎ²²¿¿ªÊ¼Ñ°ÕÒµÚÒ»¸ö¿É²åÈëÎ»ÖÃ
     *last = *next;
     last = next;
     --next;
@@ -2521,7 +2521,7 @@ void unchecked_linear_insert(RandomIter last, const T& value, Compared comp)
   *last = value;
 }
 
-// æ’å…¥æ’åºå‡½æ•° unchecked_insertion_sort
+// ²åÈëÅÅĞòº¯Êı unchecked_insertion_sort
 template <class RandomIter, class Compared>
 void unchecked_insertion_sort(RandomIter first, RandomIter last,
                               Compared comp)
@@ -2532,7 +2532,7 @@ void unchecked_insertion_sort(RandomIter first, RandomIter last,
   }
 }
 
-// æ’å…¥æ’åºå‡½æ•° insertion_sort
+// ²åÈëÅÅĞòº¯Êı insertion_sort
 template <class RandomIter, class Compared>
 void insertion_sort(RandomIter first, RandomIter last, Compared comp)
 {
@@ -2553,7 +2553,7 @@ void insertion_sort(RandomIter first, RandomIter last, Compared comp)
   }
 }
 
-// æœ€ç»ˆæ’å…¥æ’åºå‡½æ•° final_insertion_sort
+// ×îÖÕ²åÈëÅÅĞòº¯Êı final_insertion_sort
 template <class RandomIter, class Compared>
 void final_insertion_sort(RandomIter first, RandomIter last, Compared comp)
 {
@@ -2573,7 +2573,7 @@ void sort(RandomIter first, RandomIter last, Compared comp)
 {
   if (first != last)
   {
-    // å†…çœå¼æ’åºï¼Œå°†åŒºé—´åˆ†ä¸ºä¸€ä¸ªä¸ªå°åŒºé—´ï¼Œç„¶åå¯¹æ•´ä½“è¿›è¡Œæ’å…¥æ’åº
+    // ÄÚÊ¡Ê½ÅÅĞò£¬½«Çø¼ä·ÖÎªÒ»¸ö¸öĞ¡Çø¼ä£¬È»ºó¶ÔÕûÌå½øĞĞ²åÈëÅÅĞò
     mystl::intro_sort(first, last, slg2(last - first) * 2, comp);
     mystl::final_insertion_sort(first, last, comp);
   }
@@ -2581,7 +2581,7 @@ void sort(RandomIter first, RandomIter last, Compared comp)
 
 /*****************************************************************************************/
 // nth_element
-// å¯¹åºåˆ—é‡æ’ï¼Œä½¿å¾—æ‰€æœ‰å°äºç¬¬ n ä¸ªå…ƒç´ çš„å…ƒç´ å‡ºç°åœ¨å®ƒçš„å‰é¢ï¼Œå¤§äºå®ƒçš„å‡ºç°åœ¨å®ƒçš„åé¢
+// ¶ÔĞòÁĞÖØÅÅ£¬Ê¹µÃËùÓĞĞ¡ÓÚµÚ n ¸öÔªËØµÄÔªËØ³öÏÖÔÚËüµÄÇ°Ãæ£¬´óÓÚËüµÄ³öÏÖÔÚËüµÄºóÃæ
 /*****************************************************************************************/
 template <class RandomIter>
 void nth_element(RandomIter first, RandomIter nth,
@@ -2594,15 +2594,15 @@ void nth_element(RandomIter first, RandomIter nth,
     auto cut = mystl::unchecked_partition(first, last, mystl::median(*first,
 										  *(first + (last - first) / 2),
 										  *(last - 1)));
-    if (cut <= nth)  // å¦‚æœ nth ä½äºå³æ®µ
-      first = cut;   // å¯¹å³æ®µè¿›è¡Œåˆ†å‰²
+    if (cut <= nth)  // Èç¹û nth Î»ÓÚÓÒ¶Î
+      first = cut;   // ¶ÔÓÒ¶Î½øĞĞ·Ö¸î
     else
-      last = cut;    // å¯¹å·¦æ®µè¿›è¡Œåˆ†å‰²
+      last = cut;    // ¶Ô×ó¶Î½øĞĞ·Ö¸î
   }
   mystl::insertion_sort(first, last);
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class RandomIter, class Compared>
 void nth_element(RandomIter first, RandomIter nth,
                  RandomIter last, Compared comp)
@@ -2614,19 +2614,19 @@ void nth_element(RandomIter first, RandomIter nth,
     auto cut = mystl::unchecked_partition(first, last, mystl::median(*first, 
 										  *(first + (last - first) / 2),
 										  *(last - 1)), comp);
-    if (cut <= nth)  // å¦‚æœ nth ä½äºå³æ®µ
-      first = cut;   // å¯¹å³æ®µè¿›è¡Œåˆ†å‰²
+    if (cut <= nth)  // Èç¹û nth Î»ÓÚÓÒ¶Î
+      first = cut;   // ¶ÔÓÒ¶Î½øĞĞ·Ö¸î
     else
-      last = cut;    // å¯¹å·¦æ®µè¿›è¡Œåˆ†å‰²
+      last = cut;    // ¶Ô×ó¶Î½øĞĞ·Ö¸î
   }
   mystl::insertion_sort(first, last, comp);
 }
 
 /*****************************************************************************************/
 // unique_copy
-// ä»[first, last)ä¸­å°†å…ƒç´ å¤åˆ¶åˆ° result ä¸Šï¼Œåºåˆ—å¿…é¡»æœ‰åºï¼Œå¦‚æœæœ‰é‡å¤çš„å…ƒç´ ï¼Œåªä¼šå¤åˆ¶ä¸€æ¬¡
+// ´Ó[first, last)ÖĞ½«ÔªËØ¸´ÖÆµ½ result ÉÏ£¬ĞòÁĞ±ØĞëÓĞĞò£¬Èç¹ûÓĞÖØ¸´µÄÔªËØ£¬Ö»»á¸´ÖÆÒ»´Î
 /*****************************************************************************************/
-// unique_copy_dispatch çš„ forward_iterator_tag ç‰ˆæœ¬
+// unique_copy_dispatch µÄ forward_iterator_tag °æ±¾
 template <class InputIter, class ForwardIter>
 ForwardIter
 unique_copy_dispatch(InputIter first, InputIter last,
@@ -2641,8 +2641,8 @@ unique_copy_dispatch(InputIter first, InputIter last,
   return ++result;
 }
 
-// unique_copy_dispatch çš„ output_iterator_tag ç‰ˆæœ¬
-// ç”±äº output iterator åªèƒ½è¿›è¡Œåªè¯»æ“ä½œï¼Œæ‰€ä»¥ä¸èƒ½æœ‰ *result != *first è¿™æ ·çš„åˆ¤æ–­
+// unique_copy_dispatch µÄ output_iterator_tag °æ±¾
+// ÓÉÓÚ output iterator Ö»ÄÜ½øĞĞÖ»¶Á²Ù×÷£¬ËùÒÔ²»ÄÜÓĞ *result != *first ÕâÑùµÄÅĞ¶Ï
 template <class InputIter, class OutputIter>
 OutputIter
 unique_copy_dispatch(InputIter first, InputIter last,
@@ -2670,8 +2670,8 @@ unique_copy(InputIter first, InputIter last, OutputIter result)
   return mystl::unique_copy_dispatch(first, last, result, iterator_category(result));
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
-// unique_copy_dispatch çš„ forward_iterator_tag ç‰ˆæœ¬
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
+// unique_copy_dispatch µÄ forward_iterator_tag °æ±¾
 template <class InputIter, class ForwardIter, class Compared>
 ForwardIter
 unique_copy_dispatch(InputIter first, InputIter last,
@@ -2686,8 +2686,8 @@ unique_copy_dispatch(InputIter first, InputIter last,
   return ++result;
 }
 
-// unique_copy_dispatch çš„ output_iterator_tag ç‰ˆæœ¬
-// ç”±äº output iterator åªèƒ½è¿›è¡Œåªè¯»æ“ä½œï¼Œæ‰€ä»¥ä¸èƒ½æœ‰ *result != *first è¿™æ ·çš„åˆ¤æ–­
+// unique_copy_dispatch µÄ output_iterator_tag °æ±¾
+// ÓÉÓÚ output iterator Ö»ÄÜ½øĞĞÖ»¶Á²Ù×÷£¬ËùÒÔ²»ÄÜÓĞ *result != *first ÕâÑùµÄÅĞ¶Ï
 template <class InputIter, class OutputIter, class Compared>
 OutputIter
 unique_copy_dispatch(InputIter first, InputIter last,
@@ -2717,7 +2717,7 @@ unique_copy(InputIter first, InputIter last, OutputIter result, Compared comp)
 
 /*****************************************************************************************/
 // unique
-// ç§»é™¤[first, last)å†…é‡å¤çš„å…ƒç´ ï¼Œåºåˆ—å¿…é¡»æœ‰åºï¼Œå’Œ remove ç±»ä¼¼ï¼Œå®ƒä¹Ÿä¸èƒ½çœŸæ­£çš„åˆ é™¤é‡å¤å…ƒç´ 
+// ÒÆ³ı[first, last)ÄÚÖØ¸´µÄÔªËØ£¬ĞòÁĞ±ØĞëÓĞĞò£¬ºÍ remove ÀàËÆ£¬ËüÒ²²»ÄÜÕæÕıµÄÉ¾³ıÖØ¸´ÔªËØ
 /*****************************************************************************************/
 template <class ForwardIter>
 ForwardIter unique(ForwardIter first, ForwardIter last)
@@ -2726,7 +2726,7 @@ ForwardIter unique(ForwardIter first, ForwardIter last)
   return mystl::unique_copy(first, last, first);
 }
 
-// é‡è½½ç‰ˆæœ¬ä½¿ç”¨å‡½æ•°å¯¹è±¡ comp ä»£æ›¿æ¯”è¾ƒæ“ä½œ
+// ÖØÔØ°æ±¾Ê¹ÓÃº¯Êı¶ÔÏó comp ´úÌæ±È½Ï²Ù×÷
 template <class ForwardIter, class Compared>
 ForwardIter unique(ForwardIter first, ForwardIter last, Compared comp)
 {

@@ -1,9 +1,9 @@
-ï»¿#ifndef MYTINYSTL_QUEUE_H_
+#ifndef MYTINYSTL_QUEUE_H_
 #define MYTINYSTL_QUEUE_H_
 
-// è¿™ä¸ªå¤´æ–‡ä»¶åŒ…å«äº†ä¸¤ä¸ªæ¨¡æ¿ç±» queue å’Œ priority_queue
-// queue          : é˜Ÿåˆ—
-// priority_queue : ä¼˜å…ˆé˜Ÿåˆ—
+// Õâ¸öÍ·ÎÄ¼ş°üº¬ÁËÁ½¸öÄ£°åÀà queue ºÍ priority_queue
+// queue          : ¶ÓÁĞ
+// priority_queue : ÓÅÏÈ¶ÓÁĞ
 
 #include "deque.h"
 #include "vector.h"
@@ -13,14 +13,14 @@
 namespace mystl
 {
 
-// æ¨¡æ¿ç±» queue
-// å‚æ•°ä¸€ä»£è¡¨æ•°æ®ç±»å‹ï¼Œå‚æ•°äºŒä»£è¡¨åº•å±‚å®¹å™¨ç±»å‹ï¼Œç¼ºçœä½¿ç”¨ mystl::deque ä½œä¸ºåº•å±‚å®¹å™¨
+// Ä£°åÀà queue
+// ²ÎÊıÒ»´ú±íÊı¾İÀàĞÍ£¬²ÎÊı¶ş´ú±íµ×²ãÈİÆ÷ÀàĞÍ£¬È±Ê¡Ê¹ÓÃ mystl::deque ×÷Îªµ×²ãÈİÆ÷
 template <class T, class Container = mystl::deque<T>>
 class queue
 {
 public:
   typedef Container                           container_type;
-  // ä½¿ç”¨åº•å±‚å®¹å™¨çš„å‹åˆ«
+  // Ê¹ÓÃµ×²ãÈİÆ÷µÄĞÍ±ğ
   typedef typename Container::value_type      value_type;
   typedef typename Container::size_type       size_type;
   typedef typename Container::reference       reference;
@@ -29,10 +29,10 @@ public:
   static_assert(std::is_same<T, value_type>::value,
                 "the value_type of Container should be same with T");
 private:
-  container_type c_;  // ç”¨åº•å±‚å®¹å™¨è¡¨ç° queue
+  container_type c_;  // ÓÃµ×²ãÈİÆ÷±íÏÖ queue
 
 public:
-  // æ„é€ ã€å¤åˆ¶ã€ç§»åŠ¨å‡½æ•°
+  // ¹¹Ôì¡¢¸´ÖÆ¡¢ÒÆ¶¯º¯Êı
 
   queue() = default;
 
@@ -93,17 +93,17 @@ public:
 
   ~queue() = default;
 
-  // è®¿é—®å…ƒç´ ç›¸å…³æ“ä½œ
+  // ·ÃÎÊÔªËØÏà¹Ø²Ù×÷
   reference       front()       { return c_.front(); }
   const_reference front() const { return c_.front(); }
   reference       back()        { return c_.back(); }
   const_reference back()  const { return c_.back(); }
 
-  // å®¹é‡ç›¸å…³æ“ä½œ
+  // ÈİÁ¿Ïà¹Ø²Ù×÷
   bool      empty() const noexcept { return c_.empty(); }
   size_type size()  const noexcept { return c_.size(); }
 
-  // ä¿®æ”¹å®¹å™¨ç›¸å…³æ“ä½œ
+  // ĞŞ¸ÄÈİÆ÷Ïà¹Ø²Ù×÷
   template <class ...Args>
   void emplace(Args&& ...args)
   { c_.emplace_back(mystl::forward<Args>(args)...); }
@@ -130,7 +130,7 @@ public:
   friend bool operator< (const queue& lhs, const queue& rhs) { return lhs.c_ <  rhs.c_; }
 };
 
-// é‡è½½æ¯”è¾ƒæ“ä½œç¬¦
+// ÖØÔØ±È½Ï²Ù×÷·û
 template <class T, class Container>
 bool operator==(const queue<T, Container>& lhs, const queue<T, Container>& rhs)
 {
@@ -167,7 +167,7 @@ bool operator>=(const queue<T, Container>& lhs, const queue<T, Container>& rhs)
   return !(lhs < rhs);
 }
 
-// é‡è½½ mystl çš„ swap
+// ÖØÔØ mystl µÄ swap
 template <class T, class Container>
 void swap(queue<T, Container>& lhs, queue<T, Container>& rhs) noexcept(noexcept(lhs.swap(rhs)))
 {
@@ -176,9 +176,9 @@ void swap(queue<T, Container>& lhs, queue<T, Container>& rhs) noexcept(noexcept(
 
 /*****************************************************************************************/
 
-// æ¨¡æ¿ç±» priority_queue
-// å‚æ•°ä¸€ä»£è¡¨æ•°æ®ç±»å‹ï¼Œå‚æ•°äºŒä»£è¡¨å®¹å™¨ç±»å‹ï¼Œç¼ºçœä½¿ç”¨ mystl::vector ä½œä¸ºåº•å±‚å®¹å™¨
-// å‚æ•°ä¸‰ä»£è¡¨æ¯”è¾ƒæƒå€¼çš„æ–¹å¼ï¼Œç¼ºçœä½¿ç”¨ mystl::less ä½œä¸ºæ¯”è¾ƒæ–¹å¼
+// Ä£°åÀà priority_queue
+// ²ÎÊıÒ»´ú±íÊı¾İÀàĞÍ£¬²ÎÊı¶ş´ú±íÈİÆ÷ÀàĞÍ£¬È±Ê¡Ê¹ÓÃ mystl::vector ×÷Îªµ×²ãÈİÆ÷
+// ²ÎÊıÈı´ú±í±È½ÏÈ¨ÖµµÄ·½Ê½£¬È±Ê¡Ê¹ÓÃ mystl::less ×÷Îª±È½Ï·½Ê½
 template <class T, class Container = mystl::vector<T>,
   class Compare = mystl::less<typename Container::value_type>>
 class priority_queue
@@ -186,7 +186,7 @@ class priority_queue
 public:
   typedef Container                           container_type;
   typedef Compare                             value_compare;
-  // ä½¿ç”¨åº•å±‚å®¹å™¨çš„å‹åˆ«
+  // Ê¹ÓÃµ×²ãÈİÆ÷µÄĞÍ±ğ
   typedef typename Container::value_type      value_type;
   typedef typename Container::size_type       size_type;
   typedef typename Container::reference       reference;
@@ -196,11 +196,11 @@ public:
                 "the value_type of Container should be same with T");
 
 private:
-  container_type c_;     // ç”¨åº•å±‚å®¹å™¨æ¥è¡¨ç° priority_queue
-  value_compare  comp_;  // æƒå€¼æ¯”è¾ƒçš„æ ‡å‡†
+  container_type c_;     // ÓÃµ×²ãÈİÆ÷À´±íÏÖ priority_queue
+  value_compare  comp_;  // È¨Öµ±È½ÏµÄ±ê×¼
 
 public:
-  // æ„é€ ã€å¤åˆ¶ã€ç§»åŠ¨å‡½æ•°
+  // ¹¹Ôì¡¢¸´ÖÆ¡¢ÒÆ¶¯º¯Êı
   priority_queue() = default;
 
   priority_queue(const Compare& c) 
@@ -280,14 +280,14 @@ public:
 
 public:
 
-  // è®¿é—®å…ƒç´ ç›¸å…³æ“ä½œ
+  // ·ÃÎÊÔªËØÏà¹Ø²Ù×÷
   const_reference top() const { return c_.front(); }
 
-  // å®¹é‡ç›¸å…³æ“ä½œ
+  // ÈİÁ¿Ïà¹Ø²Ù×÷
   bool      empty() const noexcept { return c_.empty(); }
   size_type size()  const noexcept { return c_.size(); }
 
-  // ä¿®æ”¹å®¹å™¨ç›¸å…³æ“ä½œ
+  // ĞŞ¸ÄÈİÆ÷Ïà¹Ø²Ù×÷
   template <class... Args>
   void emplace(Args&& ...args)
   {
@@ -336,7 +336,7 @@ public:
   }
 };
 
-// é‡è½½æ¯”è¾ƒæ“ä½œç¬¦
+// ÖØÔØ±È½Ï²Ù×÷·û
 template <class T, class Container, class Compare>
 bool operator==(priority_queue<T, Container, Compare>& lhs,
                 priority_queue<T, Container, Compare>& rhs)
@@ -351,7 +351,7 @@ bool operator!=(priority_queue<T, Container, Compare>& lhs,
   return lhs != rhs;
 }
 
-// é‡è½½ mystl çš„ swap
+// ÖØÔØ mystl µÄ swap
 template <class T, class Container, class Compare>
 void swap(priority_queue<T, Container, Compare>& lhs, 
           priority_queue<T, Container, Compare>& rhs) noexcept(noexcept(lhs.swap(rhs)))

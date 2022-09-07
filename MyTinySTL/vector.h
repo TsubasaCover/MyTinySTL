@@ -1,17 +1,17 @@
-ï»¿#ifndef MYTINYSTL_VECTOR_H_
+#ifndef MYTINYSTL_VECTOR_H_
 #define MYTINYSTL_VECTOR_H_
 
-// è¿™ä¸ªå¤´æ–‡ä»¶åŒ…å«ä¸€ä¸ªæ¨¡æ¿ç±» vector
-// vector : å‘é‡
+// Õâ¸öÍ·ÎÄ¼ş°üº¬Ò»¸öÄ£°åÀà vector
+// vector : ÏòÁ¿
 
 // notes:
 //
-// å¼‚å¸¸ä¿è¯ï¼š
-// mystl::vecotr<T> æ»¡è¶³åŸºæœ¬å¼‚å¸¸ä¿è¯ï¼Œéƒ¨åˆ†å‡½æ•°æ— å¼‚å¸¸ä¿è¯ï¼Œå¹¶å¯¹ä»¥ä¸‹å‡½æ•°åšå¼ºå¼‚å¸¸å®‰å…¨ä¿è¯ï¼š
+// Òì³£±£Ö¤£º
+// mystl::vecotr<T> Âú×ã»ù±¾Òì³£±£Ö¤£¬²¿·Öº¯ÊıÎŞÒì³£±£Ö¤£¬²¢¶ÔÒÔÏÂº¯Êı×öÇ¿Òì³£°²È«±£Ö¤£º
 //   * emplace
 //   * emplace_back
 //   * push_back
-// å½“ std::is_nothrow_move_assignable<T>::value == true æ—¶ï¼Œä»¥ä¸‹å‡½æ•°ä¹Ÿæ»¡è¶³å¼ºå¼‚å¸¸ä¿è¯ï¼š
+// µ± std::is_nothrow_move_assignable<T>::value == true Ê±£¬ÒÔÏÂº¯ÊıÒ²Âú×ãÇ¿Òì³£±£Ö¤£º
 //   * reserve
 //   * resize
 //   * insert
@@ -37,14 +37,14 @@ namespace mystl
 #undef min
 #endif // min
 
-// æ¨¡æ¿ç±»: vector 
-// æ¨¡æ¿å‚æ•° T ä»£è¡¨ç±»å‹
+// Ä£°åÀà: vector 
+// Ä£°å²ÎÊı T ´ú±íÀàĞÍ
 template <class T>
 class vector
 {
   static_assert(!std::is_same<bool, T>::value, "vector<bool> is abandoned in mystl");
 public:
-  // vector çš„åµŒå¥—å‹åˆ«å®šä¹‰
+  // vector µÄÇ¶Ì×ĞÍ±ğ¶¨Òå
   typedef mystl::allocator<T>                      allocator_type;
   typedef mystl::allocator<T>                      data_allocator;
 
@@ -64,12 +64,12 @@ public:
   allocator_type get_allocator() { return data_allocator(); }
 
 private:
-  iterator begin_;  // è¡¨ç¤ºç›®å‰ä½¿ç”¨ç©ºé—´çš„å¤´éƒ¨
-  iterator end_;    // è¡¨ç¤ºç›®å‰ä½¿ç”¨ç©ºé—´çš„å°¾éƒ¨
-  iterator cap_;    // è¡¨ç¤ºç›®å‰å‚¨å­˜ç©ºé—´çš„å°¾éƒ¨
+  iterator begin_;  // ±íÊ¾Ä¿Ç°Ê¹ÓÃ¿Õ¼äµÄÍ·²¿
+  iterator end_;    // ±íÊ¾Ä¿Ç°Ê¹ÓÃ¿Õ¼äµÄÎ²²¿
+  iterator cap_;    // ±íÊ¾Ä¿Ç°´¢´æ¿Õ¼äµÄÎ²²¿
 
 public:
-  // æ„é€ ã€å¤åˆ¶ã€ç§»åŠ¨ã€ææ„å‡½æ•°
+  // ¹¹Ôì¡¢¸´ÖÆ¡¢ÒÆ¶¯¡¢Îö¹¹º¯Êı
   vector() noexcept
   { try_init(); }
 
@@ -125,7 +125,7 @@ public:
 
 public:
 
-  // è¿­ä»£å™¨ç›¸å…³æ“ä½œ
+  // µü´úÆ÷Ïà¹Ø²Ù×÷
   iterator               begin()         noexcept 
   { return begin_; }
   const_iterator         begin()   const noexcept
@@ -153,7 +153,7 @@ public:
   const_reverse_iterator crend()   const noexcept
   { return rend(); }
 
-  // å®¹é‡ç›¸å…³æ“ä½œ
+  // ÈİÁ¿Ïà¹Ø²Ù×÷
   bool      empty()    const noexcept
   { return begin_ == end_; }
   size_type size()     const noexcept
@@ -165,7 +165,7 @@ public:
   void      reserve(size_type n);
   void      shrink_to_fit();
 
-  // è®¿é—®å…ƒç´ ç›¸å…³æ“ä½œ
+  // ·ÃÎÊÔªËØÏà¹Ø²Ù×÷
   reference operator[](size_type n)
   {
     MYSTL_DEBUG(n < size());
@@ -211,7 +211,7 @@ public:
   pointer       data()       noexcept { return begin_; }
   const_pointer data() const noexcept { return begin_; }
 
-  // ä¿®æ”¹å®¹å™¨ç›¸å…³æ“ä½œ
+  // ĞŞ¸ÄÈİÆ÷Ïà¹Ø²Ù×÷
 
   // assign
 
@@ -325,7 +325,7 @@ private:
 
 /*****************************************************************************************/
 
-// å¤åˆ¶èµ‹å€¼æ“ä½œç¬¦
+// ¸´ÖÆ¸³Öµ²Ù×÷·û
 template <class T>
 vector<T>& vector<T>::operator=(const vector& rhs)
 {
@@ -353,7 +353,7 @@ vector<T>& vector<T>::operator=(const vector& rhs)
   return *this;
 }
 
-// ç§»åŠ¨èµ‹å€¼æ“ä½œç¬¦
+// ÒÆ¶¯¸³Öµ²Ù×÷·û
 template <class T>
 vector<T>& vector<T>::operator=(vector&& rhs) noexcept
 {
@@ -367,7 +367,7 @@ vector<T>& vector<T>::operator=(vector&& rhs) noexcept
   return *this;
 }
 
-// é¢„ç•™ç©ºé—´å¤§å°ï¼Œå½“åŸå®¹é‡å°äºè¦æ±‚å¤§å°æ—¶ï¼Œæ‰ä¼šé‡æ–°åˆ†é…
+// Ô¤Áô¿Õ¼ä´óĞ¡£¬µ±Ô­ÈİÁ¿Ğ¡ÓÚÒªÇó´óĞ¡Ê±£¬²Å»áÖØĞÂ·ÖÅä
 template <class T>
 void vector<T>::reserve(size_type n)
 {
@@ -385,7 +385,7 @@ void vector<T>::reserve(size_type n)
   }
 }
 
-// æ”¾å¼ƒå¤šä½™çš„å®¹é‡
+// ·ÅÆú¶àÓàµÄÈİÁ¿
 template <class T>
 void vector<T>::shrink_to_fit()
 {
@@ -395,7 +395,7 @@ void vector<T>::shrink_to_fit()
   }
 }
 
-// åœ¨ pos ä½ç½®å°±åœ°æ„é€ å…ƒç´ ï¼Œé¿å…é¢å¤–çš„å¤åˆ¶æˆ–ç§»åŠ¨å¼€é”€
+// ÔÚ pos Î»ÖÃ¾ÍµØ¹¹ÔìÔªËØ£¬±ÜÃâ¶îÍâµÄ¸´ÖÆ»òÒÆ¶¯¿ªÏú
 template <class T>
 template <class ...Args>
 typename vector<T>::iterator
@@ -425,7 +425,7 @@ vector<T>::emplace(const_iterator pos, Args&& ...args)
   return begin() + n;
 }
 
-// åœ¨å°¾éƒ¨å°±åœ°æ„é€ å…ƒç´ ï¼Œé¿å…é¢å¤–çš„å¤åˆ¶æˆ–ç§»åŠ¨å¼€é”€
+// ÔÚÎ²²¿¾ÍµØ¹¹ÔìÔªËØ£¬±ÜÃâ¶îÍâµÄ¸´ÖÆ»òÒÆ¶¯¿ªÏú
 template <class T>
 template <class ...Args>
 void vector<T>::emplace_back(Args&& ...args)
@@ -441,7 +441,7 @@ void vector<T>::emplace_back(Args&& ...args)
   }
 }
 
-// åœ¨å°¾éƒ¨æ’å…¥å…ƒç´ 
+// ÔÚÎ²²¿²åÈëÔªËØ
 template <class T>
 void vector<T>::push_back(const value_type& value)
 {
@@ -456,7 +456,7 @@ void vector<T>::push_back(const value_type& value)
   }
 }
 
-// å¼¹å‡ºå°¾éƒ¨å…ƒç´ 
+// µ¯³öÎ²²¿ÔªËØ
 template <class T>
 void vector<T>::pop_back()
 {
@@ -465,7 +465,7 @@ void vector<T>::pop_back()
   --end_;
 }
 
-// åœ¨ pos å¤„æ’å…¥å…ƒç´ 
+// ÔÚ pos ´¦²åÈëÔªËØ
 template <class T>
 typename vector<T>::iterator
 vector<T>::insert(const_iterator pos, const value_type& value)
@@ -483,7 +483,7 @@ vector<T>::insert(const_iterator pos, const value_type& value)
     auto new_end = end_;
     data_allocator::construct(mystl::address_of(*end_), *(end_ - 1));
     ++new_end;
-    auto value_copy = value;  // é¿å…å…ƒç´ å› ä»¥ä¸‹å¤åˆ¶æ“ä½œè€Œè¢«æ”¹å˜
+    auto value_copy = value;  // ±ÜÃâÔªËØÒòÒÔÏÂ¸´ÖÆ²Ù×÷¶ø±»¸Ä±ä
     mystl::copy_backward(xpos, end_ - 1, end_);
     *xpos = mystl::move(value_copy);
     end_ = new_end;
@@ -495,7 +495,7 @@ vector<T>::insert(const_iterator pos, const value_type& value)
   return begin_ + n;
 }
 
-// åˆ é™¤ pos ä½ç½®ä¸Šçš„å…ƒç´ 
+// É¾³ı pos Î»ÖÃÉÏµÄÔªËØ
 template <class T>
 typename vector<T>::iterator
 vector<T>::erase(const_iterator pos)
@@ -508,7 +508,7 @@ vector<T>::erase(const_iterator pos)
   return xpos;
 }
 
-// åˆ é™¤[first, last)ä¸Šçš„å…ƒç´ 
+// É¾³ı[first, last)ÉÏµÄÔªËØ
 template <class T>
 typename vector<T>::iterator
 vector<T>::erase(const_iterator first, const_iterator last)
@@ -521,7 +521,7 @@ vector<T>::erase(const_iterator first, const_iterator last)
   return begin_ + n;
 }
 
-// é‡ç½®å®¹å™¨å¤§å°
+// ÖØÖÃÈİÆ÷´óĞ¡
 template <class T>
 void vector<T>::resize(size_type new_size, const value_type& value)
 {
@@ -535,7 +535,7 @@ void vector<T>::resize(size_type new_size, const value_type& value)
   }
 }
 
-// ä¸å¦ä¸€ä¸ª vector äº¤æ¢
+// ÓëÁíÒ»¸ö vector ½»»»
 template <class T>
 void vector<T>::swap(vector<T>& rhs) noexcept
 {
@@ -550,7 +550,7 @@ void vector<T>::swap(vector<T>& rhs) noexcept
 /*****************************************************************************************/
 // helper function
 
-// try_init å‡½æ•°ï¼Œè‹¥åˆ†é…å¤±è´¥åˆ™å¿½ç•¥ï¼Œä¸æŠ›å‡ºå¼‚å¸¸
+// try_init º¯Êı£¬Èô·ÖÅäÊ§°ÜÔòºöÂÔ£¬²»Å×³öÒì³£
 template <class T>
 void vector<T>::try_init() noexcept
 {
@@ -568,7 +568,7 @@ void vector<T>::try_init() noexcept
   }
 }
 
-// init_space å‡½æ•°
+// init_space º¯Êı
 template <class T>
 void vector<T>::init_space(size_type size, size_type cap)
 {
@@ -587,7 +587,7 @@ void vector<T>::init_space(size_type size, size_type cap)
   }
 }
 
-// fill_init å‡½æ•°
+// fill_init º¯Êı
 template <class T>
 void vector<T>::
 fill_init(size_type n, const value_type& value)
@@ -597,7 +597,7 @@ fill_init(size_type n, const value_type& value)
   mystl::uninitialized_fill_n(begin_, n, value);
 }
 
-// range_init å‡½æ•°
+// range_init º¯Êı
 template <class T>
 template <class Iter>
 void vector<T>::
@@ -609,7 +609,7 @@ range_init(Iter first, Iter last)
   mystl::uninitialized_copy(first, last, begin_);
 }
 
-// destroy_and_recover å‡½æ•°
+// destroy_and_recover º¯Êı
 template <class T>
 void vector<T>::
 destroy_and_recover(iterator first, iterator last, size_type n)
@@ -618,7 +618,7 @@ destroy_and_recover(iterator first, iterator last, size_type n)
   data_allocator::deallocate(first, n);
 }
 
-// get_new_cap å‡½æ•°
+// get_new_cap º¯Êı
 template <class T>
 typename vector<T>::size_type 
 vector<T>::
@@ -638,7 +638,7 @@ get_new_cap(size_type add_size)
   return new_size;
 }
 
-// fill_assign å‡½æ•°
+// fill_assign º¯Êı
 template <class T>
 void vector<T>::
 fill_assign(size_type n, const value_type& value)
@@ -659,7 +659,7 @@ fill_assign(size_type n, const value_type& value)
   }
 }
 
-// copy_assign å‡½æ•°
+// copy_assign º¯Êı
 template <class T>
 template <class IIter>
 void vector<T>::
@@ -680,7 +680,7 @@ copy_assign(IIter first, IIter last, input_iterator_tag)
   }
 }
 
-// ç”¨ [first, last) ä¸ºå®¹å™¨èµ‹å€¼
+// ÓÃ [first, last) ÎªÈİÆ÷¸³Öµ
 template <class T>
 template <class FIter>
 void vector<T>::
@@ -708,7 +708,7 @@ copy_assign(FIter first, FIter last, forward_iterator_tag)
   }
 }
 
-// é‡æ–°åˆ†é…ç©ºé—´å¹¶åœ¨ pos å¤„å°±åœ°æ„é€ å…ƒç´ 
+// ÖØĞÂ·ÖÅä¿Õ¼ä²¢ÔÚ pos ´¦¾ÍµØ¹¹ÔìÔªËØ
 template <class T>
 template <class ...Args>
 void vector<T>::
@@ -735,7 +735,7 @@ reallocate_emplace(iterator pos, Args&& ...args)
   cap_ = new_begin + new_size;
 }
 
-// é‡æ–°åˆ†é…ç©ºé—´å¹¶åœ¨ pos å¤„æ’å…¥å…ƒç´ 
+// ÖØĞÂ·ÖÅä¿Õ¼ä²¢ÔÚ pos ´¦²åÈëÔªËØ
 template <class T>
 void vector<T>::reallocate_insert(iterator pos, const value_type& value)
 {
@@ -761,7 +761,7 @@ void vector<T>::reallocate_insert(iterator pos, const value_type& value)
   cap_ = new_begin + new_size;
 }
 
-// fill_insert å‡½æ•°
+// fill_insert º¯Êı
 template <class T>
 typename vector<T>::iterator 
 vector<T>::
@@ -770,9 +770,9 @@ fill_insert(iterator pos, size_type n, const value_type& value)
   if (n == 0)
     return pos;
   const size_type xpos = pos - begin_;
-  const value_type value_copy = value;  // é¿å…è¢«è¦†ç›–
+  const value_type value_copy = value;  // ±ÜÃâ±»¸²¸Ç
   if (static_cast<size_type>(cap_ - end_) >= n)
-  { // å¦‚æœå¤‡ç”¨ç©ºé—´å¤§äºç­‰äºå¢åŠ çš„ç©ºé—´
+  { // Èç¹û±¸ÓÃ¿Õ¼ä´óÓÚµÈÓÚÔö¼ÓµÄ¿Õ¼ä
     const size_type after_elems = end_ - pos;
     auto old_end = end_;
     if (after_elems > n)
@@ -790,7 +790,7 @@ fill_insert(iterator pos, size_type n, const value_type& value)
     }
   }
   else
-  { // å¦‚æœå¤‡ç”¨ç©ºé—´ä¸è¶³
+  { // Èç¹û±¸ÓÃ¿Õ¼ä²»×ã
     const auto new_size = get_new_cap(n);
     auto new_begin = data_allocator::allocate(new_size);
     auto new_end = new_begin;
@@ -813,7 +813,7 @@ fill_insert(iterator pos, size_type n, const value_type& value)
   return begin_ + xpos;
 }
 
-// copy_insert å‡½æ•°
+// copy_insert º¯Êı
 template <class T>
 template <class IIter>
 void vector<T>::
@@ -823,7 +823,7 @@ copy_insert(iterator pos, IIter first, IIter last)
     return;
   const auto n = mystl::distance(first, last);
   if ((cap_ - end_) >= n)
-  { // å¦‚æœå¤‡ç”¨ç©ºé—´å¤§å°è¶³å¤Ÿ
+  { // Èç¹û±¸ÓÃ¿Õ¼ä´óĞ¡×ã¹»
     const auto after_elems = end_ - pos;
     auto old_end = end_;
     if (after_elems > n)
@@ -842,7 +842,7 @@ copy_insert(iterator pos, IIter first, IIter last)
     }
   }
   else
-  { // å¤‡ç”¨ç©ºé—´ä¸è¶³
+  { // ±¸ÓÃ¿Õ¼ä²»×ã
     const auto new_size = get_new_cap(n);
     auto new_begin = data_allocator::allocate(new_size);
     auto new_end = new_begin;
@@ -864,7 +864,7 @@ copy_insert(iterator pos, IIter first, IIter last)
   }
 }
 
-// reinsert å‡½æ•°
+// reinsert º¯Êı
 template <class T>
 void vector<T>::reinsert(size_type size)
 {
@@ -885,7 +885,7 @@ void vector<T>::reinsert(size_type size)
 }
 
 /*****************************************************************************************/
-// é‡è½½æ¯”è¾ƒæ“ä½œç¬¦
+// ÖØÔØ±È½Ï²Ù×÷·û
 
 template <class T>
 bool operator==(const vector<T>& lhs, const vector<T>& rhs)
@@ -924,7 +924,7 @@ bool operator>=(const vector<T>& lhs, const vector<T>& rhs)
   return !(lhs < rhs);
 }
 
-// é‡è½½ mystl çš„ swap
+// ÖØÔØ mystl µÄ swap
 template <class T>
 void swap(vector<T>& lhs, vector<T>& rhs)
 {

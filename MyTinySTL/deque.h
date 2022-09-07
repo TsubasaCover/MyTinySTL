@@ -1,13 +1,13 @@
-ï»¿#ifndef MYTINYSTL_DEQUE_H_
+#ifndef MYTINYSTL_DEQUE_H_
 #define MYTINYSTL_DEQUE_H_
 
-// è¿™ä¸ªå¤´æ–‡ä»¶åŒ…å«äº†ä¸€ä¸ªæ¨¡æ¿ç±» deque
-// deque: åŒç«¯é˜Ÿåˆ—
+// Õâ¸öÍ·ÎÄ¼ş°üº¬ÁËÒ»¸öÄ£°åÀà deque
+// deque: Ë«¶Ë¶ÓÁĞ
 
 // notes:
 //
-// å¼‚å¸¸ä¿è¯ï¼š
-// mystl::deque<T> æ»¡è¶³åŸºæœ¬å¼‚å¸¸ä¿è¯ï¼Œéƒ¨åˆ†å‡½æ•°æ— å¼‚å¸¸ä¿è¯ï¼Œå¹¶å¯¹ä»¥ä¸‹ç­‰å‡½æ•°åšå¼ºå¼‚å¸¸å®‰å…¨ä¿è¯ï¼š
+// Òì³£±£Ö¤£º
+// mystl::deque<T> Âú×ã»ù±¾Òì³£±£Ö¤£¬²¿·Öº¯ÊıÎŞÒì³£±£Ö¤£¬²¢¶ÔÒÔÏÂµÈº¯Êı×öÇ¿Òì³£°²È«±£Ö¤£º
 //   * emplace_front
 //   * emplace_back
 //   * emplace
@@ -35,7 +35,7 @@ namespace mystl
 #undef min
 #endif // min
 
-// deque map åˆå§‹åŒ–çš„å¤§å°
+// deque map ³õÊ¼»¯µÄ´óĞ¡
 #ifndef DEQUE_MAP_INIT_SIZE
 #define DEQUE_MAP_INIT_SIZE 8
 #endif
@@ -46,7 +46,7 @@ struct deque_buf_size
   static constexpr size_t value = sizeof(T) < 256 ? 4096 / sizeof(T) : 16;
 };
 
-// deque çš„è¿­ä»£å™¨è®¾è®¡
+// deque µÄµü´úÆ÷Éè¼Æ
 template <class T, class Ref, class Ptr>
 struct deque_iterator : public iterator<random_access_iterator_tag, T>
 {
@@ -64,13 +64,13 @@ struct deque_iterator : public iterator<random_access_iterator_tag, T>
 
   static const size_type buffer_size = deque_buf_size<T>::value;
 
-  // è¿­ä»£å™¨æ‰€å«æˆå‘˜æ•°æ®
-  value_pointer cur;    // æŒ‡å‘æ‰€åœ¨ç¼“å†²åŒºçš„å½“å‰å…ƒç´ 
-  value_pointer first;  // æŒ‡å‘æ‰€åœ¨ç¼“å†²åŒºçš„å¤´éƒ¨
-  value_pointer last;   // æŒ‡å‘æ‰€åœ¨ç¼“å†²åŒºçš„å°¾éƒ¨
-  map_pointer   node;   // ç¼“å†²åŒºæ‰€åœ¨èŠ‚ç‚¹
+  // µü´úÆ÷Ëùº¬³ÉÔ±Êı¾İ
+  value_pointer cur;    // Ö¸ÏòËùÔÚ»º³åÇøµÄµ±Ç°ÔªËØ
+  value_pointer first;  // Ö¸ÏòËùÔÚ»º³åÇøµÄÍ·²¿
+  value_pointer last;   // Ö¸ÏòËùÔÚ»º³åÇøµÄÎ²²¿
+  map_pointer   node;   // »º³åÇøËùÔÚ½Úµã
 
-  // æ„é€ ã€å¤åˆ¶ã€ç§»åŠ¨å‡½æ•°
+  // ¹¹Ôì¡¢¸´ÖÆ¡¢ÒÆ¶¯º¯Êı
   deque_iterator() noexcept
     :cur(nullptr), first(nullptr), last(nullptr), node(nullptr) {}
 
@@ -107,7 +107,7 @@ struct deque_iterator : public iterator<random_access_iterator_tag, T>
     return *this;
   }
 
-  // è½¬åˆ°å¦ä¸€ä¸ªç¼“å†²åŒº
+  // ×ªµ½ÁíÒ»¸ö»º³åÇø
   void set_node(map_pointer new_node)
   {
     node = new_node;
@@ -115,7 +115,7 @@ struct deque_iterator : public iterator<random_access_iterator_tag, T>
     last = first + buffer_size;
   }
 
-  // é‡è½½è¿ç®—ç¬¦
+  // ÖØÔØÔËËã·û
   reference operator*()  const { return *cur; }
   pointer   operator->() const { return cur; }
 
@@ -129,7 +129,7 @@ struct deque_iterator : public iterator<random_access_iterator_tag, T>
   {
     ++cur;
     if (cur == last)
-    { // å¦‚æœåˆ°è¾¾ç¼“å†²åŒºçš„å°¾
+    { // Èç¹ûµ½´ï»º³åÇøµÄÎ²
       set_node(node + 1);
       cur = first;
     }
@@ -145,7 +145,7 @@ struct deque_iterator : public iterator<random_access_iterator_tag, T>
   self& operator--()
   {
     if (cur == first)
-    { // å¦‚æœåˆ°è¾¾ç¼“å†²åŒºçš„å¤´
+    { // Èç¹ûµ½´ï»º³åÇøµÄÍ·
       set_node(node - 1);
       cur = last;
     }
@@ -163,11 +163,11 @@ struct deque_iterator : public iterator<random_access_iterator_tag, T>
   {
     const auto offset = n + (cur - first);
     if (offset >= 0 && offset < static_cast<difference_type>(buffer_size))
-    { // ä»åœ¨å½“å‰ç¼“å†²åŒº
+    { // ÈÔÔÚµ±Ç°»º³åÇø
       cur += n;
     }
     else
-    { // è¦è·³åˆ°å…¶ä»–çš„ç¼“å†²åŒº
+    { // ÒªÌøµ½ÆäËûµÄ»º³åÇø
       const auto node_offset = offset > 0
         ? offset / static_cast<difference_type>(buffer_size)
         : -static_cast<difference_type>((-offset - 1) / buffer_size) - 1;
@@ -193,7 +193,7 @@ struct deque_iterator : public iterator<random_access_iterator_tag, T>
 
   reference operator[](difference_type n) const { return *(*this + n); }
 
-  // é‡è½½æ¯”è¾ƒæ“ä½œç¬¦
+  // ÖØÔØ±È½Ï²Ù×÷·û
   bool operator==(const self& rhs) const { return cur == rhs.cur; }
   bool operator< (const self& rhs) const
   { return node == rhs.node ? (cur < rhs.cur) : (node < rhs.node); }
@@ -203,13 +203,13 @@ struct deque_iterator : public iterator<random_access_iterator_tag, T>
   bool operator>=(const self& rhs) const { return !(*this < rhs); }
 };
 
-// æ¨¡æ¿ç±» deque
-// æ¨¡æ¿å‚æ•°ä»£è¡¨æ•°æ®ç±»å‹
+// Ä£°åÀà deque
+// Ä£°å²ÎÊı´ú±íÊı¾İÀàĞÍ
 template <class T>
 class deque
 {
 public:
-  // deque çš„å‹åˆ«å®šä¹‰
+  // deque µÄĞÍ±ğ¶¨Òå
   typedef mystl::allocator<T>                      allocator_type;
   typedef mystl::allocator<T>                      data_allocator;
   typedef mystl::allocator<T*>                     map_allocator;
@@ -234,14 +234,14 @@ public:
   static const size_type buffer_size = deque_buf_size<T>::value;
 
 private:
-  // ç”¨ä»¥ä¸‹å››ä¸ªæ•°æ®æ¥è¡¨ç°ä¸€ä¸ª deque
-  iterator       begin_;     // æŒ‡å‘ç¬¬ä¸€ä¸ªèŠ‚ç‚¹
-  iterator       end_;       // æŒ‡å‘æœ€åä¸€ä¸ªç»“ç‚¹
-  map_pointer    map_;       // æŒ‡å‘ä¸€å— mapï¼Œmap ä¸­çš„æ¯ä¸ªå…ƒç´ éƒ½æ˜¯ä¸€ä¸ªæŒ‡é’ˆï¼ŒæŒ‡å‘ä¸€ä¸ªç¼“å†²åŒº
-  size_type      map_size_;  // map å†…æŒ‡é’ˆçš„æ•°ç›®
+  // ÓÃÒÔÏÂËÄ¸öÊı¾İÀ´±íÏÖÒ»¸ö deque
+  iterator       begin_;     // Ö¸ÏòµÚÒ»¸ö½Úµã
+  iterator       end_;       // Ö¸Ïò×îºóÒ»¸ö½áµã
+  map_pointer    map_;       // Ö¸ÏòÒ»¿é map£¬map ÖĞµÄÃ¿¸öÔªËØ¶¼ÊÇÒ»¸öÖ¸Õë£¬Ö¸ÏòÒ»¸ö»º³åÇø
+  size_type      map_size_;  // map ÄÚÖ¸ÕëµÄÊıÄ¿
 
 public:
-  // æ„é€ ã€å¤åˆ¶ã€ç§»åŠ¨ã€ææ„å‡½æ•°
+  // ¹¹Ôì¡¢¸´ÖÆ¡¢ÒÆ¶¯¡¢Îö¹¹º¯Êı
 
   deque()
   { fill_init(0, value_type()); }
@@ -299,7 +299,7 @@ public:
   }
 
 public:
-  // è¿­ä»£å™¨ç›¸å…³æ“ä½œ
+  // µü´úÆ÷Ïà¹Ø²Ù×÷
 
   iterator               begin()         noexcept
   { return begin_; }
@@ -328,7 +328,7 @@ public:
   const_reverse_iterator crend()   const noexcept
   { return rend(); }
 
-  // å®¹é‡ç›¸å…³æ“ä½œ
+  // ÈİÁ¿Ïà¹Ø²Ù×÷
 
   bool      empty()    const noexcept  { return begin() == end(); }
   size_type size()     const noexcept  { return end_ - begin_; }
@@ -337,7 +337,7 @@ public:
   void      resize(size_type new_size, const value_type& value);
   void      shrink_to_fit() noexcept;
 
-  // è®¿é—®å…ƒç´ ç›¸å…³æ“ä½œ 
+  // ·ÃÎÊÔªËØÏà¹Ø²Ù×÷ 
   reference       operator[](size_type n)
   {
     MYSTL_DEBUG(n < size());
@@ -381,7 +381,7 @@ public:
     return *(end() - 1);
   }
 
-  // ä¿®æ”¹å®¹å™¨ç›¸å…³æ“ä½œ
+  // ĞŞ¸ÄÈİÆ÷Ïà¹Ø²Ù×÷
 
   // assign
 
@@ -481,7 +481,7 @@ private:
 
 /*****************************************************************************************/
 
-// å¤åˆ¶èµ‹å€¼è¿ç®—ç¬¦
+// ¸´ÖÆ¸³ÖµÔËËã·û
 template <class T>
 deque<T>& deque<T>::operator=(const deque& rhs)
 {
@@ -502,7 +502,7 @@ deque<T>& deque<T>::operator=(const deque& rhs)
   return *this;
 }
 
-// ç§»åŠ¨èµ‹å€¼è¿ç®—ç¬¦
+// ÒÆ¶¯¸³ÖµÔËËã·û
 template <class T>
 deque<T>& deque<T>::operator=(deque&& rhs)
 {
@@ -516,7 +516,7 @@ deque<T>& deque<T>::operator=(deque&& rhs)
   return *this;
 }
 
-// é‡ç½®å®¹å™¨å¤§å°
+// ÖØÖÃÈİÆ÷´óĞ¡
 template <class T>
 void deque<T>::resize(size_type new_size, const value_type& value)
 {
@@ -531,11 +531,11 @@ void deque<T>::resize(size_type new_size, const value_type& value)
   }
 }
 
-// å‡å°å®¹å™¨å®¹é‡
+// ¼õĞ¡ÈİÆ÷ÈİÁ¿
 template <class T>
 void deque<T>::shrink_to_fit() noexcept
 {
-  // è‡³å°‘ä¼šç•™ä¸‹å¤´éƒ¨ç¼“å†²åŒº
+  // ÖÁÉÙ»áÁôÏÂÍ·²¿»º³åÇø
   for (auto cur = map_; cur < begin_.node; ++cur)
   {
     data_allocator::deallocate(*cur, buffer_size);
@@ -548,7 +548,7 @@ void deque<T>::shrink_to_fit() noexcept
   }
 }
 
-// åœ¨å¤´éƒ¨å°±åœ°æ„å»ºå…ƒç´ 
+// ÔÚÍ·²¿¾ÍµØ¹¹½¨ÔªËØ
 template <class T>
 template <class ...Args>
 void deque<T>::emplace_front(Args&& ...args)
@@ -574,7 +574,7 @@ void deque<T>::emplace_front(Args&& ...args)
   }
 }
 
-// åœ¨å°¾éƒ¨å°±åœ°æ„å»ºå…ƒç´ 
+// ÔÚÎ²²¿¾ÍµØ¹¹½¨ÔªËØ
 template <class T>
 template <class ...Args>
 void deque<T>::emplace_back(Args&& ...args)
@@ -592,7 +592,7 @@ void deque<T>::emplace_back(Args&& ...args)
   }
 }
 
-// åœ¨ pos ä½ç½®å°±åœ°æ„å»ºå…ƒç´ 
+// ÔÚ pos Î»ÖÃ¾ÍµØ¹¹½¨ÔªËØ
 template <class T>
 template <class ...Args>
 typename deque<T>::iterator deque<T>::emplace(iterator pos, Args&& ...args)
@@ -610,7 +610,7 @@ typename deque<T>::iterator deque<T>::emplace(iterator pos, Args&& ...args)
   return insert_aux(pos, mystl::forward<Args>(args)...);
 }
 
-// åœ¨å¤´éƒ¨æ’å…¥å…ƒç´ 
+// ÔÚÍ·²¿²åÈëÔªËØ
 template <class T>
 void deque<T>::push_front(const value_type& value)
 {
@@ -635,7 +635,7 @@ void deque<T>::push_front(const value_type& value)
   }
 }
 
-// åœ¨å°¾éƒ¨æ’å…¥å…ƒç´ 
+// ÔÚÎ²²¿²åÈëÔªËØ
 template <class T>
 void deque<T>::push_back(const value_type& value)
 {
@@ -652,7 +652,7 @@ void deque<T>::push_back(const value_type& value)
   }
 }
 
-// å¼¹å‡ºå¤´éƒ¨å…ƒç´ 
+// µ¯³öÍ·²¿ÔªËØ
 template <class T>
 void deque<T>::pop_front()
 {
@@ -670,7 +670,7 @@ void deque<T>::pop_front()
   }
 }
 
-// å¼¹å‡ºå°¾éƒ¨å…ƒç´ 
+// µ¯³öÎ²²¿ÔªËØ
 template <class T>
 void deque<T>::pop_back()
 {
@@ -688,7 +688,7 @@ void deque<T>::pop_back()
   }
 }
 
-// åœ¨ position å¤„æ’å…¥å…ƒç´ 
+// ÔÚ position ´¦²åÈëÔªËØ
 template <class T>
 typename deque<T>::iterator
 deque<T>::insert(iterator position, const value_type& value)
@@ -733,7 +733,7 @@ deque<T>::insert(iterator position, value_type&& value)
   }
 }
 
-// åœ¨ position ä½ç½®æ’å…¥ n ä¸ªå…ƒç´ 
+// ÔÚ position Î»ÖÃ²åÈë n ¸öÔªËØ
 template <class T>
 void deque<T>::insert(iterator position, size_type n, const value_type& value)
 {
@@ -757,7 +757,7 @@ void deque<T>::insert(iterator position, size_type n, const value_type& value)
   }
 }
 
-// åˆ é™¤ position å¤„çš„å…ƒç´ 
+// É¾³ı position ´¦µÄÔªËØ
 template <class T>
 typename deque<T>::iterator
 deque<T>::erase(iterator position)
@@ -778,7 +778,7 @@ deque<T>::erase(iterator position)
   return begin_ + elems_before;
 }
 
-// åˆ é™¤[first, last)ä¸Šçš„å…ƒç´ 
+// É¾³ı[first, last)ÉÏµÄÔªËØ
 template <class T>
 typename deque<T>::iterator
 deque<T>::erase(iterator first, iterator last)
@@ -810,17 +810,17 @@ deque<T>::erase(iterator first, iterator last)
   }
 }
 
-// æ¸…ç©º deque
+// Çå¿Õ deque
 template <class T>
 void deque<T>::clear()
 {
-  // clear ä¼šä¿ç•™å¤´éƒ¨çš„ç¼“å†²åŒº
+  // clear »á±£ÁôÍ·²¿µÄ»º³åÇø
   for (map_pointer cur = begin_.node + 1; cur < end_.node; ++cur)
   {
     data_allocator::destroy(*cur, *cur + buffer_size);
   }
   if (begin_.node != end_.node)
-  { // æœ‰ä¸¤ä¸ªä»¥ä¸Šçš„ç¼“å†²åŒº
+  { // ÓĞÁ½¸öÒÔÉÏµÄ»º³åÇø
     mystl::destroy(begin_.cur, begin_.last);
     mystl::destroy(end_.first, end_.cur);
   }
@@ -832,7 +832,7 @@ void deque<T>::clear()
   end_ = begin_;
 }
 
-// äº¤æ¢ä¸¤ä¸ª deque
+// ½»»»Á½¸ö deque
 template <class T>
 void deque<T>::swap(deque& rhs) noexcept
 {
@@ -859,7 +859,7 @@ deque<T>::create_map(size_type size)
   return mp;
 }
 
-// create_buffer å‡½æ•°
+// create_buffer º¯Êı
 template <class T>
 void deque<T>::
 create_buffer(map_pointer nstart, map_pointer nfinish)
@@ -884,7 +884,7 @@ create_buffer(map_pointer nstart, map_pointer nfinish)
   }
 }
 
-// destroy_buffer å‡½æ•°
+// destroy_buffer º¯Êı
 template <class T>
 void deque<T>::
 destroy_buffer(map_pointer nstart, map_pointer nfinish)
@@ -896,12 +896,12 @@ destroy_buffer(map_pointer nstart, map_pointer nfinish)
   }
 }
 
-// map_init å‡½æ•°
+// map_init º¯Êı
 template <class T>
 void deque<T>::
 map_init(size_type nElem)
 {
-  const size_type nNode = nElem / buffer_size + 1;  // éœ€è¦åˆ†é…çš„ç¼“å†²åŒºä¸ªæ•°
+  const size_type nNode = nElem / buffer_size + 1;  // ĞèÒª·ÖÅäµÄ»º³åÇø¸öÊı
   map_size_ = mystl::max(static_cast<size_type>(DEQUE_MAP_INIT_SIZE), nNode + 2);
   try
   {
@@ -914,7 +914,7 @@ map_init(size_type nElem)
     throw;
   }
 
-  // è®© nstart å’Œ nfinish éƒ½æŒ‡å‘ map_ æœ€ä¸­å¤®çš„åŒºåŸŸï¼Œæ–¹ä¾¿å‘å¤´å°¾æ‰©å……
+  // ÈÃ nstart ºÍ nfinish ¶¼Ö¸Ïò map_ ×îÖĞÑëµÄÇøÓò£¬·½±ãÏòÍ·Î²À©³ä
   map_pointer nstart = map_ + (map_size_ - nNode) / 2;
   map_pointer nfinish = nstart + nNode - 1;
   try
@@ -934,7 +934,7 @@ map_init(size_type nElem)
   end_.cur = end_.first + (nElem % buffer_size);
 }
 
-// fill_init å‡½æ•°
+// fill_init º¯Êı
 template <class T>
 void deque<T>::
 fill_init(size_type n, const value_type& value)
@@ -950,7 +950,7 @@ fill_init(size_type n, const value_type& value)
   }
 }
 
-// copy_init å‡½æ•°
+// copy_init º¯Êı
 template <class T>
 template <class IIter>
 void deque<T>::
@@ -979,7 +979,7 @@ copy_init(FIter first, FIter last, forward_iterator_tag)
   mystl::uninitialized_copy(first, last, end_.first);
 }
 
-// fill_assign å‡½æ•°
+// fill_assign º¯Êı
 template <class T>
 void deque<T>::
 fill_assign(size_type n, const value_type& value)
@@ -996,7 +996,7 @@ fill_assign(size_type n, const value_type& value)
   }
 }
 
-// copy_assign å‡½æ•°
+// copy_assign º¯Êı
 template <class T>
 template <class IIter>
 void deque<T>::
@@ -1038,7 +1038,7 @@ copy_assign(FIter first, FIter last, forward_iterator_tag)
   }
 }
 
-// insert_aux å‡½æ•°
+// insert_aux º¯Êı
 template <class T>
 template <class... Args>
 typename deque<T>::iterator
@@ -1048,7 +1048,7 @@ insert_aux(iterator position, Args&& ...args)
   const size_type elems_before = position - begin_;
   value_type value_copy = value_type(mystl::forward<Args>(args)...);
   if (elems_before < (size() / 2))
-  { // åœ¨å‰åŠæ®µæ’å…¥
+  { // ÔÚÇ°°ë¶Î²åÈë
     emplace_front(front());
     auto front1 = begin_;
     ++front1;
@@ -1060,7 +1060,7 @@ insert_aux(iterator position, Args&& ...args)
     mystl::copy(front2, pos, front1);
   }
   else
-  { // åœ¨ååŠæ®µæ’å…¥
+  { // ÔÚºó°ë¶Î²åÈë
     emplace_back(back());
     auto back1 = end_;
     --back1;
@@ -1073,7 +1073,7 @@ insert_aux(iterator position, Args&& ...args)
   return position;
 }
 
-// fill_insert å‡½æ•°
+// fill_insert º¯Êı
 template <class T>
 void deque<T>::
 fill_insert(iterator position, size_type n, const value_type& value)
@@ -1084,7 +1084,7 @@ fill_insert(iterator position, size_type n, const value_type& value)
   if (elems_before < (len / 2))
   {
     require_capacity(n, true);
-    // åŸæ¥çš„è¿­ä»£å™¨å¯èƒ½ä¼šå¤±æ•ˆ
+    // Ô­À´µÄµü´úÆ÷¿ÉÄÜ»áÊ§Ğ§
     auto old_begin = begin_;
     auto new_begin = begin_ - n;
     position = begin_ + elems_before;
@@ -1116,7 +1116,7 @@ fill_insert(iterator position, size_type n, const value_type& value)
   else
   {
     require_capacity(n, false);
-    // åŸæ¥çš„è¿­ä»£å™¨å¯èƒ½ä¼šå¤±æ•ˆ
+    // Ô­À´µÄµü´úÆ÷¿ÉÄÜ»áÊ§Ğ§
     auto old_end = end_;
     auto new_end = end_ + n;
     const size_type elems_after = len - elems_before;
@@ -1159,7 +1159,7 @@ copy_insert(iterator position, FIter first, FIter last, size_type n)
   if (elems_before < (len / 2))
   {
     require_capacity(n, true);
-    // åŸæ¥çš„è¿­ä»£å™¨å¯èƒ½ä¼šå¤±æ•ˆ
+    // Ô­À´µÄµü´úÆ÷¿ÉÄÜ»áÊ§Ğ§
     auto old_begin = begin_;
     auto new_begin = begin_ - n;
     position = begin_ + elems_before;
@@ -1193,7 +1193,7 @@ copy_insert(iterator position, FIter first, FIter last, size_type n)
   else
   {
     require_capacity(n, false);
-    // åŸæ¥çš„è¿­ä»£å™¨å¯èƒ½ä¼šå¤±æ•ˆ
+    // Ô­À´µÄµü´úÆ÷¿ÉÄÜ»áÊ§Ğ§
     auto old_end = end_;
     auto new_end = end_ + n;
     const auto elems_after = len - elems_before;
@@ -1227,7 +1227,7 @@ copy_insert(iterator position, FIter first, FIter last, size_type n)
   }
 }
 
-// insert_dispatch å‡½æ•°
+// insert_dispatch º¯Êı
 template <class T>
 template <class IIter>
 void deque<T>::
@@ -1297,7 +1297,7 @@ insert_dispatch(iterator position, FIter first, FIter last, forward_iterator_tag
   }
 }
 
-// require_capacity å‡½æ•°
+// require_capacity º¯Êı
 template <class T>
 void deque<T>::require_capacity(size_type n, bool front)
 {
@@ -1323,7 +1323,7 @@ void deque<T>::require_capacity(size_type n, bool front)
   }
 }
 
-// reallocate_map_at_front å‡½æ•°
+// reallocate_map_at_front º¯Êı
 template <class T>
 void deque<T>::reallocate_map_at_front(size_type need_buffer)
 {
@@ -1333,7 +1333,7 @@ void deque<T>::reallocate_map_at_front(size_type need_buffer)
   const size_type old_buffer = end_.node - begin_.node + 1;
   const size_type new_buffer = old_buffer + need_buffer;
 
-  // å¦æ–°çš„ map ä¸­çš„æŒ‡é’ˆæŒ‡å‘åŸæ¥çš„ bufferï¼Œå¹¶å¼€è¾Ÿæ–°çš„ buffer
+  // ÁíĞÂµÄ map ÖĞµÄÖ¸ÕëÖ¸ÏòÔ­À´µÄ buffer£¬²¢¿ª±ÙĞÂµÄ buffer
   auto begin = new_map + (new_map_size - new_buffer) / 2;
   auto mid = begin + need_buffer;
   auto end = mid + old_buffer;
@@ -1341,7 +1341,7 @@ void deque<T>::reallocate_map_at_front(size_type need_buffer)
   for (auto begin1 = mid, begin2 = begin_.node; begin1 != end; ++begin1, ++begin2)
     *begin1 = *begin2;
 
-  // æ›´æ–°æ•°æ®
+  // ¸üĞÂÊı¾İ
   map_allocator::deallocate(map_, map_size_);
   map_ = new_map;
   map_size_ = new_map_size;
@@ -1349,7 +1349,7 @@ void deque<T>::reallocate_map_at_front(size_type need_buffer)
   end_ = iterator(*(end - 1) + (end_.cur - end_.first), end - 1);
 }
 
-// reallocate_map_at_back å‡½æ•°
+// reallocate_map_at_back º¯Êı
 template <class T>
 void deque<T>::reallocate_map_at_back(size_type need_buffer)
 {
@@ -1359,7 +1359,7 @@ void deque<T>::reallocate_map_at_back(size_type need_buffer)
   const size_type old_buffer = end_.node - begin_.node + 1;
   const size_type new_buffer = old_buffer + need_buffer;
 
-  // å¦æ–°çš„ map ä¸­çš„æŒ‡é’ˆæŒ‡å‘åŸæ¥çš„ bufferï¼Œå¹¶å¼€è¾Ÿæ–°çš„ buffer
+  // ÁíĞÂµÄ map ÖĞµÄÖ¸ÕëÖ¸ÏòÔ­À´µÄ buffer£¬²¢¿ª±ÙĞÂµÄ buffer
   auto begin = new_map + ((new_map_size - new_buffer) / 2);
   auto mid = begin + old_buffer;
   auto end = mid + need_buffer;
@@ -1367,7 +1367,7 @@ void deque<T>::reallocate_map_at_back(size_type need_buffer)
     *begin1 = *begin2;
   create_buffer(mid, end - 1);
 
-  // æ›´æ–°æ•°æ®
+  // ¸üĞÂÊı¾İ
   map_allocator::deallocate(map_, map_size_);
   map_ = new_map;
   map_size_ = new_map_size;
@@ -1375,7 +1375,7 @@ void deque<T>::reallocate_map_at_back(size_type need_buffer)
   end_ = iterator(*(mid - 1) + (end_.cur - end_.first), mid - 1);
 }
 
-// é‡è½½æ¯”è¾ƒæ“ä½œç¬¦
+// ÖØÔØ±È½Ï²Ù×÷·û
 template <class T>
 bool operator==(const deque<T>& lhs, const deque<T>& rhs)
 {
@@ -1414,7 +1414,7 @@ bool operator>=(const deque<T>& lhs, const deque<T>& rhs)
   return !(lhs < rhs);
 }
 
-// é‡è½½ mystl çš„ swap
+// ÖØÔØ mystl µÄ swap
 template <class T>
 void swap(deque<T>& lhs, deque<T>& rhs)
 {
