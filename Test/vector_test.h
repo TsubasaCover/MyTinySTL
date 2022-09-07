@@ -1,7 +1,7 @@
-ï»¿#ifndef MYTINYSTL_VECTOR_TEST_H_
+#ifndef MYTINYSTL_VECTOR_TEST_H_
 #define MYTINYSTL_VECTOR_TEST_H_
 
-// vector test : æµ‹è¯• vector çš„æ¥å£ä¸ push_back çš„æ€§èƒ½
+// vector test : ²âÊÔ vector µÄ½Ó¿ÚÓë push_back µÄĞÔÄÜ
 
 #include <vector>
 

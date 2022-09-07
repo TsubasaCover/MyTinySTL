@@ -1,7 +1,7 @@
-ï»¿#ifndef MYTINYSTL_QUEUE_TEST_H_
+#ifndef MYTINYSTL_QUEUE_TEST_H_
 #define MYTINYSTL_QUEUE_TEST_H_
 
-// queue test : æµ‹è¯• queue, priority_queue çš„æ¥å£å’Œå®ƒä»¬ push çš„æ€§èƒ½
+// queue test : ²âÊÔ queue, priority_queue µÄ½Ó¿ÚºÍËüÃÇ push µÄĞÔÄÜ
 
 #include <queue>
 
@@ -35,14 +35,14 @@ void p_queue_print(mystl::priority_queue<int> p)
   std::cout << std::endl;
 }
 
-//  queue çš„éå†è¾“å‡º
+//  queue µÄ±éÀúÊä³ö
 #define QUEUE_COUT(q) do {                       \
     std::string q_name = #q;                     \
     std::cout << " " << q_name << " :";          \
     queue_print(q);                              \
 } while(0)
 
-// priority_queue çš„éå†è¾“å‡º
+// priority_queue µÄ±éÀúÊä³ö
 #define P_QUEUE_COUT(p) do {                     \
     std::string p_name = #p;                     \
     std::cout << " " << p_name << " :";          \

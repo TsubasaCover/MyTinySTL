@@ -1,7 +1,7 @@
-ï»¿#ifndef MYTINYSTL_DEQUE_TEST_H_
+#ifndef MYTINYSTL_DEQUE_TEST_H_
 #define MYTINYSTL_DEQUE_TEST_H_
 
-// deque test : æµ‹è¯• deque çš„æ¥å£å’Œ push_front/push_back çš„æ€§èƒ½
+// deque test : ²âÊÔ deque µÄ½Ó¿ÚºÍ push_front/push_back µÄĞÔÄÜ
 
 #include <deque>
 

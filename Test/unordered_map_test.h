@@ -1,7 +1,7 @@
-ï»¿#ifndef MYTINYSTL_UNORDERED_MAP_TEST_H_
+#ifndef MYTINYSTL_UNORDERED_MAP_TEST_H_
 #define MYTINYSTL_UNORDERED_MAP_TEST_H_
 
-// unordered_map test : æµ‹è¯• unordered_map, unordered_multimap çš„æ¥å£ä¸å®ƒä»¬ insert çš„æ€§èƒ½
+// unordered_map test : ²âÊÔ unordered_map, unordered_multimap µÄ½Ó¿ÚÓëËüÃÇ insert µÄĞÔÄÜ
 
 #include <unordered_map>
 

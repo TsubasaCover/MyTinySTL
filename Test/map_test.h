@@ -1,7 +1,7 @@
-ï»¿#ifndef MYTINYSTL_MAP_TEST_H_
+#ifndef MYTINYSTL_MAP_TEST_H_
 #define MYTINYSTL_MAP_TEST_H_
 
-// map test : æµ‹è¯• map, multimap çš„æ¥å£ä¸å®ƒä»¬ insert çš„æ€§èƒ½
+// map test : ²âÊÔ map, multimap µÄ½Ó¿ÚÓëËüÃÇ insert µÄĞÔÄÜ
 
 #include <map>
 
@@ -16,10 +16,10 @@ namespace test
 namespace map_test
 {
 
-// pair çš„å®å®šä¹‰
+// pair µÄºê¶¨Òå
 #define PAIR    mystl::pair<int, int>
 
-// map çš„éå†è¾“å‡º
+// map µÄ±éÀúÊä³ö
 #define MAP_COUT(m) do { \
     std::string m_name = #m; \
     std::cout << " " << m_name << " :"; \
@@ -27,7 +27,7 @@ namespace map_test
     std::cout << std::endl; \
 } while(0)
 
-// map çš„å‡½æ•°æ“ä½œ
+// map µÄº¯Êı²Ù×÷
 #define MAP_FUN_AFTER(con, fun) do { \
     std::string str = #fun; \
     std::cout << " After " << str << " :" << std::endl; \
@@ -35,7 +35,7 @@ namespace map_test
     MAP_COUT(con); \
 } while(0)
 
-// map çš„å‡½æ•°å€¼
+// map µÄº¯ÊıÖµ
 #define MAP_VALUE(fun) do { \
     std::string str = #fun; \
     auto it = fun; \

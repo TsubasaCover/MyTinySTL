@@ -1,7 +1,7 @@
-ï»¿#ifndef MYTINYSTL_TEST_H_
+#ifndef MYTINYSTL_TEST_H_
 #define MYTINYSTL_TEST_H_
 
-// ä¸€ä¸ªç®€å•çš„å•å…ƒæµ‹è¯•æ¡†æ¶ï¼Œå®šä¹‰äº†ä¸¤ä¸ªç±» TestCase å’Œ UnitTestï¼Œä»¥åŠä¸€ç³»åˆ—ç”¨äºæµ‹è¯•çš„å®
+// Ò»¸ö¼òµ¥µÄµ¥Ôª²âÊÔ¿ò¼Ü£¬¶¨ÒåÁËÁ½¸öÀà TestCase ºÍ UnitTest£¬ÒÔ¼°Ò»ÏµÁĞÓÃÓÚ²âÊÔµÄºê
 
 #include <ctime>
 #include <cstring>
@@ -32,44 +32,44 @@ namespace test
 namespace test
 {
 
-// TestCase ç±»
-// å°è£…å•ä¸ªæµ‹è¯•æ¡ˆä¾‹
+// TestCase Àà
+// ·â×°µ¥¸ö²âÊÔ°¸Àı
 class TestCase
 {
 public:
-  // æ„é€ å‡½æ•°ï¼Œæ¥å—ä¸€ä¸ªå­—ç¬¦ä¸²ä»£è¡¨æ¡ˆä¾‹åç§°
+  // ¹¹Ôìº¯Êı£¬½ÓÊÜÒ»¸ö×Ö·û´®´ú±í°¸ÀıÃû³Æ
   TestCase(const char* case_name) : testcase_name(case_name) {}
 
-  // ä¸€ä¸ªçº¯è™šå‡½æ•°ï¼Œç”¨äºæµ‹è¯•æ¡ˆä¾‹
+  // Ò»¸ö´¿Ğéº¯Êı£¬ÓÃÓÚ²âÊÔ°¸Àı
   virtual void Run() = 0;
 
 public:
-  const char* testcase_name;  // æµ‹è¯•æ¡ˆä¾‹çš„åç§°
-  int         nTestResult;    // æµ‹è¯•æ¡ˆä¾‹çš„æ‰§è¡Œç»“æœ 
-  double      nFailed;        // æµ‹è¯•å¤±è´¥çš„æ¡ˆä¾‹æ•°
-  double      nPassed;        // æµ‹è¯•é€šè¿‡çš„æ¡ˆä¾‹æ•°
+  const char* testcase_name;  // ²âÊÔ°¸ÀıµÄÃû³Æ
+  int         nTestResult;    // ²âÊÔ°¸ÀıµÄÖ´ĞĞ½á¹û 
+  double      nFailed;        // ²âÊÔÊ§°ÜµÄ°¸ÀıÊı
+  double      nPassed;        // ²âÊÔÍ¨¹ıµÄ°¸ÀıÊı
 };
 
-// UnitTest ç±»
-// å•å…ƒæµ‹è¯•ï¼ŒæŠŠæ‰€æœ‰æµ‹è¯•æ¡ˆä¾‹åŠ å…¥åˆ° vector ä¸­ï¼Œä¾æ¬¡æ‰§è¡Œæµ‹è¯•æ¡ˆä¾‹
+// UnitTest Àà
+// µ¥Ôª²âÊÔ£¬°ÑËùÓĞ²âÊÔ°¸Àı¼ÓÈëµ½ vector ÖĞ£¬ÒÀ´ÎÖ´ĞĞ²âÊÔ°¸Àı
 class UnitTest
 {
 public:
-  // è·å–ä¸€ä¸ªæ¡ˆä¾‹
+  // »ñÈ¡Ò»¸ö°¸Àı
   static UnitTest* GetInstance();
 
-  // å°†æ¡ˆä¾‹ä¾æ¬¡åŠ å…¥ vector
+  // ½«°¸ÀıÒÀ´Î¼ÓÈë vector
   TestCase* RegisterTestCase(TestCase* testcase);
 
   void Run();
 
 public:
-  TestCase* CurrentTestCase;          // å½“å‰æ‰§è¡Œçš„æµ‹è¯•æ¡ˆä¾‹
-  double    nPassed;                  // é€šè¿‡æ¡ˆä¾‹æ•°
-  double    nFailed;                  // å¤±è´¥æ¡ˆä¾‹æ•°
+  TestCase* CurrentTestCase;          // µ±Ç°Ö´ĞĞµÄ²âÊÔ°¸Àı
+  double    nPassed;                  // Í¨¹ı°¸ÀıÊı
+  double    nFailed;                  // Ê§°Ü°¸ÀıÊı
 
 protected:
-  std::vector<TestCase*> testcases_;  // ä¿å­˜æ¡ˆä¾‹é›†åˆ
+  std::vector<TestCase*> testcases_;  // ±£´æ°¸Àı¼¯ºÏ
 };
 
 UnitTest* UnitTest::GetInstance()
@@ -119,11 +119,11 @@ void UnitTest::Run()
 
 /*****************************************************************************************/
 
-// æµ‹è¯•æ¡ˆä¾‹çš„ç±»åï¼Œæ›¿æ¢ä¸º test_cast_TEST
+// ²âÊÔ°¸ÀıµÄÀàÃû£¬Ìæ»»Îª test_cast_TEST
 #define TESTCASE_NAME(testcase_name) \
     testcase_name##_TEST
 
-// ä½¿ç”¨å®å®šä¹‰æ©ç›–å¤æ‚çš„æµ‹è¯•æ ·ä¾‹å°è£…è¿‡ç¨‹ï¼ŒæŠŠ TEXT ä¸­çš„æµ‹è¯•æ¡ˆä¾‹æ”¾åˆ°å•å…ƒæµ‹è¯•ä¸­
+// Ê¹ÓÃºê¶¨ÒåÑÚ¸Ç¸´ÔÓµÄ²âÊÔÑùÀı·â×°¹ı³Ì£¬°Ñ TEXT ÖĞµÄ²âÊÔ°¸Àı·Åµ½µ¥Ôª²âÊÔÖĞ
 #define MYTINYSTL_TEST_(testcase_name)                        \
 class TESTCASE_NAME(testcase_name) : public TestCase {        \
 public:                                                       \
@@ -140,33 +140,33 @@ TestCase* const TESTCASE_NAME(testcase_name)                  \
 void TESTCASE_NAME(testcase_name)::Run()
 
 /*
-Run()åè¾¹æ²¡æœ‰å†™å®ç°ï¼Œæ˜¯ä¸ºäº†ç”¨å®å®šä¹‰å°†æµ‹è¯•ç”¨ä¾‹æ”¾å…¥åˆ° Run çš„å®ç°é‡Œï¼Œä¾‹å¦‚ï¼š
+Run()ºó±ßÃ»ÓĞĞ´ÊµÏÖ£¬ÊÇÎªÁËÓÃºê¶¨Òå½«²âÊÔÓÃÀı·ÅÈëµ½ Run µÄÊµÏÖÀï£¬ÀıÈç£º
 TEST(AddTestDemo)
 {
 EXPECT_EQ(3, Add(1, 2));
 EXPECT_EQ(2, Add(1, 1));
 }
-ä¸Šè¿°ä»£ç å°† { EXPECT_EQ(3, Add(1, 2)); EXPECT_EQ(2, Add(1, 1)); } æ¥åˆ° Run() çš„åé¢
+ÉÏÊö´úÂë½« { EXPECT_EQ(3, Add(1, 2)); EXPECT_EQ(2, Add(1, 1)); } ½Óµ½ Run() µÄºóÃæ
 */
 
 
 /*****************************************************************************************/
 
-// ç®€å•æµ‹è¯•çš„å®å®šä¹‰
-// æ–­è¨€ : å®å®šä¹‰å½¢å¼ä¸º EXPECT_* ï¼Œç¬¦åˆéªŒè¯æ¡ä»¶çš„ï¼Œæ¡ˆä¾‹æµ‹è¯•é€šè¿‡ï¼Œå¦åˆ™å¤±è´¥
-// ä½¿ç”¨ä¸€ç³»åˆ—çš„å®æ¥å°è£…éªŒè¯æ¡ä»¶ï¼Œåˆ†ä¸ºä»¥ä¸‹å‡ å¤§ç±» :
+// ¼òµ¥²âÊÔµÄºê¶¨Òå
+// ¶ÏÑÔ : ºê¶¨ÒåĞÎÊ½Îª EXPECT_* £¬·ûºÏÑéÖ¤Ìõ¼şµÄ£¬°¸Àı²âÊÔÍ¨¹ı£¬·ñÔòÊ§°Ü
+// Ê¹ÓÃÒ»ÏµÁĞµÄºêÀ´·â×°ÑéÖ¤Ìõ¼ş£¬·ÖÎªÒÔÏÂ¼¸´óÀà :
 
 /*
-çœŸå‡æ–­è¨€
-EXPECT_TRUE  éªŒè¯æ¡ä»¶: Condition ä¸º true
-EXPECT_FALSE éªŒè¯æ¡ä»¶: Condition ä¸º false
+Õæ¼Ù¶ÏÑÔ
+EXPECT_TRUE  ÑéÖ¤Ìõ¼ş: Condition Îª true
+EXPECT_FALSE ÑéÖ¤Ìõ¼ş: Condition Îª false
 
 Example:
-bool isPrime(int n);         ä¸€ä¸ªåˆ¤æ–­ç´ æ•°çš„å‡½æ•°
-EXPECT_TRUE(isPrime(2));     é€šè¿‡
-EXPECT_FALSE(isPrime(4));    é€šè¿‡
-EXPECT_TRUE(isPrime(6));     å¤±è´¥
-EXPECT_FALSE(isPrime(3));    å¤±è´¥
+bool isPrime(int n);         Ò»¸öÅĞ¶ÏËØÊıµÄº¯Êı
+EXPECT_TRUE(isPrime(2));     Í¨¹ı
+EXPECT_FALSE(isPrime(4));    Í¨¹ı
+EXPECT_TRUE(isPrime(6));     Ê§°Ü
+EXPECT_FALSE(isPrime(3));    Ê§°Ü
 */
 #define EXPECT_TRUE(Condition) do {                             \
   if (Condition) {                                              \
@@ -191,25 +191,25 @@ EXPECT_FALSE(isPrime(3));    å¤±è´¥
 }} while(0)
 
 /*
-æ¯”è¾ƒæ–­è¨€
-EXPECT_EQ(v1, v2) éªŒè¯æ¡ä»¶: v1 == v2
-EXPECT_NE(v1, v2) éªŒè¯æ¡ä»¶: v1 != v2
-EXPECT_LT(v1, v2) éªŒè¯æ¡ä»¶: v1 <  v2
-EXPECT_LE(v1, v2) éªŒè¯æ¡ä»¶: v1 <= v2
-EXPECT_GT(v1, v2) éªŒè¯æ¡ä»¶: v1 >  v2
-EXPECT_GE(v1, v2) éªŒè¯æ¡ä»¶: v1 >= v2
+±È½Ï¶ÏÑÔ
+EXPECT_EQ(v1, v2) ÑéÖ¤Ìõ¼ş: v1 == v2
+EXPECT_NE(v1, v2) ÑéÖ¤Ìõ¼ş: v1 != v2
+EXPECT_LT(v1, v2) ÑéÖ¤Ìõ¼ş: v1 <  v2
+EXPECT_LE(v1, v2) ÑéÖ¤Ìõ¼ş: v1 <= v2
+EXPECT_GT(v1, v2) ÑéÖ¤Ìõ¼ş: v1 >  v2
+EXPECT_GE(v1, v2) ÑéÖ¤Ìõ¼ş: v1 >= v2
 
 Note:
-1. å‚æ•°åº”æ»¡è¶³ EXPECT_*(Expect, Actual)çš„æ ¼å¼ï¼Œå·¦è¾¹æ˜¯æœŸæœ›å€¼ï¼Œå³è¾¹æ˜¯å®é™…å€¼
-2. åœ¨æ–­è¨€å¤±è´¥æ—¶ï¼Œä¼šå°†æœŸæœ›å€¼ä¸å®é™…å€¼æ‰“å°å‡ºæ¥
-3. å‚æ•°å€¼å¿…é¡»æ˜¯å¯é€šè¿‡æ–­è¨€çš„æ¯”è¾ƒæ“ä½œç¬¦è¿›è¡Œæ¯”è¾ƒçš„ï¼Œå‚æ•°å€¼è¿˜å¿…é¡»æ”¯æŒ << æ“ä½œç¬¦æ¥
-å°†å€¼è¾“å…¥åˆ° ostream ä¸­
-4. è¿™äº›æ–­è¨€å¯ä»¥ç”¨äºç”¨æˆ·è‡ªå®šä¹‰å‹åˆ«ï¼Œä½†å¿…é¡»é‡è½½ç›¸åº”çš„æ¯”è¾ƒæ“ä½œç¬¦ï¼ˆå¦‚ == ã€< ç­‰ï¼‰
-5. EXPECT_EQ å¯¹æŒ‡é’ˆè¿›è¡Œçš„æ˜¯åœ°å€æ¯”è¾ƒã€‚å³æ¯”è¾ƒçš„æ˜¯å®ƒä»¬æ˜¯å¦æŒ‡å‘ç›¸åŒçš„å†…å­˜åœ°å€ï¼Œ
-è€Œä¸æ˜¯å®ƒä»¬æŒ‡å‘çš„å†…å®¹æ˜¯å¦ç›¸ç­‰ã€‚å¦‚æœæƒ³æ¯”è¾ƒä¸¤ä¸ª C å­—ç¬¦ä¸²(const char*)çš„å€¼ï¼Œ
-è¯·ä½¿ç”¨ EXPECT_STREQ ã€‚ç‰¹åˆ«ä¸€æçš„æ˜¯ï¼Œè¦éªŒè¯ä¸€ä¸ª C å­—ç¬¦ä¸²æ˜¯å¦ä¸ºç©º(NULL)ï¼Œ
-è¯·ä½¿ç”¨ EXPECT_STREQ(NULL, c_str)ã€‚ä½†æ˜¯è¦æ¯”è¾ƒä¸¤ä¸ª string å¯¹è±¡æ—¶ï¼Œ
-åº”è¯¥ä½¿ç”¨ EXPECT_EQ
+1. ²ÎÊıÓ¦Âú×ã EXPECT_*(Expect, Actual)µÄ¸ñÊ½£¬×ó±ßÊÇÆÚÍûÖµ£¬ÓÒ±ßÊÇÊµ¼ÊÖµ
+2. ÔÚ¶ÏÑÔÊ§°ÜÊ±£¬»á½«ÆÚÍûÖµÓëÊµ¼ÊÖµ´òÓ¡³öÀ´
+3. ²ÎÊıÖµ±ØĞëÊÇ¿ÉÍ¨¹ı¶ÏÑÔµÄ±È½Ï²Ù×÷·û½øĞĞ±È½ÏµÄ£¬²ÎÊıÖµ»¹±ØĞëÖ§³Ö << ²Ù×÷·ûÀ´
+½«ÖµÊäÈëµ½ ostream ÖĞ
+4. ÕâĞ©¶ÏÑÔ¿ÉÒÔÓÃÓÚÓÃ»§×Ô¶¨ÒåĞÍ±ğ£¬µ«±ØĞëÖØÔØÏàÓ¦µÄ±È½Ï²Ù×÷·û£¨Èç == ¡¢< µÈ£©
+5. EXPECT_EQ ¶ÔÖ¸Õë½øĞĞµÄÊÇµØÖ·±È½Ï¡£¼´±È½ÏµÄÊÇËüÃÇÊÇ·ñÖ¸ÏòÏàÍ¬µÄÄÚ´æµØÖ·£¬
+¶ø²»ÊÇËüÃÇÖ¸ÏòµÄÄÚÈİÊÇ·ñÏàµÈ¡£Èç¹ûÏë±È½ÏÁ½¸ö C ×Ö·û´®(const char*)µÄÖµ£¬
+ÇëÊ¹ÓÃ EXPECT_STREQ ¡£ÌØ±ğÒ»ÌáµÄÊÇ£¬ÒªÑéÖ¤Ò»¸ö C ×Ö·û´®ÊÇ·ñÎª¿Õ(NULL)£¬
+ÇëÊ¹ÓÃ EXPECT_STREQ(NULL, c_str)¡£µ«ÊÇÒª±È½ÏÁ½¸ö string ¶ÔÏóÊ±£¬
+Ó¦¸ÃÊ¹ÓÃ EXPECT_EQ
 
 Example:
 EXPECT_EQ(3, foo());
@@ -295,23 +295,23 @@ EXPECT_LT(len, v.size());
 }} while(0)
 
 /*
-å­—ç¬¦ä¸²æ¯”è¾ƒ
-EXPECT_STREQ(s1, s2) éªŒè¯æ¡ä»¶: ä¸¤ä¸ª C å­—ç¬¦ä¸²æœ‰ç›¸åŒçš„å€¼
-EXPECT_STRNE(s1, s2) éªŒè¯æ¡ä»¶: ä¸¤ä¸ª C å­—ç¬¦ä¸²æœ‰ä¸åŒçš„å€¼
+×Ö·û´®±È½Ï
+EXPECT_STREQ(s1, s2) ÑéÖ¤Ìõ¼ş: Á½¸ö C ×Ö·û´®ÓĞÏàÍ¬µÄÖµ
+EXPECT_STRNE(s1, s2) ÑéÖ¤Ìõ¼ş: Á½¸ö C ×Ö·û´®ÓĞ²»Í¬µÄÖµ
 
 Note:
-1. å‚æ•°åº”æ»¡è¶³ EXPECT_STR*(Expect, Actual)çš„æ ¼å¼ï¼Œå·¦è¾¹æ˜¯æœŸæœ›å€¼ï¼Œå³è¾¹æ˜¯å®é™…å€¼
-2. è¯¥ç»„æ–­è¨€ç”¨äºæ¯”è¾ƒä¸¤ä¸ª C å­—ç¬¦ä¸²ã€‚å¦‚æœä½ æƒ³è¦æ¯”è¾ƒä¸¤ä¸ª string å¯¹è±¡ï¼Œç›¸åº”åœ°ä½¿ç”¨
-EXPECT_EQã€EXPECT_NE ç­‰æ–­è¨€
-3. EXPECT_STREQ å’Œ EXPECT_STRNE ä¸æ¥å—å®½å­—ç¬¦ä¸²ï¼ˆwchar_t*ï¼‰
-4. ä¸€ä¸ª NULL æŒ‡é’ˆå’Œä¸€ä¸ªç©ºå­—ç¬¦ä¸²ä¼šä¸æ˜¯ä¸€æ ·çš„
+1. ²ÎÊıÓ¦Âú×ã EXPECT_STR*(Expect, Actual)µÄ¸ñÊ½£¬×ó±ßÊÇÆÚÍûÖµ£¬ÓÒ±ßÊÇÊµ¼ÊÖµ
+2. ¸Ã×é¶ÏÑÔÓÃÓÚ±È½ÏÁ½¸ö C ×Ö·û´®¡£Èç¹ûÄãÏëÒª±È½ÏÁ½¸ö string ¶ÔÏó£¬ÏàÓ¦µØÊ¹ÓÃ
+EXPECT_EQ¡¢EXPECT_NE µÈ¶ÏÑÔ
+3. EXPECT_STREQ ºÍ EXPECT_STRNE ²»½ÓÊÜ¿í×Ö·û´®£¨wchar_t*£©
+4. Ò»¸ö NULL Ö¸ÕëºÍÒ»¸ö¿Õ×Ö·û´®»á²»ÊÇÒ»ÑùµÄ
 
 Example:
 char* s1 = "", char* s2 = "abc", char* s3 = NULL;
-EXPECT_STREQ("abc", s2);  é€šè¿‡
-EXPECT_STREQ(s1, s3);     å¤±è´¥
-EXPECT_STREQ(NULL, s3);   é€šè¿‡
-EXPECT_STRNE(" ", s1);    é€šè¿‡
+EXPECT_STREQ("abc", s2);  Í¨¹ı
+EXPECT_STREQ(s1, s3);     Ê§°Ü
+EXPECT_STREQ(NULL, s3);   Í¨¹ı
+EXPECT_STRNE(" ", s1);    Í¨¹ı
 */
 
 #define EXPECT_STREQ(s1, s2) do {                                 \
@@ -371,31 +371,31 @@ EXPECT_STRNE(" ", s1);    é€šè¿‡
 }} while(0)
 
 /*
-æŒ‡é’ˆæ¯”è¾ƒ
-EXPECT_PTR_EQ(p1, p2)            éªŒè¯æ¡ä»¶: *p1 == *p2
-EXPECT_PTR_NE(p1, p2)            éªŒè¯æ¡ä»¶: *p1 != *p2
-EXPECT_PTR_RANGE_EQ(p1, p2, len) éªŒè¯æ¡ä»¶: ä»»æ„ i (*p1 + i) == (*p2 + i)  iâˆˆ[0,len)
-EXPECT_PTR_RANGE_NE(p1, p2, len) éªŒè¯æ¡ä»¶: å­˜åœ¨ i (*p1 + i) != (*p2 + i)  iâˆˆ[0,len)
+Ö¸Õë±È½Ï
+EXPECT_PTR_EQ(p1, p2)            ÑéÖ¤Ìõ¼ş: *p1 == *p2
+EXPECT_PTR_NE(p1, p2)            ÑéÖ¤Ìõ¼ş: *p1 != *p2
+EXPECT_PTR_RANGE_EQ(p1, p2, len) ÑéÖ¤Ìõ¼ş: ÈÎÒâ i (*p1 + i) == (*p2 + i)  i¡Ê[0,len)
+EXPECT_PTR_RANGE_NE(p1, p2, len) ÑéÖ¤Ìõ¼ş: ´æÔÚ i (*p1 + i) != (*p2 + i)  i¡Ê[0,len)
 
 Note:
-1. å‚æ•°åº”æ»¡è¶³ EXPECT_PTR_*(Expect, Actual)ã€
-EXPECT_PTR_RANGE_*(Expect, Actual, len)çš„æ ¼å¼ï¼Œ
-å³å‚æ•°è¡¨ä¸­æœŸæœ›å€¼åœ¨å®é™…å€¼å·¦è¾¹
-2. EXPECT_PTR_EQ æ¯”è¾ƒçš„æ˜¯æŒ‡é’ˆæ‰€æŒ‡å…ƒç´ çš„å€¼ï¼Œå¦‚æœè¦æ¯”è¾ƒ
-æŒ‡é’ˆæŒ‡å‘çš„åœ°å€æ˜¯å¦ç›¸ç­‰ï¼Œè¯·ç”¨ EXPECT_EQ
-3. EXPECT_PTR_RANGE_* æ¯”è¾ƒçš„æ˜¯ä» p1ï¼Œp2 å¼€å§‹ï¼Œ
-é•¿åº¦ä¸º len çš„åŒºé—´ï¼Œè¯·ç¡®ä¿åŒºé—´é•¿åº¦æœ‰æ•ˆ
+1. ²ÎÊıÓ¦Âú×ã EXPECT_PTR_*(Expect, Actual)¡¢
+EXPECT_PTR_RANGE_*(Expect, Actual, len)µÄ¸ñÊ½£¬
+¼´²ÎÊı±íÖĞÆÚÍûÖµÔÚÊµ¼ÊÖµ×ó±ß
+2. EXPECT_PTR_EQ ±È½ÏµÄÊÇÖ¸ÕëËùÖ¸ÔªËØµÄÖµ£¬Èç¹ûÒª±È½Ï
+Ö¸ÕëÖ¸ÏòµÄµØÖ·ÊÇ·ñÏàµÈ£¬ÇëÓÃ EXPECT_EQ
+3. EXPECT_PTR_RANGE_* ±È½ÏµÄÊÇ´Ó p1£¬p2 ¿ªÊ¼£¬
+³¤¶ÈÎª len µÄÇø¼ä£¬ÇëÈ·±£Çø¼ä³¤¶ÈÓĞĞ§
 
 Example:
 int a[] = {1,2,3,4,5};
 int b[] = {1,2,3,4,6};
 int *p1 = a, *p2 = b;
-EXPECT_PTR_EQ(p1, p2);                      é€šè¿‡
+EXPECT_PTR_EQ(p1, p2);                      Í¨¹ı
 p1 = a + 4, p2 = b + 4;
-EXPECT_PTR_EQ(p1, p2);                      å¤±è´¥
-EXPECT_PTR_EQ(p1, std::find(a, a + 5, 5));  é€šè¿‡
-EXPECT_PTR_RANGE_EQ(a, b, 5);               å¤±è´¥
-EXPECT_PTR_RANGE_EQ(a, b, 4);               é€šè¿‡
+EXPECT_PTR_EQ(p1, p2);                      Ê§°Ü
+EXPECT_PTR_EQ(p1, std::find(a, a + 5, 5));  Í¨¹ı
+EXPECT_PTR_RANGE_EQ(a, b, 5);               Ê§°Ü
+EXPECT_PTR_RANGE_EQ(a, b, 4);               Í¨¹ı
 */
 #define EXPECT_PTR_EQ(p1, p2) do {                              \
   if (*p1 == *p2) {                                             \
@@ -446,14 +446,14 @@ EXPECT_PTR_RANGE_EQ(a, b, 4);               é€šè¿‡
 }} while(0)
 
 /*
-å®¹å™¨æ¯”è¾ƒ
-EXPECT_CON_EQ(c1, c2) éªŒè¯æ¡ä»¶: c1 == c2
-EXPECT_CON_NE(c1, c2) éªŒè¯æ¡ä»¶: c1 != c2
+ÈİÆ÷±È½Ï
+EXPECT_CON_EQ(c1, c2) ÑéÖ¤Ìõ¼ş: c1 == c2
+EXPECT_CON_NE(c1, c2) ÑéÖ¤Ìõ¼ş: c1 != c2
 
 Note:
-1. å®¹å™¨å¯ä»¥æ˜¯ STL å®¹å™¨ï¼Œè‡ªå®šä¹‰çš„å®¹å™¨ï¼Œæˆ–è€…æ•°ç»„ï¼Œä½†ä¸å¯ä»¥æ˜¯æŒ‡é’ˆ
-2. å®¹å™¨çš„æ•°æ®ç±»å‹è¦èƒ½å¤Ÿè¿›è¡Œæ¯”è¾ƒï¼Œç±»å‹ä¸€è‡´æˆ–å¯ä»¥å‘ç”Ÿéšå¼è½¬æ¢
-3. EXPECT_CON_EQ æµ‹è¯•å¤±è´¥æ—¶ï¼Œä¼šæ‰“å°é¦–æ¬¡ä¸ç›¸ç­‰çš„ä¸¤ä¸ªå€¼
+1. ÈİÆ÷¿ÉÒÔÊÇ STL ÈİÆ÷£¬×Ô¶¨ÒåµÄÈİÆ÷£¬»òÕßÊı×é£¬µ«²»¿ÉÒÔÊÇÖ¸Õë
+2. ÈİÆ÷µÄÊı¾İÀàĞÍÒªÄÜ¹»½øĞĞ±È½Ï£¬ÀàĞÍÒ»ÖÂ»ò¿ÉÒÔ·¢ÉúÒşÊ½×ª»»
+3. EXPECT_CON_EQ ²âÊÔÊ§°ÜÊ±£¬»á´òÓ¡Ê×´Î²»ÏàµÈµÄÁ½¸öÖµ
 
 Example:
 int arr[] = {1,2,3};
@@ -499,9 +499,9 @@ EXPECT_CON_EQ(v1, v3)   ok
 }} while(0)
 
 /*****************************************************************************************/
-// å¸¸ç”¨çš„å®å®šä¹‰
+// ³£ÓÃµÄºê¶¨Òå
 
-// ä¸åŒæƒ…å†µçš„æµ‹è¯•æ•°é‡çº§
+// ²»Í¬Çé¿öµÄ²âÊÔÊıÁ¿¼¶
 #if defined(_DEBUG) || defined(DEBUG)
 #define LEN1    10000
 #define LEN2    100000
@@ -522,10 +522,10 @@ EXPECT_CON_EQ(v1, v3)   ok
 
 #define WIDE    14
 
-// è¾“å‡ºé€šè¿‡æç¤º
+// Êä³öÍ¨¹ıÌáÊ¾
 #define PASSED    std::cout << "[ PASSED ]\n"
 
-// éå†è¾“å‡ºå®¹å™¨
+// ±éÀúÊä³öÈİÆ÷
 #define COUT(container) do {                             \
   std::string con_name = #container;                     \
   std::cout << " " << con_name << " :";                  \
@@ -539,7 +539,7 @@ EXPECT_CON_EQ(v1, v3)   ok
   std::cout << " " << str_name << " : " << str << "\n";  \
 } while(0)
 
-// è¾“å‡ºå®¹å™¨è°ƒç”¨å‡½æ•°åçš„ç»“æœ
+// Êä³öÈİÆ÷µ÷ÓÃº¯ÊıºóµÄ½á¹û
 #define FUN_AFTER(con, fun) do {                         \
   std::string fun_name = #fun;                           \
   std::cout << " After " << fun_name << " :\n";          \
@@ -554,13 +554,13 @@ EXPECT_CON_EQ(v1, v3)   ok
   STR_COUT(str);                                         \
 } while(0)
 
-// è¾“å‡ºå®¹å™¨è°ƒç”¨å‡½æ•°çš„å€¼
+// Êä³öÈİÆ÷µ÷ÓÃº¯ÊıµÄÖµ
 #define FUN_VALUE(fun) do {                              \
   std::string fun_name = #fun;                           \
   std::cout << " " << fun_name << " : " << fun << "\n";  \
 } while(0)
 
-// è¾“å‡ºæµ‹è¯•æ•°é‡çº§
+// Êä³ö²âÊÔÊıÁ¿¼¶
 void test_len(size_t len1, size_t len2, size_t len3, size_t wide)
 {
   std::string str1, str2, str3;
@@ -578,7 +578,7 @@ void test_len(size_t len1, size_t len2, size_t len3, size_t wide)
 #define TEST_LEN(len1, len2, len3, wide) \
   test_len(len1, len2, len3, wide)
 
-// å¸¸ç”¨æµ‹è¯•æ€§èƒ½çš„å®
+// ³£ÓÃ²âÊÔĞÔÄÜµÄºê
 #define FUN_TEST_FORMAT1(mode, fun, arg, count) do {         \
   srand((int)time(0));                                       \
   clock_t start, end;                                        \
@@ -648,7 +648,7 @@ void test_len(size_t len1, size_t len2, size_t len3, size_t wide)
   std::cout << std::setw(WIDE) << t;                         \
 } while(0)
 
-// é‡æ„é‡å¤ä»£ç 
+// ÖØ¹¹ÖØ¸´´úÂë
 #define CON_TEST_P1(con, fun, arg, len1, len2, len3)         \
   TEST_LEN(len1, len2, len3, WIDE);                          \
   std::cout << "|         std         |";                    \
@@ -693,20 +693,20 @@ void test_len(size_t len1, size_t len2, size_t len3, size_t wide)
   LIST_SORT_DO_TEST(mystl, len2);                            \
   LIST_SORT_DO_TEST(mystl, len3);
 
-// ç®€å•æµ‹è¯•çš„å®å®šä¹‰
+// ¼òµ¥²âÊÔµÄºê¶¨Òå
 #define TEST(testcase_name) \
   MYTINYSTL_TEST_(testcase_name)
 
-// è¿è¡Œæ‰€æœ‰æµ‹è¯•æ¡ˆä¾‹
+// ÔËĞĞËùÓĞ²âÊÔ°¸Àı
 #define RUN_ALL_TESTS() \
   mystl::test::UnitTest::GetInstance()->Run()
 
-// æ˜¯å¦å¼€å¯æ€§èƒ½æµ‹è¯•
+// ÊÇ·ñ¿ªÆôĞÔÄÜ²âÊÔ
 #ifndef PERFORMANCE_TEST_ON
 #define PERFORMANCE_TEST_ON 1
 #endif // !PERFORMANCE_TEST_ON
 
-// æ˜¯å¦å¼€å¯å¤§æ•°æ®é‡æµ‹è¯•
+// ÊÇ·ñ¿ªÆô´óÊı¾İÁ¿²âÊÔ
 #ifndef LARGER_TEST_DATA_ON
 #define LARGER_TEST_DATA_ON 0
 #endif // !LARGER_TEST_DATA_ON

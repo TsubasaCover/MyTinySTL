@@ -1,7 +1,7 @@
-ï»¿#ifndef MYTINYSTL_STRING_TEST_H_
+#ifndef MYTINYSTL_STRING_TEST_H_
 #define MYTINYSTL_STRING_TEST_H_
 
-// string test : æµ‹è¯• string çš„æ¥å£å’Œ insert çš„æ€§èƒ½
+// string test : ²âÊÔ string µÄ½Ó¿ÚºÍ insert µÄĞÔÄÜ
 
 #include <string>
 

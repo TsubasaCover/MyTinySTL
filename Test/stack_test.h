@@ -1,7 +1,7 @@
-ï»¿#ifndef MYTINYSTL_STACK_TEST_H_
+#ifndef MYTINYSTL_STACK_TEST_H_
 #define MYTINYSTL_STACK_TEST_H_
 
-// stack test : æµ‹è¯• stack çš„æ¥å£ å’Œ push çš„æ€§èƒ½
+// stack test : ²âÊÔ stack µÄ½Ó¿Ú ºÍ push µÄĞÔÄÜ
 
 #include <stack>
 
@@ -25,7 +25,7 @@ void stack_print(mystl::stack<int> s)
   std::cout << std::endl;
 }
 
-// stack çš„éå†è¾“å‡º
+// stack µÄ±éÀúÊä³ö
 #define STACK_COUT(s) do {                       \
     std::string s_name = #s;                     \
     std::cout << " " << s_name << " :";          \

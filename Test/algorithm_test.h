@@ -1,7 +1,7 @@
-ï»¿#ifndef MYTINYSTL_ALGORITHM_TEST_H_
+#ifndef MYTINYSTL_ALGORITHM_TEST_H_
 #define MYTINYSTL_ALGORITHM_TEST_H_
 
-// ç®—æ³•æµ‹è¯•: åŒ…å«äº† mystl çš„ 81 ä¸ªç®—æ³•æµ‹è¯•
+// Ëã·¨²âÊÔ: °üº¬ÁË mystl µÄ 81 ¸öËã·¨²âÊÔ
 
 #include <algorithm>
 #include <functional>
@@ -34,7 +34,7 @@ namespace test
 namespace algorithm_test
 {
 
-// ä¸€äº›å¯èƒ½ä¼šç”¨åˆ°çš„è¾…åŠ©æ•°æ®å’Œå‡½æ•°
+// Ò»Ğ©¿ÉÄÜ»áÓÃµ½µÄ¸¨ÖúÊı¾İºÍº¯Êı
 int  for_each_sum = 0;
 
 int  gen() { return 5; }
@@ -46,7 +46,7 @@ bool cmp(const int& a, const int& b) { return b < a; }
 int  unary_op(const int& x) { return x + 1; }
 int  binary_op(const int& x, const int& y) { return x + y; }
 
-// ä»¥ä¸‹ä¸º 80 ä¸ªå‡½æ•°çš„ç®€å•æµ‹è¯•
+// ÒÔÏÂÎª 80 ¸öº¯ÊıµÄ¼òµ¥²âÊÔ
 
 // algobase test:
 TEST(copy_test)
@@ -720,7 +720,7 @@ TEST(is_permutation_test)
   int arr1[] = { 1,2,3,4,5 };
   int arr2[] = { 3,4,5,2,1 };
   int arr3[] = { 1,2,3,4,6 };
-  // å› ä¸ºæä¾›çš„æ˜¯ C++11 çš„æ”¯æŒï¼Œstd::is_permutation å¯èƒ½æ²¡æœ‰ C++14 çš„æ¥å£
+  // ÒòÎªÌá¹©µÄÊÇ C++11 µÄÖ§³Ö£¬std::is_permutation ¿ÉÄÜÃ»ÓĞ C++14 µÄ½Ó¿Ú
   EXPECT_EQ(std::is_permutation(arr1, arr1 + 5, arr2),
             mystl::is_permutation(arr1, arr1 + 5, arr2, arr2 + 5));
   EXPECT_EQ(std::is_permutation(arr1, arr1 + 5, arr3),

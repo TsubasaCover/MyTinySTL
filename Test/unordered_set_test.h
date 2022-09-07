@@ -1,7 +1,7 @@
-ï»¿#ifndef MYTINYSTL_UNORDERED_SET_TEST_H_
+#ifndef MYTINYSTL_UNORDERED_SET_TEST_H_
 #define MYTINYSTL_UNORDERED_SET_TEST_H_
 
-// unordered_set test : æµ‹è¯• unordered_set, unordered_multiset çš„æ¥å£ä¸å®ƒä»¬ insert çš„æ€§èƒ½
+// unordered_set test : ²âÊÔ unordered_set, unordered_multiset µÄ½Ó¿ÚÓëËüÃÇ insert µÄĞÔÄÜ
 
 #include <unordered_set>
 

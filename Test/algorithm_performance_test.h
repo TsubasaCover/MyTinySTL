@@ -1,7 +1,7 @@
-ï»¿#ifndef MYTINYSTL_ALGORITHM_PERFORMANCE_TEST_H_
+#ifndef MYTINYSTL_ALGORITHM_PERFORMANCE_TEST_H_
 #define MYTINYSTL_ALGORITHM_PERFORMANCE_TEST_H_
 
-// ä»…ä»…é’ˆå¯¹ sort, binary_search åšäº†æ€§èƒ½æµ‹è¯•
+// ½ö½öÕë¶Ô sort, binary_search ×öÁËĞÔÄÜ²âÊÔ
 
 #include <algorithm>
 
@@ -15,7 +15,7 @@ namespace test
 namespace algorithm_performance_test
 {
 
-// å‡½æ•°æ€§èƒ½æµ‹è¯•å®å®šä¹‰
+// º¯ÊıĞÔÄÜ²âÊÔºê¶¨Òå
 #define FUN_TEST1(mode, fun, count) do {                      \
     std::string fun_name = #fun;                               \
     srand((int)time(0));                                       \

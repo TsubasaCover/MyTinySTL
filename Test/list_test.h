@@ -1,7 +1,7 @@
-ï»¿#ifndef MYTINYSTL_LIST_TEST_H_
+#ifndef MYTINYSTL_LIST_TEST_H_
 #define MYTINYSTL_LIST_TEST_H_
 
-// list test : æµ‹è¯• list çš„æ¥å£ä¸ insert, sort çš„æ€§èƒ½
+// list test : ²âÊÔ list µÄ½Ó¿ÚÓë insert, sort µÄĞÔÄÜ
 
 #include <list>
 
@@ -15,7 +15,7 @@ namespace test
 namespace list_test
 {
 
-// ä¸€ä¸ªè¾…åŠ©æµ‹è¯•å‡½æ•°
+// Ò»¸ö¸¨Öú²âÊÔº¯Êı
 bool is_odd(int x) { return x & 1; }
 
 void list_test()

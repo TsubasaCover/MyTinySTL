@@ -1,7 +1,7 @@
-å•å…ƒæµ‹è¯• (Unit test)
+µ¥Ôª²âÊÔ (Unit test)
 =====
-## æµ‹è¯•ç¯å¢ƒ (Test environment)
-  æµ‹è¯•ç›´æ¥åœ¨ `Travis CI` å’Œ `AppVeyor` ä¸Šæ„å»ºå¹¶è¿è¡Œï¼Œå·²åœ¨ä»¥ä¸‹ç¯å¢ƒä¸­åšè¿‡æµ‹è¯•ï¼š
+## ²âÊÔ»·¾³ (Test environment)
+  ²âÊÔÖ±½ÓÔÚ `Travis CI` ºÍ `AppVeyor` ÉÏ¹¹½¨²¢ÔËĞĞ£¬ÒÑÔÚÒÔÏÂ»·¾³ÖĞ×ö¹ı²âÊÔ£º
   
   Tests were built and run directly on `Tracis CI` and `AppVeyor` and had been tested in the following environments:
 
@@ -9,15 +9,15 @@
   * osx, xcode5/6/7/8
   * windows, VS2015/VS2017, [x64|x86], [Release|Debug]
   
-## æµ‹è¯•æ¡†æ¶ (Test frame)
-  åœ¨ [test.h](https://github.com/Alinshans/MyTinySTL/blob/master/Test/test.h) ä¸­ï¼Œç”¨äº†ä¸¤ä¸ªç±»å®ç°äº†ä¸€ä¸ªç®€å•çš„æµ‹è¯•æ¡†æ¶ï¼Œå¹¶å®šä¹‰äº†å¤§é‡å®æ¥å°è£…æµ‹è¯•è¿‡ç¨‹ã€‚</br>
+## ²âÊÔ¿ò¼Ü (Test frame)
+  ÔÚ [test.h](https://github.com/Alinshans/MyTinySTL/blob/master/Test/test.h) ÖĞ£¬ÓÃÁËÁ½¸öÀàÊµÏÖÁËÒ»¸ö¼òµ¥µÄ²âÊÔ¿ò¼Ü£¬²¢¶¨ÒåÁË´óÁ¿ºêÀ´·â×°²âÊÔ¹ı³Ì¡£</br>
   In this file [test.h](https://github.com/Alinshans/MyTinySTL/blob/master/Test/test.h), I used two class to implement a simple test framework, and defined a lot of macros to package testing process.
   
-## æµ‹è¯•å†…å®¹ (Test content)
-  åœ¨ [test.h](https://github.com/Alinshans/MyTinySTL/blob/master/Test/test.h) ä¸­å®šä¹‰äº†ä¸¤ä¸ªå®ï¼Œ`PERFORMANCE_TEST_ON` å’Œ `LARGER_TEST_DATA_ON`ã€‚`PERFORMANCE_TEST_ON` ä»£è¡¨å¼€å¯æ€§èƒ½æµ‹è¯•ï¼Œé»˜è®¤å®šä¹‰ä¸º `1`ã€‚`LARGER_TEST_DATA_ON` ä»£è¡¨å¢å¤§æµ‹è¯•æ•°æ®ï¼Œé»˜è®¤å®šä¹‰ä¸º `0`ã€‚**å¦‚æœä½ æƒ³æŠŠ `LARGER_TEST_DATA_ON` è®¾ç½®ä¸º `1`ï¼Œå»ºè®®ç”µè„‘é…ç½®ä¸ºï¼šå¤„ç†å™¨ i5 æˆ–ä»¥ä¸Šï¼Œå†…å­˜ 8G ä»¥ä¸Šã€‚**<br>
+## ²âÊÔÄÚÈİ (Test content)
+  ÔÚ [test.h](https://github.com/Alinshans/MyTinySTL/blob/master/Test/test.h) ÖĞ¶¨ÒåÁËÁ½¸öºê£¬`PERFORMANCE_TEST_ON` ºÍ `LARGER_TEST_DATA_ON`¡£`PERFORMANCE_TEST_ON` ´ú±í¿ªÆôĞÔÄÜ²âÊÔ£¬Ä¬ÈÏ¶¨ÒåÎª `1`¡£`LARGER_TEST_DATA_ON` ´ú±íÔö´ó²âÊÔÊı¾İ£¬Ä¬ÈÏ¶¨ÒåÎª `0`¡£**Èç¹ûÄãÏë°Ñ `LARGER_TEST_DATA_ON` ÉèÖÃÎª `1`£¬½¨ÒéµçÄÔÅäÖÃÎª£º´¦ÀíÆ÷ i5 »òÒÔÉÏ£¬ÄÚ´æ 8G ÒÔÉÏ¡£**<br>
   In this file [test.h](https://github.com/Alinshans/MyTinySTL/blob/master/Test/test.h), I defined two marcos: `PERFORMANCE_TEST_ON` and `LARGER_TEST_DATA_ON`. `PERFORMANCE_TEST_ON` means to run performance test, the default is defined as `1`. `LARGER_TEST_DATA_ON` means to increase the test data, the default is defined as `0`. **If you want to set `LARGER_TEST_DATA_ON` to `1`, the proposed computer configuration is: CPU i5 or above, memory 8G or more.**
 
-  æµ‹è¯•æ¡ˆä¾‹å¦‚ä¸‹ï¼š<br>
+  ²âÊÔ°¸ÀıÈçÏÂ£º<br>
   The test cases are as follows:
 
   * [algorithm](https://github.com/Alinshans/MyTinySTL/blob/master/Test/algorithm_test.h) *(100%/100%)*
@@ -44,8 +44,8 @@
   * [vector](https://github.com/Alinshans/MyTinySTL/blob/master/Test/vector_test.h) *(100%/100%)*
   
   
-## æµ‹è¯•ç»“æœ (Test result)
-  è§ [Travis CI](https://travis-ci.org/Alinshans/MyTinySTL) å’Œ [AppVeyor](https://ci.appveyor.com/project/Alinshans/mytinystl)ã€‚
+## ²âÊÔ½á¹û (Test result)
+  ¼û [Travis CI](https://travis-ci.org/Alinshans/MyTinySTL) ºÍ [AppVeyor](https://ci.appveyor.com/project/Alinshans/mytinystl)¡£
 
   See [Travis CI](https://travis-ci.org/Alinshans/MyTinySTL) and [AppVeyor](https://ci.appveyor.com/project/Alinshans/mytinystl).
   
